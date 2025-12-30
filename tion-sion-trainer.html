@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German -tion/-sion Pronunciation Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .play-hint {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 20px;
+    }
+
+    .audio-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.tion-btn {
+      color: #00BCD4;
+    }
+
+    .answer-btn.sion-btn {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">-tion / -sion Trainer</h1>
+      <p class="sg-dark-subtitle">Learn the spelling of words ending in -tion or -sion</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">-tion (Nation)</div>
+        <div class="sg-dark-article">-sion (Vision)</div>
+      </div>
+
+      <p>
+        Both <strong>-tion</strong> and <strong>-sion</strong> are pronounced the same way in German: /tsion/.
+        This makes spelling tricky!
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>-tion</strong> is much more common: Nation, Situation, Information, Funktion<br>
+        <strong>-sion</strong> usually comes after l, n, r: Version, Explosion, Dimension, Pension
+      </div>
+
+      <p>
+        Listen to each word and choose the correct spelling. Remember: the pronunciation sounds identical!
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> Space = Play audio, T = -tion, S = -sion
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/80</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">Nation</div>
+          <div class="play-hint">Click the word or press Space to hear it</div>
+
+          <button class="audio-btn" onclick="playAudio()">
+            Play Audio (Space)
+          </button>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn tion-btn" onclick="checkAnswer('tion')" id="btnTion">
+            -tion
+            <span class="shortcut">(T)</span>
+          </button>
+          <button class="answer-btn sion-btn" onclick="checkAnswer('sion')" id="btnSion">
+            -sion
+            <span class="shortcut">(S)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AUDIO_BASE = 'tion-sion-trainer/audio/';
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // -tion words (50)
+      { word: "Nation", ending: "tion", file: "Nation" },
+      { word: "Situation", ending: "tion", file: "Situation" },
+      { word: "Information", ending: "tion", file: "Information" },
+      { word: "Funktion", ending: "tion", file: "Funktion" },
+      { word: "Reaktion", ending: "tion", file: "Reaktion" },
+      { word: "Produktion", ending: "tion", file: "Produktion" },
+      { word: "Tradition", ending: "tion", file: "Tradition" },
+      { word: "Position", ending: "tion", file: "Position" },
+      { word: "Kommunikation", ending: "tion", file: "Kommunikation" },
+      { word: "Motivation", ending: "tion", file: "Motivation" },
+      { word: "Konzentration", ending: "tion", file: "Konzentration" },
+      { word: "Organisation", ending: "tion", file: "Organisation" },
+      { word: "Demonstration", ending: "tion", file: "Demonstration" },
+      { word: "Konstruktion", ending: "tion", file: "Konstruktion" },
+      { word: "Redaktion", ending: "tion", file: "Redaktion" },
+      { word: "Aktion", ending: "tion", file: "Aktion" },
+      { word: "Attraktion", ending: "tion", file: "Attraktion" },
+      { word: "Direktion", ending: "tion", file: "Direktion" },
+      { word: "Infektion", ending: "tion", file: "Infektion" },
+      { word: "Inspektion", ending: "tion", file: "Inspektion" },
+      { word: "Kollektion", ending: "tion", file: "Kollektion" },
+      { word: "Korrektion", ending: "tion", file: "Korrektion" },
+      { word: "Lektion", ending: "tion", file: "Lektion" },
+      { word: "Perfektion", ending: "tion", file: "Perfektion" },
+      { word: "Sektion", ending: "tion", file: "Sektion" },
+      { word: "Selektion", ending: "tion", file: "Selektion" },
+      { word: "Rezeption", ending: "tion", file: "Rezeption" },
+      { word: "Konsumtion", ending: "tion", file: "Konsumtion" },
+      { word: "Evolution", ending: "tion", file: "Evolution" },
+      { word: "Revolution", ending: "tion", file: "Revolution" },
+      { word: "Sensation", ending: "tion", file: "Sensation" },
+      { word: "Frustration", ending: "tion", file: "Frustration" },
+      { word: "Illustration", ending: "tion", file: "Illustration" },
+      { word: "Meditation", ending: "tion", file: "Meditation" },
+      { word: "Publikation", ending: "tion", file: "Publikation" },
+      { word: "Qualifikation", ending: "tion", file: "Qualifikation" },
+      { word: "Zivilisation", ending: "tion", file: "Zivilisation" },
+      { word: "Imagination", ending: "tion", file: "Imagination" },
+      { word: "Integration", ending: "tion", file: "Integration" },
+      { word: "Kooperation", ending: "tion", file: "Kooperation" },
+      // -sion words (40)
+      { word: "Vision", ending: "sion", file: "Vision" },
+      { word: "Version", ending: "sion", file: "Version" },
+      { word: "Explosion", ending: "sion", file: "Explosion" },
+      { word: "Dimension", ending: "sion", file: "Dimension" },
+      { word: "Pension", ending: "sion", file: "Pension" },
+      { word: "Diskussion", ending: "sion", file: "Diskussion" },
+      { word: "Emission", ending: "sion", file: "Emission" },
+      { word: "Mission", ending: "sion", file: "Mission" },
+      { word: "Kommission", ending: "sion", file: "Kommission" },
+      { word: "Passion", ending: "sion", file: "Passion" },
+      { word: "Session", ending: "sion", file: "Session" },
+      { word: "Aggression", ending: "sion", file: "Aggression" },
+      { word: "Depression", ending: "sion", file: "Depression" },
+      { word: "Expression", ending: "sion", file: "Expression" },
+      { word: "Impression", ending: "sion", file: "Impression" },
+      { word: "Kompression", ending: "sion", file: "Kompression" },
+      { word: "Progression", ending: "sion", file: "Progression" },
+      { word: "Regression", ending: "sion", file: "Regression" },
+      { word: "Rezession", ending: "sion", file: "Rezession" },
+      { word: "Expansion", ending: "sion", file: "Expansion" },
+      { word: "Fusion", ending: "sion", file: "Fusion" },
+      { word: "Illusion", ending: "sion", file: "Illusion" },
+      { word: "Infusion", ending: "sion", file: "Infusion" },
+      { word: "Konfusion", ending: "sion", file: "Konfusion" },
+      { word: "Transfusion", ending: "sion", file: "Transfusion" },
+      { word: "Erosion", ending: "sion", file: "Erosion" },
+      { word: "Korrosion", ending: "sion", file: "Korrosion" },
+      { word: "Konversion", ending: "sion", file: "Konversion" },
+      { word: "Provision", ending: "sion", file: "Provision" },
+      { word: "Revision", ending: "sion", file: "Revision" },
+      { word: "Exkursion", ending: "sion", file: "Exkursion" },
+      { word: "Invasion", ending: "sion", file: "Invasion" },
+      { word: "Occasion", ending: "sion", file: "Occasion" },
+      { word: "Evasion", ending: "sion", file: "Evasion" },
+      { word: "Implosion", ending: "sion", file: "Implosion" },
+      { word: "Transmission", ending: "sion", file: "Transmission" },
+      { word: "Emulsion", ending: "sion", file: "Emulsion" },
+      { word: "Immersion", ending: "sion", file: "Immersion" },
+      { word: "Submersion", ending: "sion", file: "Submersion" },
+      { word: "Dispersion", ending: "sion", file: "Dispersion" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+    let currentAudio = null;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('tion-sion-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map(w => w.word)
+        .filter(w => !mastered.includes(w) && !wrong.includes(w));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('tion-sion-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongWords = allWords.filter(w => wrong.includes(w.word));
+      const unseenWords = allWords.filter(w => unseen.includes(w.word));
+      const masteredWords = allWords.filter(w => mastered.includes(w.word));
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongWords).slice(0, Math.min(10, wrongWords.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenWords).slice(0, Math.min(remaining, unseenWords.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredWords).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      sessionWords = selectSessionWords();
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('wordDisplay').textContent = word.word;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+
+      setTimeout(() => playAudio(), 300);
+    }
+
+    function playAudio() {
+      const word = sessionWords[currentIndex];
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(AUDIO_BASE + word.file + '.mp3?v=1');
+      currentAudio.play().catch(() => {});
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.ending;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.ending === 'tion' ? document.getElementById('btnTion') : document.getElementById('btnSion');
+      const selectedBtn = selected === 'tion' ? document.getElementById('btnTion') : document.getElementById('btnSion');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! "' + word.word + '" is spelled with -' + word.ending + '.';
+
+        if (!mastered.includes(word.word)) {
+          mastered.push(word.word);
+          wrong = wrong.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Wrong! "' + word.word + '" is spelled with -' + word.ending + ', not -' + selected + '.';
+
+        if (!wrong.includes(word.word)) {
+          wrong.push(word.word);
+          mastered = mastered.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('tion-sion-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map(w => w.word);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === ' ' || key === 'spacebar') {
+        e.preventDefault();
+        playAudio();
+      } else if (key === 't' && !answered) {
+        checkAnswer('tion');
+      } else if (key === 's' && !answered) {
+        checkAnswer('sion');
+      }
+    });
+
+    document.getElementById('wordDisplay').addEventListener('click', playAudio);
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

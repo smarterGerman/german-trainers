@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Capitalization Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Aa</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #F44336, #E53935);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .sentence-display {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2C2C2C;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .target-word {
+      font-weight: 800;
+      color: #E91E63;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .hint-text {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 15px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.capital-btn {
+      color: #4CAF50;
+    }
+
+    .answer-btn.lowercase-btn {
+      color: #F44336;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">Capitalization Trainer</h1>
+      <p class="sg-dark-subtitle">Learn when to capitalize words in German</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">Capital = Noun</div>
+        <div class="sg-dark-article">Lowercase = Other</div>
+      </div>
+
+      <p>
+        In German, <strong>all nouns are capitalized</strong> - not just proper nouns like in English.
+        This includes abstract nouns, common nouns, and nominalized words.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>Tricky cases:</strong><br>
+        - Nominalized verbs: das <strong>Lesen</strong>, das <strong>Schwimmen</strong><br>
+        - Nominalized adjectives: der <strong>Alte</strong>, etwas <strong>Neues</strong><br>
+        - After "beim", "zum", "am": beim <strong>Essen</strong>, zum <strong>Spielen</strong>
+      </div>
+
+      <p>
+        Look at the underlined word in context and decide: should it be capitalized?
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> G = Capital (Gross), K = Lowercase (Klein)
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="sentence-display" id="sentenceDisplay">
+            Das ist ein gutes <span class="target-word">beispiel</span>.
+          </div>
+          <div class="hint-text">Should the underlined word be capitalized?</div>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn capital-btn" onclick="checkAnswer(true)" id="btnCapital">
+            Capital (Gross)
+            <span class="shortcut">(G)</span>
+          </button>
+          <button class="answer-btn lowercase-btn" onclick="checkAnswer(false)" id="btnLower">
+            Lowercase (klein)
+            <span class="shortcut">(K)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SESSION_SIZE = 20;
+
+    const allExercises = [
+      // CAPITAL - Regular nouns (25)
+      { sentence: "Das ist ein gutes ___.", word: "Beispiel", capital: true, explanation: "Noun (das Beispiel)" },
+      { sentence: "Ich habe keine ___.", word: "Zeit", capital: true, explanation: "Noun (die Zeit)" },
+      { sentence: "Die ___ scheint heute.", word: "Sonne", capital: true, explanation: "Noun (die Sonne)" },
+      { sentence: "Er trinkt gerne ___.", word: "Kaffee", capital: true, explanation: "Noun (der Kaffee)" },
+      { sentence: "Das ___ ist sehr interessant.", word: "Buch", capital: true, explanation: "Noun (das Buch)" },
+      { sentence: "Wir haben einen neuen ___.", word: "Computer", capital: true, explanation: "Noun (der Computer)" },
+      { sentence: "Die ___ ist wunderbar.", word: "Musik", capital: true, explanation: "Noun (die Musik)" },
+      { sentence: "Ich brauche mehr ___.", word: "Geduld", capital: true, explanation: "Abstract noun (die Geduld)" },
+      { sentence: "Das kostet viel ___.", word: "Geld", capital: true, explanation: "Noun (das Geld)" },
+      { sentence: "Sie hat große ___.", word: "Angst", capital: true, explanation: "Abstract noun (die Angst)" },
+      { sentence: "Er zeigt viel ___.", word: "Mut", capital: true, explanation: "Abstract noun (der Mut)" },
+      { sentence: "Die ___ ist wichtig.", word: "Bildung", capital: true, explanation: "Abstract noun (die Bildung)" },
+      { sentence: "Ich habe eine ___.", word: "Frage", capital: true, explanation: "Noun (die Frage)" },
+      { sentence: "Das ist die ___.", word: "Wahrheit", capital: true, explanation: "Abstract noun (die Wahrheit)" },
+      { sentence: "Sie hat viel ___.", word: "Erfahrung", capital: true, explanation: "Abstract noun (die Erfahrung)" },
+      { sentence: "Der ___ ist schon.", word: "Fruhling", capital: true, explanation: "Noun (der Fruhling)" },
+      { sentence: "Das ___ ist kalt.", word: "Wetter", capital: true, explanation: "Noun (das Wetter)" },
+      { sentence: "Die ___ beginnt um 8.", word: "Schule", capital: true, explanation: "Noun (die Schule)" },
+      { sentence: "Er hat einen guten ___.", word: "Charakter", capital: true, explanation: "Noun (der Charakter)" },
+      { sentence: "Das ist eine gute ___.", word: "Idee", capital: true, explanation: "Noun (die Idee)" },
+      { sentence: "Die ___ ist rot.", word: "Blume", capital: true, explanation: "Noun (die Blume)" },
+      { sentence: "Ich esse einen ___.", word: "Apfel", capital: true, explanation: "Noun (der Apfel)" },
+      { sentence: "Das ___ ist blau.", word: "Auto", capital: true, explanation: "Noun (das Auto)" },
+      { sentence: "Sie liest die ___.", word: "Zeitung", capital: true, explanation: "Noun (die Zeitung)" },
+      { sentence: "Der ___ ist lang.", word: "Weg", capital: true, explanation: "Noun (der Weg)" },
+
+      // CAPITAL - Nominalized verbs (15)
+      { sentence: "Das ___ macht Spass.", word: "Lesen", capital: true, explanation: "Nominalized verb (das Lesen)" },
+      { sentence: "Beim ___ hore ich Musik.", word: "Kochen", capital: true, explanation: "Nominalized verb (das Kochen)" },
+      { sentence: "Das ___ ist gesund.", word: "Schwimmen", capital: true, explanation: "Nominalized verb (das Schwimmen)" },
+      { sentence: "Zum ___ braucht man Ubung.", word: "Tanzen", capital: true, explanation: "Nominalized verb (das Tanzen)" },
+      { sentence: "Das ___ dauert lange.", word: "Warten", capital: true, explanation: "Nominalized verb (das Warten)" },
+      { sentence: "Beim ___ muss man aufpassen.", word: "Fahren", capital: true, explanation: "Nominalized verb (das Fahren)" },
+      { sentence: "Das ___ ist verboten.", word: "Rauchen", capital: true, explanation: "Nominalized verb (das Rauchen)" },
+      { sentence: "Am ___ des Tages.", word: "Ende", capital: true, explanation: "Noun (das Ende)" },
+      { sentence: "Das ___ fallt mir schwer.", word: "Aufstehen", capital: true, explanation: "Nominalized verb (das Aufstehen)" },
+      { sentence: "Beim ___ bin ich glucklich.", word: "Singen", capital: true, explanation: "Nominalized verb (das Singen)" },
+      { sentence: "Das ___ entspannt mich.", word: "Laufen", capital: true, explanation: "Nominalized verb (das Laufen)" },
+      { sentence: "Zum ___ gehort Disziplin.", word: "Lernen", capital: true, explanation: "Nominalized verb (das Lernen)" },
+      { sentence: "Das ___ macht mude.", word: "Arbeiten", capital: true, explanation: "Nominalized verb (das Arbeiten)" },
+      { sentence: "Beim ___ vergesse ich alles.", word: "Spielen", capital: true, explanation: "Nominalized verb (das Spielen)" },
+      { sentence: "Das ___ ist wichtig.", word: "Schlafen", capital: true, explanation: "Nominalized verb (das Schlafen)" },
+
+      // CAPITAL - Nominalized adjectives (10)
+      { sentence: "Der ___ braucht Hilfe.", word: "Alte", capital: true, explanation: "Nominalized adjective (der Alte)" },
+      { sentence: "Ich suche etwas ___.", word: "Neues", capital: true, explanation: "Nominalized adjective (etwas Neues)" },
+      { sentence: "Das ist nichts ___.", word: "Besonderes", capital: true, explanation: "Nominalized adjective (nichts Besonderes)" },
+      { sentence: "Er sagt immer das ___.", word: "Gleiche", capital: true, explanation: "Nominalized adjective (das Gleiche)" },
+      { sentence: "Das ___ daran ist...", word: "Gute", capital: true, explanation: "Nominalized adjective (das Gute)" },
+      { sentence: "Im ___ gelassen.", word: "Grossen", capital: true, explanation: "Nominalized adjective (im Grossen)" },
+      { sentence: "Das ist das ___.", word: "Wichtigste", capital: true, explanation: "Nominalized adjective (das Wichtigste)" },
+      { sentence: "Fur den ___.", word: "Anfang", capital: true, explanation: "Noun (der Anfang)" },
+      { sentence: "Der ___ gewinnt.", word: "Beste", capital: true, explanation: "Nominalized adjective (der Beste)" },
+      { sentence: "Das ist das ___.", word: "Mindeste", capital: true, explanation: "Nominalized adjective (das Mindeste)" },
+
+      // LOWERCASE - Regular adjectives (15)
+      { sentence: "Das Haus ist ___.", word: "gross", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Sie ist sehr ___.", word: "freundlich", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Das Buch ist ___.", word: "interessant", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Der Film war ___.", word: "langweilig", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Das Essen ist ___.", word: "lecker", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Er ist sehr ___.", word: "intelligent", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Die Aufgabe ist ___.", word: "schwierig", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Das Wetter ist ___.", word: "schon", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Sie ist immer ___.", word: "punktlich", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Der Kaffee ist ___.", word: "heiss", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Das ist sehr ___.", word: "wichtig", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Er bleibt ___.", word: "ruhig", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Sie wird ___.", word: "nervos", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Das klingt ___.", word: "seltsam", capital: false, explanation: "Adjective (predicative)" },
+      { sentence: "Er ist sehr ___.", word: "mutig", capital: false, explanation: "Adjective (predicative)" },
+
+      // LOWERCASE - Regular verbs (15)
+      { sentence: "Ich ___ gerne.", word: "lese", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Sie ___ nach Hause.", word: "geht", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Er ___ im Buro.", word: "arbeitet", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Wir ___ Deutsch.", word: "lernen", capital: false, explanation: "Verb (infinitive)" },
+      { sentence: "Ich muss jetzt ___.", word: "gehen", capital: false, explanation: "Verb (infinitive)" },
+      { sentence: "Sie kann gut ___.", word: "singen", capital: false, explanation: "Verb (infinitive)" },
+      { sentence: "Er will nicht ___.", word: "warten", capital: false, explanation: "Verb (infinitive)" },
+      { sentence: "Wir ___ ein Buch.", word: "lesen", capital: false, explanation: "Verb (infinitive after wir)" },
+      { sentence: "Ich ___ dich morgen.", word: "sehe", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Sie ___ sehr schnell.", word: "lauft", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Er ___ gerne Fussball.", word: "spielt", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Wir ___ zusammen.", word: "essen", capital: false, explanation: "Verb (infinitive)" },
+      { sentence: "Du ___ zu viel.", word: "redest", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Sie ___ das Buch.", word: "kauft", capital: false, explanation: "Verb (conjugated)" },
+      { sentence: "Ich will ___ gehen.", word: "schlafen", capital: false, explanation: "Verb (infinitive)" },
+
+      // LOWERCASE - Adverbs (10)
+      { sentence: "Er kommt ___ zu spat.", word: "oft", capital: false, explanation: "Adverb" },
+      { sentence: "Sie singt ___.", word: "schon", capital: false, explanation: "Adverb" },
+      { sentence: "Das ist ___ richtig.", word: "absolut", capital: false, explanation: "Adverb" },
+      { sentence: "Er arbeitet ___.", word: "fleissig", capital: false, explanation: "Adverb" },
+      { sentence: "Wir gehen ___ ins Kino.", word: "manchmal", capital: false, explanation: "Adverb" },
+      { sentence: "Sie ist ___ mude.", word: "immer", capital: false, explanation: "Adverb" },
+      { sentence: "Das passiert ___.", word: "selten", capital: false, explanation: "Adverb" },
+      { sentence: "Er spricht ___ Deutsch.", word: "fliessend", capital: false, explanation: "Adverb" },
+      { sentence: "Sie lacht ___.", word: "laut", capital: false, explanation: "Adverb" },
+      { sentence: "Ich komme ___ wieder.", word: "bald", capital: false, explanation: "Adverb" },
+
+      // LOWERCASE - Pronouns and other (10)
+      { sentence: "Das ist fur ___.", word: "dich", capital: false, explanation: "Pronoun" },
+      { sentence: "Ich denke an ___.", word: "ihn", capital: false, explanation: "Pronoun" },
+      { sentence: "Das gehort ___.", word: "mir", capital: false, explanation: "Pronoun" },
+      { sentence: "___ geht es gut.", word: "uns", capital: false, explanation: "Pronoun" },
+      { sentence: "Ich sehe ___ morgen.", word: "euch", capital: false, explanation: "Pronoun" },
+      { sentence: "Das ist ___ Buch.", word: "mein", capital: false, explanation: "Possessive pronoun" },
+      { sentence: "Wo ist ___ Tasche?", word: "deine", capital: false, explanation: "Possessive pronoun" },
+      { sentence: "Das ist ___ Problem.", word: "sein", capital: false, explanation: "Possessive pronoun" },
+      { sentence: "___ Auto ist rot.", word: "unser", capital: false, explanation: "Possessive pronoun" },
+      { sentence: "Das ist ___ nicht wichtig.", word: "ihm", capital: false, explanation: "Pronoun" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionExercises = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('capitalization-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      const allIds = allExercises.map((_, i) => i);
+      unseen = allIds.filter(i => !mastered.includes(i) && !wrong.includes(i));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('capitalization-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionExercises() {
+      loadProgress();
+
+      const wrongIndices = wrong.slice();
+      const unseenIndices = unseen.slice();
+      const masteredIndices = mastered.slice();
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongIndices).slice(0, Math.min(10, wrongIndices.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenIndices).slice(0, Math.min(remaining, unseenIndices.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredIndices).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      const indices = selectSessionExercises();
+      sessionExercises = indices.map(i => ({ ...allExercises[i], index: i }));
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showExercise();
+    }
+
+    function showExercise() {
+      answered = false;
+      const exercise = sessionExercises[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Display sentence with target word highlighted (in lowercase for the question)
+      const displayWord = exercise.word.toLowerCase();
+      const sentenceHtml = exercise.sentence.replace('___', `<span class="target-word">${displayWord}</span>`);
+      document.getElementById('sentenceDisplay').innerHTML = sentenceHtml;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function checkAnswer(selectedCapital) {
+      if (answered) return;
+      answered = true;
+
+      const exercise = sessionExercises[currentIndex];
+      const isCorrect = selectedCapital === exercise.capital;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = exercise.capital ? document.getElementById('btnCapital') : document.getElementById('btnLower');
+      const selectedBtn = selectedCapital ? document.getElementById('btnCapital') : document.getElementById('btnLower');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+      const correctWord = exercise.capital ? exercise.word : exercise.word.toLowerCase();
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = `Correct! "${correctWord}" - ${exercise.explanation}`;
+
+        if (!mastered.includes(exercise.index)) {
+          mastered.push(exercise.index);
+          wrong = wrong.filter(i => i !== exercise.index);
+          unseen = unseen.filter(i => i !== exercise.index);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = `Wrong! "${correctWord}" - ${exercise.explanation}`;
+
+        if (!wrong.includes(exercise.index)) {
+          wrong.push(exercise.index);
+          mastered = mastered.filter(i => i !== exercise.index);
+          unseen = unseen.filter(i => i !== exercise.index);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showExercise();
+        } else {
+          showResults();
+        }
+      }, 1800);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('capitalization-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allExercises.map((_, i) => i);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === 'g' && !answered) {
+        checkAnswer(true);
+      } else if (key === 'k' && !answered) {
+        checkAnswer(false);
+      }
+    });
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

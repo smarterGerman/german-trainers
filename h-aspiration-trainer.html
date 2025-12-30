@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German H Aspiration Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .play-hint {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 20px;
+    }
+
+    .audio-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.pronounced {
+      color: #00BCD4;
+    }
+
+    .answer-btn.silent {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">German H Aspiration Trainer</h1>
+      <p class="sg-dark-subtitle">Learn when German "h" is pronounced or silent</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">Pronounced (Haus)</div>
+        <div class="sg-dark-article">Silent (gehen)</div>
+      </div>
+
+      <p>
+        In German, the letter <strong>"h"</strong> behaves differently depending on its position:
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>Pronounced /h/</strong> - At the start of a word or syllable: Haus, Hund, Bahnhof<br>
+        <strong>Silent (Dehnungs-h)</strong> - After a vowel, makes the vowel long: gehen, sehen, Zahn, mehr
+      </div>
+
+      <p>
+        Listen to each word and decide whether the "h" is <strong>pronounced</strong> (you hear an /h/ sound)
+        or <strong>silent</strong> (just makes the previous vowel long).
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> Space = Play audio, P = Pronounced, S = Silent
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/80</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">Haus</div>
+          <div class="play-hint">Click the word or press Space to hear it</div>
+
+          <button class="audio-btn" onclick="playAudio()">
+            Play Audio (Space)
+          </button>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn pronounced" onclick="checkAnswer('pronounced')" id="btnPronounced">
+            Pronounced /h/
+            <span class="shortcut">(P)</span>
+          </button>
+          <button class="answer-btn silent" onclick="checkAnswer('silent')" id="btnSilent">
+            Silent (long vowel)
+            <span class="shortcut">(S)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AUDIO_BASE = 'h-aspiration-trainer/audio/';
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // Pronounced H - at word/syllable start (40)
+      { word: "Haus", type: "pronounced", file: "Haus" },
+      { word: "Hund", type: "pronounced", file: "Hund" },
+      { word: "Hand", type: "pronounced", file: "Hand" },
+      { word: "Herz", type: "pronounced", file: "Herz" },
+      { word: "heute", type: "pronounced", file: "heute" },
+      { word: "hier", type: "pronounced", file: "hier" },
+      { word: "haben", type: "pronounced", file: "haben" },
+      { word: "halten", type: "pronounced", file: "halten" },
+      { word: "helfen", type: "pronounced", file: "helfen" },
+      { word: "holen", type: "pronounced", file: "holen" },
+      { word: "Himmel", type: "pronounced", file: "Himmel" },
+      { word: "Hilfe", type: "pronounced", file: "Hilfe" },
+      { word: "Hoffnung", type: "pronounced", file: "Hoffnung" },
+      { word: "Hunger", type: "pronounced", file: "Hunger" },
+      { word: "Hose", type: "pronounced", file: "Hose" },
+      { word: "Husten", type: "pronounced", file: "Husten" },
+      { word: "Haar", type: "pronounced", file: "Haar" },
+      { word: "Hals", type: "pronounced", file: "Hals" },
+      { word: "Haut", type: "pronounced", file: "Haut" },
+      { word: "Helm", type: "pronounced", file: "Helm" },
+      { word: "Bahnhof", type: "pronounced", file: "Bahnhof" },
+      { word: "Rathaus", type: "pronounced", file: "Rathaus" },
+      { word: "Krankenhaus", type: "pronounced", file: "Krankenhaus" },
+      { word: "Kaufhaus", type: "pronounced", file: "Kaufhaus" },
+      { word: "Hochhaus", type: "pronounced", file: "Hochhaus" },
+      { word: "Gehalt", type: "pronounced", file: "Gehalt" },
+      { word: "Verhalten", type: "pronounced", file: "Verhalten" },
+      { word: "Inhalt", type: "pronounced", file: "Inhalt" },
+      { word: "anhalten", type: "pronounced", file: "anhalten" },
+      { word: "aufhören", type: "pronounced", file: "aufhoeren" },
+      { word: "abholen", type: "pronounced", file: "abholen" },
+      { word: "Wohnheim", type: "pronounced", file: "Wohnheim" },
+      { word: "Geheimnis", type: "pronounced", file: "Geheimnis" },
+      { word: "hinten", type: "pronounced", file: "hinten" },
+      { word: "hinauf", type: "pronounced", file: "hinauf" },
+      { word: "hinunter", type: "pronounced", file: "hinunter" },
+      { word: "herum", type: "pronounced", file: "herum" },
+      { word: "heraus", type: "pronounced", file: "heraus" },
+      { word: "herein", type: "pronounced", file: "herein" },
+      { word: "hinein", type: "pronounced", file: "hinein" },
+      // Silent H - Dehnungs-h after vowels (40)
+      { word: "gehen", type: "silent", file: "gehen" },
+      { word: "sehen", type: "silent", file: "sehen" },
+      { word: "stehen", type: "silent", file: "stehen" },
+      { word: "verstehen", type: "silent", file: "verstehen" },
+      { word: "drehen", type: "silent", file: "drehen" },
+      { word: "nehmen", type: "silent", file: "nehmen" },
+      { word: "Zahn", type: "silent", file: "Zahn" },
+      { word: "Bahn", type: "silent", file: "Bahn" },
+      { word: "Sahne", type: "silent", file: "Sahne" },
+      { word: "Rahmen", type: "silent", file: "Rahmen" },
+      { word: "mehr", type: "silent", file: "mehr" },
+      { word: "sehr", type: "silent", file: "sehr" },
+      { word: "Lehre", type: "silent", file: "Lehre" },
+      { word: "Lehrer", type: "silent", file: "Lehrer" },
+      { word: "Jahr", type: "silent", file: "Jahr" },
+      { word: "wahr", type: "silent", file: "wahr" },
+      { word: "fahren", type: "silent", file: "fahren" },
+      { word: "Fahrer", type: "silent", file: "Fahrer" },
+      { word: "Gefahr", type: "silent", file: "Gefahr" },
+      { word: "Erfahrung", type: "silent", file: "Erfahrung" },
+      { word: "Uhr", type: "silent", file: "Uhr" },
+      { word: "Ohr", type: "silent", file: "Ohr" },
+      { word: "ohne", type: "silent", file: "ohne" },
+      { word: "wohnen", type: "silent", file: "wohnen" },
+      { word: "Wohnung", type: "silent", file: "Wohnung" },
+      { word: "Sohn", type: "silent", file: "Sohn" },
+      { word: "Lohn", type: "silent", file: "Lohn" },
+      { word: "Bohne", type: "silent", file: "Bohne" },
+      { word: "fühlen", type: "silent", file: "fuehlen" },
+      { word: "Gefühl", type: "silent", file: "Gefuehl" },
+      { word: "kühl", type: "silent", file: "kuehl" },
+      { word: "Stuhl", type: "silent", file: "Stuhl" },
+      { word: "Schuh", type: "silent", file: "Schuh" },
+      { word: "Kuh", type: "silent", file: "Kuh" },
+      { word: "Ruhe", type: "silent", file: "Ruhe" },
+      { word: "früh", type: "silent", file: "frueh" },
+      { word: "Nähe", type: "silent", file: "Naehe" },
+      { word: "Reihe", type: "silent", file: "Reihe" },
+      { word: "Weihnachten", type: "silent", file: "Weihnachten" },
+      { word: "zehn", type: "silent", file: "zehn" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+    let currentAudio = null;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('h-aspiration-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map(w => w.word)
+        .filter(w => !mastered.includes(w) && !wrong.includes(w));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('h-aspiration-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongWords = allWords.filter(w => wrong.includes(w.word));
+      const unseenWords = allWords.filter(w => unseen.includes(w.word));
+      const masteredWords = allWords.filter(w => mastered.includes(w.word));
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongWords).slice(0, Math.min(10, wrongWords.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenWords).slice(0, Math.min(remaining, unseenWords.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredWords).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      sessionWords = selectSessionWords();
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('wordDisplay').textContent = word.word;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+
+      setTimeout(() => playAudio(), 300);
+    }
+
+    function playAudio() {
+      const word = sessionWords[currentIndex];
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(AUDIO_BASE + word.file + '.mp3?v=1');
+      currentAudio.play().catch(() => {});
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.type;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.type === 'pronounced' ? document.getElementById('btnPronounced') : document.getElementById('btnSilent');
+      const selectedBtn = selected === 'pronounced' ? document.getElementById('btnPronounced') : document.getElementById('btnSilent');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+      const typeLabel = word.type === 'pronounced' ? 'pronounced' : 'silent (long vowel)';
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! The "h" in "' + word.word + '" is ' + typeLabel + '.';
+
+        if (!mastered.includes(word.word)) {
+          mastered.push(word.word);
+          wrong = wrong.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Wrong! The "h" in "' + word.word + '" is ' + typeLabel + '.';
+
+        if (!wrong.includes(word.word)) {
+          wrong.push(word.word);
+          mastered = mastered.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('h-aspiration-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map(w => w.word);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === ' ' || key === 'spacebar') {
+        e.preventDefault();
+        playAudio();
+      } else if (key === 'p' && !answered) {
+        checkAnswer('pronounced');
+      } else if (key === 's' && !answered) {
+        checkAnswer('silent');
+      }
+    });
+
+    document.getElementById('wordDisplay').addEventListener('click', playAudio);
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

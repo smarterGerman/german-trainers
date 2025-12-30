@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German NG vs NK Sound Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 200px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .instruction {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 35px;
+      border-radius: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 100px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .option-btn:disabled { cursor: not-allowed; }
+
+    .option-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .option-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .option-btn.highlight {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .feedback.correct-text { color: #4CAF50; }
+    .feedback.wrong-text { color: #F44336; }
+
+    .word-reveal {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2C2C2C;
+      margin-top: 15px;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .option-btn { padding: 14px 25px; font-size: 20px; min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">NG vs NK</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> ng
+      <kbd>J</kbd> nk
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>NG vs NK sounds:</strong>
+      <br><br>
+      <strong>NG</strong> = /ŋ/ - The nasal sound (like English "si<strong>ng</strong>")
+      <br>Examples: la<strong>ng</strong>, Schla<strong>ng</strong>e, si<strong>ng</strong>en
+      <br><br>
+      <strong>NK</strong> = /ŋk/ - Nasal + K sound (like English "si<strong>nk</strong>")
+      <br>Examples: da<strong>nk</strong>e, Ba<strong>nk</strong>, tri<strong>nk</strong>en
+      <br><br>
+      <em>Key difference: NK has a clear "k" sound at the end, NG does not!</em>
+      <br><br>
+      Listen carefully and identify which sound you hear!
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div class="instruction">Which sound do you hear?</div>
+
+        <div id="optionsContainer" class="options-container">
+          <button class="option-btn" onclick="checkAnswer('ng')" data-option="ng">ng</button>
+          <button class="option-btn" onclick="checkAnswer('nk')" data-option="nk">nk</button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+        <div id="wordReveal" class="word-reveal hidden"></div>
+        <div id="translationReveal" class="translation-reveal hidden"></div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'ng-nk-trainer/audio/';
+      const STORAGE_KEY = 'ng_nk_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: ng vs nk
+      const allWords = [
+        // NG words (40)
+        { word: "lang", sound: "ng", file: "lang", en: "long" },
+        { word: "Schlange", sound: "ng", file: "Schlange", en: "snake" },
+        { word: "singen", sound: "ng", file: "singen", en: "to sing" },
+        { word: "bringen", sound: "ng", file: "bringen", en: "to bring" },
+        { word: "springen", sound: "ng", file: "springen", en: "to jump" },
+        { word: "Finger", sound: "ng", file: "Finger", en: "finger" },
+        { word: "Hunger", sound: "ng", file: "Hunger", en: "hunger" },
+        { word: "jung", sound: "ng", file: "jung", en: "young" },
+        { word: "Junge", sound: "ng", file: "Junge", en: "boy" },
+        { word: "Zunge", sound: "ng", file: "Zunge", en: "tongue" },
+        { word: "Klang", sound: "ng", file: "Klang", en: "sound" },
+        { word: "Gang", sound: "ng", file: "Gang", en: "walk/hallway" },
+        { word: "Gesang", sound: "ng", file: "Gesang", en: "singing" },
+        { word: "Zwang", sound: "ng", file: "Zwang", en: "compulsion" },
+        { word: "Anfang", sound: "ng", file: "Anfang", en: "beginning" },
+        { word: "Empfang", sound: "ng", file: "Empfang", en: "reception" },
+        { word: "Umgang", sound: "ng", file: "Umgang", en: "handling" },
+        { word: "Zugang", sound: "ng", file: "Zugang", en: "access" },
+        { word: "Eingang", sound: "ng", file: "Eingang", en: "entrance" },
+        { word: "Ausgang", sound: "ng", file: "Ausgang", en: "exit" },
+        { word: "Ring", sound: "ng", file: "Ring", en: "ring" },
+        { word: "Ding", sound: "ng", file: "Ding", en: "thing" },
+        { word: "eng", sound: "ng", file: "eng", en: "narrow/tight" },
+        { word: "Menge", sound: "ng", file: "Menge", en: "quantity" },
+        { word: "Enge", sound: "ng", file: "Enge", en: "narrowness" },
+        { word: "streng", sound: "ng", file: "streng", en: "strict" },
+        { word: "Stange", sound: "ng", file: "Stange", en: "bar/pole" },
+        { word: "Wange", sound: "ng", file: "Wange", en: "cheek" },
+        { word: "Mange", sound: "ng", file: "Mange", en: "scarcity" },
+        { word: "hängen", sound: "ng", file: "haengen", en: "to hang" },
+        { word: "fangen", sound: "ng", file: "fangen", en: "to catch" },
+        { word: "anfangen", sound: "ng", file: "anfangen", en: "to begin" },
+        { word: "empfangen", sound: "ng", file: "empfangen", en: "to receive" },
+        { word: "gelungen", sound: "ng", file: "gelungen", en: "succeeded" },
+        { word: "gezwungen", sound: "ng", file: "gezwungen", en: "forced" },
+        { word: "gesungen", sound: "ng", file: "gesungen", en: "sung" },
+        { word: "gesprungen", sound: "ng", file: "gesprungen", en: "jumped" },
+        { word: "Achtung", sound: "ng", file: "Achtung", en: "attention" },
+        { word: "Ordnung", sound: "ng", file: "Ordnung", en: "order" },
+        { word: "Hoffnung", sound: "ng", file: "Hoffnung", en: "hope" },
+        // NK words (40)
+        { word: "danke", sound: "nk", file: "danke", en: "thank you" },
+        { word: "Bank", sound: "nk", file: "Bank", en: "bank/bench" },
+        { word: "trinken", sound: "nk", file: "trinken", en: "to drink" },
+        { word: "denken", sound: "nk", file: "denken", en: "to think" },
+        { word: "schenken", sound: "nk", file: "schenken", en: "to give" },
+        { word: "sinken", sound: "nk", file: "sinken", en: "to sink" },
+        { word: "winken", sound: "nk", file: "winken", en: "to wave" },
+        { word: "Schrank", sound: "nk", file: "Schrank", en: "cabinet" },
+        { word: "krank", sound: "nk", file: "krank", en: "sick" },
+        { word: "Dank", sound: "nk", file: "Dank", en: "thanks" },
+        { word: "Gedanke", sound: "nk", file: "Gedanke", en: "thought" },
+        { word: "Geschenk", sound: "nk", file: "Geschenk", en: "gift" },
+        { word: "Punkt", sound: "nk", file: "Punkt", en: "point/dot" },
+        { word: "dunkel", sound: "nk", file: "dunkel", en: "dark" },
+        { word: "Onkel", sound: "nk", file: "Onkel", en: "uncle" },
+        { word: "Enkel", sound: "nk", file: "Enkel", en: "grandchild" },
+        { word: "Schinken", sound: "nk", file: "Schinken", en: "ham" },
+        { word: "Funke", sound: "nk", file: "Funke", en: "spark" },
+        { word: "Stunk", sound: "nk", file: "Stunk", en: "stink/trouble" },
+        { word: "Trunk", sound: "nk", file: "Trunk", en: "drink" },
+        { word: "blinken", sound: "nk", file: "blinken", en: "to blink" },
+        { word: "stinken", sound: "nk", file: "stinken", en: "to stink" },
+        { word: "hinken", sound: "nk", file: "hinken", en: "to limp" },
+        { word: "lenken", sound: "nk", file: "lenken", en: "to steer" },
+        { word: "senken", sound: "nk", file: "senken", en: "to lower" },
+        { word: "schwenken", sound: "nk", file: "schwenken", en: "to swing" },
+        { word: "Zink", sound: "nk", file: "Zink", en: "zinc" },
+        { word: "Link", sound: "nk", file: "Link", en: "link" },
+        { word: "links", sound: "nk", file: "links", en: "left" },
+        { word: "Anker", sound: "nk", file: "Anker", en: "anchor" },
+        { word: "blanko", sound: "nk", file: "blanko", en: "blank" },
+        { word: "Bunker", sound: "nk", file: "Bunker", en: "bunker" },
+        { word: "Klinke", sound: "nk", file: "Klinke", en: "handle" },
+        { word: "Planke", sound: "nk", file: "Planke", en: "plank" },
+        { word: "Ranke", sound: "nk", file: "Ranke", en: "tendril" },
+        { word: "Schranke", sound: "nk", file: "Schranke", en: "barrier" },
+        { word: "Schwank", sound: "nk", file: "Schwank", en: "farce" },
+        { word: "wanken", sound: "nk", file: "wanken", en: "to sway" },
+        { word: "zanken", sound: "nk", file: "zanken", en: "to quarrel" },
+        { word: "Franke", sound: "nk", file: "Franke", en: "Franconian" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function highlightSound(word, sound) {
+        const regex = new RegExp('(' + sound + ')', 'gi');
+        return word.replace(regex, '<strong style="color: #E91E63;">$1</strong>');
+      }
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const feedback = document.getElementById('feedback');
+        const wordReveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+        const btns = document.querySelectorAll('.option-btn');
+
+        preloadAudio();
+
+        // Reset
+        btns.forEach(btn => {
+          btn.classList.remove('correct', 'wrong', 'highlight');
+          btn.disabled = false;
+        });
+        feedback.classList.add('hidden');
+        wordReveal.classList.add('hidden');
+        transReveal.classList.add('hidden');
+
+        if (prev !== null) {
+          answered = true;
+          btns.forEach(btn => {
+            btn.disabled = true;
+            if (btn.dataset.option === ex.sound) {
+              btn.classList.add('highlight');
+            }
+            if (prev === btn.dataset.option && prev !== ex.sound) {
+              btn.classList.add('wrong');
+            }
+          });
+
+          wordReveal.innerHTML = highlightSound(ex.word, ex.sound);
+          wordReveal.classList.remove('hidden');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+        } else {
+          answered = false;
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      window.checkAnswer = function(selected) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = selected === ex.sound;
+        answers[idx] = selected;
+
+        const feedback = document.getElementById('feedback');
+        const wordReveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+        const btns = document.querySelectorAll('.option-btn');
+
+        btns.forEach(btn => {
+          btn.disabled = true;
+          if (btn.dataset.option === ex.sound) {
+            btn.classList.add('highlight');
+          }
+          if (selected === btn.dataset.option && selected !== ex.sound) {
+            btn.classList.add('wrong');
+          }
+        });
+
+        wordReveal.innerHTML = highlightSound(ex.word, ex.sound);
+        wordReveal.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+          feedback.textContent = 'Correct!';
+          feedback.className = 'feedback correct-text';
+        } else {
+          sessionWrong.push(ex);
+          feedback.textContent = 'Wrong - it\'s "' + ex.sound + '"';
+          feedback.className = 'feedback wrong-text';
+        }
+        feedback.classList.remove('hidden');
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1200);
+      };
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.sound}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key.toLowerCase();
+        if (k === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          playWord();
+        } else if (k === 'f' && !answered) {
+          e.preventDefault();
+          checkAnswer('ng');
+        } else if (k === 'j' && !answered) {
+          e.preventDefault();
+          checkAnswer('nk');
+        }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

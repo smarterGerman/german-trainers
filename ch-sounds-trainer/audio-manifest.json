@@ -1,0 +1,566 @@
+{
+  "generated": "2025-12-30T08:42:49.665Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "ich",
+      "phrase": "ich bin hier",
+      "en": "I am here",
+      "sound": "ich",
+      "file": "audio/ich.mp3"
+    },
+    {
+      "word": "mich",
+      "phrase": "für mich bitte",
+      "en": "for me please",
+      "sound": "ich",
+      "file": "audio/mich.mp3"
+    },
+    {
+      "word": "dich",
+      "phrase": "ich sehe dich",
+      "en": "I see you",
+      "sound": "ich",
+      "file": "audio/dich.mp3"
+    },
+    {
+      "word": "sich",
+      "phrase": "er freut sich",
+      "en": "he is happy",
+      "sound": "ich",
+      "file": "audio/sich.mp3"
+    },
+    {
+      "word": "nicht",
+      "phrase": "das geht nicht",
+      "en": "that doesn't work",
+      "sound": "ich",
+      "file": "audio/nicht.mp3"
+    },
+    {
+      "word": "Licht",
+      "phrase": "mach das Licht an",
+      "en": "turn on the light",
+      "sound": "ich",
+      "file": "audio/Licht.mp3"
+    },
+    {
+      "word": "Gesicht",
+      "phrase": "ein freundliches Gesicht",
+      "en": "a friendly face",
+      "sound": "ich",
+      "file": "audio/Gesicht.mp3"
+    },
+    {
+      "word": "Geschichte",
+      "phrase": "eine lange Geschichte",
+      "en": "a long story",
+      "sound": "ich",
+      "file": "audio/Geschichte.mp3"
+    },
+    {
+      "word": "wichtig",
+      "phrase": "das ist wichtig",
+      "en": "that is important",
+      "sound": "ich",
+      "file": "audio/wichtig.mp3"
+    },
+    {
+      "word": "richtig",
+      "phrase": "ja, das ist richtig",
+      "en": "yes, that is correct",
+      "sound": "ich",
+      "file": "audio/richtig.mp3"
+    },
+    {
+      "word": "möchten",
+      "phrase": "was möchten Sie",
+      "en": "what would you like",
+      "sound": "ich",
+      "file": "audio/moechten.mp3"
+    },
+    {
+      "word": "Bücher",
+      "phrase": "viele Bücher lesen",
+      "en": "read many books",
+      "sound": "ich",
+      "file": "audio/Buecher.mp3"
+    },
+    {
+      "word": "Küche",
+      "phrase": "in der Küche kochen",
+      "en": "cook in the kitchen",
+      "sound": "ich",
+      "file": "audio/Kueche.mp3"
+    },
+    {
+      "word": "Mädchen",
+      "phrase": "das kleine Mädchen",
+      "en": "the little girl",
+      "sound": "ich",
+      "file": "audio/Maedchen.mp3"
+    },
+    {
+      "word": "sprechen",
+      "phrase": "Deutsch sprechen lernen",
+      "en": "learn to speak German",
+      "sound": "ich",
+      "file": "audio/sprechen.mp3"
+    },
+    {
+      "word": "brechen",
+      "phrase": "das Glas brechen",
+      "en": "break the glass",
+      "sound": "ich",
+      "file": "audio/brechen.mp3"
+    },
+    {
+      "word": "stechen",
+      "phrase": "die Biene kann stechen",
+      "en": "the bee can sting",
+      "sound": "ich",
+      "file": "audio/stechen.mp3"
+    },
+    {
+      "word": "Becher",
+      "phrase": "ein voller Becher",
+      "en": "a full cup",
+      "sound": "ich",
+      "file": "audio/Becher.mp3"
+    },
+    {
+      "word": "Löcher",
+      "phrase": "viele kleine Löcher",
+      "en": "many small holes",
+      "sound": "ich",
+      "file": "audio/Loecher.mp3"
+    },
+    {
+      "word": "Köcher",
+      "phrase": "Pfeil und Köcher",
+      "en": "arrow and quiver",
+      "sound": "ich",
+      "file": "audio/Koecher.mp3"
+    },
+    {
+      "word": "Milch",
+      "phrase": "kalte Milch trinken",
+      "en": "drink cold milk",
+      "sound": "ich",
+      "file": "audio/Milch.mp3"
+    },
+    {
+      "word": "welch",
+      "phrase": "welch ein Tag",
+      "en": "what a day",
+      "sound": "ich",
+      "file": "audio/welch.mp3"
+    },
+    {
+      "word": "solch",
+      "phrase": "solch ein Glück",
+      "en": "such luck",
+      "sound": "ich",
+      "file": "audio/solch.mp3"
+    },
+    {
+      "word": "durch",
+      "phrase": "durch die Stadt gehen",
+      "en": "walk through the city",
+      "sound": "ich",
+      "file": "audio/durch.mp3"
+    },
+    {
+      "word": "Kirche",
+      "phrase": "die alte Kirche",
+      "en": "the old church",
+      "sound": "ich",
+      "file": "audio/Kirche.mp3"
+    },
+    {
+      "word": "Lerche",
+      "phrase": "die Lerche singt",
+      "en": "the lark sings",
+      "sound": "ich",
+      "file": "audio/Lerche.mp3"
+    },
+    {
+      "word": "München",
+      "phrase": "ich wohne in München",
+      "en": "I live in Munich",
+      "sound": "ich",
+      "file": "audio/Muenchen.mp3"
+    },
+    {
+      "word": "Mönch",
+      "phrase": "der alte Mönch",
+      "en": "the old monk",
+      "sound": "ich",
+      "file": "audio/Moench.mp3"
+    },
+    {
+      "word": "gleich",
+      "phrase": "ich komme gleich",
+      "en": "I'm coming right away",
+      "sound": "ich",
+      "file": "audio/gleich.mp3"
+    },
+    {
+      "word": "weich",
+      "phrase": "das Bett ist weich",
+      "en": "the bed is soft",
+      "sound": "ich",
+      "file": "audio/weich.mp3"
+    },
+    {
+      "word": "reich",
+      "phrase": "sehr reich werden",
+      "en": "become very rich",
+      "sound": "ich",
+      "file": "audio/reich.mp3"
+    },
+    {
+      "word": "Teich",
+      "phrase": "Fische im Teich",
+      "en": "fish in the pond",
+      "sound": "ich",
+      "file": "audio/Teich.mp3"
+    },
+    {
+      "word": "leicht",
+      "phrase": "das ist leicht",
+      "en": "that is easy",
+      "sound": "ich",
+      "file": "audio/leicht.mp3"
+    },
+    {
+      "word": "vielleicht",
+      "phrase": "ja, vielleicht morgen",
+      "en": "yes, maybe tomorrow",
+      "sound": "ich",
+      "file": "audio/vielleicht.mp3"
+    },
+    {
+      "word": "Zeichen",
+      "phrase": "ein gutes Zeichen",
+      "en": "a good sign",
+      "sound": "ich",
+      "file": "audio/Zeichen.mp3"
+    },
+    {
+      "word": "euch",
+      "phrase": "ich danke euch",
+      "en": "I thank you all",
+      "sound": "ich",
+      "file": "audio/euch.mp3"
+    },
+    {
+      "word": "Bäuche",
+      "phrase": "dicke Bäuche haben",
+      "en": "have big bellies",
+      "sound": "ich",
+      "file": "audio/Baeuche.mp3"
+    },
+    {
+      "word": "feucht",
+      "phrase": "das Handtuch ist feucht",
+      "en": "the towel is damp",
+      "sound": "ich",
+      "file": "audio/feucht.mp3"
+    },
+    {
+      "word": "Gerücht",
+      "phrase": "nur ein Gerücht",
+      "en": "just a rumor",
+      "sound": "ich",
+      "file": "audio/Geruecht.mp3"
+    },
+    {
+      "word": "Gedicht",
+      "phrase": "ein schönes Gedicht",
+      "en": "a beautiful poem",
+      "sound": "ich",
+      "file": "audio/Gedicht.mp3"
+    },
+    {
+      "word": "acht",
+      "phrase": "um acht Uhr",
+      "en": "at eight o'clock",
+      "sound": "ach",
+      "file": "audio/acht.mp3"
+    },
+    {
+      "word": "Nacht",
+      "phrase": "gute Nacht sagen",
+      "en": "say good night",
+      "sound": "ach",
+      "file": "audio/Nacht.mp3"
+    },
+    {
+      "word": "Macht",
+      "phrase": "große Macht haben",
+      "en": "have great power",
+      "sound": "ach",
+      "file": "audio/Macht.mp3"
+    },
+    {
+      "word": "machen",
+      "phrase": "Hausaufgaben machen",
+      "en": "do homework",
+      "sound": "ach",
+      "file": "audio/machen.mp3"
+    },
+    {
+      "word": "lachen",
+      "phrase": "laut lachen müssen",
+      "en": "have to laugh out loud",
+      "sound": "ach",
+      "file": "audio/lachen.mp3"
+    },
+    {
+      "word": "wachen",
+      "phrase": "die ganze Nacht wachen",
+      "en": "stay awake all night",
+      "sound": "ach",
+      "file": "audio/wachen.mp3"
+    },
+    {
+      "word": "Sache",
+      "phrase": "eine gute Sache",
+      "en": "a good thing",
+      "sound": "ach",
+      "file": "audio/Sache.mp3"
+    },
+    {
+      "word": "Sprache",
+      "phrase": "die deutsche Sprache",
+      "en": "the German language",
+      "sound": "ach",
+      "file": "audio/Sprache.mp3"
+    },
+    {
+      "word": "Dach",
+      "phrase": "auf dem Dach sitzen",
+      "en": "sit on the roof",
+      "sound": "ach",
+      "file": "audio/Dach.mp3"
+    },
+    {
+      "word": "Bach",
+      "phrase": "der kleine Bach fließt",
+      "en": "the small stream flows",
+      "sound": "ach",
+      "file": "audio/Bach.mp3"
+    },
+    {
+      "word": "flach",
+      "phrase": "das Land ist flach",
+      "en": "the land is flat",
+      "sound": "ach",
+      "file": "audio/flach.mp3"
+    },
+    {
+      "word": "schwach",
+      "phrase": "ich bin noch schwach",
+      "en": "I am still weak",
+      "sound": "ach",
+      "file": "audio/schwach.mp3"
+    },
+    {
+      "word": "nach",
+      "phrase": "nach Hause gehen",
+      "en": "go home",
+      "sound": "ach",
+      "file": "audio/nach.mp3"
+    },
+    {
+      "word": "Fach",
+      "phrase": "mein Lieblingsfach",
+      "en": "my favorite subject",
+      "sound": "ach",
+      "file": "audio/Fach.mp3"
+    },
+    {
+      "word": "noch",
+      "phrase": "noch ein Kaffee bitte",
+      "en": "another coffee please",
+      "sound": "ach",
+      "file": "audio/noch.mp3"
+    },
+    {
+      "word": "doch",
+      "phrase": "ja doch, natürlich",
+      "en": "yes indeed, of course",
+      "sound": "ach",
+      "file": "audio/doch.mp3"
+    },
+    {
+      "word": "hoch",
+      "phrase": "der Berg ist hoch",
+      "en": "the mountain is high",
+      "sound": "ach",
+      "file": "audio/hoch.mp3"
+    },
+    {
+      "word": "Koch",
+      "phrase": "der Koch kocht gut",
+      "en": "the cook cooks well",
+      "sound": "ach",
+      "file": "audio/Koch.mp3"
+    },
+    {
+      "word": "kochen",
+      "phrase": "Abendessen kochen",
+      "en": "cook dinner",
+      "sound": "ach",
+      "file": "audio/kochen.mp3"
+    },
+    {
+      "word": "Woche",
+      "phrase": "nächste Woche komme ich",
+      "en": "I'm coming next week",
+      "sound": "ach",
+      "file": "audio/Woche.mp3"
+    },
+    {
+      "word": "Tochter",
+      "phrase": "meine Tochter ist zehn",
+      "en": "my daughter is ten",
+      "sound": "ach",
+      "file": "audio/Tochter.mp3"
+    },
+    {
+      "word": "Loch",
+      "phrase": "ein tiefes Loch",
+      "en": "a deep hole",
+      "sound": "ach",
+      "file": "audio/Loch.mp3"
+    },
+    {
+      "word": "Buch",
+      "phrase": "ein gutes Buch lesen",
+      "en": "read a good book",
+      "sound": "ach",
+      "file": "audio/Buch.mp3"
+    },
+    {
+      "word": "Tuch",
+      "phrase": "ein warmes Tuch",
+      "en": "a warm cloth",
+      "sound": "ach",
+      "file": "audio/Tuch.mp3"
+    },
+    {
+      "word": "Kuchen",
+      "phrase": "leckeren Kuchen backen",
+      "en": "bake delicious cake",
+      "sound": "ach",
+      "file": "audio/Kuchen.mp3"
+    },
+    {
+      "word": "suchen",
+      "phrase": "die Schlüssel suchen",
+      "en": "look for the keys",
+      "sound": "ach",
+      "file": "audio/suchen.mp3"
+    },
+    {
+      "word": "besuchen",
+      "phrase": "Freunde besuchen gehen",
+      "en": "go visit friends",
+      "sound": "ach",
+      "file": "audio/besuchen.mp3"
+    },
+    {
+      "word": "versuchen",
+      "phrase": "es nochmal versuchen",
+      "en": "try again",
+      "sound": "ach",
+      "file": "audio/versuchen.mp3"
+    },
+    {
+      "word": "Geruch",
+      "phrase": "ein guter Geruch",
+      "en": "a good smell",
+      "sound": "ach",
+      "file": "audio/Geruch.mp3"
+    },
+    {
+      "word": "Besuch",
+      "phrase": "Besuch bekommen",
+      "en": "have visitors",
+      "sound": "ach",
+      "file": "audio/Besuch.mp3"
+    },
+    {
+      "word": "Fluch",
+      "phrase": "ein alter Fluch",
+      "en": "an old curse",
+      "sound": "ach",
+      "file": "audio/Fluch.mp3"
+    },
+    {
+      "word": "Bruch",
+      "phrase": "ein Bruch im Bein",
+      "en": "a fracture in the leg",
+      "sound": "ach",
+      "file": "audio/Bruch.mp3"
+    },
+    {
+      "word": "auch",
+      "phrase": "ich auch, danke",
+      "en": "me too, thanks",
+      "sound": "ach",
+      "file": "audio/auch.mp3"
+    },
+    {
+      "word": "Bauch",
+      "phrase": "mein Bauch tut weh",
+      "en": "my stomach hurts",
+      "sound": "ach",
+      "file": "audio/Bauch.mp3"
+    },
+    {
+      "word": "Rauch",
+      "phrase": "der Rauch steigt auf",
+      "en": "the smoke rises",
+      "sound": "ach",
+      "file": "audio/Rauch.mp3"
+    },
+    {
+      "word": "brauchen",
+      "phrase": "ich brauche Hilfe",
+      "en": "I need help",
+      "sound": "ach",
+      "file": "audio/brauchen.mp3"
+    },
+    {
+      "word": "rauchen",
+      "phrase": "nicht rauchen bitte",
+      "en": "no smoking please",
+      "sound": "ach",
+      "file": "audio/rauchen.mp3"
+    },
+    {
+      "word": "tauchen",
+      "phrase": "im Meer tauchen",
+      "en": "dive in the sea",
+      "sound": "ach",
+      "file": "audio/tauchen.mp3"
+    },
+    {
+      "word": "Schlauch",
+      "phrase": "der Gartenschlauch",
+      "en": "the garden hose",
+      "sound": "ach",
+      "file": "audio/Schlauch.mp3"
+    },
+    {
+      "word": "Strauch",
+      "phrase": "ein grüner Strauch",
+      "en": "a green shrub",
+      "sound": "ach",
+      "file": "audio/Strauch.mp3"
+    }
+  ]
+}

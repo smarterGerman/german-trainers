@@ -1,0 +1,566 @@
+{
+  "generated": "2025-12-30T10:48:03.478Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "schön",
+      "file": "schoen",
+      "phrase": "Das ist schön.",
+      "en": "beautiful",
+      "sound": "ö"
+    },
+    {
+      "word": "hören",
+      "file": "hoeren",
+      "phrase": "Ich kann dich hören.",
+      "en": "to hear",
+      "sound": "ö"
+    },
+    {
+      "word": "Körper",
+      "file": "Koerper",
+      "phrase": "der ganze Körper",
+      "en": "body",
+      "sound": "ö"
+    },
+    {
+      "word": "mögen",
+      "file": "moegen",
+      "phrase": "Ich mag das.",
+      "en": "to like",
+      "sound": "ö"
+    },
+    {
+      "word": "möglich",
+      "file": "moeglich",
+      "phrase": "Das ist möglich.",
+      "en": "possible",
+      "sound": "ö"
+    },
+    {
+      "word": "können",
+      "file": "koennen",
+      "phrase": "Wir können das.",
+      "en": "can/be able",
+      "sound": "ö"
+    },
+    {
+      "word": "König",
+      "file": "Koenig",
+      "phrase": "der alte König",
+      "en": "king",
+      "sound": "ö"
+    },
+    {
+      "word": "Königin",
+      "file": "Koenigin",
+      "phrase": "die schöne Königin",
+      "en": "queen",
+      "sound": "ö"
+    },
+    {
+      "word": "böse",
+      "file": "boese",
+      "phrase": "Er ist böse.",
+      "en": "angry/evil",
+      "sound": "ö"
+    },
+    {
+      "word": "Böden",
+      "file": "Boeden",
+      "phrase": "die Böden im Haus",
+      "en": "floors",
+      "sound": "ö"
+    },
+    {
+      "word": "Töne",
+      "file": "Toene",
+      "phrase": "schöne Töne",
+      "en": "sounds/tones",
+      "sound": "ö"
+    },
+    {
+      "word": "Töchter",
+      "file": "Toechter",
+      "phrase": "meine Töchter",
+      "en": "daughters",
+      "sound": "ö"
+    },
+    {
+      "word": "Söhne",
+      "file": "Soehne",
+      "phrase": "ihre Söhne",
+      "en": "sons",
+      "sound": "ö"
+    },
+    {
+      "word": "Wörter",
+      "file": "Woerter",
+      "phrase": "neue Wörter",
+      "en": "words",
+      "sound": "ö"
+    },
+    {
+      "word": "Völker",
+      "file": "Voelker",
+      "phrase": "verschiedene Völker",
+      "en": "peoples/nations",
+      "sound": "ö"
+    },
+    {
+      "word": "Vögel",
+      "file": "Voegel",
+      "phrase": "Die Vögel singen.",
+      "en": "birds",
+      "sound": "ö"
+    },
+    {
+      "word": "Köpfe",
+      "file": "Koepfe",
+      "phrase": "viele Köpfe",
+      "en": "heads",
+      "sound": "ö"
+    },
+    {
+      "word": "Köche",
+      "file": "Koeche",
+      "phrase": "gute Köche",
+      "en": "cooks",
+      "sound": "ö"
+    },
+    {
+      "word": "Löffel",
+      "file": "Loeffel",
+      "phrase": "ein großer Löffel",
+      "en": "spoon",
+      "sound": "ö"
+    },
+    {
+      "word": "Löwe",
+      "file": "Loewe",
+      "phrase": "der starke Löwe",
+      "en": "lion",
+      "sound": "ö"
+    },
+    {
+      "word": "lösen",
+      "file": "loesen",
+      "phrase": "das Problem lösen",
+      "en": "to solve",
+      "sound": "ö"
+    },
+    {
+      "word": "Öl",
+      "file": "Oel",
+      "phrase": "etwas Öl",
+      "en": "oil",
+      "sound": "ö"
+    },
+    {
+      "word": "öffnen",
+      "file": "oeffnen",
+      "phrase": "die Tür öffnen",
+      "en": "to open",
+      "sound": "ö"
+    },
+    {
+      "word": "öffentlich",
+      "file": "oeffentlich",
+      "phrase": "ein öffentlicher Platz",
+      "en": "public",
+      "sound": "ö"
+    },
+    {
+      "word": "östlich",
+      "file": "oestlich",
+      "phrase": "östlich von hier",
+      "en": "eastern",
+      "sound": "ö"
+    },
+    {
+      "word": "Österreich",
+      "file": "Oesterreich",
+      "phrase": "Ich fahre nach Österreich.",
+      "en": "Austria",
+      "sound": "ö"
+    },
+    {
+      "word": "größer",
+      "file": "groesser",
+      "phrase": "viel größer",
+      "en": "bigger",
+      "sound": "ö"
+    },
+    {
+      "word": "größte",
+      "file": "groesste",
+      "phrase": "der größte Mann",
+      "en": "biggest",
+      "sound": "ö"
+    },
+    {
+      "word": "nötig",
+      "file": "noetig",
+      "phrase": "Das ist nötig.",
+      "en": "necessary",
+      "sound": "ö"
+    },
+    {
+      "word": "plötzlich",
+      "file": "ploetzlich",
+      "phrase": "plötzlich war es da",
+      "en": "suddenly",
+      "sound": "ö"
+    },
+    {
+      "word": "persönlich",
+      "file": "persoenlich",
+      "phrase": "ganz persönlich",
+      "en": "personal",
+      "sound": "ö"
+    },
+    {
+      "word": "gewöhnlich",
+      "file": "gewoehnlich",
+      "phrase": "wie gewöhnlich",
+      "en": "usually",
+      "sound": "ö"
+    },
+    {
+      "word": "fördern",
+      "file": "foerdern",
+      "phrase": "Kinder fördern",
+      "en": "to promote",
+      "sound": "ö"
+    },
+    {
+      "word": "stören",
+      "file": "stoeren",
+      "phrase": "Bitte nicht stören.",
+      "en": "to disturb",
+      "sound": "ö"
+    },
+    {
+      "word": "zerstören",
+      "file": "zerstoeren",
+      "phrase": "alles zerstören",
+      "en": "to destroy",
+      "sound": "ö"
+    },
+    {
+      "word": "Höhe",
+      "file": "Hoehe",
+      "phrase": "in großer Höhe",
+      "en": "height",
+      "sound": "ö"
+    },
+    {
+      "word": "höher",
+      "file": "hoeher",
+      "phrase": "immer höher",
+      "en": "higher",
+      "sound": "ö"
+    },
+    {
+      "word": "höchste",
+      "file": "hoechste",
+      "phrase": "der höchste Berg",
+      "en": "highest",
+      "sound": "ö"
+    },
+    {
+      "word": "röten",
+      "file": "roeten",
+      "phrase": "sich röten",
+      "en": "to redden",
+      "sound": "ö"
+    },
+    {
+      "word": "Frösche",
+      "file": "Froesche",
+      "phrase": "kleine Frösche",
+      "en": "frogs",
+      "sound": "ö"
+    },
+    {
+      "word": "Brot",
+      "file": "Brot",
+      "phrase": "frisches Brot",
+      "en": "bread",
+      "sound": "o"
+    },
+    {
+      "word": "groß",
+      "file": "gross",
+      "phrase": "sehr groß",
+      "en": "big",
+      "sound": "o"
+    },
+    {
+      "word": "rot",
+      "file": "rot",
+      "phrase": "ganz rot",
+      "en": "red",
+      "sound": "o"
+    },
+    {
+      "word": "Sohn",
+      "file": "Sohn",
+      "phrase": "mein Sohn",
+      "en": "son",
+      "sound": "o"
+    },
+    {
+      "word": "Tochter",
+      "file": "Tochter",
+      "phrase": "meine Tochter",
+      "en": "daughter",
+      "sound": "o"
+    },
+    {
+      "word": "Wort",
+      "file": "Wort",
+      "phrase": "ein Wort",
+      "en": "word",
+      "sound": "o"
+    },
+    {
+      "word": "Boden",
+      "file": "Boden",
+      "phrase": "auf dem Boden",
+      "en": "floor",
+      "sound": "o"
+    },
+    {
+      "word": "Ton",
+      "file": "Ton",
+      "phrase": "ein hoher Ton",
+      "en": "sound/tone",
+      "sound": "o"
+    },
+    {
+      "word": "Vogel",
+      "file": "Vogel",
+      "phrase": "ein kleiner Vogel",
+      "en": "bird",
+      "sound": "o"
+    },
+    {
+      "word": "Volk",
+      "file": "Volk",
+      "phrase": "das deutsche Volk",
+      "en": "people/nation",
+      "sound": "o"
+    },
+    {
+      "word": "Kopf",
+      "file": "Kopf",
+      "phrase": "mein Kopf tut weh",
+      "en": "head",
+      "sound": "o"
+    },
+    {
+      "word": "Koch",
+      "file": "Koch",
+      "phrase": "ein guter Koch",
+      "en": "cook",
+      "sound": "o"
+    },
+    {
+      "word": "hoch",
+      "file": "hoch",
+      "phrase": "sehr hoch",
+      "en": "high",
+      "sound": "o"
+    },
+    {
+      "word": "noch",
+      "file": "noch",
+      "phrase": "noch einmal",
+      "en": "still/yet",
+      "sound": "o"
+    },
+    {
+      "word": "doch",
+      "file": "doch",
+      "phrase": "Das stimmt doch.",
+      "en": "but/however",
+      "sound": "o"
+    },
+    {
+      "word": "Loch",
+      "file": "Loch",
+      "phrase": "ein großes Loch",
+      "en": "hole",
+      "sound": "o"
+    },
+    {
+      "word": "kochen",
+      "file": "kochen",
+      "phrase": "Ich koche gern.",
+      "en": "to cook",
+      "sound": "o"
+    },
+    {
+      "word": "Woche",
+      "file": "Woche",
+      "phrase": "diese Woche",
+      "en": "week",
+      "sound": "o"
+    },
+    {
+      "word": "Frosch",
+      "file": "Frosch",
+      "phrase": "ein grüner Frosch",
+      "en": "frog",
+      "sound": "o"
+    },
+    {
+      "word": "Ohr",
+      "file": "Ohr",
+      "phrase": "mein linkes Ohr",
+      "en": "ear",
+      "sound": "o"
+    },
+    {
+      "word": "ohne",
+      "file": "ohne",
+      "phrase": "ohne dich",
+      "en": "without",
+      "sound": "o"
+    },
+    {
+      "word": "oben",
+      "file": "oben",
+      "phrase": "da oben",
+      "en": "above",
+      "sound": "o"
+    },
+    {
+      "word": "Obst",
+      "file": "Obst",
+      "phrase": "frisches Obst",
+      "en": "fruit",
+      "sound": "o"
+    },
+    {
+      "word": "oder",
+      "file": "oder",
+      "phrase": "ja oder nein",
+      "en": "or",
+      "sound": "o"
+    },
+    {
+      "word": "Ort",
+      "file": "Ort",
+      "phrase": "an diesem Ort",
+      "en": "place",
+      "sound": "o"
+    },
+    {
+      "word": "Osten",
+      "file": "Osten",
+      "phrase": "im Osten",
+      "en": "east",
+      "sound": "o"
+    },
+    {
+      "word": "Opa",
+      "file": "Opa",
+      "phrase": "mein lieber Opa",
+      "en": "grandpa",
+      "sound": "o"
+    },
+    {
+      "word": "Oma",
+      "file": "Oma",
+      "phrase": "meine liebe Oma",
+      "en": "grandma",
+      "sound": "o"
+    },
+    {
+      "word": "Onkel",
+      "file": "Onkel",
+      "phrase": "mein Onkel kommt",
+      "en": "uncle",
+      "sound": "o"
+    },
+    {
+      "word": "toll",
+      "file": "toll",
+      "phrase": "Das ist toll!",
+      "en": "great",
+      "sound": "o"
+    },
+    {
+      "word": "voll",
+      "file": "voll",
+      "phrase": "ganz voll",
+      "en": "full",
+      "sound": "o"
+    },
+    {
+      "word": "wollen",
+      "file": "wollen",
+      "phrase": "Wir wollen das.",
+      "en": "to want",
+      "sound": "o"
+    },
+    {
+      "word": "sollen",
+      "file": "sollen",
+      "phrase": "Was sollen wir tun?",
+      "en": "should",
+      "sound": "o"
+    },
+    {
+      "word": "Sonne",
+      "file": "Sonne",
+      "phrase": "die warme Sonne",
+      "en": "sun",
+      "sound": "o"
+    },
+    {
+      "word": "kommen",
+      "file": "kommen",
+      "phrase": "Sie kommen bald.",
+      "en": "to come",
+      "sound": "o"
+    },
+    {
+      "word": "Sommer",
+      "file": "Sommer",
+      "phrase": "im Sommer",
+      "en": "summer",
+      "sound": "o"
+    },
+    {
+      "word": "Morgen",
+      "file": "Morgen",
+      "phrase": "guten Morgen",
+      "en": "morning",
+      "sound": "o"
+    },
+    {
+      "word": "morgen",
+      "file": "morgen",
+      "phrase": "bis morgen",
+      "en": "tomorrow",
+      "sound": "o"
+    },
+    {
+      "word": "Sport",
+      "file": "Sport",
+      "phrase": "Ich mache Sport.",
+      "en": "sport",
+      "sound": "o"
+    },
+    {
+      "word": "vor",
+      "file": "vor",
+      "phrase": "vor dem Haus",
+      "en": "before/in front of",
+      "sound": "o"
+    }
+  ]
+}

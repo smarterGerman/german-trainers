@@ -1,0 +1,376 @@
+{
+  "generated": "2025-12-30T12:37:49.076Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Arbeit",
+      "file": "Arbeit",
+      "phrase": "die schwere Arbeit"
+    },
+    {
+      "word": "Leben",
+      "file": "Leben",
+      "phrase": "das ganze Leben"
+    },
+    {
+      "word": "spielen",
+      "file": "spielen",
+      "phrase": "draußen spielen"
+    },
+    {
+      "word": "Wasser",
+      "file": "Wasser",
+      "phrase": "kaltes Wasser"
+    },
+    {
+      "word": "Zimmer",
+      "file": "Zimmer",
+      "phrase": "ein großes Zimmer"
+    },
+    {
+      "word": "Mutter",
+      "file": "Mutter",
+      "phrase": "meine Mutter"
+    },
+    {
+      "word": "Vater",
+      "file": "Vater",
+      "phrase": "mein Vater"
+    },
+    {
+      "word": "Bruder",
+      "file": "Bruder",
+      "phrase": "mein Bruder"
+    },
+    {
+      "word": "Schwester",
+      "file": "Schwester",
+      "phrase": "meine Schwester"
+    },
+    {
+      "word": "Schule",
+      "file": "Schule",
+      "phrase": "die Schule"
+    },
+    {
+      "word": "Lehrer",
+      "file": "Lehrer",
+      "phrase": "der Lehrer"
+    },
+    {
+      "word": "Morgen",
+      "file": "Morgen",
+      "phrase": "guten Morgen"
+    },
+    {
+      "word": "Abend",
+      "file": "Abend",
+      "phrase": "guten Abend"
+    },
+    {
+      "word": "Essen",
+      "file": "Essen",
+      "phrase": "gutes Essen"
+    },
+    {
+      "word": "trinken",
+      "file": "trinken",
+      "phrase": "etwas trinken"
+    },
+    {
+      "word": "anfangen",
+      "file": "anfangen",
+      "phrase": "jetzt anfangen"
+    },
+    {
+      "word": "aufstehen",
+      "file": "aufstehen",
+      "phrase": "früh aufstehen"
+    },
+    {
+      "word": "ausgehen",
+      "file": "ausgehen",
+      "phrase": "heute ausgehen"
+    },
+    {
+      "word": "einkaufen",
+      "file": "einkaufen",
+      "phrase": "Lebensmittel einkaufen"
+    },
+    {
+      "word": "mitnehmen",
+      "file": "mitnehmen",
+      "phrase": "etwas mitnehmen"
+    },
+    {
+      "word": "zurückkommen",
+      "file": "zurueckkommen",
+      "phrase": "bald zurückkommen"
+    },
+    {
+      "word": "abfahren",
+      "file": "abfahren",
+      "phrase": "morgen abfahren"
+    },
+    {
+      "word": "anrufen",
+      "file": "anrufen",
+      "phrase": "jemanden anrufen"
+    },
+    {
+      "word": "aufmachen",
+      "file": "aufmachen",
+      "phrase": "die Tür aufmachen"
+    },
+    {
+      "word": "zumachen",
+      "file": "zumachen",
+      "phrase": "das Fenster zumachen"
+    },
+    {
+      "word": "bezahlen",
+      "file": "bezahlen",
+      "phrase": "die Rechnung bezahlen"
+    },
+    {
+      "word": "verstehen",
+      "file": "verstehen",
+      "phrase": "gut verstehen"
+    },
+    {
+      "word": "erklären",
+      "file": "erklaeren",
+      "phrase": "etwas erklären"
+    },
+    {
+      "word": "beginnen",
+      "file": "beginnen",
+      "phrase": "früh beginnen"
+    },
+    {
+      "word": "vergessen",
+      "file": "vergessen",
+      "phrase": "niemals vergessen"
+    },
+    {
+      "word": "bekommen",
+      "file": "bekommen",
+      "phrase": "ein Geschenk bekommen"
+    },
+    {
+      "word": "erzählen",
+      "file": "erzaehlen",
+      "phrase": "eine Geschichte erzählen"
+    },
+    {
+      "word": "entscheiden",
+      "file": "entscheiden",
+      "phrase": "schnell entscheiden"
+    },
+    {
+      "word": "gewinnen",
+      "file": "gewinnen",
+      "phrase": "das Spiel gewinnen"
+    },
+    {
+      "word": "verlieren",
+      "file": "verlieren",
+      "phrase": "den Schlüssel verlieren"
+    },
+    {
+      "word": "besuchen",
+      "file": "besuchen",
+      "phrase": "Freunde besuchen"
+    },
+    {
+      "word": "empfehlen",
+      "file": "empfehlen",
+      "phrase": "das Restaurant empfehlen"
+    },
+    {
+      "word": "entstehen",
+      "file": "entstehen",
+      "phrase": "Probleme entstehen"
+    },
+    {
+      "word": "zerbrechen",
+      "file": "zerbrechen",
+      "phrase": "das Glas zerbrechen"
+    },
+    {
+      "word": "gefallen",
+      "file": "gefallen",
+      "phrase": "mir gefallen"
+    },
+    {
+      "word": "Student",
+      "file": "Student",
+      "phrase": "ein fleißiger Student"
+    },
+    {
+      "word": "Universität",
+      "file": "Universitaet",
+      "phrase": "die große Universität"
+    },
+    {
+      "word": "Restaurant",
+      "file": "Restaurant",
+      "phrase": "ein gutes Restaurant"
+    },
+    {
+      "word": "Musik",
+      "file": "Musik",
+      "phrase": "laute Musik"
+    },
+    {
+      "word": "Telefon",
+      "file": "Telefon",
+      "phrase": "das neue Telefon"
+    },
+    {
+      "word": "Hotel",
+      "file": "Hotel",
+      "phrase": "ein schönes Hotel"
+    },
+    {
+      "word": "Kaffee",
+      "file": "Kaffee",
+      "phrase": "heißer Kaffee"
+    },
+    {
+      "word": "Computer",
+      "file": "Computer",
+      "phrase": "der alte Computer"
+    },
+    {
+      "word": "interessant",
+      "file": "interessant",
+      "phrase": "sehr interessant"
+    },
+    {
+      "word": "Information",
+      "file": "Information",
+      "phrase": "wichtige Information"
+    },
+    {
+      "word": "Situation",
+      "file": "Situation",
+      "phrase": "eine schwierige Situation"
+    },
+    {
+      "word": "Grammatik",
+      "file": "Grammatik",
+      "phrase": "deutsche Grammatik"
+    },
+    {
+      "word": "Programm",
+      "file": "Programm",
+      "phrase": "das neue Programm"
+    },
+    {
+      "word": "Problem",
+      "file": "Problem",
+      "phrase": "ein großes Problem"
+    },
+    {
+      "word": "Thema",
+      "file": "Thema",
+      "phrase": "ein wichtiges Thema"
+    },
+    {
+      "word": "studieren",
+      "file": "studieren",
+      "phrase": "Medizin studieren"
+    },
+    {
+      "word": "telefonieren",
+      "file": "telefonieren",
+      "phrase": "lange telefonieren"
+    },
+    {
+      "word": "fotografieren",
+      "file": "fotografieren",
+      "phrase": "Landschaften fotografieren"
+    },
+    {
+      "word": "reservieren",
+      "file": "reservieren",
+      "phrase": "einen Tisch reservieren"
+    },
+    {
+      "word": "probieren",
+      "file": "probieren",
+      "phrase": "etwas Neues probieren"
+    },
+    {
+      "word": "funktionieren",
+      "file": "funktionieren",
+      "phrase": "gut funktionieren"
+    },
+    {
+      "word": "reparieren",
+      "file": "reparieren",
+      "phrase": "das Auto reparieren"
+    },
+    {
+      "word": "organisieren",
+      "file": "organisieren",
+      "phrase": "eine Party organisieren"
+    },
+    {
+      "word": "Arbeitgeber",
+      "file": "Arbeitgeber",
+      "phrase": "der neue Arbeitgeber"
+    },
+    {
+      "word": "Kindergarten",
+      "file": "Kindergarten",
+      "phrase": "der Kindergarten"
+    },
+    {
+      "word": "Wohnzimmer",
+      "file": "Wohnzimmer",
+      "phrase": "das große Wohnzimmer"
+    },
+    {
+      "word": "Schlafzimmer",
+      "file": "Schlafzimmer",
+      "phrase": "mein Schlafzimmer"
+    },
+    {
+      "word": "Hausaufgabe",
+      "file": "Hausaufgabe",
+      "phrase": "die schwere Hausaufgabe"
+    },
+    {
+      "word": "Geburtstag",
+      "file": "Geburtstag",
+      "phrase": "alles Gute zum Geburtstag"
+    },
+    {
+      "word": "wichtig",
+      "file": "wichtig",
+      "phrase": "sehr wichtig"
+    },
+    {
+      "word": "richtig",
+      "file": "richtig",
+      "phrase": "ganz richtig"
+    },
+    {
+      "word": "fertig",
+      "file": "fertig",
+      "phrase": "schon fertig"
+    },
+    {
+      "word": "langsam",
+      "file": "langsam",
+      "phrase": "ganz langsam"
+    },
+    {
+      "word": "gemeinsam",
+      "file": "gemeinsam",
+      "phrase": "etwas gemeinsam"
+    }
+  ]
+}

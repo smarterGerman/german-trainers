@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T11:28:41.036Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Staat",
+      "file": "Staat",
+      "phrase": "Der deutsche Staat"
+    },
+    {
+      "word": "Bahn",
+      "file": "Bahn",
+      "phrase": "mit der Bahn fahren"
+    },
+    {
+      "word": "Sohn",
+      "file": "Sohn",
+      "phrase": "mein lieber Sohn"
+    },
+    {
+      "word": "Mehl",
+      "file": "Mehl",
+      "phrase": "feines Mehl"
+    },
+    {
+      "word": "Zahl",
+      "file": "Zahl",
+      "phrase": "eine große Zahl"
+    },
+    {
+      "word": "Wahl",
+      "file": "Wahl",
+      "phrase": "die freie Wahl"
+    },
+    {
+      "word": "Schule",
+      "file": "Schule",
+      "phrase": "in der Schule"
+    },
+    {
+      "word": "Stuhl",
+      "file": "Stuhl",
+      "phrase": "ein alter Stuhl"
+    },
+    {
+      "word": "Ofen",
+      "file": "Ofen",
+      "phrase": "der warme Ofen"
+    },
+    {
+      "word": "Boden",
+      "file": "Boden",
+      "phrase": "auf dem Boden"
+    },
+    {
+      "word": "lieben",
+      "file": "lieben",
+      "phrase": "ich liebe dich"
+    },
+    {
+      "word": "bieten",
+      "file": "bieten",
+      "phrase": "etwas bieten"
+    },
+    {
+      "word": "Miete",
+      "file": "Miete",
+      "phrase": "die hohe Miete"
+    },
+    {
+      "word": "Tier",
+      "file": "Tier",
+      "phrase": "ein schönes Tier"
+    },
+    {
+      "word": "Bier",
+      "file": "Bier",
+      "phrase": "ein kaltes Bier"
+    },
+    {
+      "word": "Name",
+      "file": "Name",
+      "phrase": "mein voller Name"
+    },
+    {
+      "word": "Laden",
+      "file": "Laden",
+      "phrase": "im kleinen Laden"
+    },
+    {
+      "word": "Faden",
+      "file": "Faden",
+      "phrase": "ein roter Faden"
+    },
+    {
+      "word": "Regen",
+      "file": "Regen",
+      "phrase": "starker Regen"
+    },
+    {
+      "word": "legen",
+      "file": "legen",
+      "phrase": "auf den Tisch legen"
+    },
+    {
+      "word": "wohnen",
+      "file": "wohnen",
+      "phrase": "hier wohnen wir"
+    },
+    {
+      "word": "Bohne",
+      "file": "Bohne",
+      "phrase": "eine grüne Bohne"
+    },
+    {
+      "word": "Sahne",
+      "file": "Sahne",
+      "phrase": "frische Sahne"
+    },
+    {
+      "word": "fahren",
+      "file": "fahren",
+      "phrase": "Auto fahren"
+    },
+    {
+      "word": "Gefahr",
+      "file": "Gefahr",
+      "phrase": "große Gefahr"
+    },
+    {
+      "word": "Jahr",
+      "file": "Jahr",
+      "phrase": "ein ganzes Jahr"
+    },
+    {
+      "word": "Uhr",
+      "file": "Uhr",
+      "phrase": "die alte Uhr"
+    },
+    {
+      "word": "Kur",
+      "file": "Kur",
+      "phrase": "eine lange Kur"
+    },
+    {
+      "word": "Ton",
+      "file": "Ton",
+      "phrase": "ein hoher Ton"
+    },
+    {
+      "word": "Hof",
+      "file": "Hof",
+      "phrase": "auf dem Hof"
+    },
+    {
+      "word": "Moos",
+      "file": "Moos",
+      "phrase": "weiches Moos"
+    },
+    {
+      "word": "Boot",
+      "file": "Boot",
+      "phrase": "ein kleines Boot"
+    },
+    {
+      "word": "rot",
+      "file": "rot",
+      "phrase": "ganz rot"
+    },
+    {
+      "word": "Brot",
+      "file": "Brot",
+      "phrase": "frisches Brot"
+    },
+    {
+      "word": "Tag",
+      "file": "Tag",
+      "phrase": "ein schöner Tag"
+    },
+    {
+      "word": "Weg",
+      "file": "Weg",
+      "phrase": "der lange Weg"
+    },
+    {
+      "word": "sagen",
+      "file": "sagen",
+      "phrase": "etwas sagen"
+    },
+    {
+      "word": "tragen",
+      "file": "tragen",
+      "phrase": "schwer tragen"
+    },
+    {
+      "word": "Glas",
+      "file": "Glas",
+      "phrase": "ein volles Glas"
+    },
+    {
+      "word": "Spaß",
+      "file": "Spass",
+      "phrase": "viel Spaß"
+    },
+    {
+      "word": "Stadt",
+      "file": "Stadt",
+      "phrase": "die große Stadt"
+    },
+    {
+      "word": "Mann",
+      "file": "Mann",
+      "phrase": "der alte Mann"
+    },
+    {
+      "word": "dann",
+      "file": "dann",
+      "phrase": "und dann"
+    },
+    {
+      "word": "kommen",
+      "file": "kommen",
+      "phrase": "heute kommen"
+    },
+    {
+      "word": "Sommer",
+      "file": "Sommer",
+      "phrase": "im heißen Sommer"
+    },
+    {
+      "word": "offen",
+      "file": "offen",
+      "phrase": "das Fenster ist offen"
+    },
+    {
+      "word": "hoffen",
+      "file": "hoffen",
+      "phrase": "ich hoffe sehr"
+    },
+    {
+      "word": "bitten",
+      "file": "bitten",
+      "phrase": "darum bitten"
+    },
+    {
+      "word": "Mitte",
+      "file": "Mitte",
+      "phrase": "in der Mitte"
+    },
+    {
+      "word": "Bett",
+      "file": "Bett",
+      "phrase": "im warmen Bett"
+    },
+    {
+      "word": "nett",
+      "file": "nett",
+      "phrase": "sehr nett"
+    },
+    {
+      "word": "Wetter",
+      "file": "Wetter",
+      "phrase": "schönes Wetter"
+    },
+    {
+      "word": "Zimmer",
+      "file": "Zimmer",
+      "phrase": "ein großes Zimmer"
+    },
+    {
+      "word": "immer",
+      "file": "immer",
+      "phrase": "immer wieder"
+    },
+    {
+      "word": "Nummer",
+      "file": "Nummer",
+      "phrase": "die richtige Nummer"
+    },
+    {
+      "word": "Butter",
+      "file": "Butter",
+      "phrase": "frische Butter"
+    },
+    {
+      "word": "Mutter",
+      "file": "Mutter",
+      "phrase": "meine liebe Mutter"
+    },
+    {
+      "word": "Suppe",
+      "file": "Suppe",
+      "phrase": "heiße Suppe"
+    },
+    {
+      "word": "Gruppe",
+      "file": "Gruppe",
+      "phrase": "eine kleine Gruppe"
+    },
+    {
+      "word": "Lippe",
+      "file": "Lippe",
+      "phrase": "auf der Lippe"
+    },
+    {
+      "word": "Mappe",
+      "file": "Mappe",
+      "phrase": "die rote Mappe"
+    },
+    {
+      "word": "Kasse",
+      "file": "Kasse",
+      "phrase": "an der Kasse"
+    },
+    {
+      "word": "Tasse",
+      "file": "Tasse",
+      "phrase": "eine volle Tasse"
+    },
+    {
+      "word": "Wasser",
+      "file": "Wasser",
+      "phrase": "kaltes Wasser"
+    },
+    {
+      "word": "essen",
+      "file": "essen",
+      "phrase": "etwas essen"
+    },
+    {
+      "word": "Messer",
+      "file": "Messer",
+      "phrase": "ein scharfes Messer"
+    },
+    {
+      "word": "kennen",
+      "file": "kennen",
+      "phrase": "gut kennen"
+    },
+    {
+      "word": "rennen",
+      "file": "rennen",
+      "phrase": "schnell rennen"
+    },
+    {
+      "word": "Sonne",
+      "file": "Sonne",
+      "phrase": "die helle Sonne"
+    },
+    {
+      "word": "können",
+      "file": "koennen",
+      "phrase": "das können wir"
+    },
+    {
+      "word": "Bock",
+      "file": "Bock",
+      "phrase": "keinen Bock"
+    },
+    {
+      "word": "Stock",
+      "file": "Stock",
+      "phrase": "im ersten Stock"
+    },
+    {
+      "word": "Rock",
+      "file": "Rock",
+      "phrase": "ein kurzer Rock"
+    },
+    {
+      "word": "Kopf",
+      "file": "Kopf",
+      "phrase": "der ganze Kopf"
+    },
+    {
+      "word": "Topf",
+      "file": "Topf",
+      "phrase": "ein großer Topf"
+    },
+    {
+      "word": "Gott",
+      "file": "Gott",
+      "phrase": "mein Gott"
+    },
+    {
+      "word": "voll",
+      "file": "voll",
+      "phrase": "ganz voll"
+    },
+    {
+      "word": "toll",
+      "file": "toll",
+      "phrase": "wirklich toll"
+    },
+    {
+      "word": "sollen",
+      "file": "sollen",
+      "phrase": "was sollen wir"
+    },
+    {
+      "word": "wollen",
+      "file": "wollen",
+      "phrase": "das wollen wir"
+    }
+  ]
+}

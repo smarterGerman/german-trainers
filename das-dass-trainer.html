@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German das/dass Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .sentence-display {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2C2C2C;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .blank {
+      display: inline-block;
+      min-width: 80px;
+      border-bottom: 3px solid #E91E63;
+      margin: 0 5px;
+      color: #E91E63;
+      font-weight: 800;
+    }
+
+    .tip-text {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 24px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.das-btn {
+      color: #00BCD4;
+    }
+
+    .answer-btn.dass-btn {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">das oder dass?</h1>
+      <p class="sg-dark-subtitle">Learn when to use "das" vs "dass" in German</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">das (Article/Pronoun)</div>
+        <div class="sg-dark-article">dass (Conjunction)</div>
+      </div>
+
+      <p>
+        One of the most common spelling mistakes in German is confusing <strong>"das"</strong> and <strong>"dass"</strong>.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>das</strong> = Article (das Buch) or relative/demonstrative pronoun (das Buch, das ich lese)<br>
+        <strong>dass</strong> = Conjunction introducing a subordinate clause (Ich denke, dass...)
+      </div>
+
+      <p>
+        <strong>Tip:</strong> If you can replace "das" with "dieses", "jenes", or "welches", use <strong>das</strong>.
+        If not, use <strong>dass</strong>.
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> A = das, S = dass
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="sentence-display" id="sentenceDisplay">
+            Ich weiß, <span class="blank">___</span> du recht hast.
+          </div>
+          <div class="tip-text">Can you replace it with "dieses/jenes/welches"?</div>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn das-btn" onclick="checkAnswer('das')" id="btnDas">
+            das
+            <span class="shortcut">(A)</span>
+          </button>
+          <button class="answer-btn dass-btn" onclick="checkAnswer('dass')" id="btnDass">
+            dass
+            <span class="shortcut">(S)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SESSION_SIZE = 20;
+
+    const allSentences = [
+      // dass - conjunction (50)
+      { sentence: "Ich weiß, ___ du recht hast.", answer: "dass", id: 1 },
+      { sentence: "Er sagt, ___ er morgen kommt.", answer: "dass", id: 2 },
+      { sentence: "Sie hofft, ___ alles gut wird.", answer: "dass", id: 3 },
+      { sentence: "Ich glaube, ___ es regnen wird.", answer: "dass", id: 4 },
+      { sentence: "Es ist wichtig, ___ du pünktlich bist.", answer: "dass", id: 5 },
+      { sentence: "Ich freue mich, ___ du da bist.", answer: "dass", id: 6 },
+      { sentence: "Er denkt, ___ sie ihn liebt.", answer: "dass", id: 7 },
+      { sentence: "Sie weiß, ___ er lügt.", answer: "dass", id: 8 },
+      { sentence: "Ich bin sicher, ___ du es schaffst.", answer: "dass", id: 9 },
+      { sentence: "Es tut mir leid, ___ ich zu spät bin.", answer: "dass", id: 10 },
+      { sentence: "Ich verstehe, ___ du müde bist.", answer: "dass", id: 11 },
+      { sentence: "Er behauptet, ___ er unschuldig ist.", answer: "dass", id: 12 },
+      { sentence: "Sie merkt, ___ etwas nicht stimmt.", answer: "dass", id: 13 },
+      { sentence: "Ich habe gehört, ___ du umziehst.", answer: "dass", id: 14 },
+      { sentence: "Es ist schade, ___ du nicht kommen kannst.", answer: "dass", id: 15 },
+      { sentence: "Ich finde, ___ das eine gute Idee ist.", answer: "dass", id: 16 },
+      { sentence: "Er vergisst, ___ er versprochen hat.", answer: "dass", id: 17 },
+      { sentence: "Sie erwartet, ___ du anrufst.", answer: "dass", id: 18 },
+      { sentence: "Ich bezweifle, ___ das stimmt.", answer: "dass", id: 19 },
+      { sentence: "Es ist klar, ___ wir gehen müssen.", answer: "dass", id: 20 },
+      { sentence: "Ich hoffe, ___ du glücklich bist.", answer: "dass", id: 21 },
+      { sentence: "Er bemerkt, ___ sie traurig ist.", answer: "dass", id: 22 },
+      { sentence: "Sie bedauert, ___ sie nicht helfen kann.", answer: "dass", id: 23 },
+      { sentence: "Ich vermute, ___ er krank ist.", answer: "dass", id: 24 },
+      { sentence: "Es ist möglich, ___ er recht hat.", answer: "dass", id: 25 },
+      { sentence: "Ich bin froh, ___ alles vorbei ist.", answer: "dass", id: 26 },
+      { sentence: "Er betont, ___ er nichts wusste.", answer: "dass", id: 27 },
+      { sentence: "Sie bestätigt, ___ der Termin gilt.", answer: "dass", id: 28 },
+      { sentence: "Ich nehme an, ___ du kommst.", answer: "dass", id: 29 },
+      { sentence: "Es stimmt, ___ ich es gesagt habe.", answer: "dass", id: 30 },
+      { sentence: "Ich erkenne, ___ ich falsch lag.", answer: "dass", id: 31 },
+      { sentence: "Er leugnet, ___ er es war.", answer: "dass", id: 32 },
+      { sentence: "Sie versichert, ___ alles in Ordnung ist.", answer: "dass", id: 33 },
+      { sentence: "Ich fürchte, ___ es zu spät ist.", answer: "dass", id: 34 },
+      { sentence: "Es ist bekannt, ___ er reich ist.", answer: "dass", id: 35 },
+      { sentence: "Ich wünsche, ___ du gesund bleibst.", answer: "dass", id: 36 },
+      { sentence: "Er gibt zu, ___ er gelogen hat.", answer: "dass", id: 37 },
+      { sentence: "Sie erzählt, ___ sie ihn getroffen hat.", answer: "dass", id: 38 },
+      { sentence: "Ich empfehle, ___ du früh kommst.", answer: "dass", id: 39 },
+      { sentence: "Es bedeutet, ___ wir warten müssen.", answer: "dass", id: 40 },
+      { sentence: "Ich schlage vor, ___ wir gehen.", answer: "dass", id: 41 },
+      { sentence: "Er beschließt, ___ er bleibt.", answer: "dass", id: 42 },
+      { sentence: "Sie verspricht, ___ sie zurückkommt.", answer: "dass", id: 43 },
+      { sentence: "Ich bitte darum, ___ du still bist.", answer: "dass", id: 44 },
+      { sentence: "Es zeigt, ___ er Talent hat.", answer: "dass", id: 45 },
+      { sentence: "Ich verlange, ___ du gehst.", answer: "dass", id: 46 },
+      { sentence: "Er fordert, ___ sie antwortet.", answer: "dass", id: 47 },
+      { sentence: "Sie besteht darauf, ___ wir bleiben.", answer: "dass", id: 48 },
+      { sentence: "Ich warne dich, ___ es gefährlich ist.", answer: "dass", id: 49 },
+      { sentence: "Es heißt, ___ er morgen abreist.", answer: "dass", id: 50 },
+      // das - article/pronoun (50)
+      { sentence: "___ Buch liegt auf dem Tisch.", answer: "das", id: 51 },
+      { sentence: "___ Kind spielt im Garten.", answer: "das", id: 52 },
+      { sentence: "___ Auto ist rot.", answer: "das", id: 53 },
+      { sentence: "___ Haus ist sehr alt.", answer: "das", id: 54 },
+      { sentence: "Ich lese ___ Buch, ___ du empfohlen hast.", answer: "das", id: 55 },
+      { sentence: "___ Mädchen, ___ dort steht, ist meine Schwester.", answer: "das", id: 56 },
+      { sentence: "___ ist eine gute Idee.", answer: "das", id: 57 },
+      { sentence: "___ habe ich nicht gewusst.", answer: "das", id: 58 },
+      { sentence: "___ stimmt nicht.", answer: "das", id: 59 },
+      { sentence: "___ kann ich nicht glauben.", answer: "das", id: 60 },
+      { sentence: "___ Wetter ist heute schön.", answer: "das", id: 61 },
+      { sentence: "___ Problem ist schwierig.", answer: "das", id: 62 },
+      { sentence: "___ Telefon klingelt.", answer: "das", id: 63 },
+      { sentence: "___ Fenster ist offen.", answer: "das", id: 64 },
+      { sentence: "___ Kleid gefällt mir.", answer: "das", id: 65 },
+      { sentence: "___ Foto ist schön.", answer: "das", id: 66 },
+      { sentence: "___ ist der Mann, ___ ich meine.", answer: "das", id: 67 },
+      { sentence: "___ Tier, ___ ich sah, war ein Fuchs.", answer: "das", id: 68 },
+      { sentence: "___ Ergebnis überrascht mich.", answer: "das", id: 69 },
+      { sentence: "___ weiß ich schon.", answer: "das", id: 70 },
+      { sentence: "___ Leben ist kurz.", answer: "das", id: 71 },
+      { sentence: "___ Konzert war fantastisch.", answer: "das", id: 72 },
+      { sentence: "___ Restaurant ist teuer.", answer: "das", id: 73 },
+      { sentence: "___ Spiel beginnt um acht.", answer: "das", id: 74 },
+      { sentence: "___ Wort kenne ich nicht.", answer: "das", id: 75 },
+      { sentence: "___ gefällt mir nicht.", answer: "das", id: 76 },
+      { sentence: "___ muss ich erst prüfen.", answer: "das", id: 77 },
+      { sentence: "___ Hotel liegt am Strand.", answer: "das", id: 78 },
+      { sentence: "___ Geschenk ist von mir.", answer: "das", id: 79 },
+      { sentence: "___ Bild hängt an der Wand.", answer: "das", id: 80 },
+      { sentence: "___ Ziel ist klar.", answer: "das", id: 81 },
+      { sentence: "___ Projekt ist abgeschlossen.", answer: "das", id: 82 },
+      { sentence: "___ Geheimnis bleibt unter uns.", answer: "das", id: 83 },
+      { sentence: "___ Thema interessiert mich.", answer: "das", id: 84 },
+      { sentence: "___ war ein Fehler.", answer: "das", id: 85 },
+      { sentence: "___ Kind, ___ weint, ist müde.", answer: "das", id: 86 },
+      { sentence: "___ Zimmer ist sauber.", answer: "das", id: 87 },
+      { sentence: "___ Wasser ist kalt.", answer: "das", id: 88 },
+      { sentence: "___ Radio spielt Musik.", answer: "das", id: 89 },
+      { sentence: "___ Museum ist geschlossen.", answer: "das", id: 90 },
+      { sentence: "___ Ende naht.", answer: "das", id: 91 },
+      { sentence: "___ Angebot ist günstig.", answer: "das", id: 92 },
+      { sentence: "___ Rezept ist einfach.", answer: "das", id: 93 },
+      { sentence: "___ Beispiel ist hilfreich.", answer: "das", id: 94 },
+      { sentence: "___ hast du gut gemacht.", answer: "das", id: 95 },
+      { sentence: "___ verstehe ich nicht.", answer: "das", id: 96 },
+      { sentence: "___ Paket ist angekommen.", answer: "das", id: 97 },
+      { sentence: "___ Erlebnis war unvergesslich.", answer: "das", id: 98 },
+      { sentence: "___ System funktioniert nicht.", answer: "das", id: 99 },
+      { sentence: "___ sage ich dir morgen.", answer: "das", id: 100 }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionSentences = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('das-dass-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allSentences
+        .map(s => s.id)
+        .filter(id => !mastered.includes(id) && !wrong.includes(id));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('das-dass-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionSentences() {
+      loadProgress();
+
+      const wrongSentences = allSentences.filter(s => wrong.includes(s.id));
+      const unseenSentences = allSentences.filter(s => unseen.includes(s.id));
+      const masteredSentences = allSentences.filter(s => mastered.includes(s.id));
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongSentences).slice(0, Math.min(10, wrongSentences.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenSentences).slice(0, Math.min(remaining, unseenSentences.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredSentences).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      sessionSentences = selectSessionSentences();
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showSentence();
+    }
+
+    function showSentence() {
+      answered = false;
+      const sentence = sessionSentences[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      const display = sentence.sentence.replace(/_+/g, '<span class="blank">___</span>');
+      document.getElementById('sentenceDisplay').innerHTML = display;
+
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const sentence = sessionSentences[currentIndex];
+      const isCorrect = selected === sentence.answer;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = sentence.answer === 'das' ? document.getElementById('btnDas') : document.getElementById('btnDass');
+      const selectedBtn = selected === 'das' ? document.getElementById('btnDas') : document.getElementById('btnDass');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+      const fullSentence = sentence.sentence.replace(/_+/g, sentence.answer);
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! ' + fullSentence;
+
+        if (!mastered.includes(sentence.id)) {
+          mastered.push(sentence.id);
+          wrong = wrong.filter(id => id !== sentence.id);
+          unseen = unseen.filter(id => id !== sentence.id);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Wrong! Correct: ' + fullSentence;
+
+        if (!wrong.includes(sentence.id)) {
+          wrong.push(sentence.id);
+          mastered = mastered.filter(id => id !== sentence.id);
+          unseen = unseen.filter(id => id !== sentence.id);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showSentence();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('das-dass-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allSentences.map(s => s.id);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === 'a' && !answered) {
+        checkAnswer('das');
+      } else if (key === 's' && !answered) {
+        checkAnswer('dass');
+      }
+    });
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

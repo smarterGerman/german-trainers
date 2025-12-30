@@ -1,0 +1,706 @@
+{
+  "generated": "2025-12-30T09:08:55.155Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Liebe",
+      "phrase": "die große Liebe",
+      "en": "the great love",
+      "sound": "ie",
+      "file": "audio/Liebe.mp3"
+    },
+    {
+      "word": "Bier",
+      "phrase": "ein kaltes Bier",
+      "en": "a cold beer",
+      "sound": "ie",
+      "file": "audio/Bier.mp3"
+    },
+    {
+      "word": "Tier",
+      "phrase": "ein wildes Tier",
+      "en": "a wild animal",
+      "sound": "ie",
+      "file": "audio/Tier.mp3"
+    },
+    {
+      "word": "Papier",
+      "phrase": "weißes Papier",
+      "en": "white paper",
+      "sound": "ie",
+      "file": "audio/Papier.mp3"
+    },
+    {
+      "word": "Spiel",
+      "phrase": "ein lustiges Spiel",
+      "en": "a fun game",
+      "sound": "ie",
+      "file": "audio/Spiel.mp3"
+    },
+    {
+      "word": "Ziel",
+      "phrase": "das Ziel erreichen",
+      "en": "reach the goal",
+      "sound": "ie",
+      "file": "audio/Ziel.mp3"
+    },
+    {
+      "word": "viel",
+      "phrase": "viel zu tun",
+      "en": "much to do",
+      "sound": "ie",
+      "file": "audio/viel.mp3"
+    },
+    {
+      "word": "Spiegel",
+      "phrase": "in den Spiegel schauen",
+      "en": "look in the mirror",
+      "sound": "ie",
+      "file": "audio/Spiegel.mp3"
+    },
+    {
+      "word": "Beispiel",
+      "phrase": "zum Beispiel",
+      "en": "for example",
+      "sound": "ie",
+      "file": "audio/Beispiel.mp3"
+    },
+    {
+      "word": "wieder",
+      "phrase": "wieder da sein",
+      "en": "be back again",
+      "sound": "ie",
+      "file": "audio/wieder.mp3"
+    },
+    {
+      "word": "niemand",
+      "phrase": "niemand ist da",
+      "en": "nobody is there",
+      "sound": "ie",
+      "file": "audio/niemand.mp3"
+    },
+    {
+      "word": "Frieden",
+      "phrase": "Frieden schließen",
+      "en": "make peace",
+      "sound": "ie",
+      "file": "audio/Frieden.mp3"
+    },
+    {
+      "word": "Miete",
+      "phrase": "die Miete zahlen",
+      "en": "pay the rent",
+      "sound": "ie",
+      "file": "audio/Miete.mp3"
+    },
+    {
+      "word": "Brief",
+      "phrase": "einen Brief schreiben",
+      "en": "write a letter",
+      "sound": "ie",
+      "file": "audio/Brief.mp3"
+    },
+    {
+      "word": "tief",
+      "phrase": "tief atmen",
+      "en": "breathe deeply",
+      "sound": "ie",
+      "file": "audio/tief.mp3"
+    },
+    {
+      "word": "lieben",
+      "phrase": "jemanden lieben",
+      "en": "love someone",
+      "sound": "ie",
+      "file": "audio/lieben.mp3"
+    },
+    {
+      "word": "sieben",
+      "phrase": "sieben Tage",
+      "en": "seven days",
+      "sound": "ie",
+      "file": "audio/sieben.mp3"
+    },
+    {
+      "word": "bieten",
+      "phrase": "Hilfe bieten",
+      "en": "offer help",
+      "sound": "ie",
+      "file": "audio/bieten.mp3"
+    },
+    {
+      "word": "fliegen",
+      "phrase": "nach Berlin fliegen",
+      "en": "fly to Berlin",
+      "sound": "ie",
+      "file": "audio/fliegen.mp3"
+    },
+    {
+      "word": "liegen",
+      "phrase": "im Bett liegen",
+      "en": "lie in bed",
+      "sound": "ie",
+      "file": "audio/liegen.mp3"
+    },
+    {
+      "word": "ziehen",
+      "phrase": "an der Tür ziehen",
+      "en": "pull on the door",
+      "sound": "ie",
+      "file": "audio/ziehen.mp3"
+    },
+    {
+      "word": "fliehen",
+      "phrase": "vor Gefahr fliehen",
+      "en": "flee from danger",
+      "sound": "ie",
+      "file": "audio/fliehen.mp3"
+    },
+    {
+      "word": "riechen",
+      "phrase": "gut riechen",
+      "en": "smell good",
+      "sound": "ie",
+      "file": "audio/riechen.mp3"
+    },
+    {
+      "word": "schieben",
+      "phrase": "den Wagen schieben",
+      "en": "push the cart",
+      "sound": "ie",
+      "file": "audio/schieben.mp3"
+    },
+    {
+      "word": "Dieb",
+      "phrase": "der Dieb flieht",
+      "en": "the thief flees",
+      "sound": "ie",
+      "file": "audio/Dieb.mp3"
+    },
+    {
+      "word": "Lied",
+      "phrase": "ein schönes Lied",
+      "en": "a beautiful song",
+      "sound": "ie",
+      "file": "audio/Lied.mp3"
+    },
+    {
+      "word": "Krieg",
+      "phrase": "Krieg und Frieden",
+      "en": "war and peace",
+      "sound": "ie",
+      "file": "audio/Krieg.mp3"
+    },
+    {
+      "word": "Sieg",
+      "phrase": "der große Sieg",
+      "en": "the great victory",
+      "sound": "ie",
+      "file": "audio/Sieg.mp3"
+    },
+    {
+      "word": "fließen",
+      "phrase": "das Wasser fließt",
+      "en": "the water flows",
+      "sound": "ie",
+      "file": "audio/fliessen.mp3"
+    },
+    {
+      "word": "gießen",
+      "phrase": "Blumen gießen",
+      "en": "water the flowers",
+      "sound": "ie",
+      "file": "audio/giessen.mp3"
+    },
+    {
+      "word": "schießen",
+      "phrase": "ein Tor schießen",
+      "en": "score a goal",
+      "sound": "ie",
+      "file": "audio/schiessen.mp3"
+    },
+    {
+      "word": "Zwiebel",
+      "phrase": "eine Zwiebel schneiden",
+      "en": "cut an onion",
+      "sound": "ie",
+      "file": "audio/Zwiebel.mp3"
+    },
+    {
+      "word": "Riese",
+      "phrase": "ein großer Riese",
+      "en": "a big giant",
+      "sound": "ie",
+      "file": "audio/Riese.mp3"
+    },
+    {
+      "word": "Wiese",
+      "phrase": "auf der Wiese spielen",
+      "en": "play in the meadow",
+      "sound": "ie",
+      "file": "audio/Wiese.mp3"
+    },
+    {
+      "word": "diese",
+      "phrase": "diese Woche",
+      "en": "this week",
+      "sound": "ie",
+      "file": "audio/diese.mp3"
+    },
+    {
+      "word": "Knie",
+      "phrase": "auf die Knie fallen",
+      "en": "fall to the knees",
+      "sound": "ie",
+      "file": "audio/Knie.mp3"
+    },
+    {
+      "word": "Energie",
+      "phrase": "voller Energie sein",
+      "en": "be full of energy",
+      "sound": "ie",
+      "file": "audio/Energie.mp3"
+    },
+    {
+      "word": "Familie",
+      "phrase": "meine Familie",
+      "en": "my family",
+      "sound": "ie",
+      "file": "audio/Familie.mp3"
+    },
+    {
+      "word": "studieren",
+      "phrase": "Medizin studieren",
+      "en": "study medicine",
+      "sound": "ie",
+      "file": "audio/studieren.mp3"
+    },
+    {
+      "word": "passieren",
+      "phrase": "was ist passiert",
+      "en": "what happened",
+      "sound": "ie",
+      "file": "audio/passieren.mp3"
+    },
+    {
+      "word": "regieren",
+      "phrase": "das Land regieren",
+      "en": "govern the country",
+      "sound": "ie",
+      "file": "audio/regieren.mp3"
+    },
+    {
+      "word": "probieren",
+      "phrase": "etwas probieren",
+      "en": "try something",
+      "sound": "ie",
+      "file": "audio/probieren.mp3"
+    },
+    {
+      "word": "verlieren",
+      "phrase": "das Spiel verlieren",
+      "en": "lose the game",
+      "sound": "ie",
+      "file": "audio/verlieren.mp3"
+    },
+    {
+      "word": "frieren",
+      "phrase": "im Winter frieren",
+      "en": "be cold in winter",
+      "sound": "ie",
+      "file": "audio/frieren.mp3"
+    },
+    {
+      "word": "hier",
+      "phrase": "hier bin ich",
+      "en": "here I am",
+      "sound": "ie",
+      "file": "audio/hier.mp3"
+    },
+    {
+      "word": "vier",
+      "phrase": "vier Uhr",
+      "en": "four o'clock",
+      "sound": "ie",
+      "file": "audio/vier.mp3"
+    },
+    {
+      "word": "wir",
+      "phrase": "wir gehen",
+      "en": "we go",
+      "sound": "ie",
+      "file": "audio/wir.mp3"
+    },
+    {
+      "word": "Stiefel",
+      "phrase": "die Stiefel anziehen",
+      "en": "put on the boots",
+      "sound": "ie",
+      "file": "audio/Stiefel.mp3"
+    },
+    {
+      "word": "Fieber",
+      "phrase": "hohes Fieber haben",
+      "en": "have a high fever",
+      "sound": "ie",
+      "file": "audio/Fieber.mp3"
+    },
+    {
+      "word": "niedrig",
+      "phrase": "sehr niedrig",
+      "en": "very low",
+      "sound": "ie",
+      "file": "audio/niedrig.mp3"
+    },
+    {
+      "word": "Stein",
+      "phrase": "ein schwerer Stein",
+      "en": "a heavy stone",
+      "sound": "ei",
+      "file": "audio/Stein.mp3"
+    },
+    {
+      "word": "Bein",
+      "phrase": "das Bein tut weh",
+      "en": "the leg hurts",
+      "sound": "ei",
+      "file": "audio/Bein.mp3"
+    },
+    {
+      "word": "klein",
+      "phrase": "ein kleines Kind",
+      "en": "a small child",
+      "sound": "ei",
+      "file": "audio/klein.mp3"
+    },
+    {
+      "word": "mein",
+      "phrase": "mein Haus",
+      "en": "my house",
+      "sound": "ei",
+      "file": "audio/mein.mp3"
+    },
+    {
+      "word": "dein",
+      "phrase": "dein Auto",
+      "en": "your car",
+      "sound": "ei",
+      "file": "audio/dein.mp3"
+    },
+    {
+      "word": "sein",
+      "phrase": "sein Bruder",
+      "en": "his brother",
+      "sound": "ei",
+      "file": "audio/sein.mp3"
+    },
+    {
+      "word": "kein",
+      "phrase": "kein Problem",
+      "en": "no problem",
+      "sound": "ei",
+      "file": "audio/kein.mp3"
+    },
+    {
+      "word": "allein",
+      "phrase": "ganz allein",
+      "en": "all alone",
+      "sound": "ei",
+      "file": "audio/allein.mp3"
+    },
+    {
+      "word": "Wein",
+      "phrase": "ein Glas Wein",
+      "en": "a glass of wine",
+      "sound": "ei",
+      "file": "audio/Wein.mp3"
+    },
+    {
+      "word": "Schwein",
+      "phrase": "das Schwein grunzt",
+      "en": "the pig grunts",
+      "sound": "ei",
+      "file": "audio/Schwein.mp3"
+    },
+    {
+      "word": "Verein",
+      "phrase": "im Verein spielen",
+      "en": "play in the club",
+      "sound": "ei",
+      "file": "audio/Verein.mp3"
+    },
+    {
+      "word": "Zeit",
+      "phrase": "keine Zeit haben",
+      "en": "have no time",
+      "sound": "ei",
+      "file": "audio/Zeit.mp3"
+    },
+    {
+      "word": "Arbeit",
+      "phrase": "zur Arbeit gehen",
+      "en": "go to work",
+      "sound": "ei",
+      "file": "audio/Arbeit.mp3"
+    },
+    {
+      "word": "Freiheit",
+      "phrase": "Freiheit und Gleichheit",
+      "en": "freedom and equality",
+      "sound": "ei",
+      "file": "audio/Freiheit.mp3"
+    },
+    {
+      "word": "breit",
+      "phrase": "eine breite Straße",
+      "en": "a wide street",
+      "sound": "ei",
+      "file": "audio/breit.mp3"
+    },
+    {
+      "word": "weit",
+      "phrase": "sehr weit weg",
+      "en": "very far away",
+      "sound": "ei",
+      "file": "audio/weit.mp3"
+    },
+    {
+      "word": "Seite",
+      "phrase": "auf der Seite liegen",
+      "en": "lie on the side",
+      "sound": "ei",
+      "file": "audio/Seite.mp3"
+    },
+    {
+      "word": "Leiter",
+      "phrase": "die Leiter steigen",
+      "en": "climb the ladder",
+      "sound": "ei",
+      "file": "audio/Leiter.mp3"
+    },
+    {
+      "word": "Meister",
+      "phrase": "der deutsche Meister",
+      "en": "the German champion",
+      "sound": "ei",
+      "file": "audio/Meister.mp3"
+    },
+    {
+      "word": "Geist",
+      "phrase": "der heilige Geist",
+      "en": "the holy spirit",
+      "sound": "ei",
+      "file": "audio/Geist.mp3"
+    },
+    {
+      "word": "heißen",
+      "phrase": "wie heißen Sie",
+      "en": "what is your name",
+      "sound": "ei",
+      "file": "audio/heissen.mp3"
+    },
+    {
+      "word": "wissen",
+      "phrase": "ich weiß es nicht",
+      "en": "I don't know",
+      "sound": "ei",
+      "file": "audio/wissen.mp3"
+    },
+    {
+      "word": "beißen",
+      "phrase": "der Hund beißt",
+      "en": "the dog bites",
+      "sound": "ei",
+      "file": "audio/beissen.mp3"
+    },
+    {
+      "word": "reisen",
+      "phrase": "um die Welt reisen",
+      "en": "travel around the world",
+      "sound": "ei",
+      "file": "audio/reisen.mp3"
+    },
+    {
+      "word": "weisen",
+      "phrase": "den Weg weisen",
+      "en": "show the way",
+      "sound": "ei",
+      "file": "audio/weisen.mp3"
+    },
+    {
+      "word": "preisen",
+      "phrase": "Gott preisen",
+      "en": "praise God",
+      "sound": "ei",
+      "file": "audio/preisen.mp3"
+    },
+    {
+      "word": "Reis",
+      "phrase": "Reis mit Gemüse",
+      "en": "rice with vegetables",
+      "sound": "ei",
+      "file": "audio/Reis.mp3"
+    },
+    {
+      "word": "Kreis",
+      "phrase": "einen Kreis zeichnen",
+      "en": "draw a circle",
+      "sound": "ei",
+      "file": "audio/Kreis.mp3"
+    },
+    {
+      "word": "Preis",
+      "phrase": "der beste Preis",
+      "en": "the best price",
+      "sound": "ei",
+      "file": "audio/Preis.mp3"
+    },
+    {
+      "word": "Eis",
+      "phrase": "ein Eis essen",
+      "en": "eat an ice cream",
+      "sound": "ei",
+      "file": "audio/Eis.mp3"
+    },
+    {
+      "word": "heiß",
+      "phrase": "es ist heiß",
+      "en": "it is hot",
+      "sound": "ei",
+      "file": "audio/heiss.mp3"
+    },
+    {
+      "word": "weiß",
+      "phrase": "weiß wie Schnee",
+      "en": "white as snow",
+      "sound": "ei",
+      "file": "audio/weiss.mp3"
+    },
+    {
+      "word": "Fleisch",
+      "phrase": "frisches Fleisch",
+      "en": "fresh meat",
+      "sound": "ei",
+      "file": "audio/Fleisch.mp3"
+    },
+    {
+      "word": "gleich",
+      "phrase": "gleich fertig",
+      "en": "almost done",
+      "sound": "ei",
+      "file": "audio/gleich.mp3"
+    },
+    {
+      "word": "vielleicht",
+      "phrase": "vielleicht morgen",
+      "en": "maybe tomorrow",
+      "sound": "ei",
+      "file": "audio/vielleicht.mp3"
+    },
+    {
+      "word": "reich",
+      "phrase": "reich und berühmt",
+      "en": "rich and famous",
+      "sound": "ei",
+      "file": "audio/reich.mp3"
+    },
+    {
+      "word": "weich",
+      "phrase": "weich und warm",
+      "en": "soft and warm",
+      "sound": "ei",
+      "file": "audio/weich.mp3"
+    },
+    {
+      "word": "Teich",
+      "phrase": "am Teich sitzen",
+      "en": "sit by the pond",
+      "sound": "ei",
+      "file": "audio/Teich.mp3"
+    },
+    {
+      "word": "Leiche",
+      "phrase": "eine Leiche finden",
+      "en": "find a corpse",
+      "sound": "ei",
+      "file": "audio/Leiche.mp3"
+    },
+    {
+      "word": "Zeichen",
+      "phrase": "ein gutes Zeichen",
+      "en": "a good sign",
+      "sound": "ei",
+      "file": "audio/Zeichen.mp3"
+    },
+    {
+      "word": "erreichen",
+      "phrase": "das Ziel erreichen",
+      "en": "reach the goal",
+      "sound": "ei",
+      "file": "audio/erreichen.mp3"
+    },
+    {
+      "word": "vergleichen",
+      "phrase": "Preise vergleichen",
+      "en": "compare prices",
+      "sound": "ei",
+      "file": "audio/vergleichen.mp3"
+    },
+    {
+      "word": "schreiben",
+      "phrase": "einen Brief schreiben",
+      "en": "write a letter",
+      "sound": "ei",
+      "file": "audio/schreiben.mp3"
+    },
+    {
+      "word": "bleiben",
+      "phrase": "zu Hause bleiben",
+      "en": "stay at home",
+      "sound": "ei",
+      "file": "audio/bleiben.mp3"
+    },
+    {
+      "word": "treiben",
+      "phrase": "Sport treiben",
+      "en": "do sports",
+      "sound": "ei",
+      "file": "audio/treiben.mp3"
+    },
+    {
+      "word": "Leib",
+      "phrase": "Leib und Seele",
+      "en": "body and soul",
+      "sound": "ei",
+      "file": "audio/Leib.mp3"
+    },
+    {
+      "word": "Weib",
+      "phrase": "ein altes Weib",
+      "en": "an old woman",
+      "sound": "ei",
+      "file": "audio/Weib.mp3"
+    },
+    {
+      "word": "Scheibe",
+      "phrase": "eine Scheibe Brot",
+      "en": "a slice of bread",
+      "sound": "ei",
+      "file": "audio/Scheibe.mp3"
+    },
+    {
+      "word": "zwei",
+      "phrase": "zwei Kinder",
+      "en": "two children",
+      "sound": "ei",
+      "file": "audio/zwei.mp3"
+    },
+    {
+      "word": "drei",
+      "phrase": "drei Mal",
+      "en": "three times",
+      "sound": "ei",
+      "file": "audio/drei.mp3"
+    }
+  ]
+}

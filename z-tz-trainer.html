@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Z vs TZ Spelling Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 200px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      font-size: 32px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .word-display {
+      font-size: 36px;
+      font-weight: 700;
+      color: #2C2C2C;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .word-display .gap {
+      display: inline-block;
+      min-width: 50px;
+      border-bottom: 3px solid #E91E63;
+      margin: 0 2px;
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 40px;
+      border-radius: 12px;
+      font-size: 26px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 100px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .option-btn:disabled { cursor: not-allowed; }
+
+    .option-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .option-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .option-btn.highlight {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .feedback.correct-text { color: #4CAF50; }
+    .feedback.wrong-text { color: #F44336; }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .rule-note {
+      font-size: 13px;
+      color: #9C27B0;
+      margin-top: 5px;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 65px; height: 65px; font-size: 26px; }
+      .word-display { font-size: 28px; }
+      .option-btn { padding: 14px 28px; font-size: 22px; min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">Z vs TZ</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>Z</kbd> z
+      <kbd>T</kbd> tz
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>Z vs TZ - The /ts/ sound in German:</strong>
+      <br><br>
+      Both make the same /ts/ sound! The spelling depends on the vowel before:
+      <br><br>
+      <strong>Z</strong> - after <strong>long vowels</strong>, diphthongs (ei, au, eu), consonants, or at word start
+      <br>Examples: tan<strong>z</strong>en (long a), Her<strong>z</strong> (after r), <strong>Z</strong>eit (word start)
+      <br><br>
+      <strong>TZ</strong> - after <strong>short vowels</strong> (never at word start!)
+      <br>Examples: Ka<strong>tz</strong>e (short a), si<strong>tz</strong>en (short i), Pla<strong>tz</strong> (short a)
+      <br><br>
+      <em>Tip: Short vowels are usually followed by double consonants (tt, mm, ss) or tz/ck!</em>
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div id="wordDisplay" class="word-display"></div>
+
+        <div id="optionsContainer" class="options-container">
+          <button class="option-btn" onclick="checkAnswer('z')" data-option="z">z</button>
+          <button class="option-btn" onclick="checkAnswer('tz')" data-option="tz">tz</button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+        <div id="translationReveal" class="translation-reveal hidden"></div>
+        <div id="ruleNote" class="rule-note hidden"></div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'z-tz-trainer/audio/';
+      const STORAGE_KEY = 'z_tz_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: z vs tz spelling
+      const allWords = [
+        // Z words - after long vowels, diphthongs, consonants, at word start (40)
+        { word: "Zeit", gap: "_eit", answer: "z", file: "Zeit", en: "time", rule: "Word start" },
+        { word: "Zug", gap: "_ug", answer: "z", file: "Zug", en: "train", rule: "Word start" },
+        { word: "Zahl", gap: "_ahl", answer: "z", file: "Zahl", en: "number", rule: "Word start" },
+        { word: "Zimmer", gap: "_immer", answer: "z", file: "Zimmer", en: "room", rule: "Word start" },
+        { word: "zehn", gap: "_ehn", answer: "z", file: "zehn", en: "ten", rule: "Word start" },
+        { word: "zwei", gap: "_wei", answer: "z", file: "zwei", en: "two", rule: "Word start" },
+        { word: "zwischen", gap: "_wischen", answer: "z", file: "zwischen", en: "between", rule: "Word start" },
+        { word: "Zucker", gap: "_ucker", answer: "z", file: "Zucker", en: "sugar", rule: "Word start" },
+        { word: "Ziel", gap: "_iel", answer: "z", file: "Ziel", en: "goal", rule: "Word start" },
+        { word: "Zone", gap: "_one", answer: "z", file: "Zone", en: "zone", rule: "Word start" },
+        { word: "zeigen", gap: "_eigen", answer: "z", file: "zeigen", en: "to show", rule: "Word start" },
+        { word: "zusammen", gap: "_usammen", answer: "z", file: "zusammen", en: "together", rule: "Word start" },
+        { word: "zuerst", gap: "_uerst", answer: "z", file: "zuerst", en: "first", rule: "Word start" },
+        { word: "zurück", gap: "_urück", answer: "z", file: "zurueck", en: "back", rule: "Word start" },
+        { word: "tanzen", gap: "tan_en", answer: "z", file: "tanzen", en: "to dance", rule: "After long vowel" },
+        { word: "Herz", gap: "Her_", answer: "z", file: "Herz", en: "heart", rule: "After consonant (r)" },
+        { word: "kurz", gap: "kur_", answer: "z", file: "kurz", en: "short", rule: "After consonant (r)" },
+        { word: "Arzt", gap: "Ar_t", answer: "z", file: "Arzt", en: "doctor", rule: "After consonant (r)" },
+        { word: "Salz", gap: "Sal_", answer: "z", file: "Salz", en: "salt", rule: "After consonant (l)" },
+        { word: "Holz", gap: "Hol_", answer: "z", file: "Holz", en: "wood", rule: "After consonant (l)" },
+        { word: "ganz", gap: "gan_", answer: "z", file: "ganz", en: "whole/entirely", rule: "After consonant (n)" },
+        { word: "Tanz", gap: "Tan_", answer: "z", file: "Tanz", en: "dance", rule: "After consonant (n)" },
+        { word: "Grenze", gap: "Gren_e", answer: "z", file: "Grenze", en: "border", rule: "After consonant (n)" },
+        { word: "Pflanze", gap: "Pflan_e", answer: "z", file: "Pflanze", en: "plant", rule: "After consonant (n)" },
+        { word: "schwarz", gap: "schwar_", answer: "z", file: "schwarz", en: "black", rule: "After consonant (r)" },
+        { word: "Schmerz", gap: "Schmer_", answer: "z", file: "Schmerz", en: "pain", rule: "After consonant (r)" },
+        { word: "einzeln", gap: "ein_eln", answer: "z", file: "einzeln", en: "individual", rule: "After diphthong (ei)" },
+        { word: "Kerze", gap: "Ker_e", answer: "z", file: "Kerze", en: "candle", rule: "After consonant (r)" },
+        { word: "Wurzel", gap: "Wur_el", answer: "z", file: "Wurzel", en: "root", rule: "After consonant (r)" },
+        { word: "Kreuz", gap: "Kreu_", answer: "z", file: "Kreuz", en: "cross", rule: "After diphthong (eu)" },
+        { word: "Reiz", gap: "Rei_", answer: "z", file: "Reiz", en: "stimulus", rule: "After diphthong (ei)" },
+        { word: "heizen", gap: "hei_en", answer: "z", file: "heizen", en: "to heat", rule: "After diphthong (ei)" },
+        { word: "reizen", gap: "rei_en", answer: "z", file: "reizen", en: "to irritate", rule: "After diphthong (ei)" },
+        { word: "Weizen", gap: "Wei_en", answer: "z", file: "Weizen", en: "wheat", rule: "After diphthong (ei)" },
+        { word: "Kauz", gap: "Kau_", answer: "z", file: "Kauz", en: "owl", rule: "After diphthong (au)" },
+        { word: "Schnauze", gap: "Schnau_e", answer: "z", file: "Schnauze", en: "snout", rule: "After diphthong (au)" },
+        { word: "Pelz", gap: "Pel_", answer: "z", file: "Pelz", en: "fur", rule: "After consonant (l)" },
+        { word: "Stolz", gap: "Stol_", answer: "z", file: "Stolz", en: "pride", rule: "After consonant (l)" },
+        { word: "Schmalz", gap: "Schmal_", answer: "z", file: "Schmalz", en: "lard", rule: "After consonant (l)" },
+        { word: "Walzer", gap: "Wal_er", answer: "z", file: "Walzer", en: "waltz", rule: "After consonant (l)" },
+        // TZ words - after short vowels (40)
+        { word: "Katze", gap: "Ka_e", answer: "tz", file: "Katze", en: "cat", rule: "After short vowel (a)" },
+        { word: "sitzen", gap: "si_en", answer: "tz", file: "sitzen", en: "to sit", rule: "After short vowel (i)" },
+        { word: "Platz", gap: "Pla_", answer: "tz", file: "Platz", en: "place/square", rule: "After short vowel (a)" },
+        { word: "setzen", gap: "se_en", answer: "tz", file: "setzen", en: "to set/put", rule: "After short vowel (e)" },
+        { word: "Hitze", gap: "Hi_e", answer: "tz", file: "Hitze", en: "heat", rule: "After short vowel (i)" },
+        { word: "Netz", gap: "Ne_", answer: "tz", file: "Netz", en: "net", rule: "After short vowel (e)" },
+        { word: "Schatz", gap: "Scha_", answer: "tz", file: "Schatz", en: "treasure/darling", rule: "After short vowel (a)" },
+        { word: "Witz", gap: "Wi_", answer: "tz", file: "Witz", en: "joke", rule: "After short vowel (i)" },
+        { word: "Blitz", gap: "Bli_", answer: "tz", file: "Blitz", en: "lightning", rule: "After short vowel (i)" },
+        { word: "Satz", gap: "Sa_", answer: "tz", file: "Satz", en: "sentence", rule: "After short vowel (a)" },
+        { word: "Mütze", gap: "Mü_e", answer: "tz", file: "Muetze", en: "cap/hat", rule: "After short vowel (ü)" },
+        { word: "Spitze", gap: "Spi_e", answer: "tz", file: "Spitze", en: "tip/top", rule: "After short vowel (i)" },
+        { word: "Schmutz", gap: "Schmu_", answer: "tz", file: "Schmutz", en: "dirt", rule: "After short vowel (u)" },
+        { word: "putzen", gap: "pu_en", answer: "tz", file: "putzen", en: "to clean", rule: "After short vowel (u)" },
+        { word: "nutzen", gap: "nu_en", answer: "tz", file: "nutzen", en: "to use", rule: "After short vowel (u)" },
+        { word: "Schutz", gap: "Schu_", answer: "tz", file: "Schutz", en: "protection", rule: "After short vowel (u)" },
+        { word: "Pfütze", gap: "Pfü_e", answer: "tz", file: "Pfuetze", en: "puddle", rule: "After short vowel (ü)" },
+        { word: "Tatze", gap: "Ta_e", answer: "tz", file: "Tatze", en: "paw", rule: "After short vowel (a)" },
+        { word: "kratzen", gap: "kra_en", answer: "tz", file: "kratzen", en: "to scratch", rule: "After short vowel (a)" },
+        { word: "schwitzen", gap: "schwi_en", answer: "tz", file: "schwitzen", en: "to sweat", rule: "After short vowel (i)" },
+        { word: "stützen", gap: "stü_en", answer: "tz", file: "stuetzen", en: "to support", rule: "After short vowel (ü)" },
+        { word: "schätzen", gap: "schä_en", answer: "tz", file: "schaetzen", en: "to estimate", rule: "After short vowel (ä)" },
+        { word: "Gesetz", gap: "Gese_", answer: "tz", file: "Gesetz", en: "law", rule: "After short vowel (e)" },
+        { word: "letzt", gap: "le_t", answer: "tz", file: "letzt", en: "last", rule: "After short vowel (e)" },
+        { word: "jetzt", gap: "je_t", answer: "tz", file: "jetzt", en: "now", rule: "After short vowel (e)" },
+        { word: "benutzen", gap: "benu_en", answer: "tz", file: "benutzen", en: "to use", rule: "After short vowel (u)" },
+        { word: "Absatz", gap: "Absa_", answer: "tz", file: "Absatz", en: "paragraph/heel", rule: "After short vowel (a)" },
+        { word: "Ersatz", gap: "Ersa_", answer: "tz", file: "Ersatz", en: "replacement", rule: "After short vowel (a)" },
+        { word: "Ansatz", gap: "Ansa_", answer: "tz", file: "Ansatz", en: "approach", rule: "After short vowel (a)" },
+        { word: "Zusatz", gap: "Zusa_", answer: "tz", file: "Zusatz", en: "addition", rule: "After short vowel (a)" },
+        { word: "Besitzer", gap: "Besi_er", answer: "tz", file: "Besitzer", en: "owner", rule: "After short vowel (i)" },
+        { word: "glitzern", gap: "gli_ern", answer: "tz", file: "glitzern", en: "to glitter", rule: "After short vowel (i)" },
+        { word: "Pfötchen", gap: "Pfö_chen", answer: "tz", file: "Pfoetchen", en: "little paw", rule: "After short vowel (ö)" },
+        { word: "Kätzchen", gap: "Kä_chen", answer: "tz", file: "Kaetzchen", en: "kitten", rule: "After short vowel (ä)" },
+        { word: "Schätzchen", gap: "Schä_chen", answer: "tz", file: "Schaetzchen", en: "darling", rule: "After short vowel (ä)" },
+        { word: "Plätzchen", gap: "Plä_chen", answer: "tz", file: "Plaetzchen", en: "cookie", rule: "After short vowel (ä)" },
+        { word: "wetzen", gap: "we_en", answer: "tz", file: "wetzen", en: "to sharpen", rule: "After short vowel (e)" },
+        { word: "hetzen", gap: "he_en", answer: "tz", file: "hetzen", en: "to rush/hunt", rule: "After short vowel (e)" },
+        { word: "flitzen", gap: "fli_en", answer: "tz", file: "flitzen", en: "to dash", rule: "After short vowel (i)" },
+        { word: "Klotz", gap: "Klo_", answer: "tz", file: "Klotz", en: "block/lump", rule: "After short vowel (o)" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const wordDisplay = document.getElementById('wordDisplay');
+        const feedback = document.getElementById('feedback');
+        const transReveal = document.getElementById('translationReveal');
+        const ruleNote = document.getElementById('ruleNote');
+        const btns = document.querySelectorAll('.option-btn');
+
+        preloadAudio();
+
+        // Display word with gap
+        wordDisplay.innerHTML = ex.gap.replace('_', '<span class="gap"></span>');
+
+        // Reset buttons
+        btns.forEach(btn => {
+          btn.classList.remove('correct', 'wrong', 'highlight');
+          btn.disabled = false;
+        });
+        feedback.classList.add('hidden');
+        transReveal.classList.add('hidden');
+        ruleNote.classList.add('hidden');
+
+        if (prev !== null) {
+          answered = true;
+          btns.forEach(btn => {
+            btn.disabled = true;
+            if (btn.dataset.option === ex.answer) {
+              btn.classList.add('highlight');
+            }
+            if (prev === btn.dataset.option && prev !== ex.answer) {
+              btn.classList.add('wrong');
+            }
+          });
+
+          wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+          ruleNote.textContent = ex.rule;
+          ruleNote.classList.remove('hidden');
+        } else {
+          answered = false;
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      window.checkAnswer = function(selected) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = selected === ex.answer;
+        answers[idx] = selected;
+
+        const wordDisplay = document.getElementById('wordDisplay');
+        const feedback = document.getElementById('feedback');
+        const transReveal = document.getElementById('translationReveal');
+        const ruleNote = document.getElementById('ruleNote');
+        const btns = document.querySelectorAll('.option-btn');
+
+        btns.forEach(btn => {
+          btn.disabled = true;
+          if (btn.dataset.option === ex.answer) {
+            btn.classList.add('highlight');
+          }
+          if (selected === btn.dataset.option && selected !== ex.answer) {
+            btn.classList.add('wrong');
+          }
+        });
+
+        wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+        ruleNote.textContent = ex.rule;
+        ruleNote.classList.remove('hidden');
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+          feedback.textContent = 'Correct!';
+          feedback.className = 'feedback correct-text';
+        } else {
+          sessionWrong.push(ex);
+          feedback.textContent = 'Wrong - it\'s "' + ex.answer + '"';
+          feedback.className = 'feedback wrong-text';
+        }
+        feedback.classList.remove('hidden');
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1200);
+      };
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.answer}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key.toLowerCase();
+        if (k === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          playWord();
+        } else if (k === 'z' && !answered) {
+          e.preventDefault();
+          checkAnswer('z');
+        } else if (k === 't' && !answered) {
+          e.preventDefault();
+          checkAnswer('tz');
+        }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

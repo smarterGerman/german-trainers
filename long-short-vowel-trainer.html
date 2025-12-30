@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Long or Short Vowel? Listening Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .choice-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .choice-btn.long { color: #00BCD4; }
+    .choice-btn.short { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .choice-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .choice-btn { padding: 14px 25px; font-size: 16px; }
+      .word-reveal { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">Long or Short?</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> Long
+      <kbd>J</kbd> Short
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>80 word pairs</strong> total, <strong>20 per session</strong>. Train your ear for vowel length!
+      <br><br>
+      <strong>Why it matters:</strong> Vowel length changes meaning!
+      <br>bitten (to ask) vs bieten (to offer)
+      <br>Stadt (city) vs Staat (state)
+      <br><br>
+      <strong>Long vowels:</strong> Held longer, often followed by single consonant or h
+      <br>Examples: Bahn, Sohn, Mehl, lieben
+      <br><br>
+      <strong>Short vowels:</strong> Quick, often followed by double consonant
+      <br>Examples: Mann, kommen, Bett, offen
+      <br><br>
+      Progress is stored locally. Wrong answers shown at end.
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="choice-btn long" onclick="checkAnswer('long')" id="btnLong">Long</button>
+        <button class="choice-btn short" onclick="checkAnswer('short')" id="btnShort">Short</button>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'long-short-vowel-trainer/audio/';
+      const STORAGE_KEY = 'long_short_vowel_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: 80 A1-B1 words - long vs short vowels
+      const allWords = [
+        // Long vowels (40)
+        { word: "Staat", length: "long", file: "Staat", en: "state" },
+        { word: "Bahn", length: "long", file: "Bahn", en: "train/railway" },
+        { word: "Sohn", length: "long", file: "Sohn", en: "son" },
+        { word: "Mehl", length: "long", file: "Mehl", en: "flour" },
+        { word: "Zahl", length: "long", file: "Zahl", en: "number" },
+        { word: "Wahl", length: "long", file: "Wahl", en: "choice/election" },
+        { word: "Schule", length: "long", file: "Schule", en: "school" },
+        { word: "Stuhl", length: "long", file: "Stuhl", en: "chair" },
+        { word: "Ofen", length: "long", file: "Ofen", en: "oven" },
+        { word: "Boden", length: "long", file: "Boden", en: "floor" },
+        { word: "lieben", length: "long", file: "lieben", en: "to love" },
+        { word: "bieten", length: "long", file: "bieten", en: "to offer" },
+        { word: "Miete", length: "long", file: "Miete", en: "rent" },
+        { word: "Tier", length: "long", file: "Tier", en: "animal" },
+        { word: "Bier", length: "long", file: "Bier", en: "beer" },
+        { word: "Name", length: "long", file: "Name", en: "name" },
+        { word: "Laden", length: "long", file: "Laden", en: "shop" },
+        { word: "Faden", length: "long", file: "Faden", en: "thread" },
+        { word: "Regen", length: "long", file: "Regen", en: "rain" },
+        { word: "legen", length: "long", file: "legen", en: "to lay" },
+        { word: "wohnen", length: "long", file: "wohnen", en: "to live" },
+        { word: "Bohne", length: "long", file: "Bohne", en: "bean" },
+        { word: "Sahne", length: "long", file: "Sahne", en: "cream" },
+        { word: "fahren", length: "long", file: "fahren", en: "to drive" },
+        { word: "Gefahr", length: "long", file: "Gefahr", en: "danger" },
+        { word: "Jahr", length: "long", file: "Jahr", en: "year" },
+        { word: "Uhr", length: "long", file: "Uhr", en: "clock" },
+        { word: "Kur", length: "long", file: "Kur", en: "cure/spa" },
+        { word: "Ton", length: "long", file: "Ton", en: "tone/clay" },
+        { word: "Hof", length: "long", file: "Hof", en: "courtyard" },
+        { word: "Moos", length: "long", file: "Moos", en: "moss" },
+        { word: "Boot", length: "long", file: "Boot", en: "boat" },
+        { word: "rot", length: "long", file: "rot", en: "red" },
+        { word: "Brot", length: "long", file: "Brot", en: "bread" },
+        { word: "Tag", length: "long", file: "Tag", en: "day" },
+        { word: "Weg", length: "long", file: "Weg", en: "way/path" },
+        { word: "sagen", length: "long", file: "sagen", en: "to say" },
+        { word: "tragen", length: "long", file: "tragen", en: "to carry" },
+        { word: "Glas", length: "long", file: "Glas", en: "glass" },
+        { word: "Spaß", length: "long", file: "Spass", en: "fun" },
+        // Short vowels (40)
+        { word: "Stadt", length: "short", file: "Stadt", en: "city" },
+        { word: "Mann", length: "short", file: "Mann", en: "man" },
+        { word: "dann", length: "short", file: "dann", en: "then" },
+        { word: "kommen", length: "short", file: "kommen", en: "to come" },
+        { word: "Sommer", length: "short", file: "Sommer", en: "summer" },
+        { word: "offen", length: "short", file: "offen", en: "open" },
+        { word: "hoffen", length: "short", file: "hoffen", en: "to hope" },
+        { word: "bitten", length: "short", file: "bitten", en: "to ask" },
+        { word: "Mitte", length: "short", file: "Mitte", en: "middle" },
+        { word: "Bett", length: "short", file: "Bett", en: "bed" },
+        { word: "nett", length: "short", file: "nett", en: "nice" },
+        { word: "Wetter", length: "short", file: "Wetter", en: "weather" },
+        { word: "Zimmer", length: "short", file: "Zimmer", en: "room" },
+        { word: "immer", length: "short", file: "immer", en: "always" },
+        { word: "Nummer", length: "short", file: "Nummer", en: "number" },
+        { word: "Butter", length: "short", file: "Butter", en: "butter" },
+        { word: "Mutter", length: "short", file: "Mutter", en: "mother" },
+        { word: "Suppe", length: "short", file: "Suppe", en: "soup" },
+        { word: "Gruppe", length: "short", file: "Gruppe", en: "group" },
+        { word: "Lippe", length: "short", file: "Lippe", en: "lip" },
+        { word: "Mappe", length: "short", file: "Mappe", en: "folder" },
+        { word: "Kasse", length: "short", file: "Kasse", en: "cash register" },
+        { word: "Tasse", length: "short", file: "Tasse", en: "cup" },
+        { word: "Wasser", length: "short", file: "Wasser", en: "water" },
+        { word: "essen", length: "short", file: "essen", en: "to eat" },
+        { word: "Messer", length: "short", file: "Messer", en: "knife" },
+        { word: "kennen", length: "short", file: "kennen", en: "to know" },
+        { word: "rennen", length: "short", file: "rennen", en: "to run" },
+        { word: "Sonne", length: "short", file: "Sonne", en: "sun" },
+        { word: "können", length: "short", file: "koennen", en: "can" },
+        { word: "Bock", length: "short", file: "Bock", en: "buck/desire" },
+        { word: "Stock", length: "short", file: "Stock", en: "stick/floor" },
+        { word: "Rock", length: "short", file: "Rock", en: "skirt" },
+        { word: "Kopf", length: "short", file: "Kopf", en: "head" },
+        { word: "Topf", length: "short", file: "Topf", en: "pot" },
+        { word: "Gott", length: "short", file: "Gott", en: "god" },
+        { word: "voll", length: "short", file: "voll", en: "full" },
+        { word: "toll", length: "short", file: "toll", en: "great" },
+        { word: "sollen", length: "short", file: "sollen", en: "should" },
+        { word: "wollen", length: "short", file: "wollen", en: "to want" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnLong = document.getElementById('btnLong');
+        const btnShort = document.getElementById('btnShort');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          btnLong.disabled = btnShort.disabled = true;
+          btnLong.classList.remove('correct', 'wrong');
+          btnShort.classList.remove('correct', 'wrong');
+
+          reveal.textContent = ex.word;
+          reveal.classList.remove('hidden');
+          transReveal.textContent = ex.en + ' (' + ex.length + ')';
+          transReveal.classList.remove('hidden');
+
+          if (ex.length === 'long') {
+            btnLong.classList.add('correct');
+            if (prev !== 'long') btnShort.classList.add('wrong');
+          } else {
+            btnShort.classList.add('correct');
+            if (prev !== 'short') btnLong.classList.add('wrong');
+          }
+        } else {
+          answered = false;
+          btnLong.disabled = btnShort.disabled = false;
+          btnLong.classList.remove('correct', 'wrong');
+          btnShort.classList.remove('correct', 'wrong');
+          reveal.classList.add('hidden');
+          transReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.length;
+        answers[idx] = sel;
+
+        const btnLong = document.getElementById('btnLong');
+        const btnShort = document.getElementById('btnShort');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        btnLong.disabled = btnShort.disabled = true;
+        reveal.textContent = ex.word;
+        reveal.classList.remove('hidden');
+        transReveal.textContent = ex.en + ' (' + ex.length + ')';
+        transReveal.classList.remove('hidden');
+
+        if (ex.length === 'long') {
+          btnLong.classList.add('correct');
+          if (!correct) btnShort.classList.add('wrong');
+        } else {
+          btnShort.classList.add('correct');
+          if (!correct) btnLong.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.length}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key;
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('long'); }
+        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('short'); }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

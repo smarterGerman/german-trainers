@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Devoicing Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .spelling-note {
+      font-size: 14px;
+      color: #9C27B0;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .choice-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .choice-btn.voiced { color: #00BCD4; }
+    .choice-btn.voiceless { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .choice-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .choice-btn { padding: 14px 25px; font-size: 16px; }
+      .word-reveal { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">Final Devoicing</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> Voiced (d/b/g)
+      <kbd>J</kbd> Voiceless (t/p/k)
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>Auslautverhartung</strong> - German final devoicing
+      <br><br>
+      In German, voiced consonants (d, b, g) become voiceless (t, p, k) at the end of a syllable or word.
+      <br><br>
+      <strong>Examples:</strong>
+      <br>Hun<strong>d</strong> sounds like "Hunt" (but spelled with d!)
+      <br>lie<strong>b</strong> sounds like "liep" (but spelled with b!)
+      <br>Ta<strong>g</strong> sounds like "Tak" (but spelled with g!)
+      <br><br>
+      <strong>The spelling stays the same</strong> - you can see the original sound in related words:
+      <br>Hund/Hunde, lieb/lieben, Tag/Tage
+      <br><br>
+      Listen carefully - does the final sound match its spelling (voiced) or is it devoiced?
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="spellingNote" class="spelling-note hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="choice-btn voiced" onclick="checkAnswer('voiced')" id="btnVoiced">d/b/g</button>
+        <button class="choice-btn voiceless" onclick="checkAnswer('voiceless')" id="btnVoiceless">t/p/k</button>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'final-devoicing-trainer/audio/';
+      const STORAGE_KEY = 'final_devoicing_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: words where final consonant is DEVOICED vs words where it STAYS VOICED
+      // devoiced = spelled d/b/g but pronounced t/p/k (at syllable end)
+      // voiced = the consonant stays voiced (not at syllable end, or naturally voiceless)
+      const allWords = [
+        // DEVOICED - spelled d/b/g, pronounced t/p/k
+        { word: "Hund", sound: "devoiced", file: "Hund", en: "dog", note: "d sounds like t" },
+        { word: "Kind", sound: "devoiced", file: "Kind", en: "child", note: "d sounds like t" },
+        { word: "Freund", sound: "devoiced", file: "Freund", en: "friend", note: "d sounds like t" },
+        { word: "Mund", sound: "devoiced", file: "Mund", en: "mouth", note: "d sounds like t" },
+        { word: "Wand", sound: "devoiced", file: "Wand", en: "wall", note: "d sounds like t" },
+        { word: "Hand", sound: "devoiced", file: "Hand", en: "hand", note: "d sounds like t" },
+        { word: "Land", sound: "devoiced", file: "Land", en: "country", note: "d sounds like t" },
+        { word: "Bild", sound: "devoiced", file: "Bild", en: "picture", note: "d sounds like t" },
+        { word: "Geld", sound: "devoiced", file: "Geld", en: "money", note: "d sounds like t" },
+        { word: "Feld", sound: "devoiced", file: "Feld", en: "field", note: "d sounds like t" },
+        { word: "Pferd", sound: "devoiced", file: "Pferd", en: "horse", note: "d sounds like t" },
+        { word: "Rad", sound: "devoiced", file: "Rad", en: "wheel", note: "d sounds like t" },
+        { word: "Bad", sound: "devoiced", file: "Bad", en: "bath", note: "d sounds like t" },
+        { word: "Grad", sound: "devoiced", file: "Grad", en: "degree", note: "d sounds like t" },
+        { word: "lieb", sound: "devoiced", file: "lieb", en: "dear", note: "b sounds like p" },
+        { word: "Dieb", sound: "devoiced", file: "Dieb", en: "thief", note: "b sounds like p" },
+        { word: "halb", sound: "devoiced", file: "halb", en: "half", note: "b sounds like p" },
+        { word: "gelb", sound: "devoiced", file: "gelb", en: "yellow", note: "b sounds like p" },
+        { word: "Korb", sound: "devoiced", file: "Korb", en: "basket", note: "b sounds like p" },
+        { word: "Urlaub", sound: "devoiced", file: "Urlaub", en: "vacation", note: "b sounds like p" },
+        { word: "Staub", sound: "devoiced", file: "Staub", en: "dust", note: "b sounds like p" },
+        { word: "Laub", sound: "devoiced", file: "Laub", en: "foliage", note: "b sounds like p" },
+        { word: "Tag", sound: "devoiced", file: "Tag", en: "day", note: "g sounds like k" },
+        { word: "Weg", sound: "devoiced", file: "Weg", en: "way", note: "g sounds like k" },
+        { word: "Zug", sound: "devoiced", file: "Zug", en: "train", note: "g sounds like k" },
+        { word: "Flug", sound: "devoiced", file: "Flug", en: "flight", note: "g sounds like k" },
+        { word: "Berg", sound: "devoiced", file: "Berg", en: "mountain", note: "g sounds like k" },
+        { word: "Krieg", sound: "devoiced", file: "Krieg", en: "war", note: "g sounds like k" },
+        { word: "Sieg", sound: "devoiced", file: "Sieg", en: "victory", note: "g sounds like k" },
+        { word: "Schlag", sound: "devoiced", file: "Schlag", en: "hit", note: "g sounds like k" },
+        { word: "Betrug", sound: "devoiced", file: "Betrug", en: "fraud", note: "g sounds like k" },
+        { word: "Erfolg", sound: "devoiced", file: "Erfolg", en: "success", note: "g sounds like k" },
+        { word: "Vertrag", sound: "devoiced", file: "Vertrag", en: "contract", note: "g sounds like k" },
+        { word: "Antrag", sound: "devoiced", file: "Antrag", en: "application", note: "g sounds like k" },
+        { word: "Verband", sound: "devoiced", file: "Verband", en: "bandage", note: "d sounds like t" },
+        { word: "Abend", sound: "devoiced", file: "Abend", en: "evening", note: "d sounds like t" },
+        { word: "Jugend", sound: "devoiced", file: "Jugend", en: "youth", note: "d sounds like t" },
+        { word: "Werbung", sound: "devoiced", file: "Werbung", en: "advertising", note: "g sounds like k" },
+        { word: "Zeitung", sound: "devoiced", file: "Zeitung", en: "newspaper", note: "g sounds like k" },
+        { word: "Ordnung", sound: "devoiced", file: "Ordnung", en: "order", note: "g sounds like k" },
+        // VOICED - consonants stay voiced (not at syllable end)
+        { word: "Hunde", sound: "voiced", file: "Hunde", en: "dogs", note: "d stays voiced" },
+        { word: "Kinder", sound: "voiced", file: "Kinder", en: "children", note: "d stays voiced" },
+        { word: "Freunde", sound: "voiced", file: "Freunde", en: "friends", note: "d stays voiced" },
+        { word: "Handen", sound: "voiced", file: "Haende", en: "hands", note: "d stays voiced" },
+        { word: "Bilder", sound: "voiced", file: "Bilder", en: "pictures", note: "d stays voiced" },
+        { word: "Gelder", sound: "voiced", file: "Gelder", en: "monies", note: "d stays voiced" },
+        { word: "Pferde", sound: "voiced", file: "Pferde", en: "horses", note: "d stays voiced" },
+        { word: "lieben", sound: "voiced", file: "lieben", en: "to love", note: "b stays voiced" },
+        { word: "Diebe", sound: "voiced", file: "Diebe", en: "thieves", note: "b stays voiced" },
+        { word: "gelbe", sound: "voiced", file: "gelbe", en: "yellow (adj)", note: "b stays voiced" },
+        { word: "halbe", sound: "voiced", file: "halbe", en: "half (adj)", note: "b stays voiced" },
+        { word: "geben", sound: "voiced", file: "geben", en: "to give", note: "b stays voiced" },
+        { word: "leben", sound: "voiced", file: "leben", en: "to live", note: "b stays voiced" },
+        { word: "Tage", sound: "voiced", file: "Tage", en: "days", note: "g stays voiced" },
+        { word: "Wege", sound: "voiced", file: "Wege", en: "ways", note: "g stays voiced" },
+        { word: "Berge", sound: "voiced", file: "Berge", en: "mountains", note: "g stays voiced" },
+        { word: "fragen", sound: "voiced", file: "fragen", en: "to ask", note: "g stays voiced" },
+        { word: "tragen", sound: "voiced", file: "tragen", en: "to carry", note: "g stays voiced" },
+        { word: "sagen", sound: "voiced", file: "sagen", en: "to say", note: "g stays voiced" },
+        { word: "fliegen", sound: "voiced", file: "fliegen", en: "to fly", note: "g stays voiced" },
+        { word: "siegen", sound: "voiced", file: "siegen", en: "to win", note: "g stays voiced" },
+        { word: "Erfolge", sound: "voiced", file: "Erfolge", en: "successes", note: "g stays voiced" },
+        { word: "Abende", sound: "voiced", file: "Abende", en: "evenings", note: "d stays voiced" },
+        { word: "Rader", sound: "voiced", file: "Raeder", en: "wheels", note: "d stays voiced" },
+        { word: "Bader", sound: "voiced", file: "Baeder", en: "baths", note: "d stays voiced" },
+        { word: "Lander", sound: "voiced", file: "Laender", en: "countries", note: "d stays voiced" },
+        { word: "Wande", sound: "voiced", file: "Waende", en: "walls", note: "d stays voiced" },
+        { word: "Munde", sound: "voiced", file: "Munde", en: "mouths (dat)", note: "d stays voiced" },
+        { word: "Felder", sound: "voiced", file: "Felder", en: "fields", note: "d stays voiced" },
+        { word: "binden", sound: "voiced", file: "binden", en: "to bind", note: "d stays voiced" },
+        { word: "finden", sound: "voiced", file: "finden", en: "to find", note: "d stays voiced" },
+        { word: "werden", sound: "voiced", file: "werden", en: "to become", note: "d stays voiced" },
+        { word: "reden", sound: "voiced", file: "reden", en: "to talk", note: "d stays voiced" },
+        { word: "laden", sound: "voiced", file: "laden", en: "to load", note: "d stays voiced" },
+        { word: "baden", sound: "voiced", file: "baden", en: "to bathe", note: "d stays voiced" },
+        { word: "billig", sound: "voiced", file: "billig", en: "cheap", note: "g stays voiced" },
+        { word: "fertig", sound: "voiced", file: "fertig", en: "finished", note: "g stays voiced" },
+        { word: "fleißig", sound: "voiced", file: "fleissig", en: "diligent", note: "g stays voiced" },
+        { word: "ruhig", sound: "voiced", file: "ruhig", en: "quiet", note: "g stays voiced" },
+        { word: "lustig", sound: "voiced", file: "lustig", en: "funny", note: "g stays voiced" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnVoiced = document.getElementById('btnVoiced');
+        const btnVoiceless = document.getElementById('btnVoiceless');
+        const reveal = document.getElementById('wordReveal');
+        const spellingNote = document.getElementById('spellingNote');
+        const transReveal = document.getElementById('translationReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          btnVoiced.disabled = btnVoiceless.disabled = true;
+          btnVoiced.classList.remove('correct', 'wrong');
+          btnVoiceless.classList.remove('correct', 'wrong');
+
+          reveal.textContent = ex.word;
+          reveal.classList.remove('hidden');
+          spellingNote.textContent = ex.note;
+          spellingNote.classList.remove('hidden');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+
+          if (ex.sound === 'voiced') {
+            btnVoiced.classList.add('correct');
+            if (prev !== 'voiced') btnVoiceless.classList.add('wrong');
+          } else {
+            btnVoiceless.classList.add('correct');
+            if (prev !== 'voiceless') btnVoiced.classList.add('wrong');
+          }
+        } else {
+          answered = false;
+          btnVoiced.disabled = btnVoiceless.disabled = false;
+          btnVoiced.classList.remove('correct', 'wrong');
+          btnVoiceless.classList.remove('correct', 'wrong');
+          reveal.classList.add('hidden');
+          spellingNote.classList.add('hidden');
+          transReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.sound;
+        answers[idx] = sel;
+
+        const btnVoiced = document.getElementById('btnVoiced');
+        const btnVoiceless = document.getElementById('btnVoiceless');
+        const reveal = document.getElementById('wordReveal');
+        const spellingNote = document.getElementById('spellingNote');
+        const transReveal = document.getElementById('translationReveal');
+
+        btnVoiced.disabled = btnVoiceless.disabled = true;
+        reveal.textContent = ex.word;
+        reveal.classList.remove('hidden');
+        spellingNote.textContent = ex.note;
+        spellingNote.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+
+        if (ex.sound === 'voiced') {
+          btnVoiced.classList.add('correct');
+          if (!correct) btnVoiceless.classList.add('wrong');
+        } else {
+          btnVoiceless.classList.add('correct');
+          if (!correct) btnVoiced.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> - ${w.note} - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key;
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('voiced'); }
+        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('voiceless'); }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

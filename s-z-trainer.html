@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German s/z Spelling Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>sz</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .gap {
+      display: inline-block;
+      min-width: 40px;
+      border-bottom: 4px solid #9C27B0;
+      margin: 0 2px;
+    }
+
+    .hint-text {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 15px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.s-btn {
+      color: #00BCD4;
+    }
+
+    .answer-btn.z-btn {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">s / z Spelling Trainer</h1>
+      <p class="sg-dark-subtitle">Learn when German words start with s or z</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">s = voiced /z/ sound</div>
+        <div class="sg-dark-article">z = /ts/ sound</div>
+      </div>
+
+      <p>
+        German <strong>s</strong> at the start of a word (before vowels) sounds like English "z" (voiced).
+        German <strong>z</strong> sounds like "ts" in "bits".
+        This trainer helps you recognize which spelling is correct.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>Examples:</strong><br>
+        - <strong>s</strong>: Sonne, sehen, Saft, sagen (voiced /z/)<br>
+        - <strong>z</strong>: Zeit, zehn, Zug, zahlen (/ts/)<br>
+        Think: Does the word start with a /ts/ sound or a /z/ sound?
+      </div>
+
+      <p>
+        Look at the word and decide: s or z?
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> S = s, Z = z
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay"><span class="gap"></span>eit</div>
+          <div class="hint-text">s or z?</div>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn s-btn" onclick="checkAnswer('s')" id="btnS">
+            s
+            <span class="shortcut">(S)</span>
+          </button>
+          <button class="answer-btn z-btn" onclick="checkAnswer('z')" id="btnZ">
+            z
+            <span class="shortcut">(Z)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // s-words (voiced /z/ before vowels) (50)
+      { after: "onne", answer: "s", full: "Sonne" },
+      { after: "ehen", answer: "s", full: "sehen" },
+      { after: "agen", answer: "s", full: "sagen" },
+      { after: "aft", answer: "s", full: "Saft" },
+      { after: "itzen", answer: "s", full: "sitzen" },
+      { after: "ingen", answer: "s", full: "singen" },
+      { after: "uchen", answer: "s", full: "suchen" },
+      { after: "pielen", answer: "s", full: "spielen" },
+      { after: "ommer", answer: "s", full: "Sommer" },
+      { after: "ein", answer: "s", full: "sein" },
+      { after: "ie", answer: "s", full: "sie" },
+      { after: "o", answer: "s", full: "so" },
+      { after: "ich", answer: "s", full: "sich" },
+      { after: "ehr", answer: "s", full: "sehr" },
+      { after: "chon", answer: "s", full: "schon" },
+      { after: "chnell", answer: "s", full: "schnell" },
+      { after: "chreiben", answer: "s", full: "schreiben" },
+      { after: "chwer", answer: "s", full: "schwer" },
+      { after: "chwimmen", answer: "s", full: "schwimmen" },
+      { after: "chwarz", answer: "s", full: "schwarz" },
+      { after: "prechen", answer: "s", full: "sprechen" },
+      { after: "tehen", answer: "s", full: "stehen" },
+      { after: "tudent", answer: "s", full: "Student" },
+      { after: "tadt", answer: "s", full: "Stadt" },
+      { after: "tark", answer: "s", full: "stark" },
+      { after: "tunde", answer: "s", full: "Stunde" },
+      { after: "tuhl", answer: "s", full: "Stuhl" },
+      { after: "amstag", answer: "s", full: "Samstag" },
+      { after: "onntag", answer: "s", full: "Sonntag" },
+      { after: "icher", answer: "s", full: "sicher" },
+      { after: "auber", answer: "s", full: "sauber" },
+      { after: "chlecht", answer: "s", full: "schlecht" },
+      { after: "chlafen", answer: "s", full: "schlafen" },
+      { after: "chluss", answer: "s", full: "Schluss" },
+      { after: "chule", answer: "s", full: "Schule" },
+      { after: "chuler", answer: "s", full: "Schuler" },
+      { after: "chwester", answer: "s", full: "Schwester" },
+      { after: "eite", answer: "s", full: "Seite" },
+      { after: "elten", answer: "s", full: "selten" },
+      { after: "enden", answer: "s", full: "senden" },
+      { after: "etzen", answer: "s", full: "setzen" },
+      { after: "ofort", answer: "s", full: "sofort" },
+      { after: "ollen", answer: "s", full: "sollen" },
+      { after: "ondern", answer: "s", full: "sondern" },
+      { after: "orge", answer: "s", full: "Sorge" },
+      { after: "ub", answer: "s", full: "sub" },
+      { after: "uper", answer: "s", full: "super" },
+      { after: "ammeln", answer: "s", full: "sammeln" },
+      { after: "anft", answer: "s", full: "sanft" },
+      { after: "att", answer: "s", full: "satt" },
+
+      // z-words (/ts/ sound) (50)
+      { after: "eit", answer: "z", full: "Zeit" },
+      { after: "ehn", answer: "z", full: "zehn" },
+      { after: "eigen", answer: "z", full: "zeigen" },
+      { after: "iehen", answer: "z", full: "ziehen" },
+      { after: "immer", answer: "z", full: "Zimmer" },
+      { after: "u", answer: "z", full: "zu" },
+      { after: "ug", answer: "z", full: "Zug" },
+      { after: "ucker", answer: "z", full: "Zucker" },
+      { after: "urück", answer: "z", full: "zuruck" },
+      { after: "usammen", answer: "z", full: "zusammen" },
+      { after: "wei", answer: "z", full: "zwei" },
+      { after: "wischen", answer: "z", full: "zwischen" },
+      { after: "ahlen", answer: "z", full: "zahlen" },
+      { after: "ahl", answer: "z", full: "Zahl" },
+      { after: "ahn", answer: "z", full: "Zahn" },
+      { after: "eichen", answer: "z", full: "Zeichen" },
+      { after: "eitung", answer: "z", full: "Zeitung" },
+      { after: "entrum", answer: "z", full: "Zentrum" },
+      { after: "iel", answer: "z", full: "Ziel" },
+      { after: "iemlich", answer: "z", full: "ziemlich" },
+      { after: "igarette", answer: "z", full: "Zigarette" },
+      { after: "itrone", answer: "z", full: "Zitrone" },
+      { after: "ufall", answer: "z", full: "Zufall" },
+      { after: "ufrieden", answer: "z", full: "zufrieden" },
+      { after: "ukunft", answer: "z", full: "Zukunft" },
+      { after: "uletzt", answer: "z", full: "zuletzt" },
+      { after: "war", answer: "z", full: "zwar" },
+      { after: "weck", answer: "z", full: "Zweck" },
+      { after: "weifel", answer: "z", full: "Zweifel" },
+      { after: "wolfte", answer: "z", full: "zwolfte" },
+      { after: "ustand", answer: "z", full: "Zustand" },
+      { after: "art", answer: "z", full: "zart" },
+      { after: "auber", answer: "z", full: "Zauber" },
+      { after: "aun", answer: "z", full: "Zaun" },
+      { after: "eile", answer: "z", full: "Zeile" },
+      { after: "elt", answer: "z", full: "Zelt" },
+      { after: "erbrechen", answer: "z", full: "zerbrechen" },
+      { after: "erstoren", answer: "z", full: "zerstoren" },
+      { after: "ettel", answer: "z", full: "Zettel" },
+      { after: "iegel", answer: "z", full: "Ziegel" },
+      { after: "insen", answer: "z", full: "Zinsen" },
+      { after: "irkel", answer: "z", full: "Zirkel" },
+      { after: "ivilisation", answer: "z", full: "Zivilisation" },
+      { after: "oo", answer: "z", full: "Zoo" },
+      { after: "one", answer: "z", full: "Zone" },
+      { after: "orn", answer: "z", full: "Zorn" },
+      { after: "ugang", answer: "z", full: "Zugang" },
+      { after: "uhause", answer: "z", full: "Zuhause" },
+      { after: "uhorer", answer: "z", full: "Zuhorer" },
+      { after: "unge", answer: "z", full: "Zunge" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('s-z-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map((_, i) => i)
+        .filter(i => !mastered.includes(i) && !wrong.includes(i));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('s-z-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongIndices = wrong.slice();
+      const unseenIndices = unseen.slice();
+      const masteredIndices = mastered.slice();
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongIndices).slice(0, Math.min(10, wrongIndices.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenIndices).slice(0, Math.min(remaining, unseenIndices.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredIndices).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      const indices = selectSessionWords();
+      sessionWords = indices.map(i => ({ ...allWords[i], index: i }));
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Display word with gap at beginning
+      document.getElementById('wordDisplay').innerHTML =
+        '<span class="gap"></span>' + word.after;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.answer;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.answer === 's' ? document.getElementById('btnS') : document.getElementById('btnZ');
+      const selectedBtn = selected === 's' ? document.getElementById('btnS') : document.getElementById('btnZ');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = `Correct! "${word.full}" starts with ${word.answer}.`;
+
+        if (!mastered.includes(word.index)) {
+          mastered.push(word.index);
+          wrong = wrong.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = `Wrong! "${word.full}" starts with ${word.answer}, not ${selected}.`;
+
+        if (!wrong.includes(word.index)) {
+          wrong.push(word.index);
+          mastered = mastered.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('s-z-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map((_, i) => i);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === 's' && !answered) {
+        checkAnswer('s');
+      } else if (key === 'z' && !answered) {
+        checkAnswer('z');
+      }
+    });
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

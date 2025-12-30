@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T13:07:46.855Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Tasse",
+      "file": "Tasse",
+      "phrase": "eine volle Tasse"
+    },
+    {
+      "word": "Lampe",
+      "file": "Lampe",
+      "phrase": "eine helle Lampe"
+    },
+    {
+      "word": "Frage",
+      "file": "Frage",
+      "phrase": "eine gute Frage"
+    },
+    {
+      "word": "Straße",
+      "file": "Strasse",
+      "phrase": "eine lange Straße"
+    },
+    {
+      "word": "Schule",
+      "file": "Schule",
+      "phrase": "die alte Schule"
+    },
+    {
+      "word": "Kirche",
+      "file": "Kirche",
+      "phrase": "die kleine Kirche"
+    },
+    {
+      "word": "Küche",
+      "file": "Kueche",
+      "phrase": "die neue Küche"
+    },
+    {
+      "word": "Brücke",
+      "file": "Bruecke",
+      "phrase": "die alte Brücke"
+    },
+    {
+      "word": "Tasche",
+      "file": "Tasche",
+      "phrase": "meine große Tasche"
+    },
+    {
+      "word": "Woche",
+      "file": "Woche",
+      "phrase": "diese Woche"
+    },
+    {
+      "word": "Reise",
+      "file": "Reise",
+      "phrase": "eine lange Reise"
+    },
+    {
+      "word": "Sprache",
+      "file": "Sprache",
+      "phrase": "die deutsche Sprache"
+    },
+    {
+      "word": "Sache",
+      "file": "Sache",
+      "phrase": "eine wichtige Sache"
+    },
+    {
+      "word": "Katze",
+      "file": "Katze",
+      "phrase": "die kleine Katze"
+    },
+    {
+      "word": "Mütze",
+      "file": "Muetze",
+      "phrase": "eine warme Mütze"
+    },
+    {
+      "word": "Blume",
+      "file": "Blume",
+      "phrase": "eine schöne Blume"
+    },
+    {
+      "word": "Sonne",
+      "file": "Sonne",
+      "phrase": "die helle Sonne"
+    },
+    {
+      "word": "Erde",
+      "file": "Erde",
+      "phrase": "die ganze Erde"
+    },
+    {
+      "word": "Seite",
+      "file": "Seite",
+      "phrase": "die linke Seite"
+    },
+    {
+      "word": "Hilfe",
+      "file": "Hilfe",
+      "phrase": "schnelle Hilfe"
+    },
+    {
+      "word": "gehen",
+      "file": "gehen",
+      "phrase": "langsam gehen"
+    },
+    {
+      "word": "kommen",
+      "file": "kommen",
+      "phrase": "bald kommen"
+    },
+    {
+      "word": "laufen",
+      "file": "laufen",
+      "phrase": "schnell laufen"
+    },
+    {
+      "word": "schlafen",
+      "file": "schlafen",
+      "phrase": "gut schlafen"
+    },
+    {
+      "word": "sprechen",
+      "file": "sprechen",
+      "phrase": "laut sprechen"
+    },
+    {
+      "word": "essen",
+      "file": "essen",
+      "phrase": "etwas essen"
+    },
+    {
+      "word": "trinken",
+      "file": "trinken",
+      "phrase": "Wasser trinken"
+    },
+    {
+      "word": "Garten",
+      "file": "Garten",
+      "phrase": "im Garten"
+    },
+    {
+      "word": "Wagen",
+      "file": "Wagen",
+      "phrase": "ein neuer Wagen"
+    },
+    {
+      "word": "Boden",
+      "file": "Boden",
+      "phrase": "der harte Boden"
+    },
+    {
+      "word": "Regen",
+      "file": "Regen",
+      "phrase": "starker Regen"
+    },
+    {
+      "word": "Laden",
+      "file": "Laden",
+      "phrase": "ein kleiner Laden"
+    },
+    {
+      "word": "Faden",
+      "file": "Faden",
+      "phrase": "ein dünner Faden"
+    },
+    {
+      "word": "Ofen",
+      "file": "Ofen",
+      "phrase": "ein heißer Ofen"
+    },
+    {
+      "word": "Hafen",
+      "file": "Hafen",
+      "phrase": "der große Hafen"
+    },
+    {
+      "word": "Kuchen",
+      "file": "Kuchen",
+      "phrase": "ein leckerer Kuchen"
+    },
+    {
+      "word": "Rücken",
+      "file": "Ruecken",
+      "phrase": "mein Rücken"
+    },
+    {
+      "word": "Knochen",
+      "file": "Knochen",
+      "phrase": "ein harter Knochen"
+    },
+    {
+      "word": "Schatten",
+      "file": "Schatten",
+      "phrase": "im Schatten"
+    },
+    {
+      "word": "Westen",
+      "file": "Westen",
+      "phrase": "im Westen"
+    },
+    {
+      "word": "Artikel",
+      "file": "Artikel",
+      "phrase": "ein langer Artikel"
+    },
+    {
+      "word": "Handel",
+      "file": "Handel",
+      "phrase": "freier Handel"
+    },
+    {
+      "word": "Mittel",
+      "file": "Mittel",
+      "phrase": "ein gutes Mittel"
+    },
+    {
+      "word": "Vögel",
+      "file": "Voegel",
+      "phrase": "kleine Vögel"
+    },
+    {
+      "word": "Löffel",
+      "file": "Loeffel",
+      "phrase": "ein großer Löffel"
+    },
+    {
+      "word": "Schlüssel",
+      "file": "Schluessel",
+      "phrase": "mein Schlüssel"
+    },
+    {
+      "word": "Himmel",
+      "file": "Himmel",
+      "phrase": "der blaue Himmel"
+    },
+    {
+      "word": "Tunnel",
+      "file": "Tunnel",
+      "phrase": "ein langer Tunnel"
+    },
+    {
+      "word": "Mantel",
+      "file": "Mantel",
+      "phrase": "ein warmer Mantel"
+    },
+    {
+      "word": "Deckel",
+      "file": "Deckel",
+      "phrase": "der runde Deckel"
+    },
+    {
+      "word": "Gürtel",
+      "file": "Guertel",
+      "phrase": "ein brauner Gürtel"
+    },
+    {
+      "word": "Zettel",
+      "file": "Zettel",
+      "phrase": "ein kleiner Zettel"
+    },
+    {
+      "word": "Möbel",
+      "file": "Moebel",
+      "phrase": "neue Möbel"
+    },
+    {
+      "word": "Rätsel",
+      "file": "Raetsel",
+      "phrase": "ein schweres Rätsel"
+    },
+    {
+      "word": "Esel",
+      "file": "Esel",
+      "phrase": "ein grauer Esel"
+    },
+    {
+      "word": "Insel",
+      "file": "Insel",
+      "phrase": "eine kleine Insel"
+    },
+    {
+      "word": "Würfel",
+      "file": "Wuerfel",
+      "phrase": "ein roter Würfel"
+    },
+    {
+      "word": "Gipfel",
+      "file": "Gipfel",
+      "phrase": "der hohe Gipfel"
+    },
+    {
+      "word": "Stiefel",
+      "file": "Stiefel",
+      "phrase": "schwarze Stiefel"
+    },
+    {
+      "word": "Apfel",
+      "file": "Apfel",
+      "phrase": "ein roter Apfel"
+    },
+    {
+      "word": "Lehrer",
+      "file": "Lehrer",
+      "phrase": "mein Lehrer"
+    },
+    {
+      "word": "Wasser",
+      "file": "Wasser",
+      "phrase": "kaltes Wasser"
+    },
+    {
+      "word": "Fenster",
+      "file": "Fenster",
+      "phrase": "das offene Fenster"
+    },
+    {
+      "word": "besser",
+      "file": "besser",
+      "phrase": "viel besser"
+    },
+    {
+      "word": "Finger",
+      "file": "Finger",
+      "phrase": "mein Finger"
+    },
+    {
+      "word": "Hunger",
+      "file": "Hunger",
+      "phrase": "großer Hunger"
+    },
+    {
+      "word": "Bruder",
+      "file": "Bruder",
+      "phrase": "mein Bruder"
+    },
+    {
+      "word": "Mutter",
+      "file": "Mutter",
+      "phrase": "meine Mutter"
+    },
+    {
+      "word": "Vater",
+      "file": "Vater",
+      "phrase": "mein Vater"
+    },
+    {
+      "word": "Schwester",
+      "file": "Schwester",
+      "phrase": "meine Schwester"
+    },
+    {
+      "word": "Kinder",
+      "file": "Kinder",
+      "phrase": "kleine Kinder"
+    },
+    {
+      "word": "Zimmer",
+      "file": "Zimmer",
+      "phrase": "mein Zimmer"
+    },
+    {
+      "word": "Sommer",
+      "file": "Sommer",
+      "phrase": "im Sommer"
+    },
+    {
+      "word": "Winter",
+      "file": "Winter",
+      "phrase": "im Winter"
+    },
+    {
+      "word": "Butter",
+      "file": "Butter",
+      "phrase": "frische Butter"
+    },
+    {
+      "word": "Tochter",
+      "file": "Tochter",
+      "phrase": "meine Tochter"
+    },
+    {
+      "word": "Messer",
+      "file": "Messer",
+      "phrase": "ein scharfes Messer"
+    },
+    {
+      "word": "Teller",
+      "file": "Teller",
+      "phrase": "ein leerer Teller"
+    },
+    {
+      "word": "Koffer",
+      "file": "Koffer",
+      "phrase": "mein Koffer"
+    },
+    {
+      "word": "Körper",
+      "file": "Koerper",
+      "phrase": "der ganze Körper"
+    }
+  ]
+}

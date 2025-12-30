@@ -1,0 +1,566 @@
+{
+  "generated": "2025-12-30T08:40:04.565Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "über",
+      "phrase": "über den Wolken",
+      "en": "above the clouds",
+      "vowel": "ü",
+      "file": "audio/ueber.mp3"
+    },
+    {
+      "word": "üben",
+      "phrase": "jeden Tag üben",
+      "en": "practice every day",
+      "vowel": "ü",
+      "file": "audio/ueben.mp3"
+    },
+    {
+      "word": "Übung",
+      "phrase": "eine gute Übung",
+      "en": "a good exercise",
+      "vowel": "ü",
+      "file": "audio/Uebung.mp3"
+    },
+    {
+      "word": "Tür",
+      "phrase": "die Tür ist offen",
+      "en": "the door is open",
+      "vowel": "ü",
+      "file": "audio/Tuer.mp3"
+    },
+    {
+      "word": "für",
+      "phrase": "für dich",
+      "en": "for you",
+      "vowel": "ü",
+      "file": "audio/fuer.mp3"
+    },
+    {
+      "word": "natürlich",
+      "phrase": "ja, natürlich",
+      "en": "yes, of course",
+      "vowel": "ü",
+      "file": "audio/natuerlich.mp3"
+    },
+    {
+      "word": "Büro",
+      "phrase": "im Büro arbeiten",
+      "en": "work in the office",
+      "vowel": "ü",
+      "file": "audio/Buero.mp3"
+    },
+    {
+      "word": "Bürger",
+      "phrase": "die Bürger der Stadt",
+      "en": "the citizens of the city",
+      "vowel": "ü",
+      "file": "audio/Buerger.mp3"
+    },
+    {
+      "word": "Bücher",
+      "phrase": "viele Bücher lesen",
+      "en": "read many books",
+      "vowel": "ü",
+      "file": "audio/Buecher.mp3"
+    },
+    {
+      "word": "Küche",
+      "phrase": "in der Küche kochen",
+      "en": "cook in the kitchen",
+      "vowel": "ü",
+      "file": "audio/Kueche.mp3"
+    },
+    {
+      "word": "kühl",
+      "phrase": "es ist kühl draußen",
+      "en": "it's cool outside",
+      "vowel": "ü",
+      "file": "audio/kuehl.mp3"
+    },
+    {
+      "word": "Kühlschrank",
+      "phrase": "im Kühlschrank",
+      "en": "in the fridge",
+      "vowel": "ü",
+      "file": "audio/Kuehlschrank.mp3"
+    },
+    {
+      "word": "Frühstück",
+      "phrase": "zum Frühstück essen",
+      "en": "eat for breakfast",
+      "vowel": "ü",
+      "file": "audio/Fruehstueck.mp3"
+    },
+    {
+      "word": "früh",
+      "phrase": "früh am Morgen",
+      "en": "early in the morning",
+      "vowel": "ü",
+      "file": "audio/frueh.mp3"
+    },
+    {
+      "word": "Frühjahr",
+      "phrase": "im Frühjahr blühen",
+      "en": "bloom in spring",
+      "vowel": "ü",
+      "file": "audio/Fruehjahr.mp3"
+    },
+    {
+      "word": "Frühling",
+      "phrase": "der Frühling kommt",
+      "en": "spring is coming",
+      "vowel": "ü",
+      "file": "audio/Fruehling.mp3"
+    },
+    {
+      "word": "grün",
+      "phrase": "das Gras ist grün",
+      "en": "the grass is green",
+      "vowel": "ü",
+      "file": "audio/gruen.mp3"
+    },
+    {
+      "word": "Gemüse",
+      "phrase": "frisches Gemüse",
+      "en": "fresh vegetables",
+      "vowel": "ü",
+      "file": "audio/Gemuese.mp3"
+    },
+    {
+      "word": "müde",
+      "phrase": "ich bin müde",
+      "en": "I am tired",
+      "vowel": "ü",
+      "file": "audio/muede.mp3"
+    },
+    {
+      "word": "Mühe",
+      "phrase": "mit viel Mühe",
+      "en": "with much effort",
+      "vowel": "ü",
+      "file": "audio/Muehe.mp3"
+    },
+    {
+      "word": "Müll",
+      "phrase": "den Müll rausbringen",
+      "en": "take out the trash",
+      "vowel": "ü",
+      "file": "audio/Muell.mp3"
+    },
+    {
+      "word": "München",
+      "phrase": "ich wohne in München",
+      "en": "I live in Munich",
+      "vowel": "ü",
+      "file": "audio/Muenchen.mp3"
+    },
+    {
+      "word": "Mütze",
+      "phrase": "eine warme Mütze",
+      "en": "a warm cap",
+      "vowel": "ü",
+      "file": "audio/Muetze.mp3"
+    },
+    {
+      "word": "Mütter",
+      "phrase": "die Mütter und Kinder",
+      "en": "the mothers and children",
+      "vowel": "ü",
+      "file": "audio/Muetter.mp3"
+    },
+    {
+      "word": "Hüte",
+      "phrase": "schöne Hüte tragen",
+      "en": "wear nice hats",
+      "vowel": "ü",
+      "file": "audio/Huete.mp3"
+    },
+    {
+      "word": "Hügel",
+      "phrase": "auf dem Hügel stehen",
+      "en": "stand on the hill",
+      "vowel": "ü",
+      "file": "audio/Huegel.mp3"
+    },
+    {
+      "word": "Hüfte",
+      "phrase": "die Hüfte bewegen",
+      "en": "move the hip",
+      "vowel": "ü",
+      "file": "audio/Huefte.mp3"
+    },
+    {
+      "word": "fühlen",
+      "phrase": "sich gut fühlen",
+      "en": "feel good",
+      "vowel": "ü",
+      "file": "audio/fuehlen.mp3"
+    },
+    {
+      "word": "führen",
+      "phrase": "den Weg führen",
+      "en": "lead the way",
+      "vowel": "ü",
+      "file": "audio/fuehren.mp3"
+    },
+    {
+      "word": "Füße",
+      "phrase": "kalte Füße haben",
+      "en": "have cold feet",
+      "vowel": "ü",
+      "file": "audio/Fuesse.mp3"
+    },
+    {
+      "word": "fünf",
+      "phrase": "fünf Minuten warten",
+      "en": "wait five minutes",
+      "vowel": "ü",
+      "file": "audio/fuenf.mp3"
+    },
+    {
+      "word": "fünfzig",
+      "phrase": "fünfzig Euro kosten",
+      "en": "cost fifty euros",
+      "vowel": "ü",
+      "file": "audio/fuenfzig.mp3"
+    },
+    {
+      "word": "Glück",
+      "phrase": "viel Glück wünschen",
+      "en": "wish good luck",
+      "vowel": "ü",
+      "file": "audio/Glueck.mp3"
+    },
+    {
+      "word": "glücklich",
+      "phrase": "sehr glücklich sein",
+      "en": "be very happy",
+      "vowel": "ü",
+      "file": "audio/gluecklich.mp3"
+    },
+    {
+      "word": "Brücke",
+      "phrase": "über die Brücke gehen",
+      "en": "walk over the bridge",
+      "vowel": "ü",
+      "file": "audio/Bruecke.mp3"
+    },
+    {
+      "word": "Stück",
+      "phrase": "ein Stück Kuchen",
+      "en": "a piece of cake",
+      "vowel": "ü",
+      "file": "audio/Stueck.mp3"
+    },
+    {
+      "word": "zurück",
+      "phrase": "komm bald zurück",
+      "en": "come back soon",
+      "vowel": "ü",
+      "file": "audio/zurueck.mp3"
+    },
+    {
+      "word": "dünn",
+      "phrase": "sehr dünn geschnitten",
+      "en": "cut very thin",
+      "vowel": "ü",
+      "file": "audio/duenn.mp3"
+    },
+    {
+      "word": "würde",
+      "phrase": "ich würde gern",
+      "en": "I would like to",
+      "vowel": "ü",
+      "file": "audio/wuerde.mp3"
+    },
+    {
+      "word": "wünschen",
+      "phrase": "sich etwas wünschen",
+      "en": "wish for something",
+      "vowel": "ü",
+      "file": "audio/wuenschen.mp3"
+    },
+    {
+      "word": "und",
+      "phrase": "du und ich",
+      "en": "you and I",
+      "vowel": "u",
+      "file": "audio/und.mp3"
+    },
+    {
+      "word": "um",
+      "phrase": "um acht Uhr",
+      "en": "at eight o'clock",
+      "vowel": "u",
+      "file": "audio/um.mp3"
+    },
+    {
+      "word": "unter",
+      "phrase": "unter dem Tisch",
+      "en": "under the table",
+      "vowel": "u",
+      "file": "audio/unter.mp3"
+    },
+    {
+      "word": "unser",
+      "phrase": "unser Haus ist groß",
+      "en": "our house is big",
+      "vowel": "u",
+      "file": "audio/unser.mp3"
+    },
+    {
+      "word": "uns",
+      "phrase": "komm zu uns",
+      "en": "come to us",
+      "vowel": "u",
+      "file": "audio/uns.mp3"
+    },
+    {
+      "word": "Uhr",
+      "phrase": "es ist zehn Uhr",
+      "en": "it's ten o'clock",
+      "vowel": "u",
+      "file": "audio/Uhr.mp3"
+    },
+    {
+      "word": "Urlaub",
+      "phrase": "im Urlaub sein",
+      "en": "be on vacation",
+      "vowel": "u",
+      "file": "audio/Urlaub.mp3"
+    },
+    {
+      "word": "Buch",
+      "phrase": "ein gutes Buch lesen",
+      "en": "read a good book",
+      "vowel": "u",
+      "file": "audio/Buch.mp3"
+    },
+    {
+      "word": "Kuchen",
+      "phrase": "leckeren Kuchen backen",
+      "en": "bake delicious cake",
+      "vowel": "u",
+      "file": "audio/Kuchen.mp3"
+    },
+    {
+      "word": "suchen",
+      "phrase": "etwas suchen",
+      "en": "search for something",
+      "vowel": "u",
+      "file": "audio/suchen.mp3"
+    },
+    {
+      "word": "besuchen",
+      "phrase": "Freunde besuchen",
+      "en": "visit friends",
+      "vowel": "u",
+      "file": "audio/besuchen.mp3"
+    },
+    {
+      "word": "versuchen",
+      "phrase": "es nochmal versuchen",
+      "en": "try again",
+      "vowel": "u",
+      "file": "audio/versuchen.mp3"
+    },
+    {
+      "word": "Schule",
+      "phrase": "in die Schule gehen",
+      "en": "go to school",
+      "vowel": "u",
+      "file": "audio/Schule.mp3"
+    },
+    {
+      "word": "Stuhl",
+      "phrase": "auf dem Stuhl sitzen",
+      "en": "sit on the chair",
+      "vowel": "u",
+      "file": "audio/Stuhl.mp3"
+    },
+    {
+      "word": "Hund",
+      "phrase": "der Hund bellt",
+      "en": "the dog barks",
+      "vowel": "u",
+      "file": "audio/Hund.mp3"
+    },
+    {
+      "word": "Mund",
+      "phrase": "den Mund öffnen",
+      "en": "open the mouth",
+      "vowel": "u",
+      "file": "audio/Mund.mp3"
+    },
+    {
+      "word": "rund",
+      "phrase": "der Ball ist rund",
+      "en": "the ball is round",
+      "vowel": "u",
+      "file": "audio/rund.mp3"
+    },
+    {
+      "word": "Stunde",
+      "phrase": "eine Stunde warten",
+      "en": "wait an hour",
+      "vowel": "u",
+      "file": "audio/Stunde.mp3"
+    },
+    {
+      "word": "Kunde",
+      "phrase": "der Kunde kauft ein",
+      "en": "the customer is shopping",
+      "vowel": "u",
+      "file": "audio/Kunde.mp3"
+    },
+    {
+      "word": "Grund",
+      "phrase": "ohne Grund weinen",
+      "en": "cry without reason",
+      "vowel": "u",
+      "file": "audio/Grund.mp3"
+    },
+    {
+      "word": "gesund",
+      "phrase": "bleib gesund",
+      "en": "stay healthy",
+      "vowel": "u",
+      "file": "audio/gesund.mp3"
+    },
+    {
+      "word": "Fuß",
+      "phrase": "zu Fuß gehen",
+      "en": "go on foot",
+      "vowel": "u",
+      "file": "audio/Fuss.mp3"
+    },
+    {
+      "word": "Gruppe",
+      "phrase": "eine große Gruppe",
+      "en": "a large group",
+      "vowel": "u",
+      "file": "audio/Gruppe.mp3"
+    },
+    {
+      "word": "Mutter",
+      "phrase": "meine Mutter kocht",
+      "en": "my mother cooks",
+      "vowel": "u",
+      "file": "audio/Mutter.mp3"
+    },
+    {
+      "word": "Butter",
+      "phrase": "Brot mit Butter",
+      "en": "bread with butter",
+      "vowel": "u",
+      "file": "audio/Butter.mp3"
+    },
+    {
+      "word": "Hut",
+      "phrase": "einen Hut tragen",
+      "en": "wear a hat",
+      "vowel": "u",
+      "file": "audio/Hut.mp3"
+    },
+    {
+      "word": "gut",
+      "phrase": "das ist gut",
+      "en": "that is good",
+      "vowel": "u",
+      "file": "audio/gut.mp3"
+    },
+    {
+      "word": "Blut",
+      "phrase": "rotes Blut fließt",
+      "en": "red blood flows",
+      "vowel": "u",
+      "file": "audio/Blut.mp3"
+    },
+    {
+      "word": "Mut",
+      "phrase": "Mut haben",
+      "en": "have courage",
+      "vowel": "u",
+      "file": "audio/Mut.mp3"
+    },
+    {
+      "word": "Flug",
+      "phrase": "der Flug ist pünktlich",
+      "en": "the flight is on time",
+      "vowel": "u",
+      "file": "audio/Flug.mp3"
+    },
+    {
+      "word": "Zug",
+      "phrase": "mit dem Zug fahren",
+      "en": "travel by train",
+      "vowel": "u",
+      "file": "audio/Zug.mp3"
+    },
+    {
+      "word": "genug",
+      "phrase": "das ist genug",
+      "en": "that is enough",
+      "vowel": "u",
+      "file": "audio/genug.mp3"
+    },
+    {
+      "word": "Durst",
+      "phrase": "großen Durst haben",
+      "en": "be very thirsty",
+      "vowel": "u",
+      "file": "audio/Durst.mp3"
+    },
+    {
+      "word": "Wurst",
+      "phrase": "eine leckere Wurst",
+      "en": "a tasty sausage",
+      "vowel": "u",
+      "file": "audio/Wurst.mp3"
+    },
+    {
+      "word": "Kurs",
+      "phrase": "einen Kurs besuchen",
+      "en": "take a course",
+      "vowel": "u",
+      "file": "audio/Kurs.mp3"
+    },
+    {
+      "word": "Kultur",
+      "phrase": "deutsche Kultur",
+      "en": "German culture",
+      "vowel": "u",
+      "file": "audio/Kultur.mp3"
+    },
+    {
+      "word": "Natur",
+      "phrase": "die schöne Natur",
+      "en": "the beautiful nature",
+      "vowel": "u",
+      "file": "audio/Natur.mp3"
+    },
+    {
+      "word": "Figur",
+      "phrase": "eine gute Figur",
+      "en": "a good figure",
+      "vowel": "u",
+      "file": "audio/Figur.mp3"
+    },
+    {
+      "word": "Musik",
+      "phrase": "laute Musik hören",
+      "en": "listen to loud music",
+      "vowel": "u",
+      "file": "audio/Musik.mp3"
+    },
+    {
+      "word": "Minute",
+      "phrase": "eine Minute warten",
+      "en": "wait a minute",
+      "vowel": "u",
+      "file": "audio/Minute.mp3"
+    }
+  ]
+}

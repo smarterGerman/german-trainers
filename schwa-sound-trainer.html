@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Schwa Sound Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+    }
+
+    .sg-dark-article:nth-child(3) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-dark-article:nth-child(4) {
+      background: linear-gradient(135deg, #4CAF50, #388E3C);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .play-hint {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 20px;
+    }
+
+    .audio-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px;
+      border-radius: 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.ending-e {
+      color: #00BCD4;
+    }
+
+    .answer-btn.ending-en {
+      color: #FF9800;
+    }
+
+    .answer-btn.ending-el {
+      color: #E91E63;
+    }
+
+    .answer-btn.ending-er {
+      color: #4CAF50;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">German Schwa Sound Trainer</h1>
+      <p class="sg-dark-subtitle">Identify the schwa ending: -e, -en, -el, or -er</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">-e (Tasse)</div>
+        <div class="sg-dark-article">-en (gehen)</div>
+        <div class="sg-dark-article">-el (Artikel)</div>
+        <div class="sg-dark-article">-er (Lehrer)</div>
+      </div>
+
+      <p>
+        The German <strong>schwa</strong> sound /ə/ is a reduced, unstressed vowel that appears
+        in many common word endings.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>-e:</strong> Tasse, Lampe, heute, Frage<br>
+        <strong>-en:</strong> gehen, kommen, Garten, Wagen<br>
+        <strong>-el:</strong> Artikel, Handel, Mittel, Vogel<br>
+        <strong>-er:</strong> Lehrer, Wasser, Fenster, besser
+      </div>
+
+      <p>
+        Listen to each word and identify which schwa ending it has. Focus on the unstressed
+        final syllable.
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> Space = Play, E = -e, N = -en, L = -el, R = -er
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/80</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">Tasse</div>
+          <div class="play-hint">Click the word or press Space to hear it</div>
+
+          <button class="audio-btn" onclick="playAudio()">
+            Play Audio (Space)
+          </button>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn ending-e" onclick="checkAnswer('e')" id="btnE">
+            -e (Tasse)
+            <span class="shortcut">(E)</span>
+          </button>
+          <button class="answer-btn ending-en" onclick="checkAnswer('en')" id="btnEN">
+            -en (gehen)
+            <span class="shortcut">(N)</span>
+          </button>
+          <button class="answer-btn ending-el" onclick="checkAnswer('el')" id="btnEL">
+            -el (Artikel)
+            <span class="shortcut">(L)</span>
+          </button>
+          <button class="answer-btn ending-er" onclick="checkAnswer('er')" id="btnER">
+            -er (Lehrer)
+            <span class="shortcut">(R)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AUDIO_BASE = 'schwa-sound-trainer/audio/';
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // -e endings (20)
+      { word: "Tasse", ending: "e", file: "Tasse" },
+      { word: "Lampe", ending: "e", file: "Lampe" },
+      { word: "Frage", ending: "e", file: "Frage" },
+      { word: "Straße", ending: "e", file: "Strasse" },
+      { word: "Schule", ending: "e", file: "Schule" },
+      { word: "Kirche", ending: "e", file: "Kirche" },
+      { word: "Küche", ending: "e", file: "Kueche" },
+      { word: "Brücke", ending: "e", file: "Bruecke" },
+      { word: "Tasche", ending: "e", file: "Tasche" },
+      { word: "Woche", ending: "e", file: "Woche" },
+      { word: "Reise", ending: "e", file: "Reise" },
+      { word: "Sprache", ending: "e", file: "Sprache" },
+      { word: "Sache", ending: "e", file: "Sache" },
+      { word: "Katze", ending: "e", file: "Katze" },
+      { word: "Mütze", ending: "e", file: "Muetze" },
+      { word: "Blume", ending: "e", file: "Blume" },
+      { word: "Sonne", ending: "e", file: "Sonne" },
+      { word: "Erde", ending: "e", file: "Erde" },
+      { word: "Seite", ending: "e", file: "Seite" },
+      { word: "Hilfe", ending: "e", file: "Hilfe" },
+      // -en endings (20)
+      { word: "gehen", ending: "en", file: "gehen" },
+      { word: "kommen", ending: "en", file: "kommen" },
+      { word: "laufen", ending: "en", file: "laufen" },
+      { word: "schlafen", ending: "en", file: "schlafen" },
+      { word: "sprechen", ending: "en", file: "sprechen" },
+      { word: "essen", ending: "en", file: "essen" },
+      { word: "trinken", ending: "en", file: "trinken" },
+      { word: "Garten", ending: "en", file: "Garten" },
+      { word: "Wagen", ending: "en", file: "Wagen" },
+      { word: "Boden", ending: "en", file: "Boden" },
+      { word: "Regen", ending: "en", file: "Regen" },
+      { word: "Laden", ending: "en", file: "Laden" },
+      { word: "Faden", ending: "en", file: "Faden" },
+      { word: "Ofen", ending: "en", file: "Ofen" },
+      { word: "Hafen", ending: "en", file: "Hafen" },
+      { word: "Kuchen", ending: "en", file: "Kuchen" },
+      { word: "Rücken", ending: "en", file: "Ruecken" },
+      { word: "Knochen", ending: "en", file: "Knochen" },
+      { word: "Schatten", ending: "en", file: "Schatten" },
+      { word: "Westen", ending: "en", file: "Westen" },
+      // -el endings (20)
+      { word: "Artikel", ending: "el", file: "Artikel" },
+      { word: "Handel", ending: "el", file: "Handel" },
+      { word: "Mittel", ending: "el", file: "Mittel" },
+      { word: "Vögel", ending: "el", file: "Voegel" },
+      { word: "Löffel", ending: "el", file: "Loeffel" },
+      { word: "Schlüssel", ending: "el", file: "Schluessel" },
+      { word: "Himmel", ending: "el", file: "Himmel" },
+      { word: "Tunnel", ending: "el", file: "Tunnel" },
+      { word: "Mantel", ending: "el", file: "Mantel" },
+      { word: "Deckel", ending: "el", file: "Deckel" },
+      { word: "Gürtel", ending: "el", file: "Guertel" },
+      { word: "Zettel", ending: "el", file: "Zettel" },
+      { word: "Möbel", ending: "el", file: "Moebel" },
+      { word: "Rätsel", ending: "el", file: "Raetsel" },
+      { word: "Esel", ending: "el", file: "Esel" },
+      { word: "Insel", ending: "el", file: "Insel" },
+      { word: "Würfel", ending: "el", file: "Wuerfel" },
+      { word: "Gipfel", ending: "el", file: "Gipfel" },
+      { word: "Stiefel", ending: "el", file: "Stiefel" },
+      { word: "Apfel", ending: "el", file: "Apfel" },
+      // -er endings (20)
+      { word: "Lehrer", ending: "er", file: "Lehrer" },
+      { word: "Wasser", ending: "er", file: "Wasser" },
+      { word: "Fenster", ending: "er", file: "Fenster" },
+      { word: "besser", ending: "er", file: "besser" },
+      { word: "Finger", ending: "er", file: "Finger" },
+      { word: "Hunger", ending: "er", file: "Hunger" },
+      { word: "Bruder", ending: "er", file: "Bruder" },
+      { word: "Mutter", ending: "er", file: "Mutter" },
+      { word: "Vater", ending: "er", file: "Vater" },
+      { word: "Schwester", ending: "er", file: "Schwester" },
+      { word: "Kinder", ending: "er", file: "Kinder" },
+      { word: "Zimmer", ending: "er", file: "Zimmer" },
+      { word: "Sommer", ending: "er", file: "Sommer" },
+      { word: "Winter", ending: "er", file: "Winter" },
+      { word: "Butter", ending: "er", file: "Butter" },
+      { word: "Tochter", ending: "er", file: "Tochter" },
+      { word: "Messer", ending: "er", file: "Messer" },
+      { word: "Teller", ending: "er", file: "Teller" },
+      { word: "Koffer", ending: "er", file: "Koffer" },
+      { word: "Körper", ending: "er", file: "Koerper" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+    let currentAudio = null;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('schwa-sound-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map(w => w.word)
+        .filter(w => !mastered.includes(w) && !wrong.includes(w));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('schwa-sound-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongWords = allWords.filter(w => wrong.includes(w.word));
+      const unseenWords = allWords.filter(w => unseen.includes(w.word));
+      const masteredWords = allWords.filter(w => mastered.includes(w.word));
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongWords).slice(0, Math.min(10, wrongWords.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenWords).slice(0, Math.min(remaining, unseenWords.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredWords).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      sessionWords = selectSessionWords();
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('wordDisplay').textContent = word.word;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+
+      setTimeout(() => playAudio(), 300);
+    }
+
+    function playAudio() {
+      const word = sessionWords[currentIndex];
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(AUDIO_BASE + word.file + '.mp3?v=1');
+      currentAudio.play().catch(() => {});
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.ending;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const btnMap = { 'e': 'btnE', 'en': 'btnEN', 'el': 'btnEL', 'er': 'btnER' };
+      const correctBtn = document.getElementById(btnMap[word.ending]);
+      const selectedBtn = document.getElementById(btnMap[selected]);
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! "' + word.word + '" ends with -' + word.ending + '.';
+
+        if (!mastered.includes(word.word)) {
+          mastered.push(word.word);
+          wrong = wrong.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Wrong! "' + word.word + '" ends with -' + word.ending + ', not -' + selected + '.';
+
+        if (!wrong.includes(word.word)) {
+          wrong.push(word.word);
+          mastered = mastered.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('schwa-sound-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map(w => w.word);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === ' ' || key === 'spacebar') {
+        e.preventDefault();
+        playAudio();
+      } else if (key === 'e' && !answered) {
+        checkAnswer('e');
+      } else if (key === 'n' && !answered) {
+        checkAnswer('en');
+      } else if (key === 'l' && !answered) {
+        checkAnswer('el');
+      } else if (key === 'r' && !answered) {
+        checkAnswer('er');
+      }
+    });
+
+    document.getElementById('wordDisplay').addEventListener('click', playAudio);
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

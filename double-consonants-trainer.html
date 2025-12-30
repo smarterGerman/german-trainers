@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Double Consonants Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>mm</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .gap {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 4px solid #9C27B0;
+      margin: 0 2px;
+    }
+
+    .hint-text {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 15px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.single-btn {
+      color: #00BCD4;
+    }
+
+    .answer-btn.double-btn {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">Double Consonants Trainer</h1>
+      <p class="sg-dark-subtitle">Learn when to double consonants in German spelling</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">Single: after long vowel</div>
+        <div class="sg-dark-article">Double: after short vowel</div>
+      </div>
+
+      <p>
+        In German, the number of consonants after a vowel indicates vowel length:
+        <strong>Double consonants</strong> follow <strong>short vowels</strong>,
+        while <strong>single consonants</strong> follow <strong>long vowels</strong>.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>Examples:</strong><br>
+        Short vowel + double: ko<strong>mm</strong>en, Mu<strong>tt</strong>er, Wa<strong>ss</strong>er<br>
+        Long vowel + single: ko<strong>m</strong>en (wrong!), Mu<strong>t</strong>er (wrong!)<br>
+        Compare: Schal (long a) vs. Schall (short a)
+      </div>
+
+      <p>
+        Look at the word and decide: single or double consonant?
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> S = Single, D = Double
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">ko<span class="gap"></span>en</div>
+          <div class="hint-text">Single (m) or double (mm)?</div>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn single-btn" onclick="checkAnswer('single')" id="btnSingle">
+            <span id="singleLabel">m</span>
+            <span class="shortcut">(S)</span>
+          </button>
+          <button class="answer-btn double-btn" onclick="checkAnswer('double')" id="btnDouble">
+            <span id="doubleLabel">mm</span>
+            <span class="shortcut">(D)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // Double consonants (mm, nn, ll, tt, ff, ss, pp, rr, ck, tz)
+      // -mm- (10)
+      { before: "ko", after: "en", answer: "double", consonant: "m", full: "kommen" },
+      { before: "schwi", after: "en", answer: "double", consonant: "m", full: "schwimmen" },
+      { before: "So", after: "er", answer: "double", consonant: "m", full: "Sommer" },
+      { before: "Hi", after: "el", answer: "double", consonant: "m", full: "Himmel" },
+      { before: "Ka", after: "er", answer: "double", consonant: "m", full: "Kammer" },
+      { before: "sti", after: "en", answer: "double", consonant: "m", full: "stimmen" },
+      { before: "Sta", after: "", answer: "double", consonant: "m", full: "Stamm" },
+      { before: "Da", after: "", answer: "double", consonant: "m", full: "Damm" },
+      { before: "nu", after: "er", answer: "double", consonant: "m", full: "Nummer" },
+      { before: "Ha", after: "er", answer: "double", consonant: "m", full: "Hammer" },
+
+      // -nn- (10)
+      { before: "ke", after: "en", answer: "double", consonant: "n", full: "kennen" },
+      { before: "re", after: "en", answer: "double", consonant: "n", full: "rennen" },
+      { before: "So", after: "e", answer: "double", consonant: "n", full: "Sonne" },
+      { before: "Ka", after: "e", answer: "double", consonant: "n", full: "Kanne" },
+      { before: "Wa", after: "e", answer: "double", consonant: "n", full: "Wanne" },
+      { before: "begi", after: "en", answer: "double", consonant: "n", full: "beginnen" },
+      { before: "gewi", after: "en", answer: "double", consonant: "n", full: "gewinnen" },
+      { before: "da", after: "", answer: "double", consonant: "n", full: "dann" },
+      { before: "we", after: "", answer: "double", consonant: "n", full: "wenn" },
+      { before: "Ma", after: "", answer: "double", consonant: "n", full: "Mann" },
+
+      // -ll- (10)
+      { before: "fa", after: "en", answer: "double", consonant: "l", full: "fallen" },
+      { before: "wo", after: "en", answer: "double", consonant: "l", full: "wollen" },
+      { before: "vo", after: "", answer: "double", consonant: "l", full: "voll" },
+      { before: "schne", after: "", answer: "double", consonant: "l", full: "schnell" },
+      { before: "Ba", after: "", answer: "double", consonant: "l", full: "Ball" },
+      { before: "he", after: "", answer: "double", consonant: "l", full: "hell" },
+      { before: "Que", after: "e", answer: "double", consonant: "l", full: "Quelle" },
+      { before: "Ste", after: "e", answer: "double", consonant: "l", full: "Stelle" },
+      { before: "Bri", after: "e", answer: "double", consonant: "l", full: "Brille" },
+      { before: "Scha", after: "", answer: "double", consonant: "l", full: "Schall" },
+
+      // -tt- (10)
+      { before: "bi", after: "e", answer: "double", consonant: "t", full: "bitte" },
+      { before: "Mu", after: "er", answer: "double", consonant: "t", full: "Mutter" },
+      { before: "Bu", after: "er", answer: "double", consonant: "t", full: "Butter" },
+      { before: "Bli", after: "z", answer: "double", consonant: "t", full: "Blitz" },
+      { before: "Mi", after: "e", answer: "double", consonant: "t", full: "Mitte" },
+      { before: "Pla", after: "e", answer: "double", consonant: "t", full: "Platte" },
+      { before: "Bla", after: "", answer: "double", consonant: "t", full: "Blatt" },
+      { before: "Schri", after: "", answer: "double", consonant: "t", full: "Schritt" },
+      { before: "Sta", after: "", answer: "double", consonant: "t", full: "Stadt" },
+      { before: "Gla", after: "", answer: "double", consonant: "t", full: "glatt" },
+
+      // -ff- (8)
+      { before: "tre", after: "en", answer: "double", consonant: "f", full: "treffen" },
+      { before: "o", after: "en", answer: "double", consonant: "f", full: "offen" },
+      { before: "Schi", after: "", answer: "double", consonant: "f", full: "Schiff" },
+      { before: "Ko", after: "er", answer: "double", consonant: "f", full: "Koffer" },
+      { before: "ho", after: "en", answer: "double", consonant: "f", full: "hoffen" },
+      { before: "scha", after: "en", answer: "double", consonant: "f", full: "schaffen" },
+      { before: "Sto", after: "", answer: "double", consonant: "f", full: "Stoff" },
+      { before: "A", after: "e", answer: "double", consonant: "f", full: "Affe" },
+
+      // -pp- (6)
+      { before: "Gru", after: "e", answer: "double", consonant: "p", full: "Gruppe" },
+      { before: "Su", after: "e", answer: "double", consonant: "p", full: "Suppe" },
+      { before: "Ma", after: "e", answer: "double", consonant: "p", full: "Mappe" },
+      { before: "Tre", after: "e", answer: "double", consonant: "p", full: "Treppe" },
+      { before: "Li", after: "e", answer: "double", consonant: "p", full: "Lippe" },
+      { before: "kla", after: "en", answer: "double", consonant: "p", full: "klappen" },
+
+      // Single consonants (after long vowels)
+      // -m- (8)
+      { before: "ko", after: "en", answer: "single", consonant: "m", full: "Komen" },
+      { before: "Na", after: "e", answer: "single", consonant: "m", full: "Name" },
+      { before: "Blu", after: "e", answer: "single", consonant: "m", full: "Blume" },
+      { before: "Rah", after: "en", answer: "single", consonant: "m", full: "Rahmen" },
+      { before: "neh", after: "en", answer: "single", consonant: "m", full: "nehmen" },
+      { before: "Stra", after: "e", answer: "single", consonant: "m", full: "Strame" },
+      { before: "Scha", after: "", answer: "single", consonant: "m", full: "Scham" },
+      { before: "Ruh", after: "", answer: "single", consonant: "m", full: "Ruhm" },
+
+      // -n- (8)
+      { before: "woh", after: "en", answer: "single", consonant: "n", full: "wohnen" },
+      { before: "Soh", after: "", answer: "single", consonant: "n", full: "Sohn" },
+      { before: "Moh", after: "", answer: "single", consonant: "n", full: "Mohn" },
+      { before: "Bah", after: "", answer: "single", consonant: "n", full: "Bahn" },
+      { before: "Zah", after: "", answer: "single", consonant: "n", full: "Zahn" },
+      { before: "Huh", after: "", answer: "single", consonant: "n", full: "Huhn" },
+      { before: "Kro", after: "e", answer: "single", consonant: "n", full: "Krone" },
+      { before: "Bo", after: "e", answer: "single", consonant: "n", full: "Bohne" },
+
+      // -l- (8)
+      { before: "ho", after: "en", answer: "single", consonant: "l", full: "holen" },
+      { before: "Schu", after: "e", answer: "single", consonant: "l", full: "Schule" },
+      { before: "Stu", after: "", answer: "single", consonant: "l", full: "Stuhl" },
+      { before: "Sta", after: "", answer: "single", consonant: "l", full: "Stahl" },
+      { before: "Meh", after: "", answer: "single", consonant: "l", full: "Mehl" },
+      { before: "Zie", after: "", answer: "single", consonant: "l", full: "Ziel" },
+      { before: "Koh", after: "e", answer: "single", consonant: "l", full: "Kohle" },
+      { before: "Scha", after: "", answer: "single", consonant: "l", full: "Schal" },
+
+      // -t- (8)
+      { before: "Bru", after: "", answer: "single", consonant: "t", full: "Brut" },
+      { before: "Mu", after: "", answer: "single", consonant: "t", full: "Mut" },
+      { before: "Blu", after: "", answer: "single", consonant: "t", full: "Blut" },
+      { before: "Glu", after: "", answer: "single", consonant: "t", full: "Glut" },
+      { before: "Ra", after: "", answer: "single", consonant: "t", full: "Rat" },
+      { before: "Sta", after: "", answer: "single", consonant: "t", full: "Staat" },
+      { before: "Bo", after: "e", answer: "single", consonant: "t", full: "Bote" },
+      { before: "No", after: "e", answer: "single", consonant: "t", full: "Note" },
+
+      // -f- (6)
+      { before: "ru", after: "en", answer: "single", consonant: "f", full: "rufen" },
+      { before: "schla", after: "en", answer: "single", consonant: "f", full: "schlafen" },
+      { before: "Ho", after: "", answer: "single", consonant: "f", full: "Hof" },
+      { before: "Brie", after: "", answer: "single", consonant: "f", full: "Brief" },
+      { before: "Schla", after: "", answer: "single", consonant: "f", full: "Schlaf" },
+      { before: "Gra", after: "", answer: "single", consonant: "f", full: "Graf" },
+
+      // -p- (4)
+      { before: "Ty", after: "", answer: "single", consonant: "p", full: "Typ" },
+      { before: "Pa", after: "a", answer: "single", consonant: "p", full: "Papa" },
+      { before: "O", after: "a", answer: "single", consonant: "p", full: "Opa" },
+      { before: "O", after: "er", answer: "single", consonant: "p", full: "Oper" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('double-consonants-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map((_, i) => i)
+        .filter(i => !mastered.includes(i) && !wrong.includes(i));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('double-consonants-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongIndices = wrong.slice();
+      const unseenIndices = unseen.slice();
+      const masteredIndices = mastered.slice();
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongIndices).slice(0, Math.min(10, wrongIndices.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenIndices).slice(0, Math.min(remaining, unseenIndices.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredIndices).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      const indices = selectSessionWords();
+      sessionWords = indices.map(i => ({ ...allWords[i], index: i }));
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Display word with gap
+      document.getElementById('wordDisplay').innerHTML =
+        word.before + '<span class="gap"></span>' + word.after;
+
+      // Update button labels
+      document.getElementById('singleLabel').textContent = word.consonant;
+      document.getElementById('doubleLabel').textContent = word.consonant + word.consonant;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.answer;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.answer === 'single' ? document.getElementById('btnSingle') : document.getElementById('btnDouble');
+      const selectedBtn = selected === 'single' ? document.getElementById('btnSingle') : document.getElementById('btnDouble');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+      const consonant = word.answer === 'double' ? word.consonant + word.consonant : word.consonant;
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = `Correct! "${word.full}" with ${word.answer === 'double' ? 'double' : 'single'} ${word.consonant}.`;
+
+        if (!mastered.includes(word.index)) {
+          mastered.push(word.index);
+          wrong = wrong.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = `Wrong! "${word.full}" has ${word.answer === 'double' ? 'double' : 'single'} ${word.consonant}.`;
+
+        if (!wrong.includes(word.index)) {
+          wrong.push(word.index);
+          mastered = mastered.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('double-consonants-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map((_, i) => i);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === 's' && !answered) {
+        checkAnswer('single');
+      } else if (key === 'd' && !answered) {
+        checkAnswer('double');
+      }
+    });
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

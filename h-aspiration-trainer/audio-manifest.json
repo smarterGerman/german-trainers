@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T13:03:19.839Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Haus",
+      "file": "Haus",
+      "phrase": "ein schönes Haus"
+    },
+    {
+      "word": "Hund",
+      "file": "Hund",
+      "phrase": "ein großer Hund"
+    },
+    {
+      "word": "Hand",
+      "file": "Hand",
+      "phrase": "meine rechte Hand"
+    },
+    {
+      "word": "Herz",
+      "file": "Herz",
+      "phrase": "mein Herz"
+    },
+    {
+      "word": "heute",
+      "file": "heute",
+      "phrase": "heute Morgen"
+    },
+    {
+      "word": "hier",
+      "file": "hier",
+      "phrase": "genau hier"
+    },
+    {
+      "word": "haben",
+      "file": "haben",
+      "phrase": "Geld haben"
+    },
+    {
+      "word": "halten",
+      "file": "halten",
+      "phrase": "fest halten"
+    },
+    {
+      "word": "helfen",
+      "file": "helfen",
+      "phrase": "gerne helfen"
+    },
+    {
+      "word": "holen",
+      "file": "holen",
+      "phrase": "etwas holen"
+    },
+    {
+      "word": "Himmel",
+      "file": "Himmel",
+      "phrase": "der blaue Himmel"
+    },
+    {
+      "word": "Hilfe",
+      "file": "Hilfe",
+      "phrase": "schnelle Hilfe"
+    },
+    {
+      "word": "Hoffnung",
+      "file": "Hoffnung",
+      "phrase": "große Hoffnung"
+    },
+    {
+      "word": "Hunger",
+      "file": "Hunger",
+      "phrase": "großer Hunger"
+    },
+    {
+      "word": "Hose",
+      "file": "Hose",
+      "phrase": "eine neue Hose"
+    },
+    {
+      "word": "Husten",
+      "file": "Husten",
+      "phrase": "starker Husten"
+    },
+    {
+      "word": "Haar",
+      "file": "Haar",
+      "phrase": "schönes Haar"
+    },
+    {
+      "word": "Hals",
+      "file": "Hals",
+      "phrase": "ein langer Hals"
+    },
+    {
+      "word": "Haut",
+      "file": "Haut",
+      "phrase": "weiche Haut"
+    },
+    {
+      "word": "Helm",
+      "file": "Helm",
+      "phrase": "ein sicherer Helm"
+    },
+    {
+      "word": "Bahnhof",
+      "file": "Bahnhof",
+      "phrase": "am Bahnhof"
+    },
+    {
+      "word": "Rathaus",
+      "file": "Rathaus",
+      "phrase": "das alte Rathaus"
+    },
+    {
+      "word": "Krankenhaus",
+      "file": "Krankenhaus",
+      "phrase": "im Krankenhaus"
+    },
+    {
+      "word": "Kaufhaus",
+      "file": "Kaufhaus",
+      "phrase": "ein großes Kaufhaus"
+    },
+    {
+      "word": "Hochhaus",
+      "file": "Hochhaus",
+      "phrase": "ein hohes Hochhaus"
+    },
+    {
+      "word": "Gehalt",
+      "file": "Gehalt",
+      "phrase": "gutes Gehalt"
+    },
+    {
+      "word": "Verhalten",
+      "file": "Verhalten",
+      "phrase": "gutes Verhalten"
+    },
+    {
+      "word": "Inhalt",
+      "file": "Inhalt",
+      "phrase": "der Inhalt"
+    },
+    {
+      "word": "anhalten",
+      "file": "anhalten",
+      "phrase": "bitte anhalten"
+    },
+    {
+      "word": "aufhören",
+      "file": "aufhoeren",
+      "phrase": "sofort aufhören"
+    },
+    {
+      "word": "abholen",
+      "file": "abholen",
+      "phrase": "jemanden abholen"
+    },
+    {
+      "word": "Wohnheim",
+      "file": "Wohnheim",
+      "phrase": "im Wohnheim"
+    },
+    {
+      "word": "Geheimnis",
+      "file": "Geheimnis",
+      "phrase": "ein großes Geheimnis"
+    },
+    {
+      "word": "hinten",
+      "file": "hinten",
+      "phrase": "ganz hinten"
+    },
+    {
+      "word": "hinauf",
+      "file": "hinauf",
+      "phrase": "nach oben hinauf"
+    },
+    {
+      "word": "hinunter",
+      "file": "hinunter",
+      "phrase": "nach unten hinunter"
+    },
+    {
+      "word": "herum",
+      "file": "herum",
+      "phrase": "rundherum"
+    },
+    {
+      "word": "heraus",
+      "file": "heraus",
+      "phrase": "schnell heraus"
+    },
+    {
+      "word": "herein",
+      "file": "herein",
+      "phrase": "bitte herein"
+    },
+    {
+      "word": "hinein",
+      "file": "hinein",
+      "phrase": "tief hinein"
+    },
+    {
+      "word": "gehen",
+      "file": "gehen",
+      "phrase": "langsam gehen"
+    },
+    {
+      "word": "sehen",
+      "file": "sehen",
+      "phrase": "gut sehen"
+    },
+    {
+      "word": "stehen",
+      "file": "stehen",
+      "phrase": "hier stehen"
+    },
+    {
+      "word": "verstehen",
+      "file": "verstehen",
+      "phrase": "gut verstehen"
+    },
+    {
+      "word": "drehen",
+      "file": "drehen",
+      "phrase": "langsam drehen"
+    },
+    {
+      "word": "nehmen",
+      "file": "nehmen",
+      "phrase": "bitte nehmen"
+    },
+    {
+      "word": "Zahn",
+      "file": "Zahn",
+      "phrase": "ein weißer Zahn"
+    },
+    {
+      "word": "Bahn",
+      "file": "Bahn",
+      "phrase": "die schnelle Bahn"
+    },
+    {
+      "word": "Sahne",
+      "file": "Sahne",
+      "phrase": "frische Sahne"
+    },
+    {
+      "word": "Rahmen",
+      "file": "Rahmen",
+      "phrase": "im Rahmen"
+    },
+    {
+      "word": "mehr",
+      "file": "mehr",
+      "phrase": "immer mehr"
+    },
+    {
+      "word": "sehr",
+      "file": "sehr",
+      "phrase": "sehr gut"
+    },
+    {
+      "word": "Lehre",
+      "file": "Lehre",
+      "phrase": "eine gute Lehre"
+    },
+    {
+      "word": "Lehrer",
+      "file": "Lehrer",
+      "phrase": "mein Lehrer"
+    },
+    {
+      "word": "Jahr",
+      "file": "Jahr",
+      "phrase": "ein ganzes Jahr"
+    },
+    {
+      "word": "wahr",
+      "file": "wahr",
+      "phrase": "ganz wahr"
+    },
+    {
+      "word": "fahren",
+      "file": "fahren",
+      "phrase": "schnell fahren"
+    },
+    {
+      "word": "Fahrer",
+      "file": "Fahrer",
+      "phrase": "der Fahrer"
+    },
+    {
+      "word": "Gefahr",
+      "file": "Gefahr",
+      "phrase": "große Gefahr"
+    },
+    {
+      "word": "Erfahrung",
+      "file": "Erfahrung",
+      "phrase": "viel Erfahrung"
+    },
+    {
+      "word": "Uhr",
+      "file": "Uhr",
+      "phrase": "die alte Uhr"
+    },
+    {
+      "word": "Ohr",
+      "file": "Ohr",
+      "phrase": "mein rechtes Ohr"
+    },
+    {
+      "word": "ohne",
+      "file": "ohne",
+      "phrase": "ganz ohne"
+    },
+    {
+      "word": "wohnen",
+      "file": "wohnen",
+      "phrase": "hier wohnen"
+    },
+    {
+      "word": "Wohnung",
+      "file": "Wohnung",
+      "phrase": "eine neue Wohnung"
+    },
+    {
+      "word": "Sohn",
+      "file": "Sohn",
+      "phrase": "mein Sohn"
+    },
+    {
+      "word": "Lohn",
+      "file": "Lohn",
+      "phrase": "guter Lohn"
+    },
+    {
+      "word": "Bohne",
+      "file": "Bohne",
+      "phrase": "eine grüne Bohne"
+    },
+    {
+      "word": "fühlen",
+      "file": "fuehlen",
+      "phrase": "sich gut fühlen"
+    },
+    {
+      "word": "Gefühl",
+      "file": "Gefuehl",
+      "phrase": "ein gutes Gefühl"
+    },
+    {
+      "word": "kühl",
+      "file": "kuehl",
+      "phrase": "angenehm kühl"
+    },
+    {
+      "word": "Stuhl",
+      "file": "Stuhl",
+      "phrase": "ein alter Stuhl"
+    },
+    {
+      "word": "Schuh",
+      "file": "Schuh",
+      "phrase": "ein neuer Schuh"
+    },
+    {
+      "word": "Kuh",
+      "file": "Kuh",
+      "phrase": "eine große Kuh"
+    },
+    {
+      "word": "Ruhe",
+      "file": "Ruhe",
+      "phrase": "absolute Ruhe"
+    },
+    {
+      "word": "früh",
+      "file": "frueh",
+      "phrase": "sehr früh"
+    },
+    {
+      "word": "Nähe",
+      "file": "Naehe",
+      "phrase": "in der Nähe"
+    },
+    {
+      "word": "Reihe",
+      "file": "Reihe",
+      "phrase": "eine lange Reihe"
+    },
+    {
+      "word": "Weihnachten",
+      "file": "Weihnachten",
+      "phrase": "frohe Weihnachten"
+    },
+    {
+      "word": "zehn",
+      "file": "zehn",
+      "phrase": "genau zehn"
+    }
+  ]
+}

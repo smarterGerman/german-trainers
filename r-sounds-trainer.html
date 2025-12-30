@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German R-Sounds Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .r-type-note {
+      font-size: 14px;
+      color: #9C27B0;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .choice-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 30px;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .choice-btn.uvular { color: #00BCD4; }
+    .choice-btn.vocalic { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .choice-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .choice-btn { padding: 14px 20px; font-size: 14px; }
+      .word-reveal { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">R-Sounds</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> Uvular R
+      <kbd>J</kbd> Vocalic R
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>German has two main R pronunciations:</strong>
+      <br><br>
+      <strong>Uvular R</strong> - The "real" R sound, produced in the throat.
+      <br>Used at the <strong>beginning of syllables</strong> or after consonants.
+      <br>Examples: <strong>r</strong>ot, B<strong>r</strong>ot, f<strong>r</strong>agen, g<strong>r</strong>un
+      <br><br>
+      <strong>Vocalic R</strong> - Sounds like a weak "a" or "uh" sound.
+      <br>Used at the <strong>end of syllables</strong>, especially after vowels.
+      <br>Examples: Vate<strong>r</strong>, hie<strong>r</strong>, Uh<strong>r</strong>, de<strong>r</strong>, we<strong>r</strong>
+      <br><br>
+      <strong>Quick rule:</strong> Beginning/after consonant = Uvular | End of syllable = Vocalic
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="rTypeNote" class="r-type-note hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="choice-btn uvular" onclick="checkAnswer('uvular')" id="btnUvular">Uvular R</button>
+        <button class="choice-btn vocalic" onclick="checkAnswer('vocalic')" id="btnVocalic">Vocalic R</button>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'r-sounds-trainer/audio/';
+      const STORAGE_KEY = 'r_sounds_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: uvular R (beginning/after consonants) vs vocalic R (end of syllable)
+      const allWords = [
+        // UVULAR R - at beginning or after consonant (40)
+        { word: "rot", rtype: "uvular", file: "rot", en: "red", note: "R at start" },
+        { word: "Regen", rtype: "uvular", file: "Regen", en: "rain", note: "R at start" },
+        { word: "reisen", rtype: "uvular", file: "reisen", en: "to travel", note: "R at start" },
+        { word: "richtig", rtype: "uvular", file: "richtig", en: "correct", note: "R at start" },
+        { word: "rufen", rtype: "uvular", file: "rufen", en: "to call", note: "R at start" },
+        { word: "ruhig", rtype: "uvular", file: "ruhig", en: "quiet", note: "R at start" },
+        { word: "Reis", rtype: "uvular", file: "Reis", en: "rice", note: "R at start" },
+        { word: "Recht", rtype: "uvular", file: "Recht", en: "right/law", note: "R at start" },
+        { word: "Rad", rtype: "uvular", file: "Rad", en: "wheel", note: "R at start" },
+        { word: "Raum", rtype: "uvular", file: "Raum", en: "room/space", note: "R at start" },
+        { word: "Brot", rtype: "uvular", file: "Brot", en: "bread", note: "R after consonant" },
+        { word: "Bruder", rtype: "uvular", file: "Bruder", en: "brother", note: "R after consonant" },
+        { word: "braun", rtype: "uvular", file: "braun", en: "brown", note: "R after consonant" },
+        { word: "bringen", rtype: "uvular", file: "bringen", en: "to bring", note: "R after consonant" },
+        { word: "Brille", rtype: "uvular", file: "Brille", en: "glasses", note: "R after consonant" },
+        { word: "fragen", rtype: "uvular", file: "fragen", en: "to ask", note: "R after consonant" },
+        { word: "Frau", rtype: "uvular", file: "Frau", en: "woman", note: "R after consonant" },
+        { word: "frei", rtype: "uvular", file: "frei", en: "free", note: "R after consonant" },
+        { word: "Freund", rtype: "uvular", file: "Freund", en: "friend", note: "R after consonant" },
+        { word: "froh", rtype: "uvular", file: "froh", en: "happy", note: "R after consonant" },
+        { word: "grün", rtype: "uvular", file: "gruen", en: "green", note: "R after consonant" },
+        { word: "groß", rtype: "uvular", file: "gross", en: "big", note: "R after consonant" },
+        { word: "Gruppe", rtype: "uvular", file: "Gruppe", en: "group", note: "R after consonant" },
+        { word: "Gras", rtype: "uvular", file: "Gras", en: "grass", note: "R after consonant" },
+        { word: "Grund", rtype: "uvular", file: "Grund", en: "reason", note: "R after consonant" },
+        { word: "Preis", rtype: "uvular", file: "Preis", en: "price", note: "R after consonant" },
+        { word: "Problem", rtype: "uvular", file: "Problem", en: "problem", note: "R after consonant" },
+        { word: "Programm", rtype: "uvular", file: "Programm", en: "program", note: "R after consonant" },
+        { word: "Prozent", rtype: "uvular", file: "Prozent", en: "percent", note: "R after consonant" },
+        { word: "tragen", rtype: "uvular", file: "tragen", en: "to carry", note: "R after consonant" },
+        { word: "treffen", rtype: "uvular", file: "treffen", en: "to meet", note: "R after consonant" },
+        { word: "trinken", rtype: "uvular", file: "trinken", en: "to drink", note: "R after consonant" },
+        { word: "trocken", rtype: "uvular", file: "trocken", en: "dry", note: "R after consonant" },
+        { word: "Traum", rtype: "uvular", file: "Traum", en: "dream", note: "R after consonant" },
+        { word: "drei", rtype: "uvular", file: "drei", en: "three", note: "R after consonant" },
+        { word: "drin", rtype: "uvular", file: "drin", en: "inside", note: "R after consonant" },
+        { word: "Schrift", rtype: "uvular", file: "Schrift", en: "writing", note: "R after consonant" },
+        { word: "sprechen", rtype: "uvular", file: "sprechen", en: "to speak", note: "R after consonant" },
+        { word: "Straße", rtype: "uvular", file: "Strasse", en: "street", note: "R after consonant" },
+        { word: "Strom", rtype: "uvular", file: "Strom", en: "electricity", note: "R after consonant" },
+        // VOCALIC R - at end of syllable (40)
+        { word: "Vater", rtype: "vocalic", file: "Vater", en: "father", note: "R at end" },
+        { word: "Mutter", rtype: "vocalic", file: "Mutter", en: "mother", note: "R at end" },
+        { word: "Bruder", rtype: "vocalic", file: "Bruder2", en: "brother", note: "final R vocalic" },
+        { word: "Schwester", rtype: "vocalic", file: "Schwester", en: "sister", note: "R at end" },
+        { word: "Lehrer", rtype: "vocalic", file: "Lehrer", en: "teacher", note: "R at end" },
+        { word: "Fahrer", rtype: "vocalic", file: "Fahrer", en: "driver", note: "R at end" },
+        { word: "Arbeiter", rtype: "vocalic", file: "Arbeiter", en: "worker", note: "R at end" },
+        { word: "Finger", rtype: "vocalic", file: "Finger", en: "finger", note: "R at end" },
+        { word: "Wasser", rtype: "vocalic", file: "Wasser", en: "water", note: "R at end" },
+        { word: "Zimmer", rtype: "vocalic", file: "Zimmer", en: "room", note: "R at end" },
+        { word: "hier", rtype: "vocalic", file: "hier", en: "here", note: "R after vowel" },
+        { word: "Bier", rtype: "vocalic", file: "Bier", en: "beer", note: "R after vowel" },
+        { word: "Tier", rtype: "vocalic", file: "Tier", en: "animal", note: "R after vowel" },
+        { word: "wir", rtype: "vocalic", file: "wir", en: "we", note: "R after vowel" },
+        { word: "mir", rtype: "vocalic", file: "mir", en: "me (dat)", note: "R after vowel" },
+        { word: "dir", rtype: "vocalic", file: "dir", en: "you (dat)", note: "R after vowel" },
+        { word: "Uhr", rtype: "vocalic", file: "Uhr", en: "clock", note: "R after vowel" },
+        { word: "nur", rtype: "vocalic", file: "nur", en: "only", note: "R after vowel" },
+        { word: "der", rtype: "vocalic", file: "der", en: "the (masc)", note: "R after vowel" },
+        { word: "wer", rtype: "vocalic", file: "wer", en: "who", note: "R after vowel" },
+        { word: "sehr", rtype: "vocalic", file: "sehr", en: "very", note: "R after vowel" },
+        { word: "mehr", rtype: "vocalic", file: "mehr", en: "more", note: "R after vowel" },
+        { word: "Jahr", rtype: "vocalic", file: "Jahr", en: "year", note: "R after vowel" },
+        { word: "war", rtype: "vocalic", file: "war", en: "was", note: "R after vowel" },
+        { word: "wahr", rtype: "vocalic", file: "wahr", en: "true", note: "R after vowel" },
+        { word: "gar", rtype: "vocalic", file: "gar", en: "at all", note: "R after vowel" },
+        { word: "vor", rtype: "vocalic", file: "vor", en: "before", note: "R after vowel" },
+        { word: "für", rtype: "vocalic", file: "fuer", en: "for", note: "R after vowel" },
+        { word: "Tür", rtype: "vocalic", file: "Tuer", en: "door", note: "R after vowel" },
+        { word: "oder", rtype: "vocalic", file: "oder", en: "or", note: "R at end" },
+        { word: "aber", rtype: "vocalic", file: "aber", en: "but", note: "R at end" },
+        { word: "über", rtype: "vocalic", file: "ueber", en: "over", note: "R at end" },
+        { word: "unter", rtype: "vocalic", file: "unter", en: "under", note: "R at end" },
+        { word: "hinter", rtype: "vocalic", file: "hinter", en: "behind", note: "R at end" },
+        { word: "immer", rtype: "vocalic", file: "immer", en: "always", note: "R at end" },
+        { word: "besser", rtype: "vocalic", file: "besser", en: "better", note: "R at end" },
+        { word: "Wetter", rtype: "vocalic", file: "Wetter", en: "weather", note: "R at end" },
+        { word: "Körper", rtype: "vocalic", file: "Koerper", en: "body", note: "R at end" },
+        { word: "Sommer", rtype: "vocalic", file: "Sommer", en: "summer", note: "R at end" },
+        { word: "Nummer", rtype: "vocalic", file: "Nummer", en: "number", note: "R at end" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnUvular = document.getElementById('btnUvular');
+        const btnVocalic = document.getElementById('btnVocalic');
+        const reveal = document.getElementById('wordReveal');
+        const rTypeNote = document.getElementById('rTypeNote');
+        const transReveal = document.getElementById('translationReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          btnUvular.disabled = btnVocalic.disabled = true;
+          btnUvular.classList.remove('correct', 'wrong');
+          btnVocalic.classList.remove('correct', 'wrong');
+
+          reveal.textContent = ex.word;
+          reveal.classList.remove('hidden');
+          rTypeNote.textContent = ex.note + ' - ' + ex.rtype;
+          rTypeNote.classList.remove('hidden');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+
+          if (ex.rtype === 'uvular') {
+            btnUvular.classList.add('correct');
+            if (prev !== 'uvular') btnVocalic.classList.add('wrong');
+          } else {
+            btnVocalic.classList.add('correct');
+            if (prev !== 'vocalic') btnUvular.classList.add('wrong');
+          }
+        } else {
+          answered = false;
+          btnUvular.disabled = btnVocalic.disabled = false;
+          btnUvular.classList.remove('correct', 'wrong');
+          btnVocalic.classList.remove('correct', 'wrong');
+          reveal.classList.add('hidden');
+          rTypeNote.classList.add('hidden');
+          transReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.rtype;
+        answers[idx] = sel;
+
+        const btnUvular = document.getElementById('btnUvular');
+        const btnVocalic = document.getElementById('btnVocalic');
+        const reveal = document.getElementById('wordReveal');
+        const rTypeNote = document.getElementById('rTypeNote');
+        const transReveal = document.getElementById('translationReveal');
+
+        btnUvular.disabled = btnVocalic.disabled = true;
+        reveal.textContent = ex.word;
+        reveal.classList.remove('hidden');
+        rTypeNote.textContent = ex.note + ' - ' + ex.rtype;
+        rTypeNote.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+
+        if (ex.rtype === 'uvular') {
+          btnUvular.classList.add('correct');
+          if (!correct) btnVocalic.classList.add('wrong');
+        } else {
+          btnVocalic.classList.add('correct');
+          if (!correct) btnUvular.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> - ${w.note} - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key;
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('uvular'); }
+        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('vocalic'); }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

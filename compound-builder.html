@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Word Builder</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .words-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .word-box {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .plus-sign {
+      font-size: 30px;
+      font-weight: 800;
+      color: #9C27B0;
+    }
+
+    .word-translations {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #6B4E8C;
+      font-style: italic;
+    }
+
+    .input-area {
+      margin-bottom: 15px;
+    }
+
+    .compound-input {
+      width: 80%;
+      max-width: 350px;
+      padding: 15px 20px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      border: 3px solid #E0E0E0;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .compound-input:focus {
+      border-color: #9C27B0;
+    }
+
+    .compound-input.correct {
+      border-color: #4CAF50;
+      background: #E8F5E9;
+    }
+
+    .compound-input.wrong {
+      border-color: #F44336;
+      background: #FFEBEE;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .reveal-section {
+      margin-top: 15px;
+      padding: 15px;
+      background: #F5F5F5;
+      border-radius: 12px;
+    }
+
+    .reveal-compound {
+      font-size: 28px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 5px;
+    }
+
+    .reveal-meaning {
+      font-size: 18px;
+      color: #6B4E8C;
+    }
+
+    .reveal-explanation {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .word-box { font-size: 18px; padding: 12px 18px; }
+      .compound-input { font-size: 18px; width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">Compound Builder</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>60 compound words</strong> total, <strong>15 per session</strong>. Practice building German compound words!
+      <br><br>
+      <strong>How it works:</strong>
+      <br>1. You see two German words with translations
+      <br>2. Combine them into one compound word
+      <br><br>
+      <strong>The fun part:</strong> German compounds often have meanings that go beyond their parts!
+      <br>Example: Hand + Schuh = Handschuh (glove, literally "hand shoe")
+      <br><br>
+      Progress is stored locally. Wrong answers are repeated.
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">15</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/60 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <div class="words-display">
+          <div class="word-box" id="word1">Hand</div>
+          <div class="plus-sign">+</div>
+          <div class="word-box" id="word2">Schuh</div>
+        </div>
+
+        <div class="word-translations">
+          <span id="trans1">hand</span>
+          <span id="trans2">shoe</span>
+        </div>
+
+        <div id="step1Area">
+          <div class="input-area">
+            <input type="text" class="compound-input" id="compoundInput" placeholder="Type compound..." autocomplete="off" autocapitalize="off">
+          </div>
+          <button class="submit-btn" id="checkCompoundBtn" onclick="checkCompound()">Check</button>
+        </div>
+
+        <div id="feedbackArea" class="feedback hidden"></div>
+
+        <div id="revealArea" class="reveal-section hidden">
+          <div class="reveal-compound" id="revealCompound"></div>
+          <div class="reveal-meaning" id="revealMeaning"></div>
+          <div class="reveal-explanation" id="revealExplanation"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">15</span>/<span id="resultTotal">15</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review these compounds:</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const STORAGE_KEY = 'compound_builder_progress';
+      const SESSION_SIZE = 15;
+
+      // 60 compound words with surprising/interesting meanings
+      const allWords = [
+        // Body + Object compounds
+        { word1: "Hand", word2: "Schuh", trans1: "hand", trans2: "shoe", compound: "Handschuh", meaning: "glove", explanation: "A 'shoe' for your hand" },
+        { word1: "Finger", word2: "Hut", trans1: "finger", trans2: "hat", compound: "Fingerhut", meaning: "thimble", explanation: "A little 'hat' for your finger when sewing" },
+        { word1: "Zahn", word2: "Bürste", trans1: "tooth", trans2: "brush", compound: "Zahnbürste", meaning: "toothbrush", explanation: "A brush for teeth" },
+        { word1: "Kopf", word2: "Hörer", trans1: "head", trans2: "listener", compound: "Kopfhörer", meaning: "headphones", explanation: "Listeners for your head" },
+        { word1: "Ohr", word2: "Ring", trans1: "ear", trans2: "ring", compound: "Ohrring", meaning: "earring", explanation: "A ring for your ear" },
+
+        // Animal compounds
+        { word1: "Schwein", word2: "Hund", trans1: "pig", trans2: "dog", compound: "Schweinehund", meaning: "lazy bum / inner weakness", explanation: "Used in 'innerer Schweinehund' - your inner lazy self" },
+        { word1: "Schild", word2: "Kröte", trans1: "shield", trans2: "toad", compound: "Schildkröte", meaning: "turtle", explanation: "A toad with a shield (shell)" },
+        { word1: "Fleder", word2: "Maus", trans1: "flutter", trans2: "mouse", compound: "Fledermaus", meaning: "bat", explanation: "A fluttering mouse" },
+        { word1: "See", word2: "Hund", trans1: "sea", trans2: "dog", compound: "Seehund", meaning: "seal", explanation: "A sea dog" },
+        { word1: "Nil", word2: "Pferd", trans1: "Nile", trans2: "horse", compound: "Nilpferd", meaning: "hippopotamus", explanation: "A horse from the Nile" },
+        { word1: "Maul", word2: "Wurf", trans1: "mouth", trans2: "throw", compound: "Maulwurf", meaning: "mole", explanation: "The animal that throws earth with its mouth" },
+        { word1: "Stink", word2: "Tier", trans1: "stink", trans2: "animal", compound: "Stinktier", meaning: "skunk", explanation: "The stinking animal" },
+        { word1: "Faul", word2: "Tier", trans1: "lazy", trans2: "animal", compound: "Faultier", meaning: "sloth", explanation: "The lazy animal" },
+        { word1: "Gürtel", word2: "Tier", trans1: "belt", trans2: "animal", compound: "Gürteltier", meaning: "armadillo", explanation: "The animal with a belt (armor)" },
+
+        // Food compounds
+        { word1: "Erd", word2: "Beere", trans1: "earth", trans2: "berry", compound: "Erdbeere", meaning: "strawberry", explanation: "The berry that grows on earth (not a tree)" },
+        { word1: "Himmel", word2: "Beere", trans1: "heaven/sky", trans2: "berry", compound: "Himbeere", meaning: "raspberry", explanation: "The heavenly berry" },
+        { word1: "Brom", word2: "Beere", trans1: "bramble", trans2: "berry", compound: "Brombeere", meaning: "blackberry", explanation: "Berry from the bramble bush" },
+        { word1: "Wein", word2: "Traube", trans1: "wine", trans2: "grape", compound: "Weintraube", meaning: "grape", explanation: "The grape that makes wine" },
+        { word1: "Blumen", word2: "Kohl", trans1: "flower", trans2: "cabbage", compound: "Blumenkohl", meaning: "cauliflower", explanation: "Cabbage that looks like a flower" },
+        { word1: "Rosen", word2: "Kohl", trans1: "rose", trans2: "cabbage", compound: "Rosenkohl", meaning: "Brussels sprouts", explanation: "Little cabbages like roses" },
+        { word1: "Rot", word2: "Kohl", trans1: "red", trans2: "cabbage", compound: "Rotkohl", meaning: "red cabbage", explanation: "The red cabbage" },
+
+        // Object compounds
+        { word1: "Kühl", word2: "Schrank", trans1: "cool", trans2: "cabinet", compound: "Kühlschrank", meaning: "refrigerator", explanation: "A cool cabinet" },
+        { word1: "Staub", word2: "Sauger", trans1: "dust", trans2: "sucker", compound: "Staubsauger", meaning: "vacuum cleaner", explanation: "Something that sucks dust" },
+        { word1: "Wasser", word2: "Hahn", trans1: "water", trans2: "rooster", compound: "Wasserhahn", meaning: "faucet/tap", explanation: "The rooster (tap) that releases water" },
+        { word1: "Regen", word2: "Schirm", trans1: "rain", trans2: "shield", compound: "Regenschirm", meaning: "umbrella", explanation: "A shield against rain" },
+        { word1: "Sonnen", word2: "Brille", trans1: "sun", trans2: "glasses", compound: "Sonnenbrille", meaning: "sunglasses", explanation: "Glasses for the sun" },
+        { word1: "Glüh", word2: "Birne", trans1: "glow", trans2: "pear", compound: "Glühbirne", meaning: "light bulb", explanation: "A glowing pear-shaped object" },
+        { word1: "Flug", word2: "Zeug", trans1: "flight", trans2: "stuff", compound: "Flugzeug", meaning: "airplane", explanation: "Flying stuff/vehicle" },
+        { word1: "Fahr", word2: "Zeug", trans1: "drive", trans2: "stuff", compound: "Fahrzeug", meaning: "vehicle", explanation: "Driving stuff" },
+        { word1: "Werk", word2: "Zeug", trans1: "work", trans2: "stuff", compound: "Werkzeug", meaning: "tool", explanation: "Work stuff" },
+        { word1: "Spiel", word2: "Zeug", trans1: "play", trans2: "stuff", compound: "Spielzeug", meaning: "toy", explanation: "Play stuff" },
+        { word1: "Feuer", word2: "Zeug", trans1: "fire", trans2: "stuff", compound: "Feuerzeug", meaning: "lighter", explanation: "Fire-making stuff" },
+
+        // Place compounds
+        { word1: "Krank", word2: "Haus", trans1: "sick", trans2: "house", compound: "Krankenhaus", meaning: "hospital", explanation: "House for sick people" },
+        { word1: "Rat", word2: "Haus", trans1: "council", trans2: "house", compound: "Rathaus", meaning: "city hall", explanation: "House of the council" },
+        { word1: "Hoch", word2: "Haus", trans1: "high", trans2: "house", compound: "Hochhaus", meaning: "high-rise/skyscraper", explanation: "A high house" },
+        { word1: "Bahn", word2: "Hof", trans1: "train", trans2: "yard", compound: "Bahnhof", meaning: "train station", explanation: "Yard for trains" },
+        { word1: "Flug", word2: "Hafen", trans1: "flight", trans2: "harbor", compound: "Flughafen", meaning: "airport", explanation: "Harbor for flights" },
+
+        // Time/Nature compounds
+        { word1: "Jahres", word2: "Zeit", trans1: "year", trans2: "time", compound: "Jahreszeit", meaning: "season", explanation: "Time of the year" },
+        { word1: "Nacht", word2: "Himmel", trans1: "night", trans2: "sky", compound: "Nachthimmel", meaning: "night sky", explanation: "The sky at night" },
+        { word1: "Regen", word2: "Bogen", trans1: "rain", trans2: "bow", compound: "Regenbogen", meaning: "rainbow", explanation: "The bow that appears in rain" },
+        { word1: "Schnee", word2: "Mann", trans1: "snow", trans2: "man", compound: "Schneemann", meaning: "snowman", explanation: "A man made of snow" },
+        { word1: "Wasser", word2: "Fall", trans1: "water", trans2: "fall", compound: "Wasserfall", meaning: "waterfall", explanation: "Falling water" },
+
+        // Abstract/Concept compounds
+        { word1: "Heim", word2: "Weh", trans1: "home", trans2: "pain", compound: "Heimweh", meaning: "homesickness", explanation: "Pain for home" },
+        { word1: "Fern", word2: "Weh", trans1: "far", trans2: "pain", compound: "Fernweh", meaning: "wanderlust", explanation: "Pain for far-away places" },
+        { word1: "Welt", word2: "Schmerz", trans1: "world", trans2: "pain", compound: "Weltschmerz", meaning: "world-weariness", explanation: "Pain about the world" },
+        { word1: "Finger", word2: "Spitzen", trans1: "finger", trans2: "tips", compound: "Fingerspitzengefühl", meaning: "intuition/tact", explanation: "The feeling in your fingertips" },
+        { word1: "Schatten", word2: "Freude", trans1: "shadow", trans2: "joy", compound: "Schadenfreude", meaning: "pleasure in others' misfortune", explanation: "Joy at someone's harm" },
+        { word1: "Zeit", word2: "Geist", trans1: "time", trans2: "spirit", compound: "Zeitgeist", meaning: "spirit of the times", explanation: "The spirit of an era" },
+
+        // Funny/Interesting compounds
+        { word1: "Nackt", word2: "Schnecke", trans1: "naked", trans2: "snail", compound: "Nacktschnecke", meaning: "slug", explanation: "A snail without its shell - naked!" },
+        { word1: "Dreh", word2: "Wurm", trans1: "turn", trans2: "worm", compound: "Drehwurm", meaning: "dizziness", explanation: "When you feel like a spinning worm" },
+        { word1: "Quatsch", word2: "Kopf", trans1: "nonsense", trans2: "head", compound: "Quatschkopf", meaning: "silly person", explanation: "Someone with nonsense in their head" },
+        { word1: "Schlaf", word2: "Mütze", trans1: "sleep", trans2: "cap", compound: "Schlafmütze", meaning: "sleepyhead", explanation: "Someone who sleeps with their nightcap on" },
+        { word1: "Traum", word2: "Tänzer", trans1: "dream", trans2: "dancer", compound: "Traumtänzer", meaning: "dreamer/naive person", explanation: "Someone dancing through dreams, not reality" },
+        { word1: "Warm", word2: "Duscher", trans1: "warm", trans2: "showerer", compound: "Warmduscher", meaning: "wimp/softie", explanation: "Someone who only takes warm showers (not tough)" },
+        { word1: "Sitz", word2: "Fleisch", trans1: "sit", trans2: "meat", compound: "Sitzfleisch", meaning: "perseverance/patience", explanation: "The 'meat' to sit for a long time" },
+        { word1: "Ohr", word2: "Wurm", trans1: "ear", trans2: "worm", compound: "Ohrwurm", meaning: "catchy song stuck in head", explanation: "A worm that crawls into your ear" },
+
+        // Everyday compounds
+        { word1: "Fahr", word2: "Rad", trans1: "drive", trans2: "wheel", compound: "Fahrrad", meaning: "bicycle", explanation: "A wheel you drive/ride" },
+        { word1: "Hand", word2: "Tasche", trans1: "hand", trans2: "bag", compound: "Handtasche", meaning: "handbag", explanation: "A bag for your hand" },
+        { word1: "Schlüssel", word2: "Bund", trans1: "key", trans2: "bundle", compound: "Schlüsselbund", meaning: "keychain", explanation: "A bundle of keys" },
+        { word1: "Haus", word2: "Tier", trans1: "house", trans2: "animal", compound: "Haustier", meaning: "pet", explanation: "An animal for the house" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let sessionWrong = [];
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.compound)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByCompound(name) {
+        return allWords.find(w => w.compound === name);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByCompound).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByCompound).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByCompound).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function normalize(str) {
+        return str.toLowerCase()
+          .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+          .replace(/[^a-z]/g, '');
+      }
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        document.getElementById('word1').textContent = ex.word1;
+        document.getElementById('word2').textContent = ex.word2;
+        document.getElementById('trans1').textContent = ex.trans1;
+        document.getElementById('trans2').textContent = ex.trans2;
+
+        document.getElementById('step1Area').classList.remove('hidden');
+        document.getElementById('feedbackArea').classList.add('hidden');
+        document.getElementById('revealArea').classList.add('hidden');
+
+        const compoundInput = document.getElementById('compoundInput');
+        compoundInput.value = '';
+        compoundInput.classList.remove('correct', 'wrong');
+        compoundInput.disabled = false;
+        compoundInput.focus();
+
+        document.getElementById('checkCompoundBtn').disabled = false;
+      }
+
+      window.checkCompound = function() {
+        const ex = exercises[idx];
+        const input = document.getElementById('compoundInput');
+        const userAnswer = input.value.trim();
+
+        if (!userAnswer) return;
+
+        const isCorrect = normalize(userAnswer) === normalize(ex.compound);
+
+        input.disabled = true;
+        document.getElementById('checkCompoundBtn').disabled = true;
+
+        if (isCorrect) {
+          input.classList.add('correct');
+          score++;
+          updateScoreDisplay();
+        } else {
+          input.classList.add('wrong');
+          sessionWrong.push(ex);
+        }
+
+        // Show the answer
+        document.getElementById('revealArea').classList.remove('hidden');
+        document.getElementById('revealCompound').textContent = ex.compound;
+        document.getElementById('revealMeaning').textContent = ex.meaning;
+        document.getElementById('revealExplanation').textContent = ex.explanation;
+
+        recordAnswer(ex, isCorrect);
+
+        setTimeout(() => {
+          goNext();
+        }, 2000);
+      };
+
+      function recordAnswer(word, correct) {
+        const name = word.compound;
+        progress.mastered = progress.mastered.filter(n => n !== name);
+        progress.wrong = progress.wrong.filter(n => n !== name);
+        progress.unseen = progress.unseen.filter(n => n !== name);
+
+        if (correct) {
+          progress.mastered.push(name);
+        } else {
+          progress.wrong.push(name);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      function goNext() {
+        if (idx < exercises.length - 1) {
+          idx++;
+          showExercise();
+        } else {
+          showResults();
+        }
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <strong>${w.word1} + ${w.word2}</strong> = <strong>${w.compound}</strong> (${w.meaning})
+              <br><small>${w.explanation}</small>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      // Handle Enter key
+      document.getElementById('compoundInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkCompound();
+        }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

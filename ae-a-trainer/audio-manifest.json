@@ -1,0 +1,566 @@
+{
+  "generated": "2025-12-30T11:02:28.498Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Männer",
+      "file": "Maenner",
+      "phrase": "die Männer dort",
+      "en": "men",
+      "sound": "ä"
+    },
+    {
+      "word": "Hände",
+      "file": "Haende",
+      "phrase": "meine Hände",
+      "en": "hands",
+      "sound": "ä"
+    },
+    {
+      "word": "Länder",
+      "file": "Laender",
+      "phrase": "viele Länder",
+      "en": "countries",
+      "sound": "ä"
+    },
+    {
+      "word": "Bäcker",
+      "file": "Baecker",
+      "phrase": "der Bäcker backt",
+      "en": "baker",
+      "sound": "ä"
+    },
+    {
+      "word": "Gärten",
+      "file": "Gaerten",
+      "phrase": "schöne Gärten",
+      "en": "gardens",
+      "sound": "ä"
+    },
+    {
+      "word": "Äpfel",
+      "file": "Aepfel",
+      "phrase": "rote Äpfel",
+      "en": "apples",
+      "sound": "ä"
+    },
+    {
+      "word": "Bäume",
+      "file": "Baeume",
+      "phrase": "hohe Bäume",
+      "en": "trees",
+      "sound": "ä"
+    },
+    {
+      "word": "Häuser",
+      "file": "Haeuser",
+      "phrase": "alte Häuser",
+      "en": "houses",
+      "sound": "ä"
+    },
+    {
+      "word": "Räume",
+      "file": "Raeume",
+      "phrase": "große Räume",
+      "en": "rooms",
+      "sound": "ä"
+    },
+    {
+      "word": "Träume",
+      "file": "Traeume",
+      "phrase": "schöne Träume",
+      "en": "dreams",
+      "sound": "ä"
+    },
+    {
+      "word": "Käse",
+      "file": "Kaese",
+      "phrase": "guter Käse",
+      "en": "cheese",
+      "sound": "ä"
+    },
+    {
+      "word": "Mädchen",
+      "file": "Maedchen",
+      "phrase": "das kleine Mädchen",
+      "en": "girl",
+      "sound": "ä"
+    },
+    {
+      "word": "Städte",
+      "file": "Staedte",
+      "phrase": "große Städte",
+      "en": "cities",
+      "sound": "ä"
+    },
+    {
+      "word": "spät",
+      "file": "spaet",
+      "phrase": "Es ist spät.",
+      "en": "late",
+      "sound": "ä"
+    },
+    {
+      "word": "später",
+      "file": "spaeter",
+      "phrase": "bis später",
+      "en": "later",
+      "sound": "ä"
+    },
+    {
+      "word": "nächste",
+      "file": "naechste",
+      "phrase": "die nächste Woche",
+      "en": "next",
+      "sound": "ä"
+    },
+    {
+      "word": "täglich",
+      "file": "taeglich",
+      "phrase": "täglich arbeiten",
+      "en": "daily",
+      "sound": "ä"
+    },
+    {
+      "word": "wählen",
+      "file": "waehlen",
+      "phrase": "eine Nummer wählen",
+      "en": "to choose",
+      "sound": "ä"
+    },
+    {
+      "word": "erzählen",
+      "file": "erzaehlen",
+      "phrase": "eine Geschichte erzählen",
+      "en": "to tell",
+      "sound": "ä"
+    },
+    {
+      "word": "gefährlich",
+      "file": "gefaehrlich",
+      "phrase": "sehr gefährlich",
+      "en": "dangerous",
+      "sound": "ä"
+    },
+    {
+      "word": "ähnlich",
+      "file": "aehnlich",
+      "phrase": "sehr ähnlich",
+      "en": "similar",
+      "sound": "ä"
+    },
+    {
+      "word": "während",
+      "file": "waehrend",
+      "phrase": "während der Arbeit",
+      "en": "during",
+      "sound": "ä"
+    },
+    {
+      "word": "ungefähr",
+      "file": "ungefaehr",
+      "phrase": "ungefähr zehn",
+      "en": "approximately",
+      "sound": "ä"
+    },
+    {
+      "word": "März",
+      "file": "Maerz",
+      "phrase": "im März",
+      "en": "March",
+      "sound": "ä"
+    },
+    {
+      "word": "Bär",
+      "file": "Baer",
+      "phrase": "ein großer Bär",
+      "en": "bear",
+      "sound": "ä"
+    },
+    {
+      "word": "Väter",
+      "file": "Vaeter",
+      "phrase": "die Väter kommen",
+      "en": "fathers",
+      "sound": "ä"
+    },
+    {
+      "word": "Zähne",
+      "file": "Zaehne",
+      "phrase": "weiße Zähne",
+      "en": "teeth",
+      "sound": "ä"
+    },
+    {
+      "word": "Gläser",
+      "file": "Glaeser",
+      "phrase": "zwei Gläser",
+      "en": "glasses",
+      "sound": "ä"
+    },
+    {
+      "word": "Kälte",
+      "file": "Kaelte",
+      "phrase": "die große Kälte",
+      "en": "cold",
+      "sound": "ä"
+    },
+    {
+      "word": "Nähe",
+      "file": "Naehe",
+      "phrase": "in der Nähe",
+      "en": "nearness",
+      "sound": "ä"
+    },
+    {
+      "word": "Stärke",
+      "file": "Staerke",
+      "phrase": "große Stärke",
+      "en": "strength",
+      "sound": "ä"
+    },
+    {
+      "word": "Wärme",
+      "file": "Waerme",
+      "phrase": "angenehme Wärme",
+      "en": "warmth",
+      "sound": "ä"
+    },
+    {
+      "word": "schwächer",
+      "file": "schwaecher",
+      "phrase": "immer schwächer",
+      "en": "weaker",
+      "sound": "ä"
+    },
+    {
+      "word": "stärker",
+      "file": "staerker",
+      "phrase": "viel stärker",
+      "en": "stronger",
+      "sound": "ä"
+    },
+    {
+      "word": "länger",
+      "file": "laenger",
+      "phrase": "viel länger",
+      "en": "longer",
+      "sound": "ä"
+    },
+    {
+      "word": "älter",
+      "file": "aelter",
+      "phrase": "viel älter",
+      "en": "older",
+      "sound": "ä"
+    },
+    {
+      "word": "kälter",
+      "file": "kaelter",
+      "phrase": "immer kälter",
+      "en": "colder",
+      "sound": "ä"
+    },
+    {
+      "word": "wärmer",
+      "file": "waermer",
+      "phrase": "viel wärmer",
+      "en": "warmer",
+      "sound": "ä"
+    },
+    {
+      "word": "häufig",
+      "file": "haeufig",
+      "phrase": "sehr häufig",
+      "en": "frequent",
+      "sound": "ä"
+    },
+    {
+      "word": "fähig",
+      "file": "faehig",
+      "phrase": "dazu fähig",
+      "en": "capable",
+      "sound": "ä"
+    },
+    {
+      "word": "Mann",
+      "file": "Mann",
+      "phrase": "der Mann dort",
+      "en": "man",
+      "sound": "a"
+    },
+    {
+      "word": "Hand",
+      "file": "Hand",
+      "phrase": "meine Hand",
+      "en": "hand",
+      "sound": "a"
+    },
+    {
+      "word": "Land",
+      "file": "Land",
+      "phrase": "ein schönes Land",
+      "en": "country",
+      "sound": "a"
+    },
+    {
+      "word": "backen",
+      "file": "backen",
+      "phrase": "Brot backen",
+      "en": "to bake",
+      "sound": "a"
+    },
+    {
+      "word": "Garten",
+      "file": "Garten",
+      "phrase": "im Garten",
+      "en": "garden",
+      "sound": "a"
+    },
+    {
+      "word": "Apfel",
+      "file": "Apfel",
+      "phrase": "ein roter Apfel",
+      "en": "apple",
+      "sound": "a"
+    },
+    {
+      "word": "Baum",
+      "file": "Baum",
+      "phrase": "ein hoher Baum",
+      "en": "tree",
+      "sound": "a"
+    },
+    {
+      "word": "Haus",
+      "file": "Haus",
+      "phrase": "das alte Haus",
+      "en": "house",
+      "sound": "a"
+    },
+    {
+      "word": "Raum",
+      "file": "Raum",
+      "phrase": "ein großer Raum",
+      "en": "room",
+      "sound": "a"
+    },
+    {
+      "word": "Traum",
+      "file": "Traum",
+      "phrase": "ein schöner Traum",
+      "en": "dream",
+      "sound": "a"
+    },
+    {
+      "word": "Abend",
+      "file": "Abend",
+      "phrase": "guten Abend",
+      "en": "evening",
+      "sound": "a"
+    },
+    {
+      "word": "Anfang",
+      "file": "Anfang",
+      "phrase": "am Anfang",
+      "en": "beginning",
+      "sound": "a"
+    },
+    {
+      "word": "Stadt",
+      "file": "Stadt",
+      "phrase": "die große Stadt",
+      "en": "city",
+      "sound": "a"
+    },
+    {
+      "word": "Platz",
+      "file": "Platz",
+      "phrase": "ein freier Platz",
+      "en": "place/square",
+      "sound": "a"
+    },
+    {
+      "word": "Straße",
+      "file": "Strasse",
+      "phrase": "die lange Straße",
+      "en": "street",
+      "sound": "a"
+    },
+    {
+      "word": "Tag",
+      "file": "Tag",
+      "phrase": "ein schöner Tag",
+      "en": "day",
+      "sound": "a"
+    },
+    {
+      "word": "Vater",
+      "file": "Vater",
+      "phrase": "mein Vater",
+      "en": "father",
+      "sound": "a"
+    },
+    {
+      "word": "Zahn",
+      "file": "Zahn",
+      "phrase": "ein weißer Zahn",
+      "en": "tooth",
+      "sound": "a"
+    },
+    {
+      "word": "Glas",
+      "file": "Glas",
+      "phrase": "ein volles Glas",
+      "en": "glass",
+      "sound": "a"
+    },
+    {
+      "word": "kalt",
+      "file": "kalt",
+      "phrase": "sehr kalt",
+      "en": "cold",
+      "sound": "a"
+    },
+    {
+      "word": "nah",
+      "file": "nah",
+      "phrase": "ganz nah",
+      "en": "near",
+      "sound": "a"
+    },
+    {
+      "word": "stark",
+      "file": "stark",
+      "phrase": "sehr stark",
+      "en": "strong",
+      "sound": "a"
+    },
+    {
+      "word": "warm",
+      "file": "warm",
+      "phrase": "schön warm",
+      "en": "warm",
+      "sound": "a"
+    },
+    {
+      "word": "schwach",
+      "file": "schwach",
+      "phrase": "sehr schwach",
+      "en": "weak",
+      "sound": "a"
+    },
+    {
+      "word": "lang",
+      "file": "lang",
+      "phrase": "sehr lang",
+      "en": "long",
+      "sound": "a"
+    },
+    {
+      "word": "alt",
+      "file": "alt",
+      "phrase": "sehr alt",
+      "en": "old",
+      "sound": "a"
+    },
+    {
+      "word": "Arbeit",
+      "file": "Arbeit",
+      "phrase": "gute Arbeit",
+      "en": "work",
+      "sound": "a"
+    },
+    {
+      "word": "Frau",
+      "file": "Frau",
+      "phrase": "die Frau dort",
+      "en": "woman",
+      "sound": "a"
+    },
+    {
+      "word": "Name",
+      "file": "Name",
+      "phrase": "mein Name",
+      "en": "name",
+      "sound": "a"
+    },
+    {
+      "word": "Wasser",
+      "file": "Wasser",
+      "phrase": "kaltes Wasser",
+      "en": "water",
+      "sound": "a"
+    },
+    {
+      "word": "Nacht",
+      "file": "Nacht",
+      "phrase": "gute Nacht",
+      "en": "night",
+      "sound": "a"
+    },
+    {
+      "word": "Sprache",
+      "file": "Sprache",
+      "phrase": "eine neue Sprache",
+      "en": "language",
+      "sound": "a"
+    },
+    {
+      "word": "Jahr",
+      "file": "Jahr",
+      "phrase": "dieses Jahr",
+      "en": "year",
+      "sound": "a"
+    },
+    {
+      "word": "fahren",
+      "file": "fahren",
+      "phrase": "nach Hause fahren",
+      "en": "to drive",
+      "sound": "a"
+    },
+    {
+      "word": "Staat",
+      "file": "Staat",
+      "phrase": "der deutsche Staat",
+      "en": "state",
+      "sound": "a"
+    },
+    {
+      "word": "Arzt",
+      "file": "Arzt",
+      "phrase": "ein guter Arzt",
+      "en": "doctor",
+      "sound": "a"
+    },
+    {
+      "word": "Kraft",
+      "file": "Kraft",
+      "phrase": "viel Kraft",
+      "en": "power",
+      "sound": "a"
+    },
+    {
+      "word": "Praxis",
+      "file": "Praxis",
+      "phrase": "in der Praxis",
+      "en": "practice",
+      "sound": "a"
+    },
+    {
+      "word": "Bahn",
+      "file": "Bahn",
+      "phrase": "mit der Bahn",
+      "en": "train/railway",
+      "sound": "a"
+    },
+    {
+      "word": "Plan",
+      "file": "Plan",
+      "phrase": "ein guter Plan",
+      "en": "plan",
+      "sound": "a"
+    }
+  ]
+}

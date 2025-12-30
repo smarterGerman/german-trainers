@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Anglicisms Quiz</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>EN</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 42px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 15px;
+    }
+
+    .english-meaning {
+      font-size: 18px;
+      color: #00BCD4;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: #E0F7FA;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .hint-text {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 15px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+      text-align: center;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.real-btn {
+      color: #4CAF50;
+    }
+
+    .answer-btn.fake-btn {
+      color: #F44336;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">German Anglicisms Quiz</h1>
+      <p class="sg-dark-subtitle">Learn which English words Germans actually use</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">Real = Used in German</div>
+        <div class="sg-dark-article">Fake = Not used / Different</div>
+      </div>
+
+      <p>
+        German uses many English words (Anglicisms), but sometimes they mean something different,
+        or Germans use completely different words than you'd expect!
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>Watch out for:</strong><br>
+        - <strong>False friends:</strong> "Handy" means mobile phone in German, not convenient!<br>
+        - <strong>German-made English:</strong> "Homeoffice" (working from home) isn't used this way in English<br>
+        - <strong>Different words:</strong> Germans say "Beamer" not "projector"
+      </div>
+
+      <p>
+        Is the word shown actually used in German with this meaning?
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> R = Real (used in German), F = Fake (not used)
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">Handy</div>
+          <div class="english-meaning" id="meaningDisplay">= mobile phone</div>
+          <div class="hint-text">Is this word actually used in German with this meaning?</div>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn real-btn" onclick="checkAnswer(true)" id="btnReal">
+            Real (Used in German)
+            <span class="shortcut">(R)</span>
+          </button>
+          <button class="answer-btn fake-btn" onclick="checkAnswer(false)" id="btnFake">
+            Fake (Not used)
+            <span class="shortcut">(F)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // REAL - Words actually used in German (50)
+      { word: "Handy", meaning: "mobile phone", real: true, explanation: "Germans say 'Handy' for mobile phone (not English!)" },
+      { word: "Homeoffice", meaning: "working from home", real: true, explanation: "Germans use 'Homeoffice' for remote work" },
+      { word: "Beamer", meaning: "projector", real: true, explanation: "Germans say 'Beamer' instead of projector" },
+      { word: "Public Viewing", meaning: "watching sports on big screens in public", real: true, explanation: "Germans use this for outdoor screenings (sounds weird to English speakers!)" },
+      { word: "Oldtimer", meaning: "classic/vintage car", real: true, explanation: "Germans use 'Oldtimer' for classic cars" },
+      { word: "Smoking", meaning: "tuxedo/dinner jacket", real: true, explanation: "A 'Smoking' is a tuxedo in German" },
+      { word: "Wellness", meaning: "spa/health resort", real: true, explanation: "Germans use 'Wellness' for spa experiences" },
+      { word: "Body Bag", meaning: "messenger bag", real: true, explanation: "Germans call messenger bags 'Body Bags' (!)"},
+      { word: "Showmaster", meaning: "TV host", real: true, explanation: "Germans say 'Showmaster' for TV hosts" },
+      { word: "Pullunder", meaning: "sleeveless sweater/vest", real: true, explanation: "Germans call a sweater vest 'Pullunder'" },
+      { word: "Basecap", meaning: "baseball cap", real: true, explanation: "Germans say 'Basecap' for baseball cap" },
+      { word: "Streetworker", meaning: "social worker (outreach)", real: true, explanation: "Germans use 'Streetworker' for outreach social workers" },
+      { word: "Mobbing", meaning: "workplace bullying", real: true, explanation: "Germans use 'Mobbing' for bullying (especially at work)" },
+      { word: "Shooting", meaning: "photo shoot", real: true, explanation: "A 'Shooting' means photo shoot in German" },
+      { word: "Casting", meaning: "audition/talent show", real: true, explanation: "Germans use 'Casting' for auditions and talent shows" },
+      { word: "Meeting", meaning: "business meeting", real: true, explanation: "Germans use 'Meeting' in business contexts" },
+      { word: "Feedback", meaning: "response/evaluation", real: true, explanation: "Germans use 'Feedback' commonly" },
+      { word: "Team", meaning: "work team/group", real: true, explanation: "Germans use 'Team' in business and sports" },
+      { word: "Trainer", meaning: "sports coach", real: true, explanation: "Germans use 'Trainer' for sports coaches" },
+      { word: "Manager", meaning: "business manager", real: true, explanation: "Germans use 'Manager' in business" },
+      { word: "Job", meaning: "work/employment", real: true, explanation: "Germans use 'Job' casually for work" },
+      { word: "Hobby", meaning: "leisure activity", real: true, explanation: "Germans use 'Hobby' commonly" },
+      { word: "Party", meaning: "celebration", real: true, explanation: "Germans use 'Party' for celebrations" },
+      { word: "Style", meaning: "fashion style", real: true, explanation: "Germans use 'Style' for fashion" },
+      { word: "Lifestyle", meaning: "way of living", real: true, explanation: "Germans use 'Lifestyle' commonly" },
+      { word: "Cool", meaning: "awesome/great", real: true, explanation: "Germans use 'cool' very commonly" },
+      { word: "Okay", meaning: "alright", real: true, explanation: "Germans use 'okay' all the time" },
+      { word: "Sorry", meaning: "apology", real: true, explanation: "Germans often say 'sorry' informally" },
+      { word: "Computer", meaning: "computer", real: true, explanation: "Germans use 'Computer' (pronounced differently)" },
+      { word: "Internet", meaning: "internet", real: true, explanation: "Germans use 'Internet'" },
+      { word: "E-Mail", meaning: "electronic mail", real: true, explanation: "Germans use 'E-Mail' (die E-Mail)" },
+      { word: "Laptop", meaning: "portable computer", real: true, explanation: "Germans use 'Laptop'" },
+      { word: "Smartphone", meaning: "smartphone", real: true, explanation: "Germans use 'Smartphone'" },
+      { word: "App", meaning: "application", real: true, explanation: "Germans use 'App' (die App)" },
+      { word: "Download", meaning: "download", real: true, explanation: "Germans use 'Download'" },
+      { word: "Shitstorm", meaning: "online backlash", real: true, explanation: "Germans use 'Shitstorm' (even in formal news!)" },
+      { word: "Chatroom", meaning: "online chat", real: true, explanation: "Germans use 'Chatroom'" },
+      { word: "Fitness", meaning: "physical exercise", real: true, explanation: "Germans use 'Fitness'" },
+      { word: "Jogging", meaning: "running exercise", real: true, explanation: "Germans use 'Jogging'" },
+      { word: "Shopping", meaning: "buying things", real: true, explanation: "Germans use 'Shopping'" },
+      { word: "Sale", meaning: "discount sale", real: true, explanation: "Germans use 'Sale' for sales" },
+      { word: "Flyer", meaning: "leaflet", real: true, explanation: "Germans use 'Flyer' for leaflets" },
+      { word: "Ticket", meaning: "admission ticket", real: true, explanation: "Germans use 'Ticket'" },
+      { word: "Fan", meaning: "supporter", real: true, explanation: "Germans use 'Fan'" },
+      { word: "Star", meaning: "celebrity", real: true, explanation: "Germans use 'Star' for celebrities" },
+      { word: "Band", meaning: "music group", real: true, explanation: "Germans use 'Band' for music groups" },
+      { word: "Song", meaning: "song", real: true, explanation: "Germans use 'Song'" },
+      { word: "Highlight", meaning: "best part", real: true, explanation: "Germans use 'Highlight'" },
+      { word: "Timing", meaning: "timing", real: true, explanation: "Germans use 'Timing'" },
+      { word: "Trend", meaning: "trend", real: true, explanation: "Germans use 'Trend'" },
+
+      // FAKE - Words NOT used this way in German (50)
+      { word: "Backpack", meaning: "backpack", real: false, explanation: "Germans say 'Rucksack' (which English borrowed!)" },
+      { word: "Cell phone", meaning: "mobile phone", real: false, explanation: "Germans say 'Handy', not cell phone" },
+      { word: "Projector", meaning: "projector", real: false, explanation: "Germans say 'Beamer'" },
+      { word: "Tuxedo", meaning: "formal suit", real: false, explanation: "Germans say 'Smoking'" },
+      { word: "Remote control", meaning: "TV remote", real: false, explanation: "Germans say 'Fernbedienung'" },
+      { word: "Bullying", meaning: "harassment", real: false, explanation: "Germans say 'Mobbing'" },
+      { word: "Audition", meaning: "try-out", real: false, explanation: "Germans say 'Casting'" },
+      { word: "Photo shoot", meaning: "photography session", real: false, explanation: "Germans say 'Shooting'" },
+      { word: "Vintage car", meaning: "classic car", real: false, explanation: "Germans say 'Oldtimer'" },
+      { word: "Freelancer", meaning: "self-employed worker", real: false, explanation: "Germans say 'Freiberufler' or just 'freelancer' with German accent" },
+      { word: "Rental car", meaning: "hired car", real: false, explanation: "Germans say 'Mietwagen' or 'Leihwagen'" },
+      { word: "Sidewalk", meaning: "pavement", real: false, explanation: "Germans say 'Burgersteig' or 'Gehweg'" },
+      { word: "Elevator", meaning: "lift", real: false, explanation: "Germans say 'Aufzug' or 'Fahrstuhl'" },
+      { word: "Apartment", meaning: "flat", real: false, explanation: "Germans say 'Wohnung' (Apartment is rare)" },
+      { word: "Cookie", meaning: "biscuit", real: false, explanation: "Germans say 'Keks'" },
+      { word: "French fries", meaning: "chips", real: false, explanation: "Germans say 'Pommes (frites)'" },
+      { word: "Truck", meaning: "lorry", real: false, explanation: "Germans say 'LKW' or 'Lastwagen'" },
+      { word: "Gas station", meaning: "petrol station", real: false, explanation: "Germans say 'Tankstelle'" },
+      { word: "Parking lot", meaning: "car park", real: false, explanation: "Germans say 'Parkplatz'" },
+      { word: "Highway", meaning: "motorway", real: false, explanation: "Germans say 'Autobahn'" },
+      { word: "Schedule", meaning: "timetable", real: false, explanation: "Germans say 'Zeitplan' or 'Fahrplan'" },
+      { word: "Vacation", meaning: "holiday", real: false, explanation: "Germans say 'Urlaub'" },
+      { word: "Movie", meaning: "film", real: false, explanation: "Germans say 'Film'" },
+      { word: "Soccer", meaning: "football", real: false, explanation: "Germans say 'Fussball'" },
+      { word: "Sneakers", meaning: "trainers", real: false, explanation: "Germans say 'Turnschuhe' or 'Sneaker'" },
+      { word: "Sweater", meaning: "jumper", real: false, explanation: "Germans say 'Pullover' or 'Pulli'" },
+      { word: "Pants", meaning: "trousers", real: false, explanation: "Germans say 'Hose'" },
+      { word: "Mailman", meaning: "postman", real: false, explanation: "Germans say 'Brieftrager' or 'Postbote'" },
+      { word: "Flashlight", meaning: "torch", real: false, explanation: "Germans say 'Taschenlampe'" },
+      { word: "Drugstore", meaning: "chemist", real: false, explanation: "Germans say 'Drogerie' (but different meaning)" },
+      { word: "Pharmacy", meaning: "chemist (for medicine)", real: false, explanation: "Germans say 'Apotheke'" },
+      { word: "Trash", meaning: "rubbish", real: false, explanation: "Germans say 'Mull' or 'Abfall'" },
+      { word: "Garbage can", meaning: "bin", real: false, explanation: "Germans say 'Mulleimer'" },
+      { word: "Restroom", meaning: "toilet", real: false, explanation: "Germans say 'Toilette' or 'WC'" },
+      { word: "Attorney", meaning: "lawyer", real: false, explanation: "Germans say 'Anwalt' or 'Rechtsanwalt'" },
+      { word: "Realtor", meaning: "estate agent", real: false, explanation: "Germans say 'Makler' or 'Immobilienmakler'" },
+      { word: "Bartender", meaning: "barman", real: false, explanation: "Germans say 'Barkeeper'" },
+      { word: "Waitress", meaning: "server", real: false, explanation: "Germans say 'Kellnerin' or 'Bedienung'" },
+      { word: "Flight attendant", meaning: "cabin crew", real: false, explanation: "Germans say 'Flugbegleiter(in)' or 'Stewardess'" },
+      { word: "Kindergarten", meaning: "nursery", real: false, explanation: "Germans DO say Kindergarten (English borrowed it!)" },
+      { word: "Grade", meaning: "school year", real: false, explanation: "Germans say 'Klasse' or 'Schuljahr'" },
+      { word: "College", meaning: "university", real: false, explanation: "Germans say 'Universitat' or 'Hochschule'" },
+      { word: "Major", meaning: "main subject", real: false, explanation: "Germans say 'Hauptfach'" },
+      { word: "Sophomore", meaning: "2nd year student", real: false, explanation: "Germans don't use year names like this" },
+      { word: "Fall", meaning: "autumn", real: false, explanation: "Germans say 'Herbst'" },
+      { word: "Yard", meaning: "garden", real: false, explanation: "Germans say 'Garten'" },
+      { word: "Faucet", meaning: "tap", real: false, explanation: "Germans say 'Wasserhahn'" },
+      { word: "Stove", meaning: "cooker", real: false, explanation: "Germans say 'Herd'" },
+      { word: "Closet", meaning: "wardrobe", real: false, explanation: "Germans say 'Kleiderschrank'" },
+      { word: "Line", meaning: "queue", real: false, explanation: "Germans say 'Schlange' (to stand in line = Schlange stehen)" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('anglicisms-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map((_, i) => i)
+        .filter(i => !mastered.includes(i) && !wrong.includes(i));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('anglicisms-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongIndices = wrong.slice();
+      const unseenIndices = unseen.slice();
+      const masteredIndices = mastered.slice();
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongIndices).slice(0, Math.min(10, wrongIndices.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenIndices).slice(0, Math.min(remaining, unseenIndices.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredIndices).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      const indices = selectSessionWords();
+      sessionWords = indices.map(i => ({ ...allWords[i], index: i }));
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.getElementById('wordDisplay').textContent = word.word;
+      document.getElementById('meaningDisplay').textContent = '= ' + word.meaning;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function checkAnswer(selectedReal) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selectedReal === word.real;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.real ? document.getElementById('btnReal') : document.getElementById('btnFake');
+      const selectedBtn = selectedReal ? document.getElementById('btnReal') : document.getElementById('btnFake');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = `Correct! ${word.explanation}`;
+
+        if (!mastered.includes(word.index)) {
+          mastered.push(word.index);
+          wrong = wrong.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = `Wrong! ${word.explanation}`;
+
+        if (!wrong.includes(word.index)) {
+          wrong.push(word.index);
+          mastered = mastered.filter(i => i !== word.index);
+          unseen = unseen.filter(i => i !== word.index);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 2500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('anglicisms-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map((_, i) => i);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === 'r' && !answered) {
+        checkAnswer(true);
+      } else if (key === 'f' && !answered) {
+        checkAnswer(false);
+      }
+    });
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+{
+  "generated": "2025-12-30T12:49:37.830Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Pferd",
+      "file": "Pferd",
+      "phrase": "ein schönes Pferd"
+    },
+    {
+      "word": "Pflanze",
+      "file": "Pflanze",
+      "phrase": "eine grüne Pflanze"
+    },
+    {
+      "word": "Pfanne",
+      "file": "Pfanne",
+      "phrase": "eine heiße Pfanne"
+    },
+    {
+      "word": "Pfeffer",
+      "file": "Pfeffer",
+      "phrase": "schwarzer Pfeffer"
+    },
+    {
+      "word": "Pfeil",
+      "file": "Pfeil",
+      "phrase": "ein spitzer Pfeil"
+    },
+    {
+      "word": "Pfund",
+      "file": "Pfund",
+      "phrase": "ein halbes Pfund"
+    },
+    {
+      "word": "Pflege",
+      "file": "Pflege",
+      "phrase": "gute Pflege"
+    },
+    {
+      "word": "Pflicht",
+      "file": "Pflicht",
+      "phrase": "eine wichtige Pflicht"
+    },
+    {
+      "word": "Pfad",
+      "file": "Pfad",
+      "phrase": "ein schmaler Pfad"
+    },
+    {
+      "word": "Pfarrer",
+      "file": "Pfarrer",
+      "phrase": "der alte Pfarrer"
+    },
+    {
+      "word": "Pfau",
+      "file": "Pfau",
+      "phrase": "ein bunter Pfau"
+    },
+    {
+      "word": "Pfeife",
+      "file": "Pfeife",
+      "phrase": "eine alte Pfeife"
+    },
+    {
+      "word": "pfeifen",
+      "file": "pfeifen",
+      "phrase": "laut pfeifen"
+    },
+    {
+      "word": "pflegen",
+      "file": "pflegen",
+      "phrase": "jemanden pflegen"
+    },
+    {
+      "word": "pflücken",
+      "file": "pfluecken",
+      "phrase": "Blumen pflücken"
+    },
+    {
+      "word": "Pfote",
+      "file": "Pfote",
+      "phrase": "eine große Pfote"
+    },
+    {
+      "word": "Pfropfen",
+      "file": "Pfropfen",
+      "phrase": "ein kleiner Pfropfen"
+    },
+    {
+      "word": "Pflaster",
+      "file": "Pflaster",
+      "phrase": "ein neues Pflaster"
+    },
+    {
+      "word": "Pflaume",
+      "file": "Pflaume",
+      "phrase": "eine reife Pflaume"
+    },
+    {
+      "word": "Pfingsten",
+      "file": "Pfingsten",
+      "phrase": "frohe Pfingsten"
+    },
+    {
+      "word": "pflanzen",
+      "file": "pflanzen",
+      "phrase": "Bäume pflanzen"
+    },
+    {
+      "word": "Pfennig",
+      "file": "Pfennig",
+      "phrase": "jeden Pfennig"
+    },
+    {
+      "word": "Pfütze",
+      "file": "Pfuetze",
+      "phrase": "eine tiefe Pfütze"
+    },
+    {
+      "word": "pfui",
+      "file": "pfui",
+      "phrase": "pfui Teufel"
+    },
+    {
+      "word": "Pflock",
+      "file": "Pflock",
+      "phrase": "ein stabiler Pflock"
+    },
+    {
+      "word": "Pfiff",
+      "file": "Pfiff",
+      "phrase": "ein lauter Pfiff"
+    },
+    {
+      "word": "Pforte",
+      "file": "Pforte",
+      "phrase": "die große Pforte"
+    },
+    {
+      "word": "Pfosten",
+      "file": "Pfosten",
+      "phrase": "ein hoher Pfosten"
+    },
+    {
+      "word": "Pflug",
+      "file": "Pflug",
+      "phrase": "ein alter Pflug"
+    },
+    {
+      "word": "pflügen",
+      "file": "pfluegen",
+      "phrase": "das Feld pflügen"
+    },
+    {
+      "word": "Apfel",
+      "file": "Apfel",
+      "phrase": "ein roter Apfel"
+    },
+    {
+      "word": "Kopf",
+      "file": "Kopf",
+      "phrase": "mein Kopf"
+    },
+    {
+      "word": "Kampf",
+      "file": "Kampf",
+      "phrase": "ein harter Kampf"
+    },
+    {
+      "word": "Topf",
+      "file": "Topf",
+      "phrase": "ein großer Topf"
+    },
+    {
+      "word": "Strumpf",
+      "file": "Strumpf",
+      "phrase": "ein warmer Strumpf"
+    },
+    {
+      "word": "Dampf",
+      "file": "Dampf",
+      "phrase": "heißer Dampf"
+    },
+    {
+      "word": "Zopf",
+      "file": "Zopf",
+      "phrase": "ein langer Zopf"
+    },
+    {
+      "word": "Sumpf",
+      "file": "Sumpf",
+      "phrase": "ein tiefer Sumpf"
+    },
+    {
+      "word": "Schopf",
+      "file": "Schopf",
+      "phrase": "ein voller Schopf"
+    },
+    {
+      "word": "Knopf",
+      "file": "Knopf",
+      "phrase": "ein kleiner Knopf"
+    },
+    {
+      "word": "Empfang",
+      "file": "Empfang",
+      "phrase": "ein freundlicher Empfang"
+    },
+    {
+      "word": "empfehlen",
+      "file": "empfehlen",
+      "phrase": "herzlich empfehlen"
+    },
+    {
+      "word": "empfinden",
+      "file": "empfinden",
+      "phrase": "stark empfinden"
+    },
+    {
+      "word": "empfangen",
+      "file": "empfangen",
+      "phrase": "Gäste empfangen"
+    },
+    {
+      "word": "kämpfen",
+      "file": "kaempfen",
+      "phrase": "mutig kämpfen"
+    },
+    {
+      "word": "klopfen",
+      "file": "klopfen",
+      "phrase": "leise klopfen"
+    },
+    {
+      "word": "stopfen",
+      "file": "stopfen",
+      "phrase": "den Sack stopfen"
+    },
+    {
+      "word": "tropfen",
+      "file": "tropfen",
+      "phrase": "langsam tropfen"
+    },
+    {
+      "word": "Tropfen",
+      "file": "Tropfen2",
+      "phrase": "ein kleiner Tropfen"
+    },
+    {
+      "word": "schöpfen",
+      "file": "schoepfen",
+      "phrase": "Wasser schöpfen"
+    },
+    {
+      "word": "hüpfen",
+      "file": "huepfen",
+      "phrase": "fröhlich hüpfen"
+    },
+    {
+      "word": "Kupfer",
+      "file": "Kupfer",
+      "phrase": "glänzendes Kupfer"
+    },
+    {
+      "word": "Gipfel",
+      "file": "Gipfel",
+      "phrase": "der hohe Gipfel"
+    },
+    {
+      "word": "Wipfel",
+      "file": "Wipfel",
+      "phrase": "im grünen Wipfel"
+    },
+    {
+      "word": "Kartoffel",
+      "file": "Kartoffel",
+      "phrase": "eine große Kartoffel"
+    },
+    {
+      "word": "schimpfen",
+      "file": "schimpfen",
+      "phrase": "laut schimpfen"
+    },
+    {
+      "word": "Schnupfen",
+      "file": "Schnupfen",
+      "phrase": "einen starken Schnupfen"
+    },
+    {
+      "word": "schlüpfen",
+      "file": "schluepfen",
+      "phrase": "schnell schlüpfen"
+    },
+    {
+      "word": "rümpfen",
+      "file": "ruempfen",
+      "phrase": "die Nase rümpfen"
+    },
+    {
+      "word": "Opfer",
+      "file": "Opfer",
+      "phrase": "ein großes Opfer"
+    },
+    {
+      "word": "Karpfen",
+      "file": "Karpfen",
+      "phrase": "ein frischer Karpfen"
+    },
+    {
+      "word": "Köpfchen",
+      "file": "Koepfchen",
+      "phrase": "ein kleines Köpfchen"
+    },
+    {
+      "word": "Äpfel",
+      "file": "Aepfel",
+      "phrase": "rote Äpfel"
+    },
+    {
+      "word": "Töpfe",
+      "file": "Toepfe",
+      "phrase": "viele Töpfe"
+    },
+    {
+      "word": "Köpfe",
+      "file": "Koepfe",
+      "phrase": "kluge Köpfe"
+    },
+    {
+      "word": "Knöpfe",
+      "file": "Knoepfe",
+      "phrase": "bunte Knöpfe"
+    },
+    {
+      "word": "Strümpfe",
+      "file": "Struempfe",
+      "phrase": "warme Strümpfe"
+    },
+    {
+      "word": "Sümpfe",
+      "file": "Suempfe",
+      "phrase": "dunkle Sümpfe"
+    },
+    {
+      "word": "Zöpfe",
+      "file": "Zoepfe",
+      "phrase": "lange Zöpfe"
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:03:24.634Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Hund",
+      "file": "Hund",
+      "phrase": "der treue Hund"
+    },
+    {
+      "word": "Kind",
+      "file": "Kind",
+      "phrase": "das kleine Kind"
+    },
+    {
+      "word": "Freund",
+      "file": "Freund",
+      "phrase": "mein bester Freund"
+    },
+    {
+      "word": "Mund",
+      "file": "Mund",
+      "phrase": "der offene Mund"
+    },
+    {
+      "word": "Wand",
+      "file": "Wand",
+      "phrase": "an der Wand"
+    },
+    {
+      "word": "Hand",
+      "file": "Hand",
+      "phrase": "meine rechte Hand"
+    },
+    {
+      "word": "Land",
+      "file": "Land",
+      "phrase": "ein schönes Land"
+    },
+    {
+      "word": "Bild",
+      "file": "Bild",
+      "phrase": "ein altes Bild"
+    },
+    {
+      "word": "Geld",
+      "file": "Geld",
+      "phrase": "viel Geld"
+    },
+    {
+      "word": "Feld",
+      "file": "Feld",
+      "phrase": "auf dem Feld"
+    },
+    {
+      "word": "Pferd",
+      "file": "Pferd",
+      "phrase": "ein schnelles Pferd"
+    },
+    {
+      "word": "Rad",
+      "file": "Rad",
+      "phrase": "das runde Rad"
+    },
+    {
+      "word": "Bad",
+      "file": "Bad",
+      "phrase": "ein warmes Bad"
+    },
+    {
+      "word": "Grad",
+      "file": "Grad",
+      "phrase": "zwanzig Grad"
+    },
+    {
+      "word": "lieb",
+      "file": "lieb",
+      "phrase": "sehr lieb"
+    },
+    {
+      "word": "Dieb",
+      "file": "Dieb",
+      "phrase": "der böse Dieb"
+    },
+    {
+      "word": "halb",
+      "file": "halb",
+      "phrase": "nur halb"
+    },
+    {
+      "word": "gelb",
+      "file": "gelb",
+      "phrase": "ganz gelb"
+    },
+    {
+      "word": "Korb",
+      "file": "Korb",
+      "phrase": "ein voller Korb"
+    },
+    {
+      "word": "Urlaub",
+      "file": "Urlaub",
+      "phrase": "im Urlaub"
+    },
+    {
+      "word": "Staub",
+      "file": "Staub",
+      "phrase": "viel Staub"
+    },
+    {
+      "word": "Laub",
+      "file": "Laub",
+      "phrase": "buntes Laub"
+    },
+    {
+      "word": "Tag",
+      "file": "Tag",
+      "phrase": "ein schöner Tag"
+    },
+    {
+      "word": "Weg",
+      "file": "Weg",
+      "phrase": "der lange Weg"
+    },
+    {
+      "word": "Zug",
+      "file": "Zug",
+      "phrase": "der schnelle Zug"
+    },
+    {
+      "word": "Flug",
+      "file": "Flug",
+      "phrase": "ein langer Flug"
+    },
+    {
+      "word": "Berg",
+      "file": "Berg",
+      "phrase": "ein hoher Berg"
+    },
+    {
+      "word": "Krieg",
+      "file": "Krieg",
+      "phrase": "im Krieg"
+    },
+    {
+      "word": "Sieg",
+      "file": "Sieg",
+      "phrase": "der große Sieg"
+    },
+    {
+      "word": "Schlag",
+      "file": "Schlag",
+      "phrase": "ein harter Schlag"
+    },
+    {
+      "word": "Betrug",
+      "file": "Betrug",
+      "phrase": "ein großer Betrug"
+    },
+    {
+      "word": "Erfolg",
+      "file": "Erfolg",
+      "phrase": "viel Erfolg"
+    },
+    {
+      "word": "Vertrag",
+      "file": "Vertrag",
+      "phrase": "der neue Vertrag"
+    },
+    {
+      "word": "Antrag",
+      "file": "Antrag",
+      "phrase": "ein wichtiger Antrag"
+    },
+    {
+      "word": "Verband",
+      "file": "Verband",
+      "phrase": "ein fester Verband"
+    },
+    {
+      "word": "Abend",
+      "file": "Abend",
+      "phrase": "guten Abend"
+    },
+    {
+      "word": "Jugend",
+      "file": "Jugend",
+      "phrase": "in der Jugend"
+    },
+    {
+      "word": "Werbung",
+      "file": "Werbung",
+      "phrase": "viel Werbung"
+    },
+    {
+      "word": "Zeitung",
+      "file": "Zeitung",
+      "phrase": "die heutige Zeitung"
+    },
+    {
+      "word": "Ordnung",
+      "file": "Ordnung",
+      "phrase": "in Ordnung"
+    },
+    {
+      "word": "Hunde",
+      "file": "Hunde",
+      "phrase": "die treuen Hunde"
+    },
+    {
+      "word": "Kinder",
+      "file": "Kinder",
+      "phrase": "die kleinen Kinder"
+    },
+    {
+      "word": "Freunde",
+      "file": "Freunde",
+      "phrase": "meine besten Freunde"
+    },
+    {
+      "word": "Hände",
+      "file": "Haende",
+      "phrase": "beide Hände"
+    },
+    {
+      "word": "Bilder",
+      "file": "Bilder",
+      "phrase": "alte Bilder"
+    },
+    {
+      "word": "Gelder",
+      "file": "Gelder",
+      "phrase": "öffentliche Gelder"
+    },
+    {
+      "word": "Pferde",
+      "file": "Pferde",
+      "phrase": "schnelle Pferde"
+    },
+    {
+      "word": "lieben",
+      "file": "lieben",
+      "phrase": "ich liebe dich"
+    },
+    {
+      "word": "Diebe",
+      "file": "Diebe",
+      "phrase": "die bösen Diebe"
+    },
+    {
+      "word": "gelbe",
+      "file": "gelbe",
+      "phrase": "die gelbe Blume"
+    },
+    {
+      "word": "halbe",
+      "file": "halbe",
+      "phrase": "die halbe Stunde"
+    },
+    {
+      "word": "geben",
+      "file": "geben",
+      "phrase": "etwas geben"
+    },
+    {
+      "word": "leben",
+      "file": "leben",
+      "phrase": "gut leben"
+    },
+    {
+      "word": "Tage",
+      "file": "Tage",
+      "phrase": "alle Tage"
+    },
+    {
+      "word": "Wege",
+      "file": "Wege",
+      "phrase": "neue Wege"
+    },
+    {
+      "word": "Berge",
+      "file": "Berge",
+      "phrase": "hohe Berge"
+    },
+    {
+      "word": "fragen",
+      "file": "fragen",
+      "phrase": "etwas fragen"
+    },
+    {
+      "word": "tragen",
+      "file": "tragen",
+      "phrase": "schwer tragen"
+    },
+    {
+      "word": "sagen",
+      "file": "sagen",
+      "phrase": "etwas sagen"
+    },
+    {
+      "word": "fliegen",
+      "file": "fliegen",
+      "phrase": "hoch fliegen"
+    },
+    {
+      "word": "siegen",
+      "file": "siegen",
+      "phrase": "immer siegen"
+    },
+    {
+      "word": "Erfolge",
+      "file": "Erfolge",
+      "phrase": "große Erfolge"
+    },
+    {
+      "word": "Abende",
+      "file": "Abende",
+      "phrase": "schöne Abende"
+    },
+    {
+      "word": "Räder",
+      "file": "Raeder",
+      "phrase": "große Räder"
+    },
+    {
+      "word": "Bäder",
+      "file": "Baeder",
+      "phrase": "warme Bäder"
+    },
+    {
+      "word": "Länder",
+      "file": "Laender",
+      "phrase": "viele Länder"
+    },
+    {
+      "word": "Wände",
+      "file": "Waende",
+      "phrase": "weiße Wände"
+    },
+    {
+      "word": "Felder",
+      "file": "Felder",
+      "phrase": "grüne Felder"
+    },
+    {
+      "word": "binden",
+      "file": "binden",
+      "phrase": "fest binden"
+    },
+    {
+      "word": "finden",
+      "file": "finden",
+      "phrase": "etwas finden"
+    },
+    {
+      "word": "werden",
+      "file": "werden",
+      "phrase": "besser werden"
+    },
+    {
+      "word": "reden",
+      "file": "reden",
+      "phrase": "viel reden"
+    },
+    {
+      "word": "laden",
+      "file": "laden",
+      "phrase": "etwas laden"
+    },
+    {
+      "word": "baden",
+      "file": "baden",
+      "phrase": "im Meer baden"
+    },
+    {
+      "word": "billig",
+      "file": "billig",
+      "phrase": "sehr billig"
+    },
+    {
+      "word": "fertig",
+      "file": "fertig",
+      "phrase": "fast fertig"
+    },
+    {
+      "word": "fleißig",
+      "file": "fleissig",
+      "phrase": "sehr fleißig"
+    },
+    {
+      "word": "ruhig",
+      "file": "ruhig",
+      "phrase": "ganz ruhig"
+    },
+    {
+      "word": "lustig",
+      "file": "lustig",
+      "phrase": "sehr lustig"
+    },
+    {
+      "word": "Munde",
+      "file": "Munde",
+      "phrase": "im Munde"
+    }
+  ]
+}

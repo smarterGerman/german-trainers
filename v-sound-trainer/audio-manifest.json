@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:59:43.444Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Vater",
+      "file": "Vater",
+      "phrase": "mein Vater"
+    },
+    {
+      "word": "Vogel",
+      "file": "Vogel",
+      "phrase": "ein kleiner Vogel"
+    },
+    {
+      "word": "viel",
+      "file": "viel",
+      "phrase": "sehr viel"
+    },
+    {
+      "word": "von",
+      "file": "von",
+      "phrase": "von mir"
+    },
+    {
+      "word": "vor",
+      "file": "vor",
+      "phrase": "vor dem Haus"
+    },
+    {
+      "word": "voll",
+      "file": "voll",
+      "phrase": "ganz voll"
+    },
+    {
+      "word": "vier",
+      "file": "vier",
+      "phrase": "die Zahl vier"
+    },
+    {
+      "word": "vielleicht",
+      "file": "vielleicht",
+      "phrase": "ja vielleicht"
+    },
+    {
+      "word": "Volk",
+      "file": "Volk",
+      "phrase": "das deutsche Volk"
+    },
+    {
+      "word": "verstehen",
+      "file": "verstehen",
+      "phrase": "gut verstehen"
+    },
+    {
+      "word": "vergessen",
+      "file": "vergessen",
+      "phrase": "nicht vergessen"
+    },
+    {
+      "word": "verlieren",
+      "file": "verlieren",
+      "phrase": "etwas verlieren"
+    },
+    {
+      "word": "versprechen",
+      "file": "versprechen",
+      "phrase": "fest versprechen"
+    },
+    {
+      "word": "versuchen",
+      "file": "versuchen",
+      "phrase": "es versuchen"
+    },
+    {
+      "word": "Verkehr",
+      "file": "Verkehr",
+      "phrase": "viel Verkehr"
+    },
+    {
+      "word": "Vertrag",
+      "file": "Vertrag",
+      "phrase": "ein neuer Vertrag"
+    },
+    {
+      "word": "Verein",
+      "file": "Verein",
+      "phrase": "ein großer Verein"
+    },
+    {
+      "word": "Vergangenheit",
+      "file": "Vergangenheit",
+      "phrase": "die Vergangenheit"
+    },
+    {
+      "word": "Verantwortung",
+      "file": "Verantwortung",
+      "phrase": "große Verantwortung"
+    },
+    {
+      "word": "Verbindung",
+      "file": "Verbindung",
+      "phrase": "eine gute Verbindung"
+    },
+    {
+      "word": "Vorschlag",
+      "file": "Vorschlag",
+      "phrase": "ein guter Vorschlag"
+    },
+    {
+      "word": "Vorsicht",
+      "file": "Vorsicht",
+      "phrase": "Vorsicht bitte"
+    },
+    {
+      "word": "Vorteil",
+      "file": "Vorteil",
+      "phrase": "ein großer Vorteil"
+    },
+    {
+      "word": "Vorstellung",
+      "file": "Vorstellung",
+      "phrase": "die Vorstellung"
+    },
+    {
+      "word": "Vorname",
+      "file": "Vorname",
+      "phrase": "mein Vorname"
+    },
+    {
+      "word": "vorne",
+      "file": "vorne",
+      "phrase": "ganz vorne"
+    },
+    {
+      "word": "vorher",
+      "file": "vorher",
+      "phrase": "kurz vorher"
+    },
+    {
+      "word": "vorbei",
+      "file": "vorbei",
+      "phrase": "schon vorbei"
+    },
+    {
+      "word": "vorstellen",
+      "file": "vorstellen",
+      "phrase": "sich vorstellen"
+    },
+    {
+      "word": "vorkommen",
+      "file": "vorkommen",
+      "phrase": "oft vorkommen"
+    },
+    {
+      "word": "Vetter",
+      "file": "Vetter",
+      "phrase": "mein Vetter"
+    },
+    {
+      "word": "Vieh",
+      "file": "Vieh",
+      "phrase": "das Vieh"
+    },
+    {
+      "word": "völlig",
+      "file": "voellig",
+      "phrase": "völlig richtig"
+    },
+    {
+      "word": "vierzehn",
+      "file": "vierzehn",
+      "phrase": "genau vierzehn"
+    },
+    {
+      "word": "vierzig",
+      "file": "vierzig",
+      "phrase": "schon vierzig"
+    },
+    {
+      "word": "Viertel",
+      "file": "Viertel",
+      "phrase": "ein Viertel"
+    },
+    {
+      "word": "verbieten",
+      "file": "verbieten",
+      "phrase": "streng verbieten"
+    },
+    {
+      "word": "verbringen",
+      "file": "verbringen",
+      "phrase": "Zeit verbringen"
+    },
+    {
+      "word": "verdienen",
+      "file": "verdienen",
+      "phrase": "Geld verdienen"
+    },
+    {
+      "word": "vereinbaren",
+      "file": "vereinbaren",
+      "phrase": "einen Termin vereinbaren"
+    },
+    {
+      "word": "Vase",
+      "file": "Vase",
+      "phrase": "eine schöne Vase"
+    },
+    {
+      "word": "Villa",
+      "file": "Villa",
+      "phrase": "eine große Villa"
+    },
+    {
+      "word": "Visum",
+      "file": "Visum",
+      "phrase": "das Visum"
+    },
+    {
+      "word": "Verb",
+      "file": "Verb",
+      "phrase": "ein deutsches Verb"
+    },
+    {
+      "word": "November",
+      "file": "November",
+      "phrase": "im November"
+    },
+    {
+      "word": "Vanille",
+      "file": "Vanille",
+      "phrase": "mit Vanille"
+    },
+    {
+      "word": "Vampir",
+      "file": "Vampir",
+      "phrase": "ein echter Vampir"
+    },
+    {
+      "word": "Vakuum",
+      "file": "Vakuum",
+      "phrase": "im Vakuum"
+    },
+    {
+      "word": "Ventil",
+      "file": "Ventil",
+      "phrase": "das Ventil"
+    },
+    {
+      "word": "Video",
+      "file": "Video",
+      "phrase": "ein lustiges Video"
+    },
+    {
+      "word": "Vitamin",
+      "file": "Vitamin",
+      "phrase": "viel Vitamin"
+    },
+    {
+      "word": "Violine",
+      "file": "Violine",
+      "phrase": "die Violine"
+    },
+    {
+      "word": "Vulkan",
+      "file": "Vulkan",
+      "phrase": "ein aktiver Vulkan"
+    },
+    {
+      "word": "Vegetation",
+      "file": "Vegetation",
+      "phrase": "die Vegetation"
+    },
+    {
+      "word": "Ventilator",
+      "file": "Ventilator",
+      "phrase": "der Ventilator"
+    },
+    {
+      "word": "Veteran",
+      "file": "Veteran",
+      "phrase": "ein alter Veteran"
+    },
+    {
+      "word": "Vietnam",
+      "file": "Vietnam",
+      "phrase": "aus Vietnam"
+    },
+    {
+      "word": "Vibration",
+      "file": "Vibration",
+      "phrase": "starke Vibration"
+    },
+    {
+      "word": "violett",
+      "file": "violett",
+      "phrase": "ganz violett"
+    },
+    {
+      "word": "Virus",
+      "file": "Virus",
+      "phrase": "ein gefährlicher Virus"
+    },
+    {
+      "word": "Vision",
+      "file": "Vision",
+      "phrase": "eine klare Vision"
+    },
+    {
+      "word": "vital",
+      "file": "vital",
+      "phrase": "sehr vital"
+    },
+    {
+      "word": "Vokal",
+      "file": "Vokal",
+      "phrase": "ein langer Vokal"
+    },
+    {
+      "word": "Volumen",
+      "file": "Volumen",
+      "phrase": "großes Volumen"
+    },
+    {
+      "word": "Revolution",
+      "file": "Revolution",
+      "phrase": "die Revolution"
+    },
+    {
+      "word": "Universität",
+      "file": "Universitaet",
+      "phrase": "an der Universität"
+    },
+    {
+      "word": "Kurve",
+      "file": "Kurve",
+      "phrase": "eine scharfe Kurve"
+    },
+    {
+      "word": "Nerven",
+      "file": "Nerven",
+      "phrase": "starke Nerven"
+    },
+    {
+      "word": "Sklave",
+      "file": "Sklave",
+      "phrase": "ein Sklave"
+    },
+    {
+      "word": "Larve",
+      "file": "Larve",
+      "phrase": "eine kleine Larve"
+    },
+    {
+      "word": "Olive",
+      "file": "Olive",
+      "phrase": "eine grüne Olive"
+    },
+    {
+      "word": "aktiv",
+      "file": "aktiv",
+      "phrase": "sehr aktiv"
+    },
+    {
+      "word": "passiv",
+      "file": "passiv",
+      "phrase": "ganz passiv"
+    },
+    {
+      "word": "privat",
+      "file": "privat",
+      "phrase": "streng privat"
+    },
+    {
+      "word": "positiv",
+      "file": "positiv",
+      "phrase": "sehr positiv"
+    },
+    {
+      "word": "negativ",
+      "file": "negativ",
+      "phrase": "leider negativ"
+    },
+    {
+      "word": "Niveau",
+      "file": "Niveau",
+      "phrase": "hohes Niveau"
+    },
+    {
+      "word": "naiv",
+      "file": "naiv",
+      "phrase": "zu naiv"
+    },
+    {
+      "word": "Ventil",
+      "file": "Ventil2",
+      "phrase": "ein kleines Ventil"
+    },
+    {
+      "word": "nervös",
+      "file": "nervoes",
+      "phrase": "sehr nervös"
+    }
+  ]
+}

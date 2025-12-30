@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T13:20:49.999Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Nation",
+      "file": "Nation",
+      "phrase": "eine große Nation"
+    },
+    {
+      "word": "Situation",
+      "file": "Situation",
+      "phrase": "die aktuelle Situation"
+    },
+    {
+      "word": "Information",
+      "file": "Information",
+      "phrase": "wichtige Information"
+    },
+    {
+      "word": "Funktion",
+      "file": "Funktion",
+      "phrase": "eine wichtige Funktion"
+    },
+    {
+      "word": "Reaktion",
+      "file": "Reaktion",
+      "phrase": "eine schnelle Reaktion"
+    },
+    {
+      "word": "Produktion",
+      "file": "Produktion",
+      "phrase": "die moderne Produktion"
+    },
+    {
+      "word": "Tradition",
+      "file": "Tradition",
+      "phrase": "eine alte Tradition"
+    },
+    {
+      "word": "Position",
+      "file": "Position",
+      "phrase": "eine gute Position"
+    },
+    {
+      "word": "Kommunikation",
+      "file": "Kommunikation",
+      "phrase": "direkte Kommunikation"
+    },
+    {
+      "word": "Motivation",
+      "file": "Motivation",
+      "phrase": "hohe Motivation"
+    },
+    {
+      "word": "Konzentration",
+      "file": "Konzentration",
+      "phrase": "volle Konzentration"
+    },
+    {
+      "word": "Organisation",
+      "file": "Organisation",
+      "phrase": "eine große Organisation"
+    },
+    {
+      "word": "Demonstration",
+      "file": "Demonstration",
+      "phrase": "eine friedliche Demonstration"
+    },
+    {
+      "word": "Konstruktion",
+      "file": "Konstruktion",
+      "phrase": "solide Konstruktion"
+    },
+    {
+      "word": "Redaktion",
+      "file": "Redaktion",
+      "phrase": "die neue Redaktion"
+    },
+    {
+      "word": "Aktion",
+      "file": "Aktion",
+      "phrase": "eine tolle Aktion"
+    },
+    {
+      "word": "Attraktion",
+      "file": "Attraktion",
+      "phrase": "die größte Attraktion"
+    },
+    {
+      "word": "Direktion",
+      "file": "Direktion",
+      "phrase": "die neue Direktion"
+    },
+    {
+      "word": "Infektion",
+      "file": "Infektion",
+      "phrase": "eine schwere Infektion"
+    },
+    {
+      "word": "Inspektion",
+      "file": "Inspektion",
+      "phrase": "eine gründliche Inspektion"
+    },
+    {
+      "word": "Kollektion",
+      "file": "Kollektion",
+      "phrase": "die neue Kollektion"
+    },
+    {
+      "word": "Korrektion",
+      "file": "Korrektion",
+      "phrase": "eine kleine Korrektion"
+    },
+    {
+      "word": "Lektion",
+      "file": "Lektion",
+      "phrase": "eine wichtige Lektion"
+    },
+    {
+      "word": "Perfektion",
+      "file": "Perfektion",
+      "phrase": "absolute Perfektion"
+    },
+    {
+      "word": "Sektion",
+      "file": "Sektion",
+      "phrase": "die medizinische Sektion"
+    },
+    {
+      "word": "Selektion",
+      "file": "Selektion",
+      "phrase": "eine strenge Selektion"
+    },
+    {
+      "word": "Rezeption",
+      "file": "Rezeption",
+      "phrase": "an der Rezeption"
+    },
+    {
+      "word": "Konsumtion",
+      "file": "Konsumtion",
+      "phrase": "die hohe Konsumtion"
+    },
+    {
+      "word": "Evolution",
+      "file": "Evolution",
+      "phrase": "die menschliche Evolution"
+    },
+    {
+      "word": "Revolution",
+      "file": "Revolution",
+      "phrase": "eine industrielle Revolution"
+    },
+    {
+      "word": "Sensation",
+      "file": "Sensation",
+      "phrase": "eine echte Sensation"
+    },
+    {
+      "word": "Frustration",
+      "file": "Frustration",
+      "phrase": "große Frustration"
+    },
+    {
+      "word": "Illustration",
+      "file": "Illustration",
+      "phrase": "eine schöne Illustration"
+    },
+    {
+      "word": "Meditation",
+      "file": "Meditation",
+      "phrase": "tiefe Meditation"
+    },
+    {
+      "word": "Publikation",
+      "file": "Publikation",
+      "phrase": "eine wichtige Publikation"
+    },
+    {
+      "word": "Qualifikation",
+      "file": "Qualifikation",
+      "phrase": "die nötige Qualifikation"
+    },
+    {
+      "word": "Zivilisation",
+      "file": "Zivilisation",
+      "phrase": "die moderne Zivilisation"
+    },
+    {
+      "word": "Imagination",
+      "file": "Imagination",
+      "phrase": "lebhafte Imagination"
+    },
+    {
+      "word": "Integration",
+      "file": "Integration",
+      "phrase": "erfolgreiche Integration"
+    },
+    {
+      "word": "Kooperation",
+      "file": "Kooperation",
+      "phrase": "enge Kooperation"
+    },
+    {
+      "word": "Vision",
+      "file": "Vision",
+      "phrase": "eine klare Vision"
+    },
+    {
+      "word": "Version",
+      "file": "Version",
+      "phrase": "die neue Version"
+    },
+    {
+      "word": "Explosion",
+      "file": "Explosion",
+      "phrase": "eine laute Explosion"
+    },
+    {
+      "word": "Dimension",
+      "file": "Dimension",
+      "phrase": "eine neue Dimension"
+    },
+    {
+      "word": "Pension",
+      "file": "Pension",
+      "phrase": "eine kleine Pension"
+    },
+    {
+      "word": "Diskussion",
+      "file": "Diskussion",
+      "phrase": "eine lange Diskussion"
+    },
+    {
+      "word": "Emission",
+      "file": "Emission",
+      "phrase": "hohe Emission"
+    },
+    {
+      "word": "Mission",
+      "file": "Mission",
+      "phrase": "eine geheime Mission"
+    },
+    {
+      "word": "Kommission",
+      "file": "Kommission",
+      "phrase": "die europäische Kommission"
+    },
+    {
+      "word": "Passion",
+      "file": "Passion",
+      "phrase": "mit großer Passion"
+    },
+    {
+      "word": "Session",
+      "file": "Session",
+      "phrase": "eine lange Session"
+    },
+    {
+      "word": "Aggression",
+      "file": "Aggression",
+      "phrase": "ohne Aggression"
+    },
+    {
+      "word": "Depression",
+      "file": "Depression",
+      "phrase": "schwere Depression"
+    },
+    {
+      "word": "Expression",
+      "file": "Expression",
+      "phrase": "freie Expression"
+    },
+    {
+      "word": "Impression",
+      "file": "Impression",
+      "phrase": "ein starker Impression"
+    },
+    {
+      "word": "Kompression",
+      "file": "Kompression",
+      "phrase": "hohe Kompression"
+    },
+    {
+      "word": "Progression",
+      "file": "Progression",
+      "phrase": "langsame Progression"
+    },
+    {
+      "word": "Regression",
+      "file": "Regression",
+      "phrase": "eine leichte Regression"
+    },
+    {
+      "word": "Rezession",
+      "file": "Rezession",
+      "phrase": "die wirtschaftliche Rezession"
+    },
+    {
+      "word": "Expansion",
+      "file": "Expansion",
+      "phrase": "schnelle Expansion"
+    },
+    {
+      "word": "Fusion",
+      "file": "Fusion",
+      "phrase": "eine große Fusion"
+    },
+    {
+      "word": "Illusion",
+      "file": "Illusion",
+      "phrase": "eine optische Illusion"
+    },
+    {
+      "word": "Infusion",
+      "file": "Infusion",
+      "phrase": "eine Infusion bekommen"
+    },
+    {
+      "word": "Konfusion",
+      "file": "Konfusion",
+      "phrase": "totale Konfusion"
+    },
+    {
+      "word": "Transfusion",
+      "file": "Transfusion",
+      "phrase": "eine Bluttransfusion"
+    },
+    {
+      "word": "Erosion",
+      "file": "Erosion",
+      "phrase": "starke Erosion"
+    },
+    {
+      "word": "Korrosion",
+      "file": "Korrosion",
+      "phrase": "Schutz vor Korrosion"
+    },
+    {
+      "word": "Konversion",
+      "file": "Konversion",
+      "phrase": "eine schnelle Konversion"
+    },
+    {
+      "word": "Provision",
+      "file": "Provision",
+      "phrase": "eine hohe Provision"
+    },
+    {
+      "word": "Revision",
+      "file": "Revision",
+      "phrase": "eine gründliche Revision"
+    },
+    {
+      "word": "Exkursion",
+      "file": "Exkursion",
+      "phrase": "eine interessante Exkursion"
+    },
+    {
+      "word": "Invasion",
+      "file": "Invasion",
+      "phrase": "eine militärische Invasion"
+    },
+    {
+      "word": "Occasion",
+      "file": "Occasion",
+      "phrase": "eine besondere Occasion"
+    },
+    {
+      "word": "Evasion",
+      "file": "Evasion",
+      "phrase": "Steuer-Evasion"
+    },
+    {
+      "word": "Implosion",
+      "file": "Implosion",
+      "phrase": "eine kontrollierte Implosion"
+    },
+    {
+      "word": "Transmission",
+      "file": "Transmission",
+      "phrase": "automatische Transmission"
+    },
+    {
+      "word": "Emulsion",
+      "file": "Emulsion",
+      "phrase": "eine stabile Emulsion"
+    },
+    {
+      "word": "Immersion",
+      "file": "Immersion",
+      "phrase": "totale Immersion"
+    },
+    {
+      "word": "Submersion",
+      "file": "Submersion",
+      "phrase": "langsame Submersion"
+    },
+    {
+      "word": "Dispersion",
+      "file": "Dispersion",
+      "phrase": "gleichmäßige Dispersion"
+    }
+  ]
+}

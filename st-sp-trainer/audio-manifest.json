@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:33:01.261Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Stadt",
+      "file": "Stadt",
+      "phrase": "die große Stadt"
+    },
+    {
+      "word": "Straße",
+      "file": "Strasse",
+      "phrase": "die lange Straße"
+    },
+    {
+      "word": "stark",
+      "file": "stark",
+      "phrase": "sehr stark"
+    },
+    {
+      "word": "Stein",
+      "file": "Stein",
+      "phrase": "ein großer Stein"
+    },
+    {
+      "word": "stehen",
+      "file": "stehen",
+      "phrase": "hier stehen"
+    },
+    {
+      "word": "Stelle",
+      "file": "Stelle",
+      "phrase": "eine gute Stelle"
+    },
+    {
+      "word": "Stimme",
+      "file": "Stimme",
+      "phrase": "eine laute Stimme"
+    },
+    {
+      "word": "Stock",
+      "file": "Stock",
+      "phrase": "im ersten Stock"
+    },
+    {
+      "word": "Strom",
+      "file": "Strom",
+      "phrase": "der elektrische Strom"
+    },
+    {
+      "word": "Stück",
+      "file": "Stueck",
+      "phrase": "ein kleines Stück"
+    },
+    {
+      "word": "Spiel",
+      "file": "Spiel",
+      "phrase": "ein schönes Spiel"
+    },
+    {
+      "word": "sprechen",
+      "file": "sprechen",
+      "phrase": "laut sprechen"
+    },
+    {
+      "word": "Sprache",
+      "file": "Sprache",
+      "phrase": "eine neue Sprache"
+    },
+    {
+      "word": "spät",
+      "file": "spaet",
+      "phrase": "sehr spät"
+    },
+    {
+      "word": "Sport",
+      "file": "Sport",
+      "phrase": "viel Sport"
+    },
+    {
+      "word": "Spaß",
+      "file": "Spass",
+      "phrase": "viel Spaß"
+    },
+    {
+      "word": "sparen",
+      "file": "sparen",
+      "phrase": "Geld sparen"
+    },
+    {
+      "word": "spielen",
+      "file": "spielen",
+      "phrase": "Fußball spielen"
+    },
+    {
+      "word": "Spiegel",
+      "file": "Spiegel",
+      "phrase": "ein großer Spiegel"
+    },
+    {
+      "word": "Spinne",
+      "file": "Spinne",
+      "phrase": "eine kleine Spinne"
+    },
+    {
+      "word": "verstehen",
+      "file": "verstehen",
+      "phrase": "gut verstehen"
+    },
+    {
+      "word": "bestellen",
+      "file": "bestellen",
+      "phrase": "etwas bestellen"
+    },
+    {
+      "word": "entstehen",
+      "file": "entstehen",
+      "phrase": "Probleme entstehen"
+    },
+    {
+      "word": "vorstellen",
+      "file": "vorstellen",
+      "phrase": "sich vorstellen"
+    },
+    {
+      "word": "anstatt",
+      "file": "anstatt",
+      "phrase": "anstatt dessen"
+    },
+    {
+      "word": "besprechen",
+      "file": "besprechen",
+      "phrase": "das besprechen"
+    },
+    {
+      "word": "versprechen",
+      "file": "versprechen",
+      "phrase": "das versprechen"
+    },
+    {
+      "word": "entsprechen",
+      "file": "entsprechen",
+      "phrase": "dem entsprechen"
+    },
+    {
+      "word": "Stuhl",
+      "file": "Stuhl",
+      "phrase": "ein bequemer Stuhl"
+    },
+    {
+      "word": "Studium",
+      "file": "Studium",
+      "phrase": "das Studium"
+    },
+    {
+      "word": "studieren",
+      "file": "studieren",
+      "phrase": "Medizin studieren"
+    },
+    {
+      "word": "Stern",
+      "file": "Stern",
+      "phrase": "ein heller Stern"
+    },
+    {
+      "word": "sterben",
+      "file": "sterben",
+      "phrase": "niemals sterben"
+    },
+    {
+      "word": "Steuer",
+      "file": "Steuer",
+      "phrase": "hohe Steuer"
+    },
+    {
+      "word": "stellen",
+      "file": "stellen",
+      "phrase": "eine Frage stellen"
+    },
+    {
+      "word": "stoppen",
+      "file": "stoppen",
+      "phrase": "sofort stoppen"
+    },
+    {
+      "word": "stolz",
+      "file": "stolz",
+      "phrase": "sehr stolz"
+    },
+    {
+      "word": "Strand",
+      "file": "Strand",
+      "phrase": "am Strand"
+    },
+    {
+      "word": "Sprung",
+      "file": "Sprung",
+      "phrase": "ein großer Sprung"
+    },
+    {
+      "word": "Spruch",
+      "file": "Spruch",
+      "phrase": "ein guter Spruch"
+    },
+    {
+      "word": "fest",
+      "file": "fest",
+      "phrase": "ganz fest"
+    },
+    {
+      "word": "Gast",
+      "file": "Gast",
+      "phrase": "ein netter Gast"
+    },
+    {
+      "word": "Last",
+      "file": "Last",
+      "phrase": "eine schwere Last"
+    },
+    {
+      "word": "Lust",
+      "file": "Lust",
+      "phrase": "große Lust"
+    },
+    {
+      "word": "Kunst",
+      "file": "Kunst",
+      "phrase": "moderne Kunst"
+    },
+    {
+      "word": "Wurst",
+      "file": "Wurst",
+      "phrase": "eine gute Wurst"
+    },
+    {
+      "word": "Durst",
+      "file": "Durst",
+      "phrase": "großer Durst"
+    },
+    {
+      "word": "bist",
+      "file": "bist",
+      "phrase": "du bist"
+    },
+    {
+      "word": "ist",
+      "file": "ist",
+      "phrase": "es ist"
+    },
+    {
+      "word": "fast",
+      "file": "fast",
+      "phrase": "fast fertig"
+    },
+    {
+      "word": "Wespe",
+      "file": "Wespe",
+      "phrase": "eine kleine Wespe"
+    },
+    {
+      "word": "Kasper",
+      "file": "Kasper",
+      "phrase": "der lustige Kasper"
+    },
+    {
+      "word": "Knospe",
+      "file": "Knospe",
+      "phrase": "eine junge Knospe"
+    },
+    {
+      "word": "Fenster",
+      "file": "Fenster",
+      "phrase": "das offene Fenster"
+    },
+    {
+      "word": "Schwester",
+      "file": "Schwester",
+      "phrase": "meine Schwester"
+    },
+    {
+      "word": "Meister",
+      "file": "Meister",
+      "phrase": "der alte Meister"
+    },
+    {
+      "word": "Küste",
+      "file": "Kueste",
+      "phrase": "an der Küste"
+    },
+    {
+      "word": "Liste",
+      "file": "Liste",
+      "phrase": "eine lange Liste"
+    },
+    {
+      "word": "Westen",
+      "file": "Westen",
+      "phrase": "im Westen"
+    },
+    {
+      "word": "Osten",
+      "file": "Osten",
+      "phrase": "im Osten"
+    },
+    {
+      "word": "kosten",
+      "file": "kosten",
+      "phrase": "viel kosten"
+    },
+    {
+      "word": "Kasten",
+      "file": "Kasten",
+      "phrase": "ein großer Kasten"
+    },
+    {
+      "word": "Posten",
+      "file": "Posten",
+      "phrase": "ein wichtiger Posten"
+    },
+    {
+      "word": "Frost",
+      "file": "Frost",
+      "phrase": "starker Frost"
+    },
+    {
+      "word": "Rost",
+      "file": "Rost",
+      "phrase": "viel Rost"
+    },
+    {
+      "word": "Post",
+      "file": "Post",
+      "phrase": "die Post kommt"
+    },
+    {
+      "word": "Obst",
+      "file": "Obst",
+      "phrase": "frisches Obst"
+    },
+    {
+      "word": "selbst",
+      "file": "selbst",
+      "phrase": "ich selbst"
+    },
+    {
+      "word": "sonst",
+      "file": "sonst",
+      "phrase": "sonst nichts"
+    },
+    {
+      "word": "ernst",
+      "file": "ernst",
+      "phrase": "ganz ernst"
+    },
+    {
+      "word": "hast",
+      "file": "hast",
+      "phrase": "du hast"
+    },
+    {
+      "word": "musst",
+      "file": "musst",
+      "phrase": "du musst"
+    },
+    {
+      "word": "kannst",
+      "file": "kannst",
+      "phrase": "du kannst"
+    },
+    {
+      "word": "willst",
+      "file": "willst",
+      "phrase": "du willst"
+    },
+    {
+      "word": "sollst",
+      "file": "sollst",
+      "phrase": "du sollst"
+    },
+    {
+      "word": "Hast",
+      "file": "Hast2",
+      "phrase": "die große Hast"
+    },
+    {
+      "word": "Mast",
+      "file": "Mast",
+      "phrase": "ein hoher Mast"
+    },
+    {
+      "word": "Brust",
+      "file": "Brust",
+      "phrase": "die breite Brust"
+    },
+    {
+      "word": "Frist",
+      "file": "Frist",
+      "phrase": "eine kurze Frist"
+    },
+    {
+      "word": "Geist",
+      "file": "Geist",
+      "phrase": "ein böser Geist"
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:21:49.476Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "rot",
+      "file": "rot",
+      "phrase": "ganz rot"
+    },
+    {
+      "word": "Regen",
+      "file": "Regen",
+      "phrase": "starker Regen"
+    },
+    {
+      "word": "reisen",
+      "file": "reisen",
+      "phrase": "gern reisen"
+    },
+    {
+      "word": "richtig",
+      "file": "richtig",
+      "phrase": "ganz richtig"
+    },
+    {
+      "word": "rufen",
+      "file": "rufen",
+      "phrase": "laut rufen"
+    },
+    {
+      "word": "ruhig",
+      "file": "ruhig",
+      "phrase": "ganz ruhig"
+    },
+    {
+      "word": "Reis",
+      "file": "Reis",
+      "phrase": "weißer Reis"
+    },
+    {
+      "word": "Recht",
+      "file": "Recht",
+      "phrase": "das Recht"
+    },
+    {
+      "word": "Rad",
+      "file": "Rad",
+      "phrase": "ein großes Rad"
+    },
+    {
+      "word": "Raum",
+      "file": "Raum",
+      "phrase": "ein großer Raum"
+    },
+    {
+      "word": "Brot",
+      "file": "Brot",
+      "phrase": "frisches Brot"
+    },
+    {
+      "word": "Bruder",
+      "file": "Bruder",
+      "phrase": "mein Bruder"
+    },
+    {
+      "word": "braun",
+      "file": "braun",
+      "phrase": "ganz braun"
+    },
+    {
+      "word": "bringen",
+      "file": "bringen",
+      "phrase": "etwas bringen"
+    },
+    {
+      "word": "Brille",
+      "file": "Brille",
+      "phrase": "meine Brille"
+    },
+    {
+      "word": "fragen",
+      "file": "fragen",
+      "phrase": "etwas fragen"
+    },
+    {
+      "word": "Frau",
+      "file": "Frau",
+      "phrase": "die Frau"
+    },
+    {
+      "word": "frei",
+      "file": "frei",
+      "phrase": "ganz frei"
+    },
+    {
+      "word": "Freund",
+      "file": "Freund",
+      "phrase": "mein Freund"
+    },
+    {
+      "word": "froh",
+      "file": "froh",
+      "phrase": "sehr froh"
+    },
+    {
+      "word": "grün",
+      "file": "gruen",
+      "phrase": "ganz grün"
+    },
+    {
+      "word": "groß",
+      "file": "gross",
+      "phrase": "sehr groß"
+    },
+    {
+      "word": "Gruppe",
+      "file": "Gruppe",
+      "phrase": "eine Gruppe"
+    },
+    {
+      "word": "Gras",
+      "file": "Gras",
+      "phrase": "grünes Gras"
+    },
+    {
+      "word": "Grund",
+      "file": "Grund",
+      "phrase": "der Grund"
+    },
+    {
+      "word": "Preis",
+      "file": "Preis",
+      "phrase": "der Preis"
+    },
+    {
+      "word": "Problem",
+      "file": "Problem",
+      "phrase": "ein Problem"
+    },
+    {
+      "word": "Programm",
+      "file": "Programm",
+      "phrase": "das Programm"
+    },
+    {
+      "word": "Prozent",
+      "file": "Prozent",
+      "phrase": "zehn Prozent"
+    },
+    {
+      "word": "tragen",
+      "file": "tragen",
+      "phrase": "schwer tragen"
+    },
+    {
+      "word": "treffen",
+      "file": "treffen",
+      "phrase": "sich treffen"
+    },
+    {
+      "word": "trinken",
+      "file": "trinken",
+      "phrase": "etwas trinken"
+    },
+    {
+      "word": "trocken",
+      "file": "trocken",
+      "phrase": "ganz trocken"
+    },
+    {
+      "word": "Traum",
+      "file": "Traum",
+      "phrase": "ein Traum"
+    },
+    {
+      "word": "drei",
+      "file": "drei",
+      "phrase": "genau drei"
+    },
+    {
+      "word": "drin",
+      "file": "drin",
+      "phrase": "da drin"
+    },
+    {
+      "word": "Schrift",
+      "file": "Schrift",
+      "phrase": "eine Schrift"
+    },
+    {
+      "word": "sprechen",
+      "file": "sprechen",
+      "phrase": "laut sprechen"
+    },
+    {
+      "word": "Straße",
+      "file": "Strasse",
+      "phrase": "die Straße"
+    },
+    {
+      "word": "Strom",
+      "file": "Strom",
+      "phrase": "der Strom"
+    },
+    {
+      "word": "Vater",
+      "file": "Vater",
+      "phrase": "mein Vater"
+    },
+    {
+      "word": "Mutter",
+      "file": "Mutter",
+      "phrase": "meine Mutter"
+    },
+    {
+      "word": "Bruder",
+      "file": "Bruder2",
+      "phrase": "sein Bruder"
+    },
+    {
+      "word": "Schwester",
+      "file": "Schwester",
+      "phrase": "meine Schwester"
+    },
+    {
+      "word": "Lehrer",
+      "file": "Lehrer",
+      "phrase": "der Lehrer"
+    },
+    {
+      "word": "Fahrer",
+      "file": "Fahrer",
+      "phrase": "der Fahrer"
+    },
+    {
+      "word": "Arbeiter",
+      "file": "Arbeiter",
+      "phrase": "der Arbeiter"
+    },
+    {
+      "word": "Finger",
+      "file": "Finger",
+      "phrase": "mein Finger"
+    },
+    {
+      "word": "Wasser",
+      "file": "Wasser",
+      "phrase": "kaltes Wasser"
+    },
+    {
+      "word": "Zimmer",
+      "file": "Zimmer",
+      "phrase": "mein Zimmer"
+    },
+    {
+      "word": "hier",
+      "file": "hier",
+      "phrase": "genau hier"
+    },
+    {
+      "word": "Bier",
+      "file": "Bier",
+      "phrase": "ein Bier"
+    },
+    {
+      "word": "Tier",
+      "file": "Tier",
+      "phrase": "ein Tier"
+    },
+    {
+      "word": "wir",
+      "file": "wir",
+      "phrase": "wir alle"
+    },
+    {
+      "word": "mir",
+      "file": "mir",
+      "phrase": "gib mir"
+    },
+    {
+      "word": "dir",
+      "file": "dir",
+      "phrase": "für dir"
+    },
+    {
+      "word": "Uhr",
+      "file": "Uhr",
+      "phrase": "die Uhr"
+    },
+    {
+      "word": "nur",
+      "file": "nur",
+      "phrase": "nur so"
+    },
+    {
+      "word": "der",
+      "file": "der",
+      "phrase": "der Mann"
+    },
+    {
+      "word": "wer",
+      "file": "wer",
+      "phrase": "wer ist"
+    },
+    {
+      "word": "sehr",
+      "file": "sehr",
+      "phrase": "sehr gut"
+    },
+    {
+      "word": "mehr",
+      "file": "mehr",
+      "phrase": "viel mehr"
+    },
+    {
+      "word": "Jahr",
+      "file": "Jahr",
+      "phrase": "ein Jahr"
+    },
+    {
+      "word": "war",
+      "file": "war",
+      "phrase": "es war"
+    },
+    {
+      "word": "wahr",
+      "file": "wahr",
+      "phrase": "ganz wahr"
+    },
+    {
+      "word": "gar",
+      "file": "gar",
+      "phrase": "gar nicht"
+    },
+    {
+      "word": "vor",
+      "file": "vor",
+      "phrase": "da vor"
+    },
+    {
+      "word": "für",
+      "file": "fuer",
+      "phrase": "für dich"
+    },
+    {
+      "word": "Tür",
+      "file": "Tuer",
+      "phrase": "die Tür"
+    },
+    {
+      "word": "oder",
+      "file": "oder",
+      "phrase": "ja oder nein"
+    },
+    {
+      "word": "aber",
+      "file": "aber",
+      "phrase": "aber ja"
+    },
+    {
+      "word": "über",
+      "file": "ueber",
+      "phrase": "da über"
+    },
+    {
+      "word": "unter",
+      "file": "unter",
+      "phrase": "da unter"
+    },
+    {
+      "word": "hinter",
+      "file": "hinter",
+      "phrase": "da hinter"
+    },
+    {
+      "word": "immer",
+      "file": "immer",
+      "phrase": "immer wieder"
+    },
+    {
+      "word": "besser",
+      "file": "besser",
+      "phrase": "viel besser"
+    },
+    {
+      "word": "Wetter",
+      "file": "Wetter",
+      "phrase": "das Wetter"
+    },
+    {
+      "word": "Körper",
+      "file": "Koerper",
+      "phrase": "mein Körper"
+    },
+    {
+      "word": "Sommer",
+      "file": "Sommer",
+      "phrase": "im Sommer"
+    },
+    {
+      "word": "Nummer",
+      "file": "Nummer",
+      "phrase": "die Nummer"
+    }
+  ]
+}

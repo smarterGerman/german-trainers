@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T13:12:37.415Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "beachten",
+      "file": "beachten",
+      "phrase": "bitte beachten"
+    },
+    {
+      "word": "beantworten",
+      "file": "beantworten",
+      "phrase": "schnell beantworten"
+    },
+    {
+      "word": "beobachten",
+      "file": "beobachten",
+      "phrase": "genau beobachten"
+    },
+    {
+      "word": "Verein",
+      "file": "Verein",
+      "phrase": "ein großer Verein"
+    },
+    {
+      "word": "verarbeiten",
+      "file": "verarbeiten",
+      "phrase": "gut verarbeiten"
+    },
+    {
+      "word": "Geäst",
+      "file": "Geaest",
+      "phrase": "das dichte Geäst"
+    },
+    {
+      "word": "Theater",
+      "file": "Theater",
+      "phrase": "ins Theater"
+    },
+    {
+      "word": "Chaos",
+      "file": "Chaos",
+      "phrase": "totales Chaos"
+    },
+    {
+      "word": "beurteilen",
+      "file": "beurteilen",
+      "phrase": "richtig beurteilen"
+    },
+    {
+      "word": "erarbeiten",
+      "file": "erarbeiten",
+      "phrase": "gemeinsam erarbeiten"
+    },
+    {
+      "word": "Spiegelei",
+      "file": "Spiegelei",
+      "phrase": "ein leckeres Spiegelei"
+    },
+    {
+      "word": "geeignet",
+      "file": "geeignet",
+      "phrase": "gut geeignet"
+    },
+    {
+      "word": "beauftragen",
+      "file": "beauftragen",
+      "phrase": "jemanden beauftragen"
+    },
+    {
+      "word": "Antialkoholiker",
+      "file": "Antialkoholiker",
+      "phrase": "ein überzeugter Antialkoholiker"
+    },
+    {
+      "word": "Aorta",
+      "file": "Aorta",
+      "phrase": "die Aorta"
+    },
+    {
+      "word": "beeilen",
+      "file": "beeilen",
+      "phrase": "sich beeilen"
+    },
+    {
+      "word": "beenden",
+      "file": "beenden",
+      "phrase": "schnell beenden"
+    },
+    {
+      "word": "beeindrucken",
+      "file": "beeindrucken",
+      "phrase": "sehr beeindrucken"
+    },
+    {
+      "word": "beeinflussen",
+      "file": "beeinflussen",
+      "phrase": "stark beeinflussen"
+    },
+    {
+      "word": "Reaktion",
+      "file": "Reaktion",
+      "phrase": "eine schnelle Reaktion"
+    },
+    {
+      "word": "Realität",
+      "file": "Realitaet",
+      "phrase": "die harte Realität"
+    },
+    {
+      "word": "ideal",
+      "file": "ideal",
+      "phrase": "ganz ideal"
+    },
+    {
+      "word": "kreativ",
+      "file": "kreativ",
+      "phrase": "sehr kreativ"
+    },
+    {
+      "word": "geehrt",
+      "file": "geehrt",
+      "phrase": "sehr geehrt"
+    },
+    {
+      "word": "geerbt",
+      "file": "geerbt",
+      "phrase": "vom Vater geerbt"
+    },
+    {
+      "word": "Seeigel",
+      "file": "Seeigel",
+      "phrase": "ein stacheliger Seeigel"
+    },
+    {
+      "word": "Seeanemone",
+      "file": "Seeanemone",
+      "phrase": "eine bunte Seeanemone"
+    },
+    {
+      "word": "Beamte",
+      "file": "Beamte",
+      "phrase": "ein deutscher Beamte"
+    },
+    {
+      "word": "verursachen",
+      "file": "verursachen",
+      "phrase": "Probleme verursachen"
+    },
+    {
+      "word": "Abenteuer",
+      "file": "Abenteuer",
+      "phrase": "ein großes Abenteuer"
+    },
+    {
+      "word": "beunruhigen",
+      "file": "beunruhigen",
+      "phrase": "sehr beunruhigen"
+    },
+    {
+      "word": "Poesie",
+      "file": "Poesie",
+      "phrase": "schöne Poesie"
+    },
+    {
+      "word": "beinhalten",
+      "file": "beinhalten",
+      "phrase": "alles beinhalten"
+    },
+    {
+      "word": "Koalition",
+      "file": "Koalition",
+      "phrase": "eine neue Koalition"
+    },
+    {
+      "word": "kooperieren",
+      "file": "kooperieren",
+      "phrase": "gut kooperieren"
+    },
+    {
+      "word": "Bibliothek",
+      "file": "Bibliothek",
+      "phrase": "in der Bibliothek"
+    },
+    {
+      "word": "Atheist",
+      "file": "Atheist",
+      "phrase": "ein überzeugter Atheist"
+    },
+    {
+      "word": "Atheismus",
+      "file": "Atheismus",
+      "phrase": "der moderne Atheismus"
+    },
+    {
+      "word": "Poet",
+      "file": "Poet",
+      "phrase": "ein großer Poet"
+    },
+    {
+      "word": "naiv",
+      "file": "naiv",
+      "phrase": "zu naiv"
+    },
+    {
+      "word": "aber",
+      "file": "aber",
+      "phrase": "aber natürlich"
+    },
+    {
+      "word": "ober",
+      "file": "ober",
+      "phrase": "nach oben"
+    },
+    {
+      "word": "weil",
+      "file": "weil",
+      "phrase": "nur weil"
+    },
+    {
+      "word": "dein",
+      "file": "dein",
+      "phrase": "das ist dein"
+    },
+    {
+      "word": "mein",
+      "file": "mein",
+      "phrase": "das ist mein"
+    },
+    {
+      "word": "sein",
+      "file": "sein",
+      "phrase": "das muss sein"
+    },
+    {
+      "word": "Bauer",
+      "file": "Bauer",
+      "phrase": "ein alter Bauer"
+    },
+    {
+      "word": "Mauer",
+      "file": "Mauer",
+      "phrase": "eine hohe Mauer"
+    },
+    {
+      "word": "sauer",
+      "file": "sauer",
+      "phrase": "sehr sauer"
+    },
+    {
+      "word": "teuer",
+      "file": "teuer",
+      "phrase": "zu teuer"
+    },
+    {
+      "word": "Feuer",
+      "file": "Feuer",
+      "phrase": "ein großes Feuer"
+    },
+    {
+      "word": "euer",
+      "file": "euer",
+      "phrase": "das ist euer"
+    },
+    {
+      "word": "Euro",
+      "file": "Euro",
+      "phrase": "zehn Euro"
+    },
+    {
+      "word": "Europa",
+      "file": "Europa",
+      "phrase": "ganz Europa"
+    },
+    {
+      "word": "leider",
+      "file": "leider",
+      "phrase": "ja leider"
+    },
+    {
+      "word": "weiter",
+      "file": "weiter",
+      "phrase": "immer weiter"
+    },
+    {
+      "word": "heiter",
+      "file": "heiter",
+      "phrase": "sehr heiter"
+    },
+    {
+      "word": "breiter",
+      "file": "breiter",
+      "phrase": "viel breiter"
+    },
+    {
+      "word": "Leitung",
+      "file": "Leitung",
+      "phrase": "die neue Leitung"
+    },
+    {
+      "word": "Zeitung",
+      "file": "Zeitung",
+      "phrase": "die heutige Zeitung"
+    },
+    {
+      "word": "Heizung",
+      "file": "Heizung",
+      "phrase": "die warme Heizung"
+    },
+    {
+      "word": "Meister",
+      "file": "Meister",
+      "phrase": "ein großer Meister"
+    },
+    {
+      "word": "Geist",
+      "file": "Geist",
+      "phrase": "ein guter Geist"
+    },
+    {
+      "word": "meist",
+      "file": "meist",
+      "phrase": "am meisten"
+    },
+    {
+      "word": "feucht",
+      "file": "feucht",
+      "phrase": "sehr feucht"
+    },
+    {
+      "word": "Leuchte",
+      "file": "Leuchte",
+      "phrase": "eine helle Leuchte"
+    },
+    {
+      "word": "freuen",
+      "file": "freuen",
+      "phrase": "sich freuen"
+    },
+    {
+      "word": "neuen",
+      "file": "neuen",
+      "phrase": "die neuen"
+    },
+    {
+      "word": "Haut",
+      "file": "Haut",
+      "phrase": "weiche Haut"
+    },
+    {
+      "word": "laut",
+      "file": "laut",
+      "phrase": "sehr laut"
+    },
+    {
+      "word": "Baum",
+      "file": "Baum",
+      "phrase": "ein großer Baum"
+    },
+    {
+      "word": "Raum",
+      "file": "Raum",
+      "phrase": "ein großer Raum"
+    },
+    {
+      "word": "Traum",
+      "file": "Traum",
+      "phrase": "ein schöner Traum"
+    },
+    {
+      "word": "Haus",
+      "file": "Haus",
+      "phrase": "ein schönes Haus"
+    },
+    {
+      "word": "Maus",
+      "file": "Maus",
+      "phrase": "eine kleine Maus"
+    },
+    {
+      "word": "raus",
+      "file": "raus",
+      "phrase": "schnell raus"
+    },
+    {
+      "word": "Pause",
+      "file": "Pause",
+      "phrase": "eine kurze Pause"
+    },
+    {
+      "word": "Laune",
+      "file": "Laune",
+      "phrase": "gute Laune"
+    },
+    {
+      "word": "Auge",
+      "file": "Auge",
+      "phrase": "mein Auge"
+    },
+    {
+      "word": "Zaun",
+      "file": "Zaun",
+      "phrase": "ein hoher Zaun"
+    }
+  ]
+}

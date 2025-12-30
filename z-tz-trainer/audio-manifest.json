@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:45:37.591Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "Zeit",
+      "file": "Zeit",
+      "phrase": "die schöne Zeit"
+    },
+    {
+      "word": "Zug",
+      "file": "Zug",
+      "phrase": "der schnelle Zug"
+    },
+    {
+      "word": "Zahl",
+      "file": "Zahl",
+      "phrase": "eine große Zahl"
+    },
+    {
+      "word": "Zimmer",
+      "file": "Zimmer",
+      "phrase": "ein helles Zimmer"
+    },
+    {
+      "word": "zehn",
+      "file": "zehn",
+      "phrase": "genau zehn"
+    },
+    {
+      "word": "zwei",
+      "file": "zwei",
+      "phrase": "nur zwei"
+    },
+    {
+      "word": "zwischen",
+      "file": "zwischen",
+      "phrase": "genau zwischen"
+    },
+    {
+      "word": "Zucker",
+      "file": "Zucker",
+      "phrase": "weißer Zucker"
+    },
+    {
+      "word": "Ziel",
+      "file": "Ziel",
+      "phrase": "ein klares Ziel"
+    },
+    {
+      "word": "Zone",
+      "file": "Zone",
+      "phrase": "die ruhige Zone"
+    },
+    {
+      "word": "zeigen",
+      "file": "zeigen",
+      "phrase": "etwas zeigen"
+    },
+    {
+      "word": "zusammen",
+      "file": "zusammen",
+      "phrase": "alle zusammen"
+    },
+    {
+      "word": "zuerst",
+      "file": "zuerst",
+      "phrase": "immer zuerst"
+    },
+    {
+      "word": "zurück",
+      "file": "zurueck",
+      "phrase": "wieder zurück"
+    },
+    {
+      "word": "tanzen",
+      "file": "tanzen",
+      "phrase": "gerne tanzen"
+    },
+    {
+      "word": "Herz",
+      "file": "Herz",
+      "phrase": "mein Herz"
+    },
+    {
+      "word": "kurz",
+      "file": "kurz",
+      "phrase": "ganz kurz"
+    },
+    {
+      "word": "Arzt",
+      "file": "Arzt",
+      "phrase": "der gute Arzt"
+    },
+    {
+      "word": "Salz",
+      "file": "Salz",
+      "phrase": "etwas Salz"
+    },
+    {
+      "word": "Holz",
+      "file": "Holz",
+      "phrase": "hartes Holz"
+    },
+    {
+      "word": "ganz",
+      "file": "ganz",
+      "phrase": "nicht ganz"
+    },
+    {
+      "word": "Tanz",
+      "file": "Tanz",
+      "phrase": "ein schöner Tanz"
+    },
+    {
+      "word": "Grenze",
+      "file": "Grenze",
+      "phrase": "die sichere Grenze"
+    },
+    {
+      "word": "Pflanze",
+      "file": "Pflanze",
+      "phrase": "eine grüne Pflanze"
+    },
+    {
+      "word": "schwarz",
+      "file": "schwarz",
+      "phrase": "ganz schwarz"
+    },
+    {
+      "word": "Schmerz",
+      "file": "Schmerz",
+      "phrase": "starker Schmerz"
+    },
+    {
+      "word": "einzeln",
+      "file": "einzeln",
+      "phrase": "jeder einzeln"
+    },
+    {
+      "word": "Kerze",
+      "file": "Kerze",
+      "phrase": "eine helle Kerze"
+    },
+    {
+      "word": "Wurzel",
+      "file": "Wurzel",
+      "phrase": "die tiefe Wurzel"
+    },
+    {
+      "word": "Kreuz",
+      "file": "Kreuz",
+      "phrase": "das rote Kreuz"
+    },
+    {
+      "word": "Reiz",
+      "file": "Reiz",
+      "phrase": "ein großer Reiz"
+    },
+    {
+      "word": "heizen",
+      "file": "heizen",
+      "phrase": "das Haus heizen"
+    },
+    {
+      "word": "reizen",
+      "file": "reizen",
+      "phrase": "jemanden reizen"
+    },
+    {
+      "word": "Weizen",
+      "file": "Weizen",
+      "phrase": "goldener Weizen"
+    },
+    {
+      "word": "Kauz",
+      "file": "Kauz",
+      "phrase": "ein komischer Kauz"
+    },
+    {
+      "word": "Schnauze",
+      "file": "Schnauze",
+      "phrase": "die nasse Schnauze"
+    },
+    {
+      "word": "Pelz",
+      "file": "Pelz",
+      "phrase": "ein weicher Pelz"
+    },
+    {
+      "word": "Stolz",
+      "file": "Stolz",
+      "phrase": "großer Stolz"
+    },
+    {
+      "word": "Schmalz",
+      "file": "Schmalz",
+      "phrase": "frisches Schmalz"
+    },
+    {
+      "word": "Walzer",
+      "file": "Walzer",
+      "phrase": "ein langsamer Walzer"
+    },
+    {
+      "word": "Katze",
+      "file": "Katze",
+      "phrase": "die kleine Katze"
+    },
+    {
+      "word": "sitzen",
+      "file": "sitzen",
+      "phrase": "ruhig sitzen"
+    },
+    {
+      "word": "Platz",
+      "file": "Platz",
+      "phrase": "ein freier Platz"
+    },
+    {
+      "word": "setzen",
+      "file": "setzen",
+      "phrase": "sich setzen"
+    },
+    {
+      "word": "Hitze",
+      "file": "Hitze",
+      "phrase": "große Hitze"
+    },
+    {
+      "word": "Netz",
+      "file": "Netz",
+      "phrase": "ein starkes Netz"
+    },
+    {
+      "word": "Schatz",
+      "file": "Schatz",
+      "phrase": "mein Schatz"
+    },
+    {
+      "word": "Witz",
+      "file": "Witz",
+      "phrase": "ein guter Witz"
+    },
+    {
+      "word": "Blitz",
+      "file": "Blitz",
+      "phrase": "ein heller Blitz"
+    },
+    {
+      "word": "Satz",
+      "file": "Satz",
+      "phrase": "ein kurzer Satz"
+    },
+    {
+      "word": "Mütze",
+      "file": "Muetze",
+      "phrase": "eine warme Mütze"
+    },
+    {
+      "word": "Spitze",
+      "file": "Spitze",
+      "phrase": "an der Spitze"
+    },
+    {
+      "word": "Schmutz",
+      "file": "Schmutz",
+      "phrase": "viel Schmutz"
+    },
+    {
+      "word": "putzen",
+      "file": "putzen",
+      "phrase": "die Zähne putzen"
+    },
+    {
+      "word": "nutzen",
+      "file": "nutzen",
+      "phrase": "die Zeit nutzen"
+    },
+    {
+      "word": "Schutz",
+      "file": "Schutz",
+      "phrase": "guter Schutz"
+    },
+    {
+      "word": "Pfütze",
+      "file": "Pfuetze",
+      "phrase": "eine tiefe Pfütze"
+    },
+    {
+      "word": "Tatze",
+      "file": "Tatze",
+      "phrase": "eine große Tatze"
+    },
+    {
+      "word": "kratzen",
+      "file": "kratzen",
+      "phrase": "leicht kratzen"
+    },
+    {
+      "word": "schwitzen",
+      "file": "schwitzen",
+      "phrase": "stark schwitzen"
+    },
+    {
+      "word": "stützen",
+      "file": "stuetzen",
+      "phrase": "jemanden stützen"
+    },
+    {
+      "word": "schätzen",
+      "file": "schaetzen",
+      "phrase": "sehr schätzen"
+    },
+    {
+      "word": "Gesetz",
+      "file": "Gesetz",
+      "phrase": "das neue Gesetz"
+    },
+    {
+      "word": "letzt",
+      "file": "letzt",
+      "phrase": "das letzte Mal"
+    },
+    {
+      "word": "jetzt",
+      "file": "jetzt",
+      "phrase": "gerade jetzt"
+    },
+    {
+      "word": "benutzen",
+      "file": "benutzen",
+      "phrase": "täglich benutzen"
+    },
+    {
+      "word": "Absatz",
+      "file": "Absatz",
+      "phrase": "ein langer Absatz"
+    },
+    {
+      "word": "Ersatz",
+      "file": "Ersatz",
+      "phrase": "als Ersatz"
+    },
+    {
+      "word": "Ansatz",
+      "file": "Ansatz",
+      "phrase": "ein guter Ansatz"
+    },
+    {
+      "word": "Zusatz",
+      "file": "Zusatz",
+      "phrase": "ohne Zusatz"
+    },
+    {
+      "word": "Besitzer",
+      "file": "Besitzer",
+      "phrase": "der neue Besitzer"
+    },
+    {
+      "word": "glitzern",
+      "file": "glitzern",
+      "phrase": "hell glitzern"
+    },
+    {
+      "word": "Pfötchen",
+      "file": "Pfoetchen",
+      "phrase": "ein kleines Pfötchen"
+    },
+    {
+      "word": "Kätzchen",
+      "file": "Kaetzchen",
+      "phrase": "ein süßes Kätzchen"
+    },
+    {
+      "word": "Schätzchen",
+      "file": "Schaetzchen",
+      "phrase": "mein Schätzchen"
+    },
+    {
+      "word": "Plätzchen",
+      "file": "Plaetzchen",
+      "phrase": "leckere Plätzchen"
+    },
+    {
+      "word": "wetzen",
+      "file": "wetzen",
+      "phrase": "das Messer wetzen"
+    },
+    {
+      "word": "hetzen",
+      "file": "hetzen",
+      "phrase": "schnell hetzen"
+    },
+    {
+      "word": "flitzen",
+      "file": "flitzen",
+      "phrase": "schnell flitzen"
+    },
+    {
+      "word": "Klotz",
+      "file": "Klotz",
+      "phrase": "ein schwerer Klotz"
+    }
+  ]
+}

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Word Stress Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 200px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .syllable-container {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .syllable-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 60px;
+    }
+
+    .syllable-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .syllable-btn:disabled { cursor: not-allowed; }
+
+    .syllable-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .syllable-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .syllable-btn.stressed {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+      color: white;
+      border-color: #E91E63;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .stress-note {
+      font-size: 14px;
+      color: #9C27B0;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .syllable-btn { padding: 12px 15px; font-size: 18px; min-width: 50px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">Word Stress</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>1-4</kbd> Select syllable
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>German word stress patterns:</strong>
+      <br><br>
+      <strong>Native words:</strong> Usually stress the <strong>first syllable</strong>
+      <br>Examples: <strong>AR</strong>-beit, <strong>LE</strong>-ben, <strong>SPIE</strong>-len
+      <br><br>
+      <strong>Separable prefixes:</strong> Stress on the <strong>prefix</strong>
+      <br>Examples: <strong>AN</strong>-fan-gen, <strong>AUF</strong>-ste-hen, <strong>AUS</strong>-ge-hen
+      <br><br>
+      <strong>Inseparable prefixes (be-, ge-, er-, ver-, zer-, ent-, emp-):</strong> Stress on <strong>root</strong>
+      <br>Examples: be-<strong>ZAHL</strong>-en, ver-<strong>STEH</strong>-en, er-<strong>KLÄR</strong>-en
+      <br><br>
+      <strong>Foreign words:</strong> Often stress <strong>last or second-to-last</strong>
+      <br>Examples: Stu-<strong>DENT</strong>, U-ni-ver-si-<strong>TÄT</strong>
+      <br><br>
+      Click on the stressed syllable!
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/74 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div id="syllableContainer" class="syllable-container">
+          <!-- Syllable buttons generated by JS -->
+        </div>
+
+        <div id="translationReveal" class="translation-reveal hidden"></div>
+        <div id="stressNote" class="stress-note hidden"></div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'word-stress-trainer/audio/';
+      const STORAGE_KEY = 'word_stress_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: syllables array with stressed index (0-based)
+      const allWords = [
+        // First syllable stress - native words (15)
+        { word: "Arbeit", syllables: ["AR", "beit"], stressed: 0, file: "Arbeit", en: "work", note: "Native - 1st syllable" },
+        { word: "Leben", syllables: ["LE", "ben"], stressed: 0, file: "Leben", en: "life", note: "Native - 1st syllable" },
+        { word: "spielen", syllables: ["SPIE", "len"], stressed: 0, file: "spielen", en: "to play", note: "Native - 1st syllable" },
+        { word: "Wasser", syllables: ["WAS", "ser"], stressed: 0, file: "Wasser", en: "water", note: "Native - 1st syllable" },
+        { word: "Zimmer", syllables: ["ZIM", "mer"], stressed: 0, file: "Zimmer", en: "room", note: "Native - 1st syllable" },
+        { word: "Mutter", syllables: ["MUT", "ter"], stressed: 0, file: "Mutter", en: "mother", note: "Native - 1st syllable" },
+        { word: "Vater", syllables: ["VA", "ter"], stressed: 0, file: "Vater", en: "father", note: "Native - 1st syllable" },
+        { word: "Bruder", syllables: ["BRU", "der"], stressed: 0, file: "Bruder", en: "brother", note: "Native - 1st syllable" },
+        { word: "Schwester", syllables: ["SCHWES", "ter"], stressed: 0, file: "Schwester", en: "sister", note: "Native - 1st syllable" },
+        { word: "Schule", syllables: ["SCHU", "le"], stressed: 0, file: "Schule", en: "school", note: "Native - 1st syllable" },
+        { word: "Lehrer", syllables: ["LEH", "rer"], stressed: 0, file: "Lehrer", en: "teacher", note: "Native - 1st syllable" },
+        { word: "Morgen", syllables: ["MOR", "gen"], stressed: 0, file: "Morgen", en: "morning", note: "Native - 1st syllable" },
+        { word: "Abend", syllables: ["A", "bend"], stressed: 0, file: "Abend", en: "evening", note: "Native - 1st syllable" },
+        { word: "Essen", syllables: ["ES", "sen"], stressed: 0, file: "Essen", en: "food/eating", note: "Native - 1st syllable" },
+        { word: "trinken", syllables: ["TRIN", "ken"], stressed: 0, file: "trinken", en: "to drink", note: "Native - 1st syllable" },
+        // Separable prefix stress (10)
+        { word: "anfangen", syllables: ["AN", "fan", "gen"], stressed: 0, file: "anfangen", en: "to begin", note: "Separable - prefix stressed" },
+        { word: "aufstehen", syllables: ["AUF", "ste", "hen"], stressed: 0, file: "aufstehen", en: "to get up", note: "Separable - prefix stressed" },
+        { word: "ausgehen", syllables: ["AUS", "ge", "hen"], stressed: 0, file: "ausgehen", en: "to go out", note: "Separable - prefix stressed" },
+        { word: "einkaufen", syllables: ["EIN", "kau", "fen"], stressed: 0, file: "einkaufen", en: "to shop", note: "Separable - prefix stressed" },
+        { word: "mitnehmen", syllables: ["MIT", "neh", "men"], stressed: 0, file: "mitnehmen", en: "to take along", note: "Separable - prefix stressed" },
+        { word: "zurückkommen", syllables: ["ZU", "rück", "kom", "men"], stressed: 0, file: "zurueckkommen", en: "to come back", note: "Separable - prefix stressed" },
+        { word: "abfahren", syllables: ["AB", "fah", "ren"], stressed: 0, file: "abfahren", en: "to depart", note: "Separable - prefix stressed" },
+        { word: "anrufen", syllables: ["AN", "ru", "fen"], stressed: 0, file: "anrufen", en: "to call", note: "Separable - prefix stressed" },
+        { word: "aufmachen", syllables: ["AUF", "ma", "chen"], stressed: 0, file: "aufmachen", en: "to open", note: "Separable - prefix stressed" },
+        { word: "zumachen", syllables: ["ZU", "ma", "chen"], stressed: 0, file: "zumachen", en: "to close", note: "Separable - prefix stressed" },
+        // Inseparable prefix - root stressed (15)
+        { word: "bezahlen", syllables: ["be", "ZAH", "len"], stressed: 1, file: "bezahlen", en: "to pay", note: "Inseparable - root stressed" },
+        { word: "verstehen", syllables: ["ver", "STE", "hen"], stressed: 1, file: "verstehen", en: "to understand", note: "Inseparable - root stressed" },
+        { word: "erklären", syllables: ["er", "KLÄ", "ren"], stressed: 1, file: "erklaeren", en: "to explain", note: "Inseparable - root stressed" },
+        { word: "beginnen", syllables: ["be", "GIN", "nen"], stressed: 1, file: "beginnen", en: "to begin", note: "Inseparable - root stressed" },
+        { word: "vergessen", syllables: ["ver", "GES", "sen"], stressed: 1, file: "vergessen", en: "to forget", note: "Inseparable - root stressed" },
+        { word: "bekommen", syllables: ["be", "KOM", "men"], stressed: 1, file: "bekommen", en: "to receive", note: "Inseparable - root stressed" },
+        { word: "erzählen", syllables: ["er", "ZÄH", "len"], stressed: 1, file: "erzaehlen", en: "to tell", note: "Inseparable - root stressed" },
+        { word: "entscheiden", syllables: ["ent", "SCHEI", "den"], stressed: 1, file: "entscheiden", en: "to decide", note: "Inseparable - root stressed" },
+        { word: "gewinnen", syllables: ["ge", "WIN", "nen"], stressed: 1, file: "gewinnen", en: "to win", note: "Inseparable - root stressed" },
+        { word: "verlieren", syllables: ["ver", "LIE", "ren"], stressed: 1, file: "verlieren", en: "to lose", note: "Inseparable - root stressed" },
+        { word: "besuchen", syllables: ["be", "SU", "chen"], stressed: 1, file: "besuchen", en: "to visit", note: "Inseparable - root stressed" },
+        { word: "empfehlen", syllables: ["emp", "FEH", "len"], stressed: 1, file: "empfehlen", en: "to recommend", note: "Inseparable - root stressed" },
+        { word: "entstehen", syllables: ["ent", "STE", "hen"], stressed: 1, file: "entstehen", en: "to arise", note: "Inseparable - root stressed" },
+        { word: "zerbrechen", syllables: ["zer", "BRE", "chen"], stressed: 1, file: "zerbrechen", en: "to break", note: "Inseparable - root stressed" },
+        { word: "gefallen", syllables: ["ge", "FAL", "len"], stressed: 1, file: "gefallen", en: "to please", note: "Inseparable - root stressed" },
+        // Foreign words - various stress patterns (15)
+        { word: "Student", syllables: ["Stu", "DENT"], stressed: 1, file: "Student", en: "student", note: "Foreign - final stress" },
+        { word: "Universität", syllables: ["U", "ni", "ver", "si", "TÄT"], stressed: 4, file: "Universitaet", en: "university", note: "Foreign - final stress" },
+        { word: "Restaurant", syllables: ["Res", "tau", "RANT"], stressed: 2, file: "Restaurant", en: "restaurant", note: "Foreign - final stress" },
+        { word: "Musik", syllables: ["Mu", "SIK"], stressed: 1, file: "Musik", en: "music", note: "Foreign - final stress" },
+        { word: "Telefon", syllables: ["Te", "le", "FON"], stressed: 2, file: "Telefon", en: "telephone", note: "Foreign - final stress" },
+        { word: "Hotel", syllables: ["Ho", "TEL"], stressed: 1, file: "Hotel", en: "hotel", note: "Foreign - final stress" },
+        { word: "Kaffee", syllables: ["KAF", "fee"], stressed: 0, file: "Kaffee", en: "coffee", note: "Foreign - 1st syllable" },
+        { word: "Computer", syllables: ["Com", "PU", "ter"], stressed: 1, file: "Computer", en: "computer", note: "Foreign - 2nd syllable" },
+        { word: "interessant", syllables: ["in", "te", "res", "SANT"], stressed: 3, file: "interessant", en: "interesting", note: "Foreign - final stress" },
+        { word: "Information", syllables: ["In", "for", "ma", "TI", "on"], stressed: 3, file: "Information", en: "information", note: "Foreign - penultimate" },
+        { word: "Situation", syllables: ["Si", "tu", "a", "TI", "on"], stressed: 3, file: "Situation", en: "situation", note: "Foreign - penultimate" },
+        { word: "Grammatik", syllables: ["Gram", "MA", "tik"], stressed: 1, file: "Grammatik", en: "grammar", note: "Foreign - 2nd syllable" },
+        { word: "Programm", syllables: ["Pro", "GRAMM"], stressed: 1, file: "Programm", en: "program", note: "Foreign - final stress" },
+        { word: "Problem", syllables: ["Pro", "BLEM"], stressed: 1, file: "Problem", en: "problem", note: "Foreign - final stress" },
+        { word: "Thema", syllables: ["THE", "ma"], stressed: 0, file: "Thema", en: "topic", note: "Foreign - 1st syllable" },
+        // -ieren verbs - always stress -IE- (8)
+        { word: "studieren", syllables: ["stu", "DIE", "ren"], stressed: 1, file: "studieren", en: "to study", note: "-ieren - always -IE- stressed" },
+        { word: "telefonieren", syllables: ["te", "le", "fo", "NIE", "ren"], stressed: 3, file: "telefonieren", en: "to phone", note: "-ieren - always -IE- stressed" },
+        { word: "fotografieren", syllables: ["fo", "to", "gra", "FIE", "ren"], stressed: 3, file: "fotografieren", en: "to photograph", note: "-ieren - always -IE- stressed" },
+        { word: "reservieren", syllables: ["re", "ser", "VIE", "ren"], stressed: 2, file: "reservieren", en: "to reserve", note: "-ieren - always -IE- stressed" },
+        { word: "probieren", syllables: ["pro", "BIE", "ren"], stressed: 1, file: "probieren", en: "to try", note: "-ieren - always -IE- stressed" },
+        { word: "funktionieren", syllables: ["funk", "ti", "o", "NIE", "ren"], stressed: 3, file: "funktionieren", en: "to work/function", note: "-ieren - always -IE- stressed" },
+        { word: "reparieren", syllables: ["re", "pa", "RIE", "ren"], stressed: 2, file: "reparieren", en: "to repair", note: "-ieren - always -IE- stressed" },
+        { word: "organisieren", syllables: ["or", "ga", "ni", "SIE", "ren"], stressed: 3, file: "organisieren", en: "to organize", note: "-ieren - always -IE- stressed" },
+        // Compound words (6)
+        { word: "Arbeitgeber", syllables: ["AR", "beit", "ge", "ber"], stressed: 0, file: "Arbeitgeber", en: "employer", note: "Compound - 1st element stressed" },
+        { word: "Kindergarten", syllables: ["KIN", "der", "gar", "ten"], stressed: 0, file: "Kindergarten", en: "kindergarten", note: "Compound - 1st element stressed" },
+        { word: "Wohnzimmer", syllables: ["WOHN", "zim", "mer"], stressed: 0, file: "Wohnzimmer", en: "living room", note: "Compound - 1st element stressed" },
+        { word: "Schlafzimmer", syllables: ["SCHLAF", "zim", "mer"], stressed: 0, file: "Schlafzimmer", en: "bedroom", note: "Compound - 1st element stressed" },
+        { word: "Hausaufgabe", syllables: ["HAUS", "auf", "ga", "be"], stressed: 0, file: "Hausaufgabe", en: "homework", note: "Compound - 1st element stressed" },
+        { word: "Geburtstag", syllables: ["Ge", "BURTS", "tag"], stressed: 1, file: "Geburtstag", en: "birthday", note: "ge- prefix + compound" },
+        // Adjectives (5)
+        { word: "wichtig", syllables: ["WICH", "tig"], stressed: 0, file: "wichtig", en: "important", note: "Native - 1st syllable" },
+        { word: "richtig", syllables: ["RICH", "tig"], stressed: 0, file: "richtig", en: "correct", note: "Native - 1st syllable" },
+        { word: "fertig", syllables: ["FER", "tig"], stressed: 0, file: "fertig", en: "finished", note: "Native - 1st syllable" },
+        { word: "langsam", syllables: ["LANG", "sam"], stressed: 0, file: "langsam", en: "slow", note: "Native - 1st syllable" },
+        { word: "gemeinsam", syllables: ["ge", "MEIN", "sam"], stressed: 1, file: "gemeinsam", en: "together", note: "ge- prefix - root stressed" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const container = document.getElementById('syllableContainer');
+        const transReveal = document.getElementById('translationReveal');
+        const stressNote = document.getElementById('stressNote');
+
+        preloadAudio();
+
+        // Create syllable buttons
+        container.innerHTML = '';
+        ex.syllables.forEach((syl, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'syllable-btn';
+          btn.textContent = syl.toLowerCase();
+          btn.onclick = () => checkAnswer(i);
+          btn.dataset.index = i;
+          container.appendChild(btn);
+        });
+
+        if (prev !== null) {
+          answered = true;
+          const btns = container.querySelectorAll('.syllable-btn');
+          btns.forEach((btn, i) => {
+            btn.disabled = true;
+            if (i === ex.stressed) {
+              btn.classList.add('stressed');
+              btn.textContent = ex.syllables[i].toUpperCase();
+            }
+            if (prev === i && i !== ex.stressed) {
+              btn.classList.add('wrong');
+            }
+          });
+
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+          stressNote.textContent = ex.note;
+          stressNote.classList.remove('hidden');
+        } else {
+          answered = false;
+          transReveal.classList.add('hidden');
+          stressNote.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      window.checkAnswer = function(selectedIdx) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = selectedIdx === ex.stressed;
+        answers[idx] = selectedIdx;
+
+        const container = document.getElementById('syllableContainer');
+        const transReveal = document.getElementById('translationReveal');
+        const stressNote = document.getElementById('stressNote');
+        const btns = container.querySelectorAll('.syllable-btn');
+
+        btns.forEach((btn, i) => {
+          btn.disabled = true;
+          if (i === ex.stressed) {
+            btn.classList.add('stressed');
+            btn.textContent = ex.syllables[i].toUpperCase();
+          }
+          if (selectedIdx === i && i !== ex.stressed) {
+            btn.classList.add('wrong');
+          }
+        });
+
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+        stressNote.textContent = ex.note;
+        stressNote.classList.remove('hidden');
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1200);
+      };
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => {
+            const stressedWord = w.syllables.map((s, i) => i === w.stressed ? s.toUpperCase() : s.toLowerCase()).join('-');
+            return `
+              <div class="incorrect-item">
+                <span><strong>${stressedWord}</strong> - ${w.en}</span>
+                <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+              </div>
+            `;
+          }).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key;
+        if (k === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          playWord();
+        } else if (k >= '1' && k <= '9' && !answered) {
+          const idx = parseInt(k) - 1;
+          const ex = exercises[window.idx || 0];
+          if (ex && idx < ex.syllables.length) {
+            e.preventDefault();
+            checkAnswer(idx);
+          }
+        }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

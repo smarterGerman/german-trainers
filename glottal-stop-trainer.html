@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Glottal Stop Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-dark-articles-mini {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-dark-article {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-dark-article:nth-child(1) {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-dark-article:nth-child(2) {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .progress-mastered {
+      color: #4CAF50;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .word-display {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin-bottom: 10px;
+    }
+
+    .play-hint {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 20px;
+    }
+
+    .audio-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .answer-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px;
+      border-radius: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .answer-btn.with-glottal {
+      color: #00BCD4;
+    }
+
+    .answer-btn.no-glottal {
+      color: #E91E63;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .answer-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .answer-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+      margin: 5px;
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn.secondary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .restart-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">German Glottal Stop Trainer</h1>
+      <p class="sg-dark-subtitle">Learn the German Knacklaut before vowels</p>
+
+      <div class="sg-dark-articles-mini">
+        <div class="sg-dark-article">With Glottal Stop</div>
+        <div class="sg-dark-article">Without Glottal Stop</div>
+      </div>
+
+      <p>
+        The <strong>glottal stop</strong> (Knacklaut) is a brief closure of the vocal cords
+        that occurs before vowels in German, especially at word and syllable beginnings.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>With glottal stop:</strong> beachten (be-'achten), Verein (Ver-'ein), Theater (The-'ater)<br>
+        <strong>Without glottal stop:</strong> Beamter, Theater (smooth), Realismus
+      </div>
+
+      <p>
+        Listen to each word and decide whether you hear a <strong>glottal stop</strong> (a brief
+        pause/click before a vowel) or a <strong>smooth transition</strong> between syllables.
+      </p>
+
+      <p>
+        <strong>Keyboard shortcuts:</strong> Space = Play audio, G = With Glottal Stop, S = Smooth/Without
+      </p>
+    </div>
+
+    <div id="divider" class="sg-divider"></div>
+
+    <div class="trainer-section">
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
+          <div class="progress-stats">
+            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/80</span>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <div class="word-display" id="wordDisplay">beachten</div>
+          <div class="play-hint">Click the word or press Space to hear it</div>
+
+          <button class="audio-btn" onclick="playAudio()">
+            Play Audio (Space)
+          </button>
+        </div>
+
+        <div class="button-grid">
+          <button class="answer-btn with-glottal" onclick="checkAnswer('glottal')" id="btnGlottal">
+            With Glottal Stop
+            <span class="shortcut">(G)</span>
+          </button>
+          <button class="answer-btn no-glottal" onclick="checkAnswer('smooth')" id="btnSmooth">
+            Smooth (No Stop)
+            <span class="shortcut">(S)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsArea" class="results hidden">
+        <h2>Session Complete!</h2>
+        <div class="percentage" id="percentage">100%</div>
+        <div class="result-text" id="resultText">
+          You got 20 out of 20 correct!
+        </div>
+        <button class="restart-btn" onclick="startSession()">Practice Again</button>
+        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const AUDIO_BASE = 'glottal-stop-trainer/audio/';
+    const SESSION_SIZE = 20;
+
+    const allWords = [
+      // With glottal stop - vowel at syllable/word beginning (40)
+      { word: "beachten", type: "glottal", file: "beachten" },
+      { word: "beantworten", type: "glottal", file: "beantworten" },
+      { word: "beobachten", type: "glottal", file: "beobachten" },
+      { word: "Verein", type: "glottal", file: "Verein" },
+      { word: "verarbeiten", type: "glottal", file: "verarbeiten" },
+      { word: "Geäst", type: "glottal", file: "Geaest" },
+      { word: "Theater", type: "glottal", file: "Theater" },
+      { word: "Chaos", type: "glottal", file: "Chaos" },
+      { word: "beurteilen", type: "glottal", file: "beurteilen" },
+      { word: "erarbeiten", type: "glottal", file: "erarbeiten" },
+      { word: "Spiegelei", type: "glottal", file: "Spiegelei" },
+      { word: "geeignet", type: "glottal", file: "geeignet" },
+      { word: "beauftragen", type: "glottal", file: "beauftragen" },
+      { word: "Antialkoholiker", type: "glottal", file: "Antialkoholiker" },
+      { word: "Aorta", type: "glottal", file: "Aorta" },
+      { word: "beeilen", type: "glottal", file: "beeilen" },
+      { word: "beenden", type: "glottal", file: "beenden" },
+      { word: "beeindrucken", type: "glottal", file: "beeindrucken" },
+      { word: "beeinflussen", type: "glottal", file: "beeinflussen" },
+      { word: "Reaktion", type: "glottal", file: "Reaktion" },
+      { word: "Realität", type: "glottal", file: "Realitaet" },
+      { word: "ideal", type: "glottal", file: "ideal" },
+      { word: "kreativ", type: "glottal", file: "kreativ" },
+      { word: "geehrt", type: "glottal", file: "geehrt" },
+      { word: "geerbt", type: "glottal", file: "geerbt" },
+      { word: "Seeigel", type: "glottal", file: "Seeigel" },
+      { word: "Seeanemone", type: "glottal", file: "Seeanemone" },
+      { word: "Beamte", type: "glottal", file: "Beamte" },
+      { word: "verursachen", type: "glottal", file: "verursachen" },
+      { word: "Abenteuer", type: "glottal", file: "Abenteuer" },
+      { word: "beunruhigen", type: "glottal", file: "beunruhigen" },
+      { word: "Poesie", type: "glottal", file: "Poesie" },
+      { word: "beinhalten", type: "glottal", file: "beinhalten" },
+      { word: "Koalition", type: "glottal", file: "Koalition" },
+      { word: "kooperieren", type: "glottal", file: "kooperieren" },
+      { word: "Bibliothek", type: "glottal", file: "Bibliothek" },
+      { word: "Atheist", type: "glottal", file: "Atheist" },
+      { word: "Atheismus", type: "glottal", file: "Atheismus" },
+      { word: "Poet", type: "glottal", file: "Poet" },
+      { word: "naiv", type: "glottal", file: "naiv" },
+      // Without glottal stop - smooth transition (40)
+      { word: "aber", type: "smooth", file: "aber" },
+      { word: "ober", type: "smooth", file: "ober" },
+      { word: "weil", type: "smooth", file: "weil" },
+      { word: "dein", type: "smooth", file: "dein" },
+      { word: "mein", type: "smooth", file: "mein" },
+      { word: "sein", type: "smooth", file: "sein" },
+      { word: "Bauer", type: "smooth", file: "Bauer" },
+      { word: "Mauer", type: "smooth", file: "Mauer" },
+      { word: "sauer", type: "smooth", file: "sauer" },
+      { word: "teuer", type: "smooth", file: "teuer" },
+      { word: "Feuer", type: "smooth", file: "Feuer" },
+      { word: "euer", type: "smooth", file: "euer" },
+      { word: "Euro", type: "smooth", file: "Euro" },
+      { word: "Europa", type: "smooth", file: "Europa" },
+      { word: "leider", type: "smooth", file: "leider" },
+      { word: "weiter", type: "smooth", file: "weiter" },
+      { word: "heiter", type: "smooth", file: "heiter" },
+      { word: "breiter", type: "smooth", file: "breiter" },
+      { word: "Leitung", type: "smooth", file: "Leitung" },
+      { word: "Zeitung", type: "smooth", file: "Zeitung" },
+      { word: "Heizung", type: "smooth", file: "Heizung" },
+      { word: "Meister", type: "smooth", file: "Meister" },
+      { word: "Geist", type: "smooth", file: "Geist" },
+      { word: "meist", type: "smooth", file: "meist" },
+      { word: "feucht", type: "smooth", file: "feucht" },
+      { word: "Leuchte", type: "smooth", file: "Leuchte" },
+      { word: "freuen", type: "smooth", file: "freuen" },
+      { word: "neuen", type: "smooth", file: "neuen" },
+      { word: "Haut", type: "smooth", file: "Haut" },
+      { word: "laut", type: "smooth", file: "laut" },
+      { word: "Baum", type: "smooth", file: "Baum" },
+      { word: "Raum", type: "smooth", file: "Raum" },
+      { word: "Traum", type: "smooth", file: "Traum" },
+      { word: "Haus", type: "smooth", file: "Haus" },
+      { word: "Maus", type: "smooth", file: "Maus" },
+      { word: "raus", type: "smooth", file: "raus" },
+      { word: "Pause", type: "smooth", file: "Pause" },
+      { word: "Laune", type: "smooth", file: "Laune" },
+      { word: "Auge", type: "smooth", file: "Auge" },
+      { word: "Zaun", type: "smooth", file: "Zaun" }
+    ];
+
+    let mastered = [];
+    let wrong = [];
+    let unseen = [];
+    let sessionWords = [];
+    let currentIndex = 0;
+    let sessionCorrect = 0;
+    let answered = false;
+    let currentAudio = null;
+
+    function loadProgress() {
+      const saved = localStorage.getItem('glottal-stop-progress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        mastered = data.mastered || [];
+        wrong = data.wrong || [];
+      }
+
+      unseen = allWords
+        .map(w => w.word)
+        .filter(w => !mastered.includes(w) && !wrong.includes(w));
+    }
+
+    function saveProgress() {
+      localStorage.setItem('glottal-stop-progress', JSON.stringify({ mastered, wrong }));
+    }
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function selectSessionWords() {
+      loadProgress();
+
+      const wrongWords = allWords.filter(w => wrong.includes(w.word));
+      const unseenWords = allWords.filter(w => unseen.includes(w.word));
+      const masteredWords = allWords.filter(w => mastered.includes(w.word));
+
+      let selected = [];
+
+      selected.push(...shuffle(wrongWords).slice(0, Math.min(10, wrongWords.length)));
+
+      const remaining = SESSION_SIZE - selected.length;
+      if (remaining > 0) {
+        selected.push(...shuffle(unseenWords).slice(0, Math.min(remaining, unseenWords.length)));
+      }
+
+      const stillRemaining = SESSION_SIZE - selected.length;
+      if (stillRemaining > 0) {
+        selected.push(...shuffle(masteredWords).slice(0, stillRemaining));
+      }
+
+      return shuffle(selected);
+    }
+
+    function startSession() {
+      sessionWords = selectSessionWords();
+      currentIndex = 0;
+      sessionCorrect = 0;
+
+      document.getElementById('exerciseArea').classList.remove('hidden');
+      document.getElementById('resultsArea').classList.add('hidden');
+
+      showWord();
+    }
+
+    function showWord() {
+      answered = false;
+      const word = sessionWords[currentIndex];
+
+      document.getElementById('currentNum').textContent = currentIndex + 1;
+      document.getElementById('masteredCount').textContent = mastered.length;
+      document.getElementById('wordDisplay').textContent = word.word;
+      document.getElementById('feedback').classList.add('hidden');
+
+      const progress = ((currentIndex) / SESSION_SIZE) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+
+      setTimeout(() => playAudio(), 300);
+    }
+
+    function playAudio() {
+      const word = sessionWords[currentIndex];
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(AUDIO_BASE + word.file + '.mp3?v=1');
+      currentAudio.play().catch(() => {});
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const word = sessionWords[currentIndex];
+      const isCorrect = selected === word.type;
+
+      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
+
+      const correctBtn = word.type === 'glottal' ? document.getElementById('btnGlottal') : document.getElementById('btnSmooth');
+      const selectedBtn = selected === 'glottal' ? document.getElementById('btnGlottal') : document.getElementById('btnSmooth');
+
+      correctBtn.classList.add('correct');
+      if (!isCorrect) {
+        selectedBtn.classList.add('wrong');
+      }
+
+      const feedback = document.getElementById('feedback');
+      const typeLabel = word.type === 'glottal' ? 'has a glottal stop' : 'has smooth transitions';
+
+      if (isCorrect) {
+        sessionCorrect++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! "' + word.word + '" ' + typeLabel + '.';
+
+        if (!mastered.includes(word.word)) {
+          mastered.push(word.word);
+          wrong = wrong.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Wrong! "' + word.word + '" ' + typeLabel + '.';
+
+        if (!wrong.includes(word.word)) {
+          wrong.push(word.word);
+          mastered = mastered.filter(w => w !== word.word);
+          unseen = unseen.filter(w => w !== word.word);
+        }
+      }
+
+      feedback.classList.remove('hidden');
+      saveProgress();
+      document.getElementById('masteredCount').textContent = mastered.length;
+
+      setTimeout(() => {
+        if (currentIndex < SESSION_SIZE - 1) {
+          currentIndex++;
+          showWord();
+        } else {
+          showResults();
+        }
+      }, 1500);
+    }
+
+    function showResults() {
+      document.getElementById('exerciseArea').classList.add('hidden');
+      document.getElementById('resultsArea').classList.remove('hidden');
+
+      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
+      document.getElementById('percentage').textContent = pct + '%';
+      document.getElementById('resultText').textContent =
+        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
+    }
+
+    function resetProgress() {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('glottal-stop-progress');
+        mastered = [];
+        wrong = [];
+        unseen = allWords.map(w => w.word);
+        startSession();
+      }
+    }
+
+    function toggleInstructions() {
+      const info = document.getElementById('infoSection');
+      const divider = document.getElementById('divider');
+      const btn = document.getElementById('hideTextBtn');
+
+      if (info.classList.contains('sg-dark-hidden')) {
+        info.classList.remove('sg-dark-hidden');
+        divider.classList.remove('sg-dark-hidden');
+        btn.textContent = 'Hide Instructions';
+      } else {
+        info.classList.add('sg-dark-hidden');
+        divider.classList.add('sg-dark-hidden');
+        btn.textContent = 'Show Instructions';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+
+      const key = e.key.toLowerCase();
+
+      if (key === ' ' || key === 'spacebar') {
+        e.preventDefault();
+        playAudio();
+      } else if (key === 'g' && !answered) {
+        checkAnswer('glottal');
+      } else if (key === 's' && !answered) {
+        checkAnswer('smooth');
+      }
+    });
+
+    document.getElementById('wordDisplay').addEventListener('click', playAudio);
+
+    loadProgress();
+    startSession();
+  </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+{
+  "generated": "2025-12-30T12:55:15.771Z",
+  "voice": "de-DE-Chirp3-HD-Algenib",
+  "words": [
+    {
+      "word": "lang",
+      "file": "lang",
+      "phrase": "sehr lang"
+    },
+    {
+      "word": "Schlange",
+      "file": "Schlange",
+      "phrase": "eine lange Schlange"
+    },
+    {
+      "word": "singen",
+      "file": "singen",
+      "phrase": "schön singen"
+    },
+    {
+      "word": "bringen",
+      "file": "bringen",
+      "phrase": "etwas bringen"
+    },
+    {
+      "word": "springen",
+      "file": "springen",
+      "phrase": "hoch springen"
+    },
+    {
+      "word": "Finger",
+      "file": "Finger",
+      "phrase": "mein Finger"
+    },
+    {
+      "word": "Hunger",
+      "file": "Hunger",
+      "phrase": "großer Hunger"
+    },
+    {
+      "word": "jung",
+      "file": "jung",
+      "phrase": "sehr jung"
+    },
+    {
+      "word": "Junge",
+      "file": "Junge",
+      "phrase": "ein kleiner Junge"
+    },
+    {
+      "word": "Zunge",
+      "file": "Zunge",
+      "phrase": "die rote Zunge"
+    },
+    {
+      "word": "Klang",
+      "file": "Klang",
+      "phrase": "ein schöner Klang"
+    },
+    {
+      "word": "Gang",
+      "file": "Gang",
+      "phrase": "ein langer Gang"
+    },
+    {
+      "word": "Gesang",
+      "file": "Gesang",
+      "phrase": "lauter Gesang"
+    },
+    {
+      "word": "Zwang",
+      "file": "Zwang",
+      "phrase": "ohne Zwang"
+    },
+    {
+      "word": "Anfang",
+      "file": "Anfang",
+      "phrase": "am Anfang"
+    },
+    {
+      "word": "Empfang",
+      "file": "Empfang",
+      "phrase": "guter Empfang"
+    },
+    {
+      "word": "Umgang",
+      "file": "Umgang",
+      "phrase": "im Umgang"
+    },
+    {
+      "word": "Zugang",
+      "file": "Zugang",
+      "phrase": "freier Zugang"
+    },
+    {
+      "word": "Eingang",
+      "file": "Eingang",
+      "phrase": "am Eingang"
+    },
+    {
+      "word": "Ausgang",
+      "file": "Ausgang",
+      "phrase": "der Ausgang"
+    },
+    {
+      "word": "Ring",
+      "file": "Ring",
+      "phrase": "ein goldener Ring"
+    },
+    {
+      "word": "Ding",
+      "file": "Ding",
+      "phrase": "ein komisches Ding"
+    },
+    {
+      "word": "eng",
+      "file": "eng",
+      "phrase": "zu eng"
+    },
+    {
+      "word": "Menge",
+      "file": "Menge",
+      "phrase": "eine große Menge"
+    },
+    {
+      "word": "Enge",
+      "file": "Enge",
+      "phrase": "in der Enge"
+    },
+    {
+      "word": "streng",
+      "file": "streng",
+      "phrase": "sehr streng"
+    },
+    {
+      "word": "Stange",
+      "file": "Stange",
+      "phrase": "eine lange Stange"
+    },
+    {
+      "word": "Wange",
+      "file": "Wange",
+      "phrase": "die rote Wange"
+    },
+    {
+      "word": "Mange",
+      "file": "Mange",
+      "phrase": "aus Mange"
+    },
+    {
+      "word": "hängen",
+      "file": "haengen",
+      "phrase": "an der Wand hängen"
+    },
+    {
+      "word": "fangen",
+      "file": "fangen",
+      "phrase": "den Ball fangen"
+    },
+    {
+      "word": "anfangen",
+      "file": "anfangen",
+      "phrase": "neu anfangen"
+    },
+    {
+      "word": "empfangen",
+      "file": "empfangen",
+      "phrase": "Gäste empfangen"
+    },
+    {
+      "word": "gelungen",
+      "file": "gelungen",
+      "phrase": "gut gelungen"
+    },
+    {
+      "word": "gezwungen",
+      "file": "gezwungen",
+      "phrase": "dazu gezwungen"
+    },
+    {
+      "word": "gesungen",
+      "file": "gesungen",
+      "phrase": "laut gesungen"
+    },
+    {
+      "word": "gesprungen",
+      "file": "gesprungen",
+      "phrase": "hoch gesprungen"
+    },
+    {
+      "word": "Achtung",
+      "file": "Achtung",
+      "phrase": "Achtung bitte"
+    },
+    {
+      "word": "Ordnung",
+      "file": "Ordnung",
+      "phrase": "in Ordnung"
+    },
+    {
+      "word": "Hoffnung",
+      "file": "Hoffnung",
+      "phrase": "große Hoffnung"
+    },
+    {
+      "word": "danke",
+      "file": "danke",
+      "phrase": "vielen Dank, danke"
+    },
+    {
+      "word": "Bank",
+      "file": "Bank",
+      "phrase": "die alte Bank"
+    },
+    {
+      "word": "trinken",
+      "file": "trinken",
+      "phrase": "Wasser trinken"
+    },
+    {
+      "word": "denken",
+      "file": "denken",
+      "phrase": "genau denken"
+    },
+    {
+      "word": "schenken",
+      "file": "schenken",
+      "phrase": "ein Geschenk schenken"
+    },
+    {
+      "word": "sinken",
+      "file": "sinken",
+      "phrase": "langsam sinken"
+    },
+    {
+      "word": "winken",
+      "file": "winken",
+      "phrase": "freundlich winken"
+    },
+    {
+      "word": "Schrank",
+      "file": "Schrank",
+      "phrase": "ein großer Schrank"
+    },
+    {
+      "word": "krank",
+      "file": "krank",
+      "phrase": "sehr krank"
+    },
+    {
+      "word": "Dank",
+      "file": "Dank",
+      "phrase": "vielen Dank"
+    },
+    {
+      "word": "Gedanke",
+      "file": "Gedanke",
+      "phrase": "ein guter Gedanke"
+    },
+    {
+      "word": "Geschenk",
+      "file": "Geschenk",
+      "phrase": "ein schönes Geschenk"
+    },
+    {
+      "word": "Punkt",
+      "file": "Punkt",
+      "phrase": "der letzte Punkt"
+    },
+    {
+      "word": "dunkel",
+      "file": "dunkel",
+      "phrase": "ganz dunkel"
+    },
+    {
+      "word": "Onkel",
+      "file": "Onkel",
+      "phrase": "mein Onkel"
+    },
+    {
+      "word": "Enkel",
+      "file": "Enkel",
+      "phrase": "mein Enkel"
+    },
+    {
+      "word": "Schinken",
+      "file": "Schinken",
+      "phrase": "leckerer Schinken"
+    },
+    {
+      "word": "Funke",
+      "file": "Funke",
+      "phrase": "ein kleiner Funke"
+    },
+    {
+      "word": "Stunk",
+      "file": "Stunk",
+      "phrase": "großer Stunk"
+    },
+    {
+      "word": "Trunk",
+      "file": "Trunk",
+      "phrase": "ein kühler Trunk"
+    },
+    {
+      "word": "blinken",
+      "file": "blinken",
+      "phrase": "hell blinken"
+    },
+    {
+      "word": "stinken",
+      "file": "stinken",
+      "phrase": "furchtbar stinken"
+    },
+    {
+      "word": "hinken",
+      "file": "hinken",
+      "phrase": "leicht hinken"
+    },
+    {
+      "word": "lenken",
+      "file": "lenken",
+      "phrase": "das Auto lenken"
+    },
+    {
+      "word": "senken",
+      "file": "senken",
+      "phrase": "die Preise senken"
+    },
+    {
+      "word": "schwenken",
+      "file": "schwenken",
+      "phrase": "die Fahne schwenken"
+    },
+    {
+      "word": "Zink",
+      "file": "Zink",
+      "phrase": "aus Zink"
+    },
+    {
+      "word": "Link",
+      "file": "Link",
+      "phrase": "ein guter Link"
+    },
+    {
+      "word": "links",
+      "file": "links",
+      "phrase": "nach links"
+    },
+    {
+      "word": "Anker",
+      "file": "Anker",
+      "phrase": "ein schwerer Anker"
+    },
+    {
+      "word": "blanko",
+      "file": "blanko",
+      "phrase": "ein blanko Formular"
+    },
+    {
+      "word": "Bunker",
+      "file": "Bunker",
+      "phrase": "ein alter Bunker"
+    },
+    {
+      "word": "Klinke",
+      "file": "Klinke",
+      "phrase": "die Türklinke"
+    },
+    {
+      "word": "Planke",
+      "file": "Planke",
+      "phrase": "eine alte Planke"
+    },
+    {
+      "word": "Ranke",
+      "file": "Ranke",
+      "phrase": "eine grüne Ranke"
+    },
+    {
+      "word": "Schranke",
+      "file": "Schranke",
+      "phrase": "die geschlossene Schranke"
+    },
+    {
+      "word": "Schwank",
+      "file": "Schwank",
+      "phrase": "ein lustiger Schwank"
+    },
+    {
+      "word": "wanken",
+      "file": "wanken",
+      "phrase": "leicht wanken"
+    },
+    {
+      "word": "zanken",
+      "file": "zanken",
+      "phrase": "laut zanken"
+    },
+    {
+      "word": "Franke",
+      "file": "Franke",
+      "phrase": "ein echter Franke"
+    }
+  ]
+}
