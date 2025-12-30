@@ -121,41 +121,73 @@
 
     .question-area {
       background: white;
-      padding: 25px;
+      padding: 30px 25px;
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 20px;
-      min-height: 180px;
+    }
+
+    .audio-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
     }
 
     .play-btn {
       background: linear-gradient(135deg, #9C27B0, #7B1FA2);
       color: white;
       border: none;
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      font-size: 36px;
+      font-size: 32px;
       cursor: pointer;
       box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
       transition: transform 0.2s;
     }
 
     .play-btn:hover { transform: scale(1.05); }
     .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
 
+    .hint-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .hint-btn:hover { transform: scale(1.05); }
+
     @keyframes pulse-speak {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); }
     }
 
+    .question-text {
+      font-size: 18px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
     .reveal-container {
-      height: 70px;
+      min-height: 90px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -163,43 +195,43 @@
     }
 
     .word-reveal {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
       color: #E91E63;
       margin: 0;
       animation: fadeIn 0.3s;
     }
 
-    .spelling-note {
-      font-size: 14px;
+    .phrase-reveal {
+      font-size: 16px;
       color: #9C27B0;
-      margin-top: 5px;
-      font-weight: 600;
+      margin-top: 8px;
+      font-style: italic;
     }
 
-    .translation-reveal {
-      font-size: 16px;
-      color: #6B4E8C;
+    .hint-reveal {
+      font-size: 14px;
+      color: #FF9800;
       margin-top: 5px;
-      font-style: italic;
     }
 
     .btn-row {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       justify-content: center;
-      margin-bottom: 15px;
+      flex-wrap: wrap;
     }
 
     .choice-btn {
       background: white;
       border: 3px solid #E0E0E0;
-      padding: 18px 35px;
-      border-radius: 15px;
-      font-size: 20px;
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 28px;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s;
+      min-width: 100px;
     }
 
     .choice-btn:hover:not(:disabled) {
@@ -207,8 +239,9 @@
       border-color: #9C27B0;
     }
 
-    .choice-btn.voiced { color: #00BCD4; }
-    .choice-btn.voiceless { color: #FF9800; }
+    .choice-btn.dt-pair { color: #00BCD4; }
+    .choice-btn.bp-pair { color: #4CAF50; }
+    .choice-btn.gk-pair { color: #FF9800; }
     .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     .choice-btn.correct {
@@ -271,7 +304,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
+      padding: 8px 0;
       border-bottom: 1px solid #FFE0B2;
       font-size: 14px;
     }
@@ -282,8 +315,8 @@
       background: #9C27B0;
       color: white;
       border: none;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       cursor: pointer;
       font-size: 12px;
@@ -327,8 +360,9 @@
       .container { padding: 15px; }
       .title { font-size: 20px; }
       .play-btn { width: 70px; height: 70px; font-size: 28px; }
-      .choice-btn { padding: 14px 25px; font-size: 16px; }
-      .word-reveal { font-size: 26px; }
+      .hint-btn { width: 50px; height: 50px; font-size: 12px; }
+      .choice-btn { padding: 15px 30px; font-size: 22px; min-width: 80px; }
+      .word-reveal { font-size: 24px; }
     }
   </style>
 </head>
@@ -343,52 +377,51 @@
     </div>
 
     <div id="shortcutsSection" class="shortcuts-section hidden">
-      <kbd>Space</kbd> Play
-      <kbd>F</kbd> Voiced (d/b/g)
-      <kbd>J</kbd> Voiceless (t/p/k)
+      <kbd>Space</kbd> Play phrase
+      <kbd>H</kbd> Play hint (plural)
+      <kbd>F</kbd> Left button
+      <kbd>J</kbd> Right button
     </div>
 
     <div id="infoSection" class="info-section hidden">
       <strong>Auslautverhartung</strong> - German final devoicing
       <br><br>
-      In German, voiced consonants (d, b, g) become voiceless (t, p, k) at the end of a syllable or word.
+      In German, d/b/g at the end of a word sound like t/p/k.
       <br><br>
-      <strong>Examples:</strong>
-      <br>Hun<strong>d</strong> sounds like "Hunt" (but spelled with d!)
-      <br>lie<strong>b</strong> sounds like "liep" (but spelled with b!)
-      <br>Ta<strong>g</strong> sounds like "Tak" (but spelled with g!)
+      <strong>Challenge:</strong> Hun<strong>d</strong> sounds like "Hunt" - but is it d or t?
       <br><br>
-      <strong>The spelling stays the same</strong> - you can see the original sound in related words:
-      <br>Hund/Hunde, lieb/lieben, Tag/Tage
-      <br><br>
-      Listen carefully - does the final sound match its spelling (voiced) or is it devoiced?
+      <strong>Trick:</strong> Press <strong>Hint</strong> to hear the plural - "Hun<strong>de</strong>" - now you clearly hear the d!
     </div>
 
     <div id="exerciseArea">
       <div class="progress-row">
         <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
         <span class="progress-score" id="scoreDisplay">0 correct</span>
-        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span> learned</span>
       </div>
       <div class="progress-bar-wrap">
         <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
       </div>
 
       <div class="question-area">
-        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
-          <span>&#9654;</span>
-        </button>
+        <div class="audio-row">
+          <button class="play-btn" onclick="playPhrase()" id="playBtn" aria-label="Play phrase">
+            <span>&#9654;</span>
+          </button>
+          <button class="hint-btn" onclick="playHint()" id="hintBtn" aria-label="Play hint">Hint</button>
+        </div>
+
+        <div class="question-text">What letter is <strong>spelled</strong> at the end of the main word?</div>
 
         <div class="reveal-container">
           <div id="wordReveal" class="word-reveal hidden"></div>
-          <div id="spellingNote" class="spelling-note hidden"></div>
-          <div id="translationReveal" class="translation-reveal hidden"></div>
+          <div id="phraseReveal" class="phrase-reveal hidden"></div>
+          <div id="hintReveal" class="hint-reveal hidden"></div>
         </div>
       </div>
 
-      <div class="btn-row">
-        <button class="choice-btn voiced" onclick="checkAnswer('voiced')" id="btnVoiced">d/b/g</button>
-        <button class="choice-btn voiceless" onclick="checkAnswer('voiceless')" id="btnVoiceless">t/p/k</button>
+      <div class="btn-row" id="btnRow">
+        <!-- Buttons will be dynamically inserted based on word category -->
       </div>
     </div>
 
@@ -416,98 +449,130 @@
       'use strict';
 
       const AUDIO_BASE = 'final-devoicing-trainer/audio/';
-      const STORAGE_KEY = 'final_devoicing_progress';
+      const STORAGE_KEY = 'final_devoicing_v3_progress';
       const SESSION_SIZE = 20;
 
-      // Word bank: words where final consonant is DEVOICED vs words where it STAYS VOICED
-      // devoiced = spelled d/b/g but pronounced t/p/k (at syllable end)
-      // voiced = the consonant stays voiced (not at syllable end, or naturally voiceless)
+      // Categories: dt (d/t), bp (b/p), gk (g/k)
       const allWords = [
-        // DEVOICED - spelled d/b/g, pronounced t/p/k
-        { word: "Hund", sound: "devoiced", file: "Hund", en: "dog", note: "d sounds like t" },
-        { word: "Kind", sound: "devoiced", file: "Kind", en: "child", note: "d sounds like t" },
-        { word: "Freund", sound: "devoiced", file: "Freund", en: "friend", note: "d sounds like t" },
-        { word: "Mund", sound: "devoiced", file: "Mund", en: "mouth", note: "d sounds like t" },
-        { word: "Wand", sound: "devoiced", file: "Wand", en: "wall", note: "d sounds like t" },
-        { word: "Hand", sound: "devoiced", file: "Hand", en: "hand", note: "d sounds like t" },
-        { word: "Land", sound: "devoiced", file: "Land", en: "country", note: "d sounds like t" },
-        { word: "Bild", sound: "devoiced", file: "Bild", en: "picture", note: "d sounds like t" },
-        { word: "Geld", sound: "devoiced", file: "Geld", en: "money", note: "d sounds like t" },
-        { word: "Feld", sound: "devoiced", file: "Feld", en: "field", note: "d sounds like t" },
-        { word: "Pferd", sound: "devoiced", file: "Pferd", en: "horse", note: "d sounds like t" },
-        { word: "Rad", sound: "devoiced", file: "Rad", en: "wheel", note: "d sounds like t" },
-        { word: "Bad", sound: "devoiced", file: "Bad", en: "bath", note: "d sounds like t" },
-        { word: "Grad", sound: "devoiced", file: "Grad", en: "degree", note: "d sounds like t" },
-        { word: "lieb", sound: "devoiced", file: "lieb", en: "dear", note: "b sounds like p" },
-        { word: "Dieb", sound: "devoiced", file: "Dieb", en: "thief", note: "b sounds like p" },
-        { word: "halb", sound: "devoiced", file: "halb", en: "half", note: "b sounds like p" },
-        { word: "gelb", sound: "devoiced", file: "gelb", en: "yellow", note: "b sounds like p" },
-        { word: "Korb", sound: "devoiced", file: "Korb", en: "basket", note: "b sounds like p" },
-        { word: "Urlaub", sound: "devoiced", file: "Urlaub", en: "vacation", note: "b sounds like p" },
-        { word: "Staub", sound: "devoiced", file: "Staub", en: "dust", note: "b sounds like p" },
-        { word: "Laub", sound: "devoiced", file: "Laub", en: "foliage", note: "b sounds like p" },
-        { word: "Tag", sound: "devoiced", file: "Tag", en: "day", note: "g sounds like k" },
-        { word: "Weg", sound: "devoiced", file: "Weg", en: "way", note: "g sounds like k" },
-        { word: "Zug", sound: "devoiced", file: "Zug", en: "train", note: "g sounds like k" },
-        { word: "Flug", sound: "devoiced", file: "Flug", en: "flight", note: "g sounds like k" },
-        { word: "Berg", sound: "devoiced", file: "Berg", en: "mountain", note: "g sounds like k" },
-        { word: "Krieg", sound: "devoiced", file: "Krieg", en: "war", note: "g sounds like k" },
-        { word: "Sieg", sound: "devoiced", file: "Sieg", en: "victory", note: "g sounds like k" },
-        { word: "Schlag", sound: "devoiced", file: "Schlag", en: "hit", note: "g sounds like k" },
-        { word: "Betrug", sound: "devoiced", file: "Betrug", en: "fraud", note: "g sounds like k" },
-        { word: "Erfolg", sound: "devoiced", file: "Erfolg", en: "success", note: "g sounds like k" },
-        { word: "Vertrag", sound: "devoiced", file: "Vertrag", en: "contract", note: "g sounds like k" },
-        { word: "Antrag", sound: "devoiced", file: "Antrag", en: "application", note: "g sounds like k" },
-        { word: "Verband", sound: "devoiced", file: "Verband", en: "bandage", note: "d sounds like t" },
-        { word: "Abend", sound: "devoiced", file: "Abend", en: "evening", note: "d sounds like t" },
-        { word: "Jugend", sound: "devoiced", file: "Jugend", en: "youth", note: "d sounds like t" },
-        { word: "Werbung", sound: "devoiced", file: "Werbung", en: "advertising", note: "g sounds like k" },
-        { word: "Zeitung", sound: "devoiced", file: "Zeitung", en: "newspaper", note: "g sounds like k" },
-        { word: "Ordnung", sound: "devoiced", file: "Ordnung", en: "order", note: "g sounds like k" },
-        // VOICED - consonants stay voiced (not at syllable end)
-        { word: "Hunde", sound: "voiced", file: "Hunde", en: "dogs", note: "d stays voiced" },
-        { word: "Kinder", sound: "voiced", file: "Kinder", en: "children", note: "d stays voiced" },
-        { word: "Freunde", sound: "voiced", file: "Freunde", en: "friends", note: "d stays voiced" },
-        { word: "Handen", sound: "voiced", file: "Haende", en: "hands", note: "d stays voiced" },
-        { word: "Bilder", sound: "voiced", file: "Bilder", en: "pictures", note: "d stays voiced" },
-        { word: "Gelder", sound: "voiced", file: "Gelder", en: "monies", note: "d stays voiced" },
-        { word: "Pferde", sound: "voiced", file: "Pferde", en: "horses", note: "d stays voiced" },
-        { word: "lieben", sound: "voiced", file: "lieben", en: "to love", note: "b stays voiced" },
-        { word: "Diebe", sound: "voiced", file: "Diebe", en: "thieves", note: "b stays voiced" },
-        { word: "gelbe", sound: "voiced", file: "gelbe", en: "yellow (adj)", note: "b stays voiced" },
-        { word: "halbe", sound: "voiced", file: "halbe", en: "half (adj)", note: "b stays voiced" },
-        { word: "geben", sound: "voiced", file: "geben", en: "to give", note: "b stays voiced" },
-        { word: "leben", sound: "voiced", file: "leben", en: "to live", note: "b stays voiced" },
-        { word: "Tage", sound: "voiced", file: "Tage", en: "days", note: "g stays voiced" },
-        { word: "Wege", sound: "voiced", file: "Wege", en: "ways", note: "g stays voiced" },
-        { word: "Berge", sound: "voiced", file: "Berge", en: "mountains", note: "g stays voiced" },
-        { word: "fragen", sound: "voiced", file: "fragen", en: "to ask", note: "g stays voiced" },
-        { word: "tragen", sound: "voiced", file: "tragen", en: "to carry", note: "g stays voiced" },
-        { word: "sagen", sound: "voiced", file: "sagen", en: "to say", note: "g stays voiced" },
-        { word: "fliegen", sound: "voiced", file: "fliegen", en: "to fly", note: "g stays voiced" },
-        { word: "siegen", sound: "voiced", file: "siegen", en: "to win", note: "g stays voiced" },
-        { word: "Erfolge", sound: "voiced", file: "Erfolge", en: "successes", note: "g stays voiced" },
-        { word: "Abende", sound: "voiced", file: "Abende", en: "evenings", note: "d stays voiced" },
-        { word: "Rader", sound: "voiced", file: "Raeder", en: "wheels", note: "d stays voiced" },
-        { word: "Bader", sound: "voiced", file: "Baeder", en: "baths", note: "d stays voiced" },
-        { word: "Lander", sound: "voiced", file: "Laender", en: "countries", note: "d stays voiced" },
-        { word: "Wande", sound: "voiced", file: "Waende", en: "walls", note: "d stays voiced" },
-        { word: "Munde", sound: "voiced", file: "Munde", en: "mouths (dat)", note: "d stays voiced" },
-        { word: "Felder", sound: "voiced", file: "Felder", en: "fields", note: "d stays voiced" },
-        { word: "binden", sound: "voiced", file: "binden", en: "to bind", note: "d stays voiced" },
-        { word: "finden", sound: "voiced", file: "finden", en: "to find", note: "d stays voiced" },
-        { word: "werden", sound: "voiced", file: "werden", en: "to become", note: "d stays voiced" },
-        { word: "reden", sound: "voiced", file: "reden", en: "to talk", note: "d stays voiced" },
-        { word: "laden", sound: "voiced", file: "laden", en: "to load", note: "d stays voiced" },
-        { word: "baden", sound: "voiced", file: "baden", en: "to bathe", note: "d stays voiced" },
-        { word: "billig", sound: "voiced", file: "billig", en: "cheap", note: "g stays voiced" },
-        { word: "fertig", sound: "voiced", file: "fertig", en: "finished", note: "g stays voiced" },
-        { word: "fleißig", sound: "voiced", file: "fleissig", en: "diligent", note: "g stays voiced" },
-        { word: "ruhig", sound: "voiced", file: "ruhig", en: "quiet", note: "g stays voiced" },
-        { word: "lustig", sound: "voiced", file: "lustig", en: "funny", note: "g stays voiced" }
+        // === D/T category ===
+        { word: "Hund", letter: "d", category: "dt", phrase: "ein großer Hund", hint: "große Hunde", file: "Hund_phrase", hintFile: "Hunde_phrase" },
+        { word: "Kind", letter: "d", category: "dt", phrase: "ein kleines Kind", hint: "kleine Kinder", file: "Kind_phrase", hintFile: "Kinder_phrase" },
+        { word: "Freund", letter: "d", category: "dt", phrase: "mein bester Freund", hint: "meine besten Freunde", file: "Freund_phrase", hintFile: "Freunde_phrase" },
+        { word: "Mund", letter: "d", category: "dt", phrase: "der offene Mund", hint: "die offenen Münder", file: "Mund_phrase", hintFile: "Muender_phrase" },
+        { word: "Wand", letter: "d", category: "dt", phrase: "die weiße Wand", hint: "die weißen Wände", file: "Wand_phrase", hintFile: "Waende_phrase" },
+        { word: "Hand", letter: "d", category: "dt", phrase: "eine starke Hand", hint: "starke Hände", file: "Hand_phrase", hintFile: "Haende_phrase" },
+        { word: "Land", letter: "d", category: "dt", phrase: "ein fremdes Land", hint: "fremde Länder", file: "Land_phrase", hintFile: "Laender_phrase" },
+        { word: "Bild", letter: "d", category: "dt", phrase: "ein schönes Bild", hint: "schöne Bilder", file: "Bild_phrase", hintFile: "Bilder_phrase" },
+        { word: "Geld", letter: "d", category: "dt", phrase: "viel Geld", hint: "viele Gelder", file: "Geld_phrase", hintFile: "Gelder_phrase" },
+        { word: "Feld", letter: "d", category: "dt", phrase: "das grüne Feld", hint: "die grünen Felder", file: "Feld_phrase", hintFile: "Felder_phrase" },
+        { word: "Pferd", letter: "d", category: "dt", phrase: "ein schnelles Pferd", hint: "schnelle Pferde", file: "Pferd_phrase", hintFile: "Pferde_phrase" },
+        { word: "Rad", letter: "d", category: "dt", phrase: "ein neues Rad", hint: "neue Räder", file: "Rad_phrase", hintFile: "Raeder_phrase" },
+        { word: "Bad", letter: "d", category: "dt", phrase: "ein warmes Bad", hint: "warme Bäder", file: "Bad_phrase", hintFile: "Baeder_phrase" },
+        { word: "Abend", letter: "d", category: "dt", phrase: "ein schöner Abend", hint: "schöne Abende", file: "Abend_phrase", hintFile: "Abende_phrase" },
+        { word: "Herd", letter: "d", category: "dt", phrase: "der heiße Herd", hint: "die heißen Herde", file: "Herd_phrase", hintFile: "Herde_phrase" },
+        { word: "Hemd", letter: "d", category: "dt", phrase: "ein weißes Hemd", hint: "weiße Hemden", file: "Hemd_phrase", hintFile: "Hemden_phrase" },
+        { word: "Lied", letter: "d", category: "dt", phrase: "ein schönes Lied", hint: "schöne Lieder", file: "Lied_phrase", hintFile: "Lieder_phrase" },
+        { word: "Kleid", letter: "d", category: "dt", phrase: "ein rotes Kleid", hint: "rote Kleider", file: "Kleid_phrase", hintFile: "Kleider_phrase" },
+        { word: "Strand", letter: "d", category: "dt", phrase: "am schönen Strand", hint: "schöne Strände", file: "Strand_phrase", hintFile: "Straende_phrase" },
+        { word: "Sand", letter: "d", category: "dt", phrase: "weicher Sand", hint: "im Sande", file: "Sand_phrase", hintFile: "Sande_phrase" },
+        { word: "Grund", letter: "d", category: "dt", phrase: "ein guter Grund", hint: "gute Gründe", file: "Grund_phrase", hintFile: "Gruende_phrase" },
+        { word: "Wald", letter: "d", category: "dt", phrase: "ein dunkler Wald", hint: "dunkle Wälder", file: "Wald_phrase", hintFile: "Waelder_phrase" },
+        { word: "Held", letter: "d", category: "dt", phrase: "ein großer Held", hint: "große Helden", file: "Held_phrase", hintFile: "Helden_phrase" },
+        { word: "Gold", letter: "d", category: "dt", phrase: "reines Gold", hint: "goldene Ringe", file: "Gold_phrase", hintFile: "goldene_phrase" },
+        { word: "Mond", letter: "d", category: "dt", phrase: "der volle Mond", hint: "viele Monde", file: "Mond_phrase", hintFile: "Monde_phrase" },
+        { word: "Rind", letter: "d", category: "dt", phrase: "ein großes Rind", hint: "große Rinder", file: "Rind_phrase", hintFile: "Rinder_phrase" },
+        { word: "Wind", letter: "d", category: "dt", phrase: "starker Wind", hint: "starke Winde", file: "Wind_phrase", hintFile: "Winde_phrase" },
+        { word: "Feind", letter: "d", category: "dt", phrase: "ein alter Feind", hint: "alte Feinde", file: "Feind_phrase", hintFile: "Feinde_phrase" },
+        // T words
+        { word: "Brot", letter: "t", category: "dt", phrase: "frisches Brot", hint: null, file: "Brot_phrase", hintFile: null },
+        { word: "Wort", letter: "t", category: "dt", phrase: "ein kurzes Wort", hint: null, file: "Wort_phrase", hintFile: null },
+        { word: "Ort", letter: "t", category: "dt", phrase: "ein schöner Ort", hint: null, file: "Ort_phrase", hintFile: null },
+        { word: "Sport", letter: "t", category: "dt", phrase: "viel Sport", hint: null, file: "Sport_phrase", hintFile: null },
+        { word: "Rat", letter: "t", category: "dt", phrase: "ein guter Rat", hint: null, file: "Rat_phrase", hintFile: null },
+        { word: "Blatt", letter: "t", category: "dt", phrase: "ein grünes Blatt", hint: null, file: "Blatt_phrase", hintFile: null },
+        { word: "Stadt", letter: "t", category: "dt", phrase: "eine große Stadt", hint: null, file: "Stadt_phrase", hintFile: null },
+        { word: "Nacht", letter: "t", category: "dt", phrase: "eine lange Nacht", hint: null, file: "Nacht_phrase", hintFile: null },
+        { word: "Macht", letter: "t", category: "dt", phrase: "große Macht", hint: null, file: "Macht_phrase", hintFile: null },
+        { word: "Licht", letter: "t", category: "dt", phrase: "helles Licht", hint: null, file: "Licht_phrase", hintFile: null },
+        { word: "Gesicht", letter: "t", category: "dt", phrase: "ein freundliches Gesicht", hint: null, file: "Gesicht_phrase", hintFile: null },
+        { word: "Frucht", letter: "t", category: "dt", phrase: "eine reife Frucht", hint: null, file: "Frucht_phrase", hintFile: null },
+        { word: "Flucht", letter: "t", category: "dt", phrase: "die schnelle Flucht", hint: null, file: "Flucht_phrase", hintFile: null },
+        { word: "Sucht", letter: "t", category: "dt", phrase: "eine starke Sucht", hint: null, file: "Sucht_phrase", hintFile: null },
+        { word: "Sicht", letter: "t", category: "dt", phrase: "gute Sicht", hint: null, file: "Sicht_phrase", hintFile: null },
+        { word: "Gewicht", letter: "t", category: "dt", phrase: "hohes Gewicht", hint: null, file: "Gewicht_phrase", hintFile: null },
+
+        // === B/P category ===
+        { word: "lieb", letter: "b", category: "bp", phrase: "so lieb", hint: "sie lieben", file: "lieb_phrase", hintFile: "lieben_phrase" },
+        { word: "Dieb", letter: "b", category: "bp", phrase: "ein gemeiner Dieb", hint: "gemeine Diebe", file: "Dieb_phrase", hintFile: "Diebe_phrase" },
+        { word: "halb", letter: "b", category: "bp", phrase: "nur halb", hint: "die Hälfte", file: "halb_phrase", hintFile: "Haelfte_phrase" },
+        { word: "gelb", letter: "b", category: "bp", phrase: "ganz gelb", hint: "die gelben", file: "gelb_phrase", hintFile: "gelben_phrase" },
+        { word: "Korb", letter: "b", category: "bp", phrase: "ein voller Korb", hint: "volle Körbe", file: "Korb_phrase", hintFile: "Koerbe_phrase" },
+        { word: "Urlaub", letter: "b", category: "bp", phrase: "im Urlaub", hint: "viele Urlaube", file: "Urlaub_phrase", hintFile: "Urlaube_phrase" },
+        { word: "Staub", letter: "b", category: "bp", phrase: "viel Staub", hint: "sehr staubig", file: "Staub_phrase", hintFile: "staubig_phrase" },
+        { word: "Trieb", letter: "b", category: "bp", phrase: "ein starker Trieb", hint: "starke Triebe", file: "Trieb_phrase", hintFile: "Triebe_phrase" },
+        { word: "Leib", letter: "b", category: "bp", phrase: "der ganze Leib", hint: "die Leiber", file: "Leib_phrase", hintFile: "Leiber_phrase" },
+        { word: "Betrieb", letter: "b", category: "bp", phrase: "ein großer Betrieb", hint: "große Betriebe", file: "Betrieb_phrase", hintFile: "Betriebe_phrase" },
+        { word: "Verb", letter: "b", category: "bp", phrase: "ein starkes Verb", hint: "starke Verben", file: "Verb_phrase", hintFile: "Verben_phrase" },
+        { word: "Grab", letter: "b", category: "bp", phrase: "ein altes Grab", hint: "alte Gräber", file: "Grab_phrase", hintFile: "Graeber_phrase" },
+        { word: "Stab", letter: "b", category: "bp", phrase: "ein langer Stab", hint: "lange Stäbe", file: "Stab_phrase", hintFile: "Staebe_phrase" },
+        { word: "taub", letter: "b", category: "bp", phrase: "fast taub", hint: "die Tauben", file: "taub_phrase", hintFile: "Tauben_phrase" },
+        { word: "Laub", letter: "b", category: "bp", phrase: "buntes Laub", hint: "im Laube", file: "Laub_phrase", hintFile: "Laube_phrase" },
+        // P words
+        { word: "Kopf", letter: "p", category: "bp", phrase: "ein kluger Kopf", hint: null, file: "Kopf_phrase", hintFile: null },
+        { word: "Topf", letter: "p", category: "bp", phrase: "ein großer Topf", hint: null, file: "Topf_phrase", hintFile: null },
+        { word: "Kampf", letter: "p", category: "bp", phrase: "ein harter Kampf", hint: null, file: "Kampf_phrase", hintFile: null },
+        { word: "Dampf", letter: "p", category: "bp", phrase: "heißer Dampf", hint: null, file: "Dampf_phrase", hintFile: null },
+        { word: "Strumpf", letter: "p", category: "bp", phrase: "ein warmer Strumpf", hint: null, file: "Strumpf_phrase", hintFile: null },
+        { word: "Sumpf", letter: "p", category: "bp", phrase: "ein tiefer Sumpf", hint: null, file: "Sumpf_phrase", hintFile: null },
+        { word: "Rumpf", letter: "p", category: "bp", phrase: "der starke Rumpf", hint: null, file: "Rumpf_phrase", hintFile: null },
+        { word: "Zopf", letter: "p", category: "bp", phrase: "ein langer Zopf", hint: null, file: "Zopf_phrase", hintFile: null },
+
+        // === G/K category ===
+        { word: "Tag", letter: "g", category: "gk", phrase: "ein langer Tag", hint: "lange Tage", file: "Tag_phrase", hintFile: "Tage_phrase" },
+        { word: "Weg", letter: "g", category: "gk", phrase: "ein weiter Weg", hint: "weite Wege", file: "Weg_phrase", hintFile: "Wege_phrase" },
+        { word: "Zug", letter: "g", category: "gk", phrase: "der schnelle Zug", hint: "die schnellen Züge", file: "Zug_phrase", hintFile: "Zuege_phrase" },
+        { word: "Flug", letter: "g", category: "gk", phrase: "ein langer Flug", hint: "lange Flüge", file: "Flug_phrase", hintFile: "Fluege_phrase" },
+        { word: "Berg", letter: "g", category: "gk", phrase: "ein hoher Berg", hint: "hohe Berge", file: "Berg_phrase", hintFile: "Berge_phrase" },
+        { word: "Krieg", letter: "g", category: "gk", phrase: "der letzte Krieg", hint: "die letzten Kriege", file: "Krieg_phrase", hintFile: "Kriege_phrase" },
+        { word: "Sieg", letter: "g", category: "gk", phrase: "ein großer Sieg", hint: "große Siege", file: "Sieg_phrase", hintFile: "Siege_phrase" },
+        { word: "Erfolg", letter: "g", category: "gk", phrase: "ein toller Erfolg", hint: "tolle Erfolge", file: "Erfolg_phrase", hintFile: "Erfolge_phrase" },
+        { word: "Vertrag", letter: "g", category: "gk", phrase: "ein neuer Vertrag", hint: "neue Verträge", file: "Vertrag_phrase", hintFile: "Vertraege_phrase" },
+        { word: "Schlag", letter: "g", category: "gk", phrase: "ein harter Schlag", hint: "harte Schläge", file: "Schlag_phrase", hintFile: "Schlaege_phrase" },
+        { word: "Betrug", letter: "g", category: "gk", phrase: "ein großer Betrug", hint: "viele Betrüge", file: "Betrug_phrase", hintFile: "Betruege_phrase" },
+        { word: "Zeug", letter: "g", category: "gk", phrase: "das ganze Zeug", hint: "viele Zeugen", file: "Zeug_phrase", hintFile: "Zeugen_phrase" },
+        { word: "Ausflug", letter: "g", category: "gk", phrase: "ein schöner Ausflug", hint: "schöne Ausflüge", file: "Ausflug_phrase", hintFile: "Ausfluege_phrase" },
+        { word: "Bezug", letter: "g", category: "gk", phrase: "ein direkter Bezug", hint: "direkte Bezüge", file: "Bezug_phrase", hintFile: "Bezuege_phrase" },
+        { word: "Anzug", letter: "g", category: "gk", phrase: "ein neuer Anzug", hint: "neue Anzüge", file: "Anzug_phrase", hintFile: "Anzuege_phrase" },
+        { word: "Aufzug", letter: "g", category: "gk", phrase: "der langsame Aufzug", hint: "die Aufzüge", file: "Aufzug_phrase", hintFile: "Aufzuege_phrase" },
+        { word: "Verlag", letter: "g", category: "gk", phrase: "ein großer Verlag", hint: "große Verlage", file: "Verlag_phrase", hintFile: "Verlage_phrase" },
+        { word: "Beitrag", letter: "g", category: "gk", phrase: "ein wichtiger Beitrag", hint: "wichtige Beiträge", file: "Beitrag_phrase", hintFile: "Beitraege_phrase" },
+        { word: "Antrag", letter: "g", category: "gk", phrase: "ein neuer Antrag", hint: "neue Anträge", file: "Antrag_phrase", hintFile: "Antraege_phrase" },
+        { word: "Auftrag", letter: "g", category: "gk", phrase: "ein großer Auftrag", hint: "große Aufträge", file: "Auftrag_phrase", hintFile: "Auftraege_phrase" },
+        // K words
+        { word: "Blick", letter: "k", category: "gk", phrase: "ein kurzer Blick", hint: null, file: "Blick_phrase", hintFile: null },
+        { word: "Glück", letter: "k", category: "gk", phrase: "viel Glück", hint: null, file: "Glueck_phrase", hintFile: null },
+        { word: "Stück", letter: "k", category: "gk", phrase: "ein großes Stück", hint: null, file: "Stueck_phrase", hintFile: null },
+        { word: "Druck", letter: "k", category: "gk", phrase: "hoher Druck", hint: null, file: "Druck_phrase", hintFile: null },
+        { word: "Truck", letter: "k", category: "gk", phrase: "ein großer Truck", hint: null, file: "Truck_phrase", hintFile: null },
+        { word: "Stock", letter: "k", category: "gk", phrase: "ein dicker Stock", hint: null, file: "Stock_phrase", hintFile: null },
+        { word: "Block", letter: "k", category: "gk", phrase: "ein schwerer Block", hint: null, file: "Block_phrase", hintFile: null },
+        { word: "Schock", letter: "k", category: "gk", phrase: "ein großer Schock", hint: null, file: "Schock_phrase", hintFile: null },
+        { word: "Rock", letter: "k", category: "gk", phrase: "ein kurzer Rock", hint: null, file: "Rock_phrase", hintFile: null },
+        { word: "Trick", letter: "k", category: "gk", phrase: "ein guter Trick", hint: null, file: "Trick_phrase", hintFile: null },
+        { word: "Lack", letter: "k", category: "gk", phrase: "roter Lack", hint: null, file: "Lack_phrase", hintFile: null },
+        { word: "Pack", letter: "k", category: "gk", phrase: "ein schweres Pack", hint: null, file: "Pack_phrase", hintFile: null },
+        { word: "Sack", letter: "k", category: "gk", phrase: "ein voller Sack", hint: null, file: "Sack_phrase", hintFile: null },
+        { word: "Geschmack", letter: "k", category: "gk", phrase: "guter Geschmack", hint: null, file: "Geschmack_phrase", hintFile: null },
+        { word: "Zweck", letter: "k", category: "gk", phrase: "ein klarer Zweck", hint: null, file: "Zweck_phrase", hintFile: null },
+        { word: "Schreck", letter: "k", category: "gk", phrase: "ein großer Schreck", hint: null, file: "Schreck_phrase", hintFile: null }
       ];
 
-      const TOTAL_WORDS = allWords.length;
+      // Button pairs for each category
+      const categoryButtons = {
+        dt: { voiced: 'd', voiceless: 't', class: 'dt-pair' },
+        bp: { voiced: 'b', voiceless: 'p', class: 'bp-pair' },
+        gk: { voiced: 'g', voiceless: 'k', class: 'gk-pair' }
+      };
 
       let progress = loadProgress();
       let exercises = [];
@@ -516,7 +581,9 @@
       let answered = false;
       let answers = [];
       let sessionWrong = [];
-      let audioEl = null;
+      let phraseAudio = null;
+      let hintAudio = null;
+      let currentButtons = null;
 
       function loadProgress() {
         try {
@@ -529,7 +596,7 @@
         return {
           mastered: [],
           wrong: [],
-          unseen: allWords.map(w => w.file)
+          unseen: allWords.map(w => w.word)
         };
       }
 
@@ -539,8 +606,8 @@
         } catch (e) {}
       }
 
-      function getWordByFile(file) {
-        return allWords.find(w => w.file === file);
+      function getWordByName(name) {
+        return allWords.find(w => w.word === name);
       }
 
       function shuffle(arr) {
@@ -554,12 +621,12 @@
 
       function buildSession() {
         let pool = [];
-        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        const wrongWords = progress.wrong.map(getWordByName).filter(Boolean);
         pool.push(...wrongWords);
-        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        const unseenWords = progress.unseen.map(getWordByName).filter(Boolean);
         pool.push(...shuffle(unseenWords));
         if (pool.length < SESSION_SIZE) {
-          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          const masteredWords = shuffle(progress.mastered.map(getWordByName).filter(Boolean));
           pool.push(...masteredWords);
         }
         pool = shuffle(pool.slice(0, SESSION_SIZE));
@@ -577,20 +644,43 @@
       function preloadAudio() {
         const ex = exercises[idx];
         if (!ex) return;
-        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+        phraseAudio = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
+        if (ex.hintFile) {
+          hintAudio = new Audio(AUDIO_BASE + ex.hintFile + '.mp3?v=1');
+        } else {
+          hintAudio = null;
+        }
       }
 
-      window.playWord = function() {
-        if (audioEl) {
-          audioEl.currentTime = 0;
-          audioEl.play().catch(() => {});
+      function createButtons(category) {
+        const btnRow = document.getElementById('btnRow');
+        const cat = categoryButtons[category];
+        currentButtons = cat;
+
+        btnRow.innerHTML = `
+          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiced}')" id="btnVoiced">${cat.voiced}</button>
+          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiceless}')" id="btnVoiceless">${cat.voiceless}</button>
+        `;
+      }
+
+      window.playPhrase = function() {
+        if (phraseAudio) {
+          phraseAudio.currentTime = 0;
+          phraseAudio.play().catch(() => {});
           const btn = document.getElementById('playBtn');
           btn.classList.add('speaking');
-          audioEl.onended = () => btn.classList.remove('speaking');
+          phraseAudio.onended = () => btn.classList.remove('speaking');
         }
       };
 
-      window.playWordByFile = function(file) {
+      window.playHint = function() {
+        const ex = exercises[idx];
+        if (!ex || !ex.hint || !hintAudio) return;
+        hintAudio.currentTime = 0;
+        hintAudio.play().catch(() => {});
+      };
+
+      window.playPhraseByFile = function(file) {
         new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
       };
 
@@ -630,59 +720,74 @@
         updateScoreDisplay();
         document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
 
+        // Create buttons for this category
+        createButtons(ex.category);
+
         const btnVoiced = document.getElementById('btnVoiced');
         const btnVoiceless = document.getElementById('btnVoiceless');
-        const reveal = document.getElementById('wordReveal');
-        const spellingNote = document.getElementById('spellingNote');
-        const transReveal = document.getElementById('translationReveal');
+        const wordReveal = document.getElementById('wordReveal');
+        const phraseReveal = document.getElementById('phraseReveal');
+        const hintReveal = document.getElementById('hintReveal');
+        const hintBtn = document.getElementById('hintBtn');
 
         preloadAudio();
 
+        // Enable/disable hint button based on whether hint exists
+        hintBtn.style.opacity = ex.hint ? '1' : '0.4';
+        hintBtn.style.cursor = ex.hint ? 'pointer' : 'not-allowed';
+
         if (prev !== null) {
           answered = true;
-          btnVoiced.disabled = btnVoiceless.disabled = true;
+          btnVoiced.disabled = true;
+          btnVoiceless.disabled = true;
           btnVoiced.classList.remove('correct', 'wrong');
           btnVoiceless.classList.remove('correct', 'wrong');
 
-          reveal.textContent = ex.word;
-          reveal.classList.remove('hidden');
-          spellingNote.textContent = ex.note;
-          spellingNote.classList.remove('hidden');
-          transReveal.textContent = ex.en;
-          transReveal.classList.remove('hidden');
+          wordReveal.textContent = ex.word;
+          wordReveal.classList.remove('hidden');
+          phraseReveal.textContent = ex.phrase;
+          phraseReveal.classList.remove('hidden');
+          if (ex.hint) {
+            hintReveal.textContent = 'Hint: ' + ex.hint;
+            hintReveal.classList.remove('hidden');
+          } else {
+            hintReveal.classList.add('hidden');
+          }
 
-          if (ex.sound === 'voiced') {
+          // Highlight correct button
+          if (ex.letter === currentButtons.voiced) {
             btnVoiced.classList.add('correct');
-            if (prev !== 'voiced') btnVoiceless.classList.add('wrong');
+            if (prev !== ex.letter) btnVoiceless.classList.add('wrong');
           } else {
             btnVoiceless.classList.add('correct');
-            if (prev !== 'voiceless') btnVoiced.classList.add('wrong');
+            if (prev !== ex.letter) btnVoiced.classList.add('wrong');
           }
         } else {
           answered = false;
-          btnVoiced.disabled = btnVoiceless.disabled = false;
+          btnVoiced.disabled = false;
+          btnVoiceless.disabled = false;
           btnVoiced.classList.remove('correct', 'wrong');
           btnVoiceless.classList.remove('correct', 'wrong');
-          reveal.classList.add('hidden');
-          spellingNote.classList.add('hidden');
-          transReveal.classList.add('hidden');
+          wordReveal.classList.add('hidden');
+          phraseReveal.classList.add('hidden');
+          hintReveal.classList.add('hidden');
 
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex) playPhrase();
           }, 200);
         }
       }
 
       function recordAnswer(word, correct) {
-        const file = word.file;
-        progress.mastered = progress.mastered.filter(f => f !== file);
-        progress.wrong = progress.wrong.filter(f => f !== file);
-        progress.unseen = progress.unseen.filter(f => f !== file);
+        const name = word.word;
+        progress.mastered = progress.mastered.filter(n => n !== name);
+        progress.wrong = progress.wrong.filter(n => n !== name);
+        progress.unseen = progress.unseen.filter(n => n !== name);
 
         if (correct) {
-          progress.mastered.push(file);
+          progress.mastered.push(name);
         } else {
-          progress.wrong.push(file);
+          progress.wrong.push(name);
         }
         saveProgress();
         updateMasteredDisplay();
@@ -692,24 +797,29 @@
         if (answered) return;
         answered = true;
         const ex = exercises[idx];
-        const correct = sel === ex.sound;
+        const correct = sel === ex.letter;
         answers[idx] = sel;
 
         const btnVoiced = document.getElementById('btnVoiced');
         const btnVoiceless = document.getElementById('btnVoiceless');
-        const reveal = document.getElementById('wordReveal');
-        const spellingNote = document.getElementById('spellingNote');
-        const transReveal = document.getElementById('translationReveal');
+        const wordReveal = document.getElementById('wordReveal');
+        const phraseReveal = document.getElementById('phraseReveal');
+        const hintReveal = document.getElementById('hintReveal');
 
-        btnVoiced.disabled = btnVoiceless.disabled = true;
-        reveal.textContent = ex.word;
-        reveal.classList.remove('hidden');
-        spellingNote.textContent = ex.note;
-        spellingNote.classList.remove('hidden');
-        transReveal.textContent = ex.en;
-        transReveal.classList.remove('hidden');
+        btnVoiced.disabled = true;
+        btnVoiceless.disabled = true;
 
-        if (ex.sound === 'voiced') {
+        wordReveal.textContent = ex.word;
+        wordReveal.classList.remove('hidden');
+        phraseReveal.textContent = ex.phrase;
+        phraseReveal.classList.remove('hidden');
+        if (ex.hint) {
+          hintReveal.textContent = 'Hint: ' + ex.hint;
+          hintReveal.classList.remove('hidden');
+        }
+
+        // Highlight correct/wrong
+        if (ex.letter === currentButtons.voiced) {
           btnVoiced.classList.add('correct');
           if (!correct) btnVoiceless.classList.add('wrong');
         } else {
@@ -730,7 +840,7 @@
           if (answered && answers[idx] !== null) {
             goNext();
           }
-        }, 1000);
+        }, 1200);
       };
 
       function goNext() {
@@ -757,8 +867,8 @@
           retry.classList.remove('hidden');
           items.innerHTML = sessionWrong.map(w => `
             <div class="incorrect-item">
-              <span><strong>${w.word}</strong> - ${w.note} - ${w.en}</span>
-              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+              <span><strong>${w.word}</strong> ends in <strong>${w.letter}</strong></span>
+              <button class="incorrect-play" onclick="playPhraseByFile('${w.file}')">&#9654;</button>
             </div>
           `).join('');
         } else {
@@ -778,10 +888,13 @@
       document.addEventListener('keydown', function(e) {
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('voiced'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('voiceless'); }
+        const k = e.key.toLowerCase();
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
+        else if (k === 'h') { e.preventDefault(); playHint(); }
+        else if (!answered && currentButtons) {
+          if (k === 'f') { e.preventDefault(); checkAnswer(currentButtons.voiced); }
+          else if (k === 'j') { e.preventDefault(); checkAnswer(currentButtons.voiceless); }
+        }
       });
 
       startSession();
