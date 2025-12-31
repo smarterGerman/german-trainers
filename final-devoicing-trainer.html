@@ -244,6 +244,14 @@
       border-color: #9C27B0;
     }
 
+    .choice-btn .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
     .choice-btn.dt-pair { color: #00BCD4; }
     .choice-btn.bp-pair { color: #4CAF50; }
     .choice-btn.gk-pair { color: #FF9800; }
@@ -415,7 +423,7 @@
           <button class="play-btn" onclick="playPhrase()" id="playBtn" aria-label="Play phrase">
             <span>&#9654;</span>
           </button>
-          <button class="hint-btn" onclick="playHint()" id="hintBtn" aria-label="Play hint">Hint</button>
+          <button class="hint-btn" onclick="playHint()" id="hintBtn" aria-label="Play hint"><u>H</u>int</button>
         </div>
 
         
@@ -676,8 +684,8 @@
         currentButtons = cat;
 
         btnRow.innerHTML = `
-          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiced}')" id="btnVoiced">${cat.voiced}</button>
-          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiceless}')" id="btnVoiceless">${cat.voiceless}</button>
+          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiced}')" id="btnVoiced">${cat.voiced}<span class="key-hint">F</span></button>
+          <button class="choice-btn ${cat.class}" onclick="checkAnswer('${cat.voiceless}')" id="btnVoiceless">${cat.voiceless}<span class="key-hint">J</span></button>
         `;
       }
 
