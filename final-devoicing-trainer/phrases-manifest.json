@@ -1,5 +1,5 @@
 {
-  "generated": "2025-12-30T20:30:12.731Z",
+  "generated": "2025-12-31T08:25:08.232Z",
   "voice": "de-DE-Chirp3-HD-Algenib",
   "count": 103,
   "phrases": [
@@ -202,114 +202,114 @@
     {
       "word": "Brot",
       "phrase": "frisches Brot",
-      "hint": null,
+      "hint": "frische Brote",
       "file": "Brot_phrase",
-      "hintFile": null
+      "hintFile": "Brote_phrase"
     },
     {
       "word": "Wort",
       "phrase": "ein kurzes Wort",
-      "hint": null,
+      "hint": "kurze Worte",
       "file": "Wort_phrase",
-      "hintFile": null
+      "hintFile": "Worte_phrase"
     },
     {
       "word": "Ort",
       "phrase": "ein schöner Ort",
-      "hint": null,
+      "hint": "schöne Orte",
       "file": "Ort_phrase",
-      "hintFile": null
+      "hintFile": "Orte_phrase"
     },
     {
       "word": "Sport",
       "phrase": "viel Sport",
-      "hint": null,
+      "hint": "viele Sportarten",
       "file": "Sport_phrase",
-      "hintFile": null
+      "hintFile": "Sportarten_phrase"
     },
     {
       "word": "Rat",
       "phrase": "ein guter Rat",
-      "hint": null,
+      "hint": "gute Ratschläge",
       "file": "Rat_phrase",
-      "hintFile": null
+      "hintFile": "Ratschlaege_phrase"
     },
     {
       "word": "Blatt",
       "phrase": "ein grünes Blatt",
-      "hint": null,
+      "hint": "grüne Blätter",
       "file": "Blatt_phrase",
-      "hintFile": null
+      "hintFile": "Blaetter_phrase"
     },
     {
       "word": "Stadt",
       "phrase": "eine große Stadt",
-      "hint": null,
+      "hint": "große Städte",
       "file": "Stadt_phrase",
-      "hintFile": null
+      "hintFile": "Staedte_phrase"
     },
     {
       "word": "Nacht",
       "phrase": "eine lange Nacht",
-      "hint": null,
+      "hint": "lange Nächte",
       "file": "Nacht_phrase",
-      "hintFile": null
+      "hintFile": "Naechte_phrase"
     },
     {
       "word": "Macht",
       "phrase": "große Macht",
-      "hint": null,
+      "hint": "große Mächte",
       "file": "Macht_phrase",
-      "hintFile": null
+      "hintFile": "Maechte_phrase"
     },
     {
       "word": "Licht",
       "phrase": "helles Licht",
-      "hint": null,
+      "hint": "helle Lichter",
       "file": "Licht_phrase",
-      "hintFile": null
+      "hintFile": "Lichter_phrase"
     },
     {
       "word": "Gesicht",
       "phrase": "ein freundliches Gesicht",
-      "hint": null,
+      "hint": "freundliche Gesichter",
       "file": "Gesicht_phrase",
-      "hintFile": null
+      "hintFile": "Gesichter_phrase"
     },
     {
       "word": "Frucht",
       "phrase": "eine reife Frucht",
-      "hint": null,
+      "hint": "reife Früchte",
       "file": "Frucht_phrase",
-      "hintFile": null
+      "hintFile": "Fruechte_phrase"
     },
     {
       "word": "Flucht",
       "phrase": "die schnelle Flucht",
-      "hint": null,
+      "hint": "schnelle Fluchten",
       "file": "Flucht_phrase",
-      "hintFile": null
+      "hintFile": "Fluchten_phrase"
     },
     {
       "word": "Sucht",
       "phrase": "eine starke Sucht",
-      "hint": null,
+      "hint": "starke Süchte",
       "file": "Sucht_phrase",
-      "hintFile": null
+      "hintFile": "Suechte_phrase"
     },
     {
       "word": "Sicht",
       "phrase": "gute Sicht",
-      "hint": null,
+      "hint": "gute Sichten",
       "file": "Sicht_phrase",
-      "hintFile": null
+      "hintFile": "Sichten_phrase"
     },
     {
       "word": "Gewicht",
       "phrase": "hohes Gewicht",
-      "hint": null,
+      "hint": "hohe Gewichte",
       "file": "Gewicht_phrase",
-      "hintFile": null
+      "hintFile": "Gewichte_phrase"
     },
     {
       "word": "lieb",
@@ -419,58 +419,58 @@
     {
       "word": "Kopf",
       "phrase": "ein kluger Kopf",
-      "hint": null,
+      "hint": "kluge Köpfe",
       "file": "Kopf_phrase",
-      "hintFile": null
+      "hintFile": "Koepfe_phrase"
     },
     {
       "word": "Topf",
       "phrase": "ein großer Topf",
-      "hint": null,
+      "hint": "große Töpfe",
       "file": "Topf_phrase",
-      "hintFile": null
+      "hintFile": "Toepfe_phrase"
     },
     {
       "word": "Kampf",
       "phrase": "ein harter Kampf",
-      "hint": null,
+      "hint": "harte Kämpfe",
       "file": "Kampf_phrase",
-      "hintFile": null
+      "hintFile": "Kaempfe_phrase"
     },
     {
       "word": "Dampf",
       "phrase": "heißer Dampf",
-      "hint": null,
+      "hint": "heiße Dämpfe",
       "file": "Dampf_phrase",
-      "hintFile": null
+      "hintFile": "Daempfe_phrase"
     },
     {
       "word": "Strumpf",
       "phrase": "ein warmer Strumpf",
-      "hint": null,
+      "hint": "warme Strümpfe",
       "file": "Strumpf_phrase",
-      "hintFile": null
+      "hintFile": "Struempfe_phrase"
     },
     {
       "word": "Sumpf",
       "phrase": "ein tiefer Sumpf",
-      "hint": null,
+      "hint": "tiefe Sümpfe",
       "file": "Sumpf_phrase",
-      "hintFile": null
+      "hintFile": "Suempfe_phrase"
     },
     {
       "word": "Rumpf",
       "phrase": "der starke Rumpf",
-      "hint": null,
+      "hint": "starke Rümpfe",
       "file": "Rumpf_phrase",
-      "hintFile": null
+      "hintFile": "Ruempfe_phrase"
     },
     {
       "word": "Zopf",
       "phrase": "ein langer Zopf",
-      "hint": null,
+      "hint": "lange Zöpfe",
       "file": "Zopf_phrase",
-      "hintFile": null
+      "hintFile": "Zoepfe_phrase"
     },
     {
       "word": "Tag",
@@ -615,114 +615,114 @@
     {
       "word": "Blick",
       "phrase": "ein kurzer Blick",
-      "hint": null,
+      "hint": "kurze Blicke",
       "file": "Blick_phrase",
-      "hintFile": null
+      "hintFile": "Blicke_phrase"
     },
     {
       "word": "Glück",
       "phrase": "viel Glück",
-      "hint": null,
+      "hint": "viel Glückes",
       "file": "Glueck_phrase",
-      "hintFile": null
+      "hintFile": "Glueckes_phrase"
     },
     {
       "word": "Stück",
       "phrase": "ein großes Stück",
-      "hint": null,
+      "hint": "große Stücke",
       "file": "Stueck_phrase",
-      "hintFile": null
+      "hintFile": "Stuecke_phrase"
     },
     {
       "word": "Druck",
       "phrase": "hoher Druck",
-      "hint": null,
+      "hint": "hohe Drücke",
       "file": "Druck_phrase",
-      "hintFile": null
+      "hintFile": "Druecke_phrase"
     },
     {
       "word": "Truck",
       "phrase": "ein großer Truck",
-      "hint": null,
+      "hint": "große Trucks",
       "file": "Truck_phrase",
-      "hintFile": null
+      "hintFile": "Trucks_phrase"
     },
     {
       "word": "Stock",
       "phrase": "ein dicker Stock",
-      "hint": null,
+      "hint": "dicke Stöcke",
       "file": "Stock_phrase",
-      "hintFile": null
+      "hintFile": "Stoecke_phrase"
     },
     {
       "word": "Block",
       "phrase": "ein schwerer Block",
-      "hint": null,
+      "hint": "schwere Blöcke",
       "file": "Block_phrase",
-      "hintFile": null
+      "hintFile": "Bloecke_phrase"
     },
     {
       "word": "Schock",
       "phrase": "ein großer Schock",
-      "hint": null,
+      "hint": "große Schocks",
       "file": "Schock_phrase",
-      "hintFile": null
+      "hintFile": "Schocks_phrase"
     },
     {
       "word": "Rock",
       "phrase": "ein kurzer Rock",
-      "hint": null,
+      "hint": "kurze Röcke",
       "file": "Rock_phrase",
-      "hintFile": null
+      "hintFile": "Roecke_phrase"
     },
     {
       "word": "Trick",
       "phrase": "ein guter Trick",
-      "hint": null,
+      "hint": "gute Tricks",
       "file": "Trick_phrase",
-      "hintFile": null
+      "hintFile": "Tricks_phrase"
     },
     {
       "word": "Lack",
       "phrase": "roter Lack",
-      "hint": null,
+      "hint": "rote Lacke",
       "file": "Lack_phrase",
-      "hintFile": null
+      "hintFile": "Lacke_phrase"
     },
     {
       "word": "Pack",
       "phrase": "ein schweres Pack",
-      "hint": null,
+      "hint": "schwere Packen",
       "file": "Pack_phrase",
-      "hintFile": null
+      "hintFile": "Packen_phrase"
     },
     {
       "word": "Sack",
       "phrase": "ein voller Sack",
-      "hint": null,
+      "hint": "volle Säcke",
       "file": "Sack_phrase",
-      "hintFile": null
+      "hintFile": "Saecke_phrase"
     },
     {
       "word": "Geschmack",
       "phrase": "guter Geschmack",
-      "hint": null,
+      "hint": "gute Geschmäcker",
       "file": "Geschmack_phrase",
-      "hintFile": null
+      "hintFile": "Geschmaecker_phrase"
     },
     {
       "word": "Zweck",
       "phrase": "ein klarer Zweck",
-      "hint": null,
+      "hint": "klare Zwecke",
       "file": "Zweck_phrase",
-      "hintFile": null
+      "hintFile": "Zwecke_phrase"
     },
     {
       "word": "Schreck",
       "phrase": "ein großer Schreck",
-      "hint": null,
+      "hint": "große Schrecken",
       "file": "Schreck_phrase",
-      "hintFile": null
+      "hintFile": "Schrecken_phrase"
     }
   ]
 }
