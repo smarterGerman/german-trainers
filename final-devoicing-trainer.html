@@ -209,6 +209,12 @@
       font-style: italic;
     }
 
+    .en-reveal {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
+    }
+
     .hint-reveal {
       font-size: 14px;
       color: #FF9800;
@@ -416,6 +422,7 @@
         <div class="reveal-container">
           <div id="wordReveal" class="word-reveal hidden"></div>
           <div id="phraseReveal" class="phrase-reveal hidden"></div>
+          <div id="enReveal" class="en-reveal hidden"></div>
           <div id="hintReveal" class="hint-reveal hidden"></div>
         </div>
       </div>
@@ -455,116 +462,116 @@
       // Categories: dt (d/t), bp (b/p), gk (g/k)
       const allWords = [
         // === D/T category ===
-        { word: "Hund", letter: "d", category: "dt", phrase: "ein großer Hund", hint: "große Hunde", file: "Hund_phrase", hintFile: "Hunde_phrase" },
-        { word: "Kind", letter: "d", category: "dt", phrase: "ein kleines Kind", hint: "kleine Kinder", file: "Kind_phrase", hintFile: "Kinder_phrase" },
-        { word: "Freund", letter: "d", category: "dt", phrase: "mein bester Freund", hint: "meine besten Freunde", file: "Freund_phrase", hintFile: "Freunde_phrase" },
-        { word: "Mund", letter: "d", category: "dt", phrase: "der offene Mund", hint: "die offenen Münder", file: "Mund_phrase", hintFile: "Muender_phrase" },
-        { word: "Wand", letter: "d", category: "dt", phrase: "die weiße Wand", hint: "die weißen Wände", file: "Wand_phrase", hintFile: "Waende_phrase" },
-        { word: "Hand", letter: "d", category: "dt", phrase: "eine starke Hand", hint: "starke Hände", file: "Hand_phrase", hintFile: "Haende_phrase" },
-        { word: "Land", letter: "d", category: "dt", phrase: "ein fremdes Land", hint: "fremde Länder", file: "Land_phrase", hintFile: "Laender_phrase" },
-        { word: "Bild", letter: "d", category: "dt", phrase: "ein schönes Bild", hint: "schöne Bilder", file: "Bild_phrase", hintFile: "Bilder_phrase" },
-        { word: "Geld", letter: "d", category: "dt", phrase: "viel Geld", hint: "viele Gelder", file: "Geld_phrase", hintFile: "Gelder_phrase" },
-        { word: "Feld", letter: "d", category: "dt", phrase: "das grüne Feld", hint: "die grünen Felder", file: "Feld_phrase", hintFile: "Felder_phrase" },
-        { word: "Pferd", letter: "d", category: "dt", phrase: "ein schnelles Pferd", hint: "schnelle Pferde", file: "Pferd_phrase", hintFile: "Pferde_phrase" },
-        { word: "Rad", letter: "d", category: "dt", phrase: "ein neues Rad", hint: "neue Räder", file: "Rad_phrase", hintFile: "Raeder_phrase" },
-        { word: "Bad", letter: "d", category: "dt", phrase: "ein warmes Bad", hint: "warme Bäder", file: "Bad_phrase", hintFile: "Baeder_phrase" },
-        { word: "Abend", letter: "d", category: "dt", phrase: "ein schöner Abend", hint: "schöne Abende", file: "Abend_phrase", hintFile: "Abende_phrase" },
-        { word: "Herd", letter: "d", category: "dt", phrase: "der heiße Herd", hint: "die heißen Herde", file: "Herd_phrase", hintFile: "Herde_phrase" },
-        { word: "Hemd", letter: "d", category: "dt", phrase: "ein weißes Hemd", hint: "weiße Hemden", file: "Hemd_phrase", hintFile: "Hemden_phrase" },
-        { word: "Lied", letter: "d", category: "dt", phrase: "ein schönes Lied", hint: "schöne Lieder", file: "Lied_phrase", hintFile: "Lieder_phrase" },
-        { word: "Kleid", letter: "d", category: "dt", phrase: "ein rotes Kleid", hint: "rote Kleider", file: "Kleid_phrase", hintFile: "Kleider_phrase" },
-        { word: "Strand", letter: "d", category: "dt", phrase: "am schönen Strand", hint: "schöne Strände", file: "Strand_phrase", hintFile: "Straende_phrase" },
-        { word: "Sand", letter: "d", category: "dt", phrase: "weicher Sand", hint: "im Sande", file: "Sand_phrase", hintFile: "Sande_phrase" },
-        { word: "Grund", letter: "d", category: "dt", phrase: "ein guter Grund", hint: "gute Gründe", file: "Grund_phrase", hintFile: "Gruende_phrase" },
-        { word: "Wald", letter: "d", category: "dt", phrase: "ein dunkler Wald", hint: "dunkle Wälder", file: "Wald_phrase", hintFile: "Waelder_phrase" },
-        { word: "Held", letter: "d", category: "dt", phrase: "ein großer Held", hint: "große Helden", file: "Held_phrase", hintFile: "Helden_phrase" },
-        { word: "Gold", letter: "d", category: "dt", phrase: "reines Gold", hint: "goldene Ringe", file: "Gold_phrase", hintFile: "goldene_phrase" },
-        { word: "Mond", letter: "d", category: "dt", phrase: "der volle Mond", hint: "viele Monde", file: "Mond_phrase", hintFile: "Monde_phrase" },
-        { word: "Rind", letter: "d", category: "dt", phrase: "ein großes Rind", hint: "große Rinder", file: "Rind_phrase", hintFile: "Rinder_phrase" },
-        { word: "Wind", letter: "d", category: "dt", phrase: "starker Wind", hint: "starke Winde", file: "Wind_phrase", hintFile: "Winde_phrase" },
-        { word: "Feind", letter: "d", category: "dt", phrase: "ein alter Feind", hint: "alte Feinde", file: "Feind_phrase", hintFile: "Feinde_phrase" },
+        { word: "Hund", letter: "d", category: "dt", phrase: "ein großer Hund", en: "a big dog", hint: "große Hunde", file: "Hund_phrase", hintFile: "Hunde_phrase" },
+        { word: "Kind", letter: "d", category: "dt", phrase: "ein kleines Kind", en: "a small child", hint: "kleine Kinder", file: "Kind_phrase", hintFile: "Kinder_phrase" },
+        { word: "Freund", letter: "d", category: "dt", phrase: "mein bester Freund", en: "my best friend", hint: "meine besten Freunde", file: "Freund_phrase", hintFile: "Freunde_phrase" },
+        { word: "Mund", letter: "d", category: "dt", phrase: "der offene Mund", en: "the open mouth", hint: "die offenen Münder", file: "Mund_phrase", hintFile: "Muender_phrase" },
+        { word: "Wand", letter: "d", category: "dt", phrase: "die weiße Wand", en: "the white wall", hint: "die weißen Wände", file: "Wand_phrase", hintFile: "Waende_phrase" },
+        { word: "Hand", letter: "d", category: "dt", phrase: "eine starke Hand", en: "a strong hand", hint: "starke Hände", file: "Hand_phrase", hintFile: "Haende_phrase" },
+        { word: "Land", letter: "d", category: "dt", phrase: "ein fremdes Land", en: "a foreign country", hint: "fremde Länder", file: "Land_phrase", hintFile: "Laender_phrase" },
+        { word: "Bild", letter: "d", category: "dt", phrase: "ein schönes Bild", en: "a beautiful picture", hint: "schöne Bilder", file: "Bild_phrase", hintFile: "Bilder_phrase" },
+        { word: "Geld", letter: "d", category: "dt", phrase: "viel Geld", en: "a lot of money", hint: "viele Gelder", file: "Geld_phrase", hintFile: "Gelder_phrase" },
+        { word: "Feld", letter: "d", category: "dt", phrase: "das grüne Feld", en: "the green field", hint: "die grünen Felder", file: "Feld_phrase", hintFile: "Felder_phrase" },
+        { word: "Pferd", letter: "d", category: "dt", phrase: "ein schnelles Pferd", en: "a fast horse", hint: "schnelle Pferde", file: "Pferd_phrase", hintFile: "Pferde_phrase" },
+        { word: "Rad", letter: "d", category: "dt", phrase: "ein neues Rad", en: "a new wheel/bike", hint: "neue Räder", file: "Rad_phrase", hintFile: "Raeder_phrase" },
+        { word: "Bad", letter: "d", category: "dt", phrase: "ein warmes Bad", en: "a warm bath", hint: "warme Bäder", file: "Bad_phrase", hintFile: "Baeder_phrase" },
+        { word: "Abend", letter: "d", category: "dt", phrase: "ein schöner Abend", en: "a beautiful evening", hint: "schöne Abende", file: "Abend_phrase", hintFile: "Abende_phrase" },
+        { word: "Herd", letter: "d", category: "dt", phrase: "der heiße Herd", en: "the hot stove", hint: "die heißen Herde", file: "Herd_phrase", hintFile: "Herde_phrase" },
+        { word: "Hemd", letter: "d", category: "dt", phrase: "ein weißes Hemd", en: "a white shirt", hint: "weiße Hemden", file: "Hemd_phrase", hintFile: "Hemden_phrase" },
+        { word: "Lied", letter: "d", category: "dt", phrase: "ein schönes Lied", en: "a beautiful song", hint: "schöne Lieder", file: "Lied_phrase", hintFile: "Lieder_phrase" },
+        { word: "Kleid", letter: "d", category: "dt", phrase: "ein rotes Kleid", en: "a red dress", hint: "rote Kleider", file: "Kleid_phrase", hintFile: "Kleider_phrase" },
+        { word: "Strand", letter: "d", category: "dt", phrase: "am schönen Strand", en: "at the beautiful beach", hint: "schöne Strände", file: "Strand_phrase", hintFile: "Straende_phrase" },
+        { word: "Sand", letter: "d", category: "dt", phrase: "weicher Sand", en: "soft sand", hint: "im Sande", file: "Sand_phrase", hintFile: "Sande_phrase" },
+        { word: "Grund", letter: "d", category: "dt", phrase: "ein guter Grund", en: "a good reason", hint: "gute Gründe", file: "Grund_phrase", hintFile: "Gruende_phrase" },
+        { word: "Wald", letter: "d", category: "dt", phrase: "ein dunkler Wald", en: "a dark forest", hint: "dunkle Wälder", file: "Wald_phrase", hintFile: "Waelder_phrase" },
+        { word: "Held", letter: "d", category: "dt", phrase: "ein großer Held", en: "a great hero", hint: "große Helden", file: "Held_phrase", hintFile: "Helden_phrase" },
+        { word: "Gold", letter: "d", category: "dt", phrase: "reines Gold", en: "pure gold", hint: "goldene Ringe", file: "Gold_phrase", hintFile: "goldene_phrase" },
+        { word: "Mond", letter: "d", category: "dt", phrase: "der volle Mond", en: "the full moon", hint: "viele Monde", file: "Mond_phrase", hintFile: "Monde_phrase" },
+        { word: "Rind", letter: "d", category: "dt", phrase: "ein großes Rind", en: "a big cow", hint: "große Rinder", file: "Rind_phrase", hintFile: "Rinder_phrase" },
+        { word: "Wind", letter: "d", category: "dt", phrase: "starker Wind", en: "strong wind", hint: "starke Winde", file: "Wind_phrase", hintFile: "Winde_phrase" },
+        { word: "Feind", letter: "d", category: "dt", phrase: "ein alter Feind", en: "an old enemy", hint: "alte Feinde", file: "Feind_phrase", hintFile: "Feinde_phrase" },
         // T words
-        { word: "Brot", letter: "t", category: "dt", phrase: "frisches Brot", hint: "frische Brote", file: "Brot_phrase", hintFile: "Brote_phrase" },
-        { word: "Wort", letter: "t", category: "dt", phrase: "ein kurzes Wort", hint: "kurze Worte", file: "Wort_phrase", hintFile: "Worte_phrase" },
-        { word: "Ort", letter: "t", category: "dt", phrase: "ein schöner Ort", hint: "schöne Orte", file: "Ort_phrase", hintFile: "Orte_phrase" },
-        { word: "Sport", letter: "t", category: "dt", phrase: "viel Sport", hint: "viele Sportarten", file: "Sport_phrase", hintFile: "Sportarten_phrase" },
-        { word: "Rat", letter: "t", category: "dt", phrase: "ein guter Rat", hint: "gute Ratschläge", file: "Rat_phrase", hintFile: "Ratschlaege_phrase" },
-        { word: "Blatt", letter: "t", category: "dt", phrase: "ein grünes Blatt", hint: "grüne Blätter", file: "Blatt_phrase", hintFile: "Blaetter_phrase" },
-        { word: "Stadt", letter: "t", category: "dt", phrase: "eine große Stadt", hint: "große Städte", file: "Stadt_phrase", hintFile: "Staedte_phrase" },
-        { word: "Nacht", letter: "t", category: "dt", phrase: "eine lange Nacht", hint: "lange Nächte", file: "Nacht_phrase", hintFile: "Naechte_phrase" },
-        { word: "Macht", letter: "t", category: "dt", phrase: "große Macht", hint: "große Mächte", file: "Macht_phrase", hintFile: "Maechte_phrase" },
-        { word: "Licht", letter: "t", category: "dt", phrase: "helles Licht", hint: "helle Lichter", file: "Licht_phrase", hintFile: "Lichter_phrase" },
-        { word: "Gesicht", letter: "t", category: "dt", phrase: "ein freundliches Gesicht", hint: "freundliche Gesichter", file: "Gesicht_phrase", hintFile: "Gesichter_phrase" },
-        { word: "Frucht", letter: "t", category: "dt", phrase: "eine reife Frucht", hint: "reife Früchte", file: "Frucht_phrase", hintFile: "Fruechte_phrase" },
-        { word: "Flucht", letter: "t", category: "dt", phrase: "die schnelle Flucht", hint: "schnelle Fluchten", file: "Flucht_phrase", hintFile: "Fluchten_phrase" },
-        { word: "Sucht", letter: "t", category: "dt", phrase: "eine starke Sucht", hint: "starke Süchte", file: "Sucht_phrase", hintFile: "Suechte_phrase" },
-        { word: "Sicht", letter: "t", category: "dt", phrase: "gute Sicht", hint: "gute Sichten", file: "Sicht_phrase", hintFile: "Sichten_phrase" },
-        { word: "Gewicht", letter: "t", category: "dt", phrase: "hohes Gewicht", hint: "hohe Gewichte", file: "Gewicht_phrase", hintFile: "Gewichte_phrase" },
+        { word: "Brot", letter: "t", category: "dt", phrase: "frisches Brot", en: "fresh bread", hint: "frische Brote", file: "Brot_phrase", hintFile: "Brote_phrase" },
+        { word: "Wort", letter: "t", category: "dt", phrase: "ein kurzes Wort", en: "a short word", hint: "kurze Worte", file: "Wort_phrase", hintFile: "Worte_phrase" },
+        { word: "Ort", letter: "t", category: "dt", phrase: "ein schöner Ort", en: "a beautiful place", hint: "schöne Orte", file: "Ort_phrase", hintFile: "Orte_phrase" },
+        { word: "Sport", letter: "t", category: "dt", phrase: "viel Sport", en: "a lot of sports", hint: "viele Sportarten", file: "Sport_phrase", hintFile: "Sportarten_phrase" },
+        { word: "Rat", letter: "t", category: "dt", phrase: "ein guter Rat", en: "good advice", hint: "gute Ratschläge", file: "Rat_phrase", hintFile: "Ratschlaege_phrase" },
+        { word: "Blatt", letter: "t", category: "dt", phrase: "ein grünes Blatt", en: "a green leaf", hint: "grüne Blätter", file: "Blatt_phrase", hintFile: "Blaetter_phrase" },
+        { word: "Stadt", letter: "t", category: "dt", phrase: "eine große Stadt", en: "a big city", hint: "große Städte", file: "Stadt_phrase", hintFile: "Staedte_phrase" },
+        { word: "Nacht", letter: "t", category: "dt", phrase: "eine lange Nacht", en: "a long night", hint: "lange Nächte", file: "Nacht_phrase", hintFile: "Naechte_phrase" },
+        { word: "Macht", letter: "t", category: "dt", phrase: "große Macht", en: "great power", hint: "große Mächte", file: "Macht_phrase", hintFile: "Maechte_phrase" },
+        { word: "Licht", letter: "t", category: "dt", phrase: "helles Licht", en: "bright light", hint: "helle Lichter", file: "Licht_phrase", hintFile: "Lichter_phrase" },
+        { word: "Gesicht", letter: "t", category: "dt", phrase: "ein freundliches Gesicht", en: "a friendly face", hint: "freundliche Gesichter", file: "Gesicht_phrase", hintFile: "Gesichter_phrase" },
+        { word: "Frucht", letter: "t", category: "dt", phrase: "eine reife Frucht", en: "a ripe fruit", hint: "reife Früchte", file: "Frucht_phrase", hintFile: "Fruechte_phrase" },
+        { word: "Flucht", letter: "t", category: "dt", phrase: "die schnelle Flucht", en: "the quick escape", hint: "schnelle Fluchten", file: "Flucht_phrase", hintFile: "Fluchten_phrase" },
+        { word: "Sucht", letter: "t", category: "dt", phrase: "eine starke Sucht", en: "a strong addiction", hint: "starke Süchte", file: "Sucht_phrase", hintFile: "Suechte_phrase" },
+        { word: "Sicht", letter: "t", category: "dt", phrase: "gute Sicht", en: "good visibility", hint: "gute Sichten", file: "Sicht_phrase", hintFile: "Sichten_phrase" },
+        { word: "Gewicht", letter: "t", category: "dt", phrase: "hohes Gewicht", en: "heavy weight", hint: "hohe Gewichte", file: "Gewicht_phrase", hintFile: "Gewichte_phrase" },
 
         // === B/P category ===
-        { word: "lieb", letter: "b", category: "bp", phrase: "so lieb", hint: "sie lieben", file: "lieb_phrase", hintFile: "lieben_phrase" },
-        { word: "Dieb", letter: "b", category: "bp", phrase: "ein gemeiner Dieb", hint: "gemeine Diebe", file: "Dieb_phrase", hintFile: "Diebe_phrase" },
-        { word: "halb", letter: "b", category: "bp", phrase: "nur halb", hint: "die Hälfte", file: "halb_phrase", hintFile: "Haelfte_phrase" },
-        { word: "gelb", letter: "b", category: "bp", phrase: "ganz gelb", hint: "die gelben", file: "gelb_phrase", hintFile: "gelben_phrase" },
-        { word: "Korb", letter: "b", category: "bp", phrase: "ein voller Korb", hint: "volle Körbe", file: "Korb_phrase", hintFile: "Koerbe_phrase" },
-        { word: "Urlaub", letter: "b", category: "bp", phrase: "im Urlaub", hint: "viele Urlaube", file: "Urlaub_phrase", hintFile: "Urlaube_phrase" },
-        { word: "Staub", letter: "b", category: "bp", phrase: "viel Staub", hint: "sehr staubig", file: "Staub_phrase", hintFile: "staubig_phrase" },
-        { word: "Trieb", letter: "b", category: "bp", phrase: "ein starker Trieb", hint: "starke Triebe", file: "Trieb_phrase", hintFile: "Triebe_phrase" },
-        { word: "Leib", letter: "b", category: "bp", phrase: "der ganze Leib", hint: "die Leiber", file: "Leib_phrase", hintFile: "Leiber_phrase" },
-        { word: "Betrieb", letter: "b", category: "bp", phrase: "ein großer Betrieb", hint: "große Betriebe", file: "Betrieb_phrase", hintFile: "Betriebe_phrase" },
-        { word: "Verb", letter: "b", category: "bp", phrase: "ein starkes Verb", hint: "starke Verben", file: "Verb_phrase", hintFile: "Verben_phrase" },
-        { word: "Grab", letter: "b", category: "bp", phrase: "ein altes Grab", hint: "alte Gräber", file: "Grab_phrase", hintFile: "Graeber_phrase" },
-        { word: "Stab", letter: "b", category: "bp", phrase: "ein langer Stab", hint: "lange Stäbe", file: "Stab_phrase", hintFile: "Staebe_phrase" },
-        { word: "taub", letter: "b", category: "bp", phrase: "fast taub", hint: "die Tauben", file: "taub_phrase", hintFile: "Tauben_phrase" },
-        { word: "Laub", letter: "b", category: "bp", phrase: "buntes Laub", hint: "im Laube", file: "Laub_phrase", hintFile: "Laube_phrase" },
+        { word: "lieb", letter: "b", category: "bp", phrase: "so lieb", en: "so sweet/dear", hint: "sie lieben", file: "lieb_phrase", hintFile: "lieben_phrase" },
+        { word: "Dieb", letter: "b", category: "bp", phrase: "ein gemeiner Dieb", en: "a mean thief", hint: "gemeine Diebe", file: "Dieb_phrase", hintFile: "Diebe_phrase" },
+        { word: "halb", letter: "b", category: "bp", phrase: "nur halb", en: "only half", hint: "die Hälfte", file: "halb_phrase", hintFile: "Haelfte_phrase" },
+        { word: "gelb", letter: "b", category: "bp", phrase: "ganz gelb", en: "completely yellow", hint: "die gelben", file: "gelb_phrase", hintFile: "gelben_phrase" },
+        { word: "Korb", letter: "b", category: "bp", phrase: "ein voller Korb", en: "a full basket", hint: "volle Körbe", file: "Korb_phrase", hintFile: "Koerbe_phrase" },
+        { word: "Urlaub", letter: "b", category: "bp", phrase: "im Urlaub", en: "on vacation", hint: "viele Urlaube", file: "Urlaub_phrase", hintFile: "Urlaube_phrase" },
+        { word: "Staub", letter: "b", category: "bp", phrase: "viel Staub", en: "a lot of dust", hint: "sehr staubig", file: "Staub_phrase", hintFile: "staubig_phrase" },
+        { word: "Trieb", letter: "b", category: "bp", phrase: "ein starker Trieb", en: "a strong urge", hint: "starke Triebe", file: "Trieb_phrase", hintFile: "Triebe_phrase" },
+        { word: "Leib", letter: "b", category: "bp", phrase: "der ganze Leib", en: "the whole body", hint: "die Leiber", file: "Leib_phrase", hintFile: "Leiber_phrase" },
+        { word: "Betrieb", letter: "b", category: "bp", phrase: "ein großer Betrieb", en: "a large company", hint: "große Betriebe", file: "Betrieb_phrase", hintFile: "Betriebe_phrase" },
+        { word: "Verb", letter: "b", category: "bp", phrase: "ein starkes Verb", en: "a strong verb", hint: "starke Verben", file: "Verb_phrase", hintFile: "Verben_phrase" },
+        { word: "Grab", letter: "b", category: "bp", phrase: "ein altes Grab", en: "an old grave", hint: "alte Gräber", file: "Grab_phrase", hintFile: "Graeber_phrase" },
+        { word: "Stab", letter: "b", category: "bp", phrase: "ein langer Stab", en: "a long staff", hint: "lange Stäbe", file: "Stab_phrase", hintFile: "Staebe_phrase" },
+        { word: "taub", letter: "b", category: "bp", phrase: "fast taub", en: "almost deaf", hint: "die Tauben", file: "taub_phrase", hintFile: "Tauben_phrase" },
+        { word: "Laub", letter: "b", category: "bp", phrase: "buntes Laub", en: "colorful foliage", hint: "im Laube", file: "Laub_phrase", hintFile: "Laube_phrase" },
         // P words
-        { word: "Kopf", letter: "p", category: "bp", phrase: "ein kluger Kopf", hint: "kluge Köpfe", file: "Kopf_phrase", hintFile: "Koepfe_phrase" },
-        { word: "Topf", letter: "p", category: "bp", phrase: "ein großer Topf", hint: "große Töpfe", file: "Topf_phrase", hintFile: "Toepfe_phrase" },
-        { word: "Kampf", letter: "p", category: "bp", phrase: "ein harter Kampf", hint: "harte Kämpfe", file: "Kampf_phrase", hintFile: "Kaempfe_phrase" },
-        { word: "Dampf", letter: "p", category: "bp", phrase: "heißer Dampf", hint: "heiße Dämpfe", file: "Dampf_phrase", hintFile: "Daempfe_phrase" },
-        { word: "Strumpf", letter: "p", category: "bp", phrase: "ein warmer Strumpf", hint: "warme Strümpfe", file: "Strumpf_phrase", hintFile: "Struempfe_phrase" },
-        { word: "Sumpf", letter: "p", category: "bp", phrase: "ein tiefer Sumpf", hint: "tiefe Sümpfe", file: "Sumpf_phrase", hintFile: "Suempfe_phrase" },
-        { word: "Rumpf", letter: "p", category: "bp", phrase: "der starke Rumpf", hint: "starke Rümpfe", file: "Rumpf_phrase", hintFile: "Ruempfe_phrase" },
-        { word: "Zopf", letter: "p", category: "bp", phrase: "ein langer Zopf", hint: "lange Zöpfe", file: "Zopf_phrase", hintFile: "Zoepfe_phrase" },
+        { word: "Kopf", letter: "p", category: "bp", phrase: "ein kluger Kopf", en: "a clever head", hint: "kluge Köpfe", file: "Kopf_phrase", hintFile: "Koepfe_phrase" },
+        { word: "Topf", letter: "p", category: "bp", phrase: "ein großer Topf", en: "a big pot", hint: "große Töpfe", file: "Topf_phrase", hintFile: "Toepfe_phrase" },
+        { word: "Kampf", letter: "p", category: "bp", phrase: "ein harter Kampf", en: "a hard fight", hint: "harte Kämpfe", file: "Kampf_phrase", hintFile: "Kaempfe_phrase" },
+        { word: "Dampf", letter: "p", category: "bp", phrase: "heißer Dampf", en: "hot steam", hint: "heiße Dämpfe", file: "Dampf_phrase", hintFile: "Daempfe_phrase" },
+        { word: "Strumpf", letter: "p", category: "bp", phrase: "ein warmer Strumpf", en: "a warm sock", hint: "warme Strümpfe", file: "Strumpf_phrase", hintFile: "Struempfe_phrase" },
+        { word: "Sumpf", letter: "p", category: "bp", phrase: "ein tiefer Sumpf", en: "a deep swamp", hint: "tiefe Sümpfe", file: "Sumpf_phrase", hintFile: "Suempfe_phrase" },
+        { word: "Rumpf", letter: "p", category: "bp", phrase: "der starke Rumpf", en: "the strong torso", hint: "starke Rümpfe", file: "Rumpf_phrase", hintFile: "Ruempfe_phrase" },
+        { word: "Zopf", letter: "p", category: "bp", phrase: "ein langer Zopf", en: "a long braid", hint: "lange Zöpfe", file: "Zopf_phrase", hintFile: "Zoepfe_phrase" },
 
         // === G/K category ===
-        { word: "Tag", letter: "g", category: "gk", phrase: "ein langer Tag", hint: "lange Tage", file: "Tag_phrase", hintFile: "Tage_phrase" },
-        { word: "Weg", letter: "g", category: "gk", phrase: "ein weiter Weg", hint: "weite Wege", file: "Weg_phrase", hintFile: "Wege_phrase" },
-        { word: "Zug", letter: "g", category: "gk", phrase: "der schnelle Zug", hint: "die schnellen Züge", file: "Zug_phrase", hintFile: "Zuege_phrase" },
-        { word: "Flug", letter: "g", category: "gk", phrase: "ein langer Flug", hint: "lange Flüge", file: "Flug_phrase", hintFile: "Fluege_phrase" },
-        { word: "Berg", letter: "g", category: "gk", phrase: "ein hoher Berg", hint: "hohe Berge", file: "Berg_phrase", hintFile: "Berge_phrase" },
-        { word: "Krieg", letter: "g", category: "gk", phrase: "der letzte Krieg", hint: "die letzten Kriege", file: "Krieg_phrase", hintFile: "Kriege_phrase" },
-        { word: "Sieg", letter: "g", category: "gk", phrase: "ein großer Sieg", hint: "große Siege", file: "Sieg_phrase", hintFile: "Siege_phrase" },
-        { word: "Erfolg", letter: "g", category: "gk", phrase: "ein toller Erfolg", hint: "tolle Erfolge", file: "Erfolg_phrase", hintFile: "Erfolge_phrase" },
-        { word: "Vertrag", letter: "g", category: "gk", phrase: "ein neuer Vertrag", hint: "neue Verträge", file: "Vertrag_phrase", hintFile: "Vertraege_phrase" },
-        { word: "Schlag", letter: "g", category: "gk", phrase: "ein harter Schlag", hint: "harte Schläge", file: "Schlag_phrase", hintFile: "Schlaege_phrase" },
-        { word: "Betrug", letter: "g", category: "gk", phrase: "ein großer Betrug", hint: "viele Betrüge", file: "Betrug_phrase", hintFile: "Betruege_phrase" },
-        { word: "Zeug", letter: "g", category: "gk", phrase: "das ganze Zeug", hint: "viele Zeugen", file: "Zeug_phrase", hintFile: "Zeugen_phrase" },
-        { word: "Ausflug", letter: "g", category: "gk", phrase: "ein schöner Ausflug", hint: "schöne Ausflüge", file: "Ausflug_phrase", hintFile: "Ausfluege_phrase" },
-        { word: "Bezug", letter: "g", category: "gk", phrase: "ein direkter Bezug", hint: "direkte Bezüge", file: "Bezug_phrase", hintFile: "Bezuege_phrase" },
-        { word: "Anzug", letter: "g", category: "gk", phrase: "ein neuer Anzug", hint: "neue Anzüge", file: "Anzug_phrase", hintFile: "Anzuege_phrase" },
-        { word: "Aufzug", letter: "g", category: "gk", phrase: "der langsame Aufzug", hint: "die Aufzüge", file: "Aufzug_phrase", hintFile: "Aufzuege_phrase" },
-        { word: "Verlag", letter: "g", category: "gk", phrase: "ein großer Verlag", hint: "große Verlage", file: "Verlag_phrase", hintFile: "Verlage_phrase" },
-        { word: "Beitrag", letter: "g", category: "gk", phrase: "ein wichtiger Beitrag", hint: "wichtige Beiträge", file: "Beitrag_phrase", hintFile: "Beitraege_phrase" },
-        { word: "Antrag", letter: "g", category: "gk", phrase: "ein neuer Antrag", hint: "neue Anträge", file: "Antrag_phrase", hintFile: "Antraege_phrase" },
-        { word: "Auftrag", letter: "g", category: "gk", phrase: "ein großer Auftrag", hint: "große Aufträge", file: "Auftrag_phrase", hintFile: "Auftraege_phrase" },
+        { word: "Tag", letter: "g", category: "gk", phrase: "ein langer Tag", en: "a long day", hint: "lange Tage", file: "Tag_phrase", hintFile: "Tage_phrase" },
+        { word: "Weg", letter: "g", category: "gk", phrase: "ein weiter Weg", en: "a long way", hint: "weite Wege", file: "Weg_phrase", hintFile: "Wege_phrase" },
+        { word: "Zug", letter: "g", category: "gk", phrase: "der schnelle Zug", en: "the fast train", hint: "die schnellen Züge", file: "Zug_phrase", hintFile: "Zuege_phrase" },
+        { word: "Flug", letter: "g", category: "gk", phrase: "ein langer Flug", en: "a long flight", hint: "lange Flüge", file: "Flug_phrase", hintFile: "Fluege_phrase" },
+        { word: "Berg", letter: "g", category: "gk", phrase: "ein hoher Berg", en: "a high mountain", hint: "hohe Berge", file: "Berg_phrase", hintFile: "Berge_phrase" },
+        { word: "Krieg", letter: "g", category: "gk", phrase: "der letzte Krieg", en: "the last war", hint: "die letzten Kriege", file: "Krieg_phrase", hintFile: "Kriege_phrase" },
+        { word: "Sieg", letter: "g", category: "gk", phrase: "ein großer Sieg", en: "a great victory", hint: "große Siege", file: "Sieg_phrase", hintFile: "Siege_phrase" },
+        { word: "Erfolg", letter: "g", category: "gk", phrase: "ein toller Erfolg", en: "a great success", hint: "tolle Erfolge", file: "Erfolg_phrase", hintFile: "Erfolge_phrase" },
+        { word: "Vertrag", letter: "g", category: "gk", phrase: "ein neuer Vertrag", en: "a new contract", hint: "neue Verträge", file: "Vertrag_phrase", hintFile: "Vertraege_phrase" },
+        { word: "Schlag", letter: "g", category: "gk", phrase: "ein harter Schlag", en: "a hard blow", hint: "harte Schläge", file: "Schlag_phrase", hintFile: "Schlaege_phrase" },
+        { word: "Betrug", letter: "g", category: "gk", phrase: "ein großer Betrug", en: "a big fraud", hint: "viele Betrüge", file: "Betrug_phrase", hintFile: "Betruege_phrase" },
+        { word: "Zeug", letter: "g", category: "gk", phrase: "das ganze Zeug", en: "all the stuff", hint: "viele Zeugen", file: "Zeug_phrase", hintFile: "Zeugen_phrase" },
+        { word: "Ausflug", letter: "g", category: "gk", phrase: "ein schöner Ausflug", en: "a nice trip", hint: "schöne Ausflüge", file: "Ausflug_phrase", hintFile: "Ausfluege_phrase" },
+        { word: "Bezug", letter: "g", category: "gk", phrase: "ein direkter Bezug", en: "a direct reference", hint: "direkte Bezüge", file: "Bezug_phrase", hintFile: "Bezuege_phrase" },
+        { word: "Anzug", letter: "g", category: "gk", phrase: "ein neuer Anzug", en: "a new suit", hint: "neue Anzüge", file: "Anzug_phrase", hintFile: "Anzuege_phrase" },
+        { word: "Aufzug", letter: "g", category: "gk", phrase: "der langsame Aufzug", en: "the slow elevator", hint: "die Aufzüge", file: "Aufzug_phrase", hintFile: "Aufzuege_phrase" },
+        { word: "Verlag", letter: "g", category: "gk", phrase: "ein großer Verlag", en: "a big publisher", hint: "große Verlage", file: "Verlag_phrase", hintFile: "Verlage_phrase" },
+        { word: "Beitrag", letter: "g", category: "gk", phrase: "ein wichtiger Beitrag", en: "an important contribution", hint: "wichtige Beiträge", file: "Beitrag_phrase", hintFile: "Beitraege_phrase" },
+        { word: "Antrag", letter: "g", category: "gk", phrase: "ein neuer Antrag", en: "a new application", hint: "neue Anträge", file: "Antrag_phrase", hintFile: "Antraege_phrase" },
+        { word: "Auftrag", letter: "g", category: "gk", phrase: "ein großer Auftrag", en: "a big order", hint: "große Aufträge", file: "Auftrag_phrase", hintFile: "Auftraege_phrase" },
         // K words
-        { word: "Blick", letter: "k", category: "gk", phrase: "ein kurzer Blick", hint: "kurze Blicke", file: "Blick_phrase", hintFile: "Blicke_phrase" },
-        { word: "Glück", letter: "k", category: "gk", phrase: "viel Glück", hint: "viel Glückes", file: "Glueck_phrase", hintFile: "Glueckes_phrase" },
-        { word: "Stück", letter: "k", category: "gk", phrase: "ein großes Stück", hint: "große Stücke", file: "Stueck_phrase", hintFile: "Stuecke_phrase" },
-        { word: "Druck", letter: "k", category: "gk", phrase: "hoher Druck", hint: "hohe Drücke", file: "Druck_phrase", hintFile: "Druecke_phrase" },
-        { word: "Truck", letter: "k", category: "gk", phrase: "ein großer Truck", hint: "große Trucks", file: "Truck_phrase", hintFile: "Trucks_phrase" },
-        { word: "Stock", letter: "k", category: "gk", phrase: "ein dicker Stock", hint: "dicke Stöcke", file: "Stock_phrase", hintFile: "Stoecke_phrase" },
-        { word: "Block", letter: "k", category: "gk", phrase: "ein schwerer Block", hint: "schwere Blöcke", file: "Block_phrase", hintFile: "Bloecke_phrase" },
-        { word: "Schock", letter: "k", category: "gk", phrase: "ein großer Schock", hint: "große Schocks", file: "Schock_phrase", hintFile: "Schocks_phrase" },
-        { word: "Rock", letter: "k", category: "gk", phrase: "ein kurzer Rock", hint: "kurze Röcke", file: "Rock_phrase", hintFile: "Roecke_phrase" },
-        { word: "Trick", letter: "k", category: "gk", phrase: "ein guter Trick", hint: "gute Tricks", file: "Trick_phrase", hintFile: "Tricks_phrase" },
-        { word: "Lack", letter: "k", category: "gk", phrase: "roter Lack", hint: "rote Lacke", file: "Lack_phrase", hintFile: "Lacke_phrase" },
-        { word: "Pack", letter: "k", category: "gk", phrase: "ein schweres Pack", hint: "schwere Packen", file: "Pack_phrase", hintFile: "Packen_phrase" },
-        { word: "Sack", letter: "k", category: "gk", phrase: "ein voller Sack", hint: "volle Säcke", file: "Sack_phrase", hintFile: "Saecke_phrase" },
-        { word: "Geschmack", letter: "k", category: "gk", phrase: "guter Geschmack", hint: "gute Geschmäcker", file: "Geschmack_phrase", hintFile: "Geschmaecker_phrase" },
-        { word: "Zweck", letter: "k", category: "gk", phrase: "ein klarer Zweck", hint: "klare Zwecke", file: "Zweck_phrase", hintFile: "Zwecke_phrase" },
-        { word: "Schreck", letter: "k", category: "gk", phrase: "ein großer Schreck", hint: "große Schrecken", file: "Schreck_phrase", hintFile: "Schrecken_phrase" }
+        { word: "Blick", letter: "k", category: "gk", phrase: "ein kurzer Blick", en: "a quick glance", hint: "kurze Blicke", file: "Blick_phrase", hintFile: "Blicke_phrase" },
+        { word: "Glück", letter: "k", category: "gk", phrase: "viel Glück", en: "good luck", hint: "viel Glückes", file: "Glueck_phrase", hintFile: "Glueckes_phrase" },
+        { word: "Stück", letter: "k", category: "gk", phrase: "ein großes Stück", en: "a big piece", hint: "große Stücke", file: "Stueck_phrase", hintFile: "Stuecke_phrase" },
+        { word: "Druck", letter: "k", category: "gk", phrase: "hoher Druck", en: "high pressure", hint: "hohe Drücke", file: "Druck_phrase", hintFile: "Druecke_phrase" },
+        { word: "Truck", letter: "k", category: "gk", phrase: "ein großer Truck", en: "a big truck", hint: "große Trucks", file: "Truck_phrase", hintFile: "Trucks_phrase" },
+        { word: "Stock", letter: "k", category: "gk", phrase: "ein dicker Stock", en: "a thick stick", hint: "dicke Stöcke", file: "Stock_phrase", hintFile: "Stoecke_phrase" },
+        { word: "Block", letter: "k", category: "gk", phrase: "ein schwerer Block", en: "a heavy block", hint: "schwere Blöcke", file: "Block_phrase", hintFile: "Bloecke_phrase" },
+        { word: "Schock", letter: "k", category: "gk", phrase: "ein großer Schock", en: "a big shock", hint: "große Schocks", file: "Schock_phrase", hintFile: "Schocks_phrase" },
+        { word: "Rock", letter: "k", category: "gk", phrase: "ein kurzer Rock", en: "a short skirt", hint: "kurze Röcke", file: "Rock_phrase", hintFile: "Roecke_phrase" },
+        { word: "Trick", letter: "k", category: "gk", phrase: "ein guter Trick", en: "a good trick", hint: "gute Tricks", file: "Trick_phrase", hintFile: "Tricks_phrase" },
+        { word: "Lack", letter: "k", category: "gk", phrase: "roter Lack", en: "red paint", hint: "rote Lacke", file: "Lack_phrase", hintFile: "Lacke_phrase" },
+        { word: "Pack", letter: "k", category: "gk", phrase: "ein schweres Pack", en: "a heavy pack", hint: "schwere Packen", file: "Pack_phrase", hintFile: "Packen_phrase" },
+        { word: "Sack", letter: "k", category: "gk", phrase: "ein voller Sack", en: "a full sack", hint: "volle Säcke", file: "Sack_phrase", hintFile: "Saecke_phrase" },
+        { word: "Geschmack", letter: "k", category: "gk", phrase: "guter Geschmack", en: "good taste", hint: "gute Geschmäcker", file: "Geschmack_phrase", hintFile: "Geschmaecker_phrase" },
+        { word: "Zweck", letter: "k", category: "gk", phrase: "ein klarer Zweck", en: "a clear purpose", hint: "klare Zwecke", file: "Zweck_phrase", hintFile: "Zwecke_phrase" },
+        { word: "Schreck", letter: "k", category: "gk", phrase: "ein großer Schreck", en: "a big fright", hint: "große Schrecken", file: "Schreck_phrase", hintFile: "Schrecken_phrase" }
       ];
 
       // Button pairs for each category
@@ -727,6 +734,7 @@
         const btnVoiceless = document.getElementById('btnVoiceless');
         const wordReveal = document.getElementById('wordReveal');
         const phraseReveal = document.getElementById('phraseReveal');
+        const enReveal = document.getElementById('enReveal');
         const hintReveal = document.getElementById('hintReveal');
         const hintBtn = document.getElementById('hintBtn');
 
@@ -747,6 +755,8 @@
           wordReveal.classList.remove('hidden');
           phraseReveal.textContent = ex.phrase;
           phraseReveal.classList.remove('hidden');
+          enReveal.textContent = ex.en;
+          enReveal.classList.remove('hidden');
           if (ex.hint) {
             hintReveal.textContent = 'Hint: ' + ex.hint;
             hintReveal.classList.remove('hidden');
@@ -770,6 +780,7 @@
           btnVoiceless.classList.remove('correct', 'wrong');
           wordReveal.classList.add('hidden');
           phraseReveal.classList.add('hidden');
+          enReveal.classList.add('hidden');
           hintReveal.classList.add('hidden');
 
           setTimeout(() => {
@@ -804,6 +815,7 @@
         const btnVoiceless = document.getElementById('btnVoiceless');
         const wordReveal = document.getElementById('wordReveal');
         const phraseReveal = document.getElementById('phraseReveal');
+        const enReveal = document.getElementById('enReveal');
         const hintReveal = document.getElementById('hintReveal');
 
         btnVoiced.disabled = true;
@@ -813,6 +825,8 @@
         wordReveal.classList.remove('hidden');
         phraseReveal.textContent = ex.phrase;
         phraseReveal.classList.remove('hidden');
+        enReveal.textContent = ex.en;
+        enReveal.classList.remove('hidden');
         if (ex.hint) {
           hintReveal.textContent = 'Hint: ' + ex.hint;
           hintReveal.classList.remove('hidden');
