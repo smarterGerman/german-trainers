@@ -31,6 +31,12 @@
       margin-bottom: 15px;
     }
 
+    .title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
     .title {
       font-size: 24px;
       font-weight: 800;
@@ -39,6 +45,12 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin: 0;
+    }
+
+    .title-sub {
+      font-size: 14px;
+      color: #666;
+      font-weight: 400;
     }
 
     .header-btns {
@@ -177,13 +189,6 @@
     @keyframes pulse-speak {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); }
-    }
-
-    .question-text {
-      font-size: 18px;
-      color: #6B4E8C;
-      margin-bottom: 20px;
-      font-weight: 500;
     }
 
     .reveal-container {
@@ -375,7 +380,10 @@
 <body>
   <div class="container">
     <div class="header-row">
-      <h1 class="title">Final Devoicing</h1>
+      <div class="title-wrap">
+        <h1 class="title">Auslautverhärtung</h1>
+        <span class="title-sub">Final Devoicing</span>
+      </div>
       <div class="header-btns">
         <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
         <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
@@ -390,13 +398,8 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>Auslautverhartung</strong> - German final devoicing
-      <br><br>
-      In German, d/b/g at the end of a word sound like t/p/k.
-      <br><br>
-      <strong>Challenge:</strong> Hun<strong>d</strong> sounds like "Hunt" - but is it d or t?
-      <br><br>
-      <strong>Trick:</strong> Press <strong>Hint</strong> to hear the plural - "Hun<strong>de</strong>" - now you clearly hear the d!
+      <strong>Task:</strong> What letter is spelled at the end of the main word?<br><br>
+      In German, d/b/g at the end of a word sound like t/p/k. Hun<strong>d</strong> sounds like "Hunt" - but is it d or t? <strong>Trick:</strong> Imagine adding an ending (e.g. -e, -er) - "Hund<strong>e</strong>" reveals the d! 103 words total. Wrong answers repeat next session. Progress saved locally.
     </div>
 
     <div id="exerciseArea">
@@ -417,8 +420,7 @@
           <button class="hint-btn" onclick="playHint()" id="hintBtn" aria-label="Play hint">Hint</button>
         </div>
 
-        <div class="question-text">What letter is <strong>spelled</strong> at the end of the main word?</div>
-
+        
         <div class="reveal-container">
           <div id="wordReveal" class="word-reveal hidden"></div>
           <div id="phraseReveal" class="phrase-reveal hidden"></div>
@@ -758,7 +760,7 @@
           enReveal.textContent = ex.en;
           enReveal.classList.remove('hidden');
           if (ex.hint) {
-            hintReveal.textContent = 'Hint: ' + ex.hint;
+            hintReveal.textContent = ex.hint;
             hintReveal.classList.remove('hidden');
           } else {
             hintReveal.classList.add('hidden');
@@ -828,7 +830,7 @@
         enReveal.textContent = ex.en;
         enReveal.classList.remove('hidden');
         if (ex.hint) {
-          hintReveal.textContent = 'Hint: ' + ex.hint;
+          hintReveal.textContent = ex.hint;
           hintReveal.classList.remove('hidden');
         }
 
