@@ -200,6 +200,14 @@
       border-color: #9C27B0;
     }
 
+    .choice-btn .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
     .choice-btn.oe { color: #00BCD4; }
     .choice-btn.o { color: #FF9800; }
     .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
@@ -342,19 +350,17 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>80 words</strong> total, <strong>20 per session</strong>. Words you get wrong are repeated.
-      <br><br>
-      <strong>The difference:</strong>
-      <br><br>
-      <strong>o</strong> = lips rounded, tongue back (like "o" in "go" but shorter)
-      <br>Examples: Sohn, Boden, oben, rot
-      <br><br>
-      <strong>ö</strong> = lips rounded like o, but tongue forward (between "o" and "e")
-      <br>Examples: Söhne, Böden, schön, Öl
-      <br><br>
-      <strong>Tip:</strong> Try saying "e" with rounded lips - that's ö!
-      <br><br>
-      Progress is stored locally. Wrong answers shown at end.
+      <strong>The sounds:</strong>
+
+      <p style="margin: 10px 0 0 0;"><strong>o</strong> (long: Sohn, groß / short: Sommer, kommen)<br>
+      Lips rounded, tongue pulled back. Long o is like "oh" held out; short o is quicker and more open.</p>
+
+      <p style="margin: 10px 0 0 0;"><strong>ö</strong> (long: schön, Löwe / short: können, öffnen)<br>
+      Same rounded lips as o, but tongue pushed forward like for "e". Closest English sound: the vowel in British "bird", "her", "turn" - but with rounded lips. Long ö is tense and held; short ö is relaxed and quick.</p>
+
+      <p style="margin: 10px 0 0 0;"><strong>Trick:</strong> Say "e" (as in "bet") but round your lips like you're sipping through a straw - that's ö!</p>
+
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">80 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
@@ -379,8 +385,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn oe" onclick="checkAnswer('ö')" id="btnOe">ö</button>
-        <button class="choice-btn o" onclick="checkAnswer('o')" id="btnO">o</button>
+        <button class="choice-btn oe" onclick="checkAnswer('ö')" id="btnOe">ö<span class="key-hint">F</span></button>
+        <button class="choice-btn o" onclick="checkAnswer('o')" id="btnO">o<span class="key-hint">J</span></button>
       </div>
     </div>
 
