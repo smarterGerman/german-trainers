@@ -3,730 +3,863 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>German k/ck Spelling Trainer</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ck</text></svg>">
+  <title>k/ck Listening Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>kck</text></svg>">
   <style>
     body {
-      background: #FFCCE0 !important;
-      color: #2C2C2C !important;
+      background: #FFCCE0;
       margin: 0;
-      padding: 20px;
-      min-height: 100vh;
+      padding: 15px;
     }
 
-    .sg-unified-container {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #FAFAFA;
       color: #2C2C2C;
-      border-radius: 22px;
-      padding: 35px;
-      max-width: 900px;
-      margin: 10px auto;
-      line-height: 1.6;
-      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
       border: 3px solid #FFA8CC;
     }
 
-    .sg-dark-title {
-      font-size: 36px;
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .title {
+      font-size: 24px;
       font-weight: 800;
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 12px;
-      text-align: center;
+      margin: 0;
     }
 
-    .sg-dark-subtitle {
-      font-size: 16px;
-      color: #6B4E8C;
-      margin-bottom: 25px;
-      text-align: center;
-      font-weight: 600;
+    .title-sub {
+      font-size: 14px;
+      color: #666;
+      font-weight: 400;
     }
 
-    .sg-dark-articles-mini {
+    .header-btns {
       display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .sg-dark-article {
-      font-size: 15px;
-      font-weight: 700;
-      padding: 12px 20px;
-      border-radius: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      color: white;
-    }
-
-    .sg-dark-article:nth-child(1) {
-      background: linear-gradient(135deg, #00BCD4, #00ACC1);
-    }
-
-    .sg-dark-article:nth-child(2) {
-      background: linear-gradient(135deg, #E91E63, #C2185B);
-    }
-
-    .sg-hide-text-btn {
+    .small-btn {
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       color: white;
       border: none;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      display: block;
-      margin: 0 auto 25px;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
     }
 
-    .sg-hide-text-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-    }
+    .small-btn:hover { opacity: 0.9; }
 
-    .sg-dark-hidden {
-      display: none !important;
-    }
-
-    .sg-divider {
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
-      margin: 30px 0;
-      border-radius: 2px;
-    }
-
-    .sg-dark-note {
+    .info-section {
       background: #FFF3E0;
       border-left: 4px solid #FF9800;
-      padding: 15px 20px;
+      padding: 12px 15px;
       border-radius: 8px;
-      margin: 20px 0;
-      font-size: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .trainer-section {
-      margin-top: 30px;
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
     }
 
-    .progress-info {
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 15px;
-      font-size: 16px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
       font-weight: 600;
     }
 
-    .progress-current {
-      color: #6B4E8C;
-    }
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
 
-    .progress-stats {
-      display: flex;
-      gap: 20px;
-    }
-
-    .progress-mastered {
-      color: #4CAF50;
-    }
-
-    .progress-bar-container {
-      height: 14px;
+    .progress-bar-wrap {
+      height: 10px;
       background: #E0E0E0;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 30px;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, #00BCD4, #00ACC1);
-      transition: width 0.3s ease;
-      border-radius: 12px;
+      transition: width 0.3s;
+      border-radius: 10px;
     }
 
     .question-area {
       background: white;
-      padding: 35px;
-      border-radius: 18px;
+      padding: 25px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .audio-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
       margin-bottom: 25px;
     }
 
-    .word-display {
-      font-size: 48px;
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      font-size: 32px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 28px;
       font-weight: 800;
       color: #E91E63;
-      margin-bottom: 10px;
-    }
-
-    .gap {
-      display: inline-block;
-      min-width: 50px;
-      border-bottom: 4px solid #9C27B0;
-      margin: 0 2px;
-    }
-
-    .hint-text {
-      font-size: 14px;
-      color: #9E9E9E;
-      margin-bottom: 15px;
-    }
-
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      max-width: 500px;
-      margin: 0 auto 25px;
-    }
-
-    .answer-btn {
-      background: white;
-      border: 3px solid #E0E0E0;
-      padding: 20px;
-      border-radius: 18px;
-      font-size: 24px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: relative;
-    }
-
-    .answer-btn:hover:not(:disabled) {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-      border-color: #9C27B0;
-    }
-
-    .answer-btn.k-btn {
-      color: #00BCD4;
-    }
-
-    .answer-btn.ck-btn {
-      color: #E91E63;
-    }
-
-    .answer-btn:disabled {
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
-
-    .answer-btn.correct {
-      background: linear-gradient(135deg, #4CAF50, #45A049);
-      color: white;
-      border-color: #4CAF50;
-      animation: pulse 0.5s;
-    }
-
-    .answer-btn.wrong {
-      background: linear-gradient(135deg, #F44336, #E53935);
-      color: white;
-      border-color: #F44336;
-      animation: shake 0.5s;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-
-    .shortcut {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #9E9E9E;
-    }
-
-    .feedback {
-      text-align: center;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 700;
-      margin-top: 20px;
+      margin: 0;
       animation: fadeIn 0.3s;
     }
 
-    .feedback.correct {
-      background: #E8F5E9;
-      color: #2E7D32;
+    .phrase-reveal {
+      font-size: 16px;
+      color: #9C27B0;
+      margin-top: 8px;
+      font-style: italic;
     }
 
-    .feedback.wrong {
-      background: #FFEBEE;
-      color: #C62828;
+    .en-reveal {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .btn-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .hidden {
-      display: none !important;
+    .choice-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 28px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 100px;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .choice-btn .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .choice-btn.k-btn { color: #00BCD4; }
+    .choice-btn.ck-btn { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .choice-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
     }
 
     .results {
       text-align: center;
-      padding: 40px;
       background: white;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .results h2 {
-      font-size: 32px;
       color: #E91E63;
-      margin-bottom: 25px;
-      font-weight: 800;
+      margin: 0 0 15px;
+      font-size: 24px;
     }
 
     .percentage {
-      font-size: 72px;
+      font-size: 56px;
       font-weight: 900;
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .result-text {
-      font-size: 20px;
+      font-size: 16px;
       color: #6B4E8C;
-      margin-bottom: 30px;
-      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .restart-btn {
       background: linear-gradient(135deg, #00BCD4, #00ACC1);
       color: white;
       border: none;
-      padding: 18px 40px;
-      border-radius: 25px;
-      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
-      margin: 5px;
     }
 
-    .restart-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .restart-btn.secondary {
-      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    .restart-btn.secondary:hover {
-      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .choice-btn { padding: 15px 30px; font-size: 22px; min-width: 80px; }
+      .word-reveal { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="sg-unified-container">
-    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
-
-    <div id="infoSection">
-      <h1 class="sg-dark-title">k / ck Spelling Trainer</h1>
-      <p class="sg-dark-subtitle">Learn when to use k vs ck in German</p>
-
-      <div class="sg-dark-articles-mini">
-        <div class="sg-dark-article">k = after long vowel</div>
-        <div class="sg-dark-article">ck = after short vowel</div>
+  <div class="container">
+    <div class="header-row">
+      <div class="title-wrap">
+        <h1 class="title">k or ck?</h1>
+        <span class="title-sub">Listening Trainer</span>
       </div>
-
-      <p>
-        In German, <strong>ck</strong> is used after <strong>short vowels</strong>,
-        while <strong>k</strong> is used after <strong>long vowels</strong>, diphthongs,
-        and consonants.
-      </p>
-
-      <div class="sg-dark-note">
-        <strong>The Rule:</strong><br>
-        - After SHORT vowel: B<strong>ck</strong> (Backen, Zucker, Stock)<br>
-        - After LONG vowel: B<strong>k</strong> (Haken, Kuchen, Musik)<br>
-        - After consonant: always <strong>k</strong> (Markt, denken, Werk)<br>
-        - After diphthong (au, ei, eu): <strong>k</strong> (Pauke, Streik)
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
       </div>
-
-      <p>
-        Look at the word and decide: k or ck?
-      </p>
-
-      <p>
-        <strong>Keyboard shortcuts:</strong> K = single k, C = ck
-      </p>
     </div>
 
-    <div id="divider" class="sg-divider"></div>
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> k
+      <kbd>J</kbd> ck
+    </div>
 
-    <div class="trainer-section">
-      <div id="exerciseArea">
-        <div class="progress-info">
-          <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
-          <div class="progress-stats">
-            <span class="progress-mastered">Mastered: <span id="masteredCount">0</span>/100</span>
-          </div>
-        </div>
-        <div class="progress-bar-container">
-          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
-        </div>
+    <div id="infoSection" class="info-section hidden">
+      <strong>Listen and decide: k or ck?</strong>
 
-        <div class="question-area">
-          <div class="word-display" id="wordDisplay">Ba<span class="gap"></span>en</div>
-          <div class="hint-text">k or ck?</div>
-        </div>
+      <p style="margin: 10px 0 0 0;">The key is <strong>vowel length</strong> before the k-sound:</p>
 
-        <div class="button-grid">
-          <button class="answer-btn k-btn" onclick="checkAnswer('k')" id="btnK">
-            k
-            <span class="shortcut">(K)</span>
-          </button>
-          <button class="answer-btn ck-btn" onclick="checkAnswer('ck')" id="btnCK">
-            ck
-            <span class="shortcut">(C)</span>
-          </button>
-        </div>
+      <p style="margin: 10px 0 0 0;"><strong>ck</strong> = after SHORT vowel<br>
+      <em>Ba<u>ck</u>en, Zu<u>ck</u>er, Sto<u>ck</u>, De<u>ck</u>e, Brü<u>ck</u>e</em></p>
 
-        <div id="feedback" class="feedback hidden"></div>
+      <p style="margin: 10px 0 0 0;"><strong>k</strong> = after LONG vowel<br>
+      <em>Ha<u>k</u>en, Mu<u>si</u>k, Po<u>k</u>al, Fa<u>bri</u>k</em></p>
+
+      <p style="margin: 10px 0 0 0;"><strong>k</strong> = after DIPHTHONG (always long: ei, au, eu, äu, ie)<br>
+      <em>St<u>rei</u>k, Ph<u>ysi</u>k</em></p>
+
+      <p style="margin: 10px 0 0 0;"><strong>k</strong> = after CONSONANT<br>
+      <em>Ma<u>r</u>kt, We<u>r</u>k, Pa<u>r</u>k, Ba<u>n</u>k, Da<u>n</u>k</em></p>
+
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">100 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/100 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
       </div>
 
-      <div id="resultsArea" class="results hidden">
-        <h2>Session Complete!</h2>
-        <div class="percentage" id="percentage">100%</div>
-        <div class="result-text" id="resultText">
-          You got 20 out of 20 correct!
+      <div class="question-area">
+        <div class="audio-row">
+          <button class="play-btn" onclick="playPhrase()" id="playBtn" aria-label="Play phrase">
+            <span>&#9654;</span>
+          </button>
         </div>
-        <button class="restart-btn" onclick="startSession()">Practice Again</button>
-        <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="phraseReveal" class="phrase-reveal hidden"></div>
+          <div id="enReveal" class="en-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row" id="btnRow">
+        <button class="choice-btn k-btn" onclick="checkAnswer('k')" id="btnK">k<span class="key-hint">F</span></button>
+        <button class="choice-btn ck-btn" onclick="checkAnswer('ck')" id="btnCK">ck<span class="key-hint">J</span></button>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
       </div>
     </div>
   </div>
 
   <script>
-    const SESSION_SIZE = 20;
+    (function() {
+      'use strict';
 
-    const allWords = [
-      // ck - after short vowels (50)
-      { before: "Ba", after: "en", answer: "ck", full: "Backen" },
-      { before: "pa", after: "en", answer: "ck", full: "packen" },
-      { before: "ha", after: "en", answer: "ck", full: "hacken" },
-      { before: "Zu", after: "er", answer: "ck", full: "Zucker" },
-      { before: "dru", after: "en", answer: "ck", full: "drucken" },
-      { before: "Bru", after: "e", answer: "ck", full: "Brucke" },
-      { before: "Glu", after: "", answer: "ck", full: "Gluck" },
-      { before: "Stu", after: "", answer: "ck", full: "Stuck" },
-      { before: "Dru", after: "", answer: "ck", full: "Druck" },
-      { before: "Sto", after: "", answer: "ck", full: "Stock" },
-      { before: "blo", after: "en", answer: "ck", full: "blocken" },
-      { before: "Do", after: "e", answer: "ck", full: "Docke" },
-      { before: "tro", after: "en", answer: "ck", full: "trocken" },
-      { before: "lo", after: "er", answer: "ck", full: "locker" },
-      { before: "Bo", after: "", answer: "ck", full: "Bock" },
-      { before: "Ko", after: "", answer: "ck", full: "Koch" },
-      { before: "Ro", after: "", answer: "ck", full: "Rock" },
-      { before: "So", after: "e", answer: "ck", full: "Socke" },
-      { before: "Bli", after: "", answer: "ck", full: "Blick" },
-      { before: "di", after: "", answer: "ck", full: "dick" },
-      { before: "wi", after: "eln", answer: "ck", full: "wickeln" },
-      { before: "sti", after: "en", answer: "ck", full: "sticken" },
-      { before: "Ti", after: "", answer: "ck", full: "Tick" },
-      { before: "Zi", after: "za", answer: "ck", full: "Zickzack" },
-      { before: "kni", after: "en", answer: "ck", full: "knicken" },
-      { before: "Bri", after: "e", answer: "ck", full: "Bricke" },
-      { before: "schme", after: "en", answer: "ck", full: "schmecken" },
-      { before: "Stre", after: "e", answer: "ck", full: "Strecke" },
-      { before: "we", after: "en", answer: "ck", full: "wecken" },
-      { before: "De", after: "e", answer: "ck", full: "Decke" },
-      { before: "Fle", after: "", answer: "ck", full: "Fleck" },
-      { before: "He", after: "e", answer: "ck", full: "Hecke" },
-      { before: "e", after: "ig", answer: "ck", full: "eckig" },
-      { before: "scho", after: "en", answer: "ck", full: "schocken" },
-      { before: "Schre", after: "", answer: "ck", full: "Schreck" },
-      { before: "Spe", after: "", answer: "ck", full: "Speck" },
-      { before: "ste", after: "en", answer: "ck", full: "stecken" },
-      { before: "Schnei", after: "e", answer: "ck", full: "Schnicke" },
-      { before: "zwa", after: "en", answer: "ck", full: "zwacken" },
-      { before: "Zwe", after: "", answer: "ck", full: "Zweck" },
-      { before: "Fa", after: "el", answer: "ck", full: "Fackel" },
-      { before: "Ja", after: "e", answer: "ck", full: "Jacke" },
-      { before: "Na", after: "en", answer: "ck", full: "Nacken" },
-      { before: "Sa", after: "", answer: "ck", full: "Sack" },
-      { before: "La", after: "", answer: "ck", full: "Lack" },
-      { before: "kna", after: "en", answer: "ck", full: "knacken" },
-      { before: "schna", after: "en", answer: "ck", full: "schnacken" },
-      { before: "Schra", after: "", answer: "ck", full: "Schreck" },
-      { before: "Schnau", after: "", answer: "ck", full: "Schnack" },
-      { before: "Kra", after: "e", answer: "ck", full: "Kracke" },
+      const AUDIO_BASE = 'k-ck-trainer/audio/';
+      const STORAGE_KEY = 'k_ck_progress';
+      const SESSION_SIZE = 20;
 
-      // k - after long vowels (25)
-      { before: "Ha", after: "en", answer: "k", full: "Haken" },
-      { before: "Na", after: "en", answer: "k", full: "Naken" },
-      { before: "Fa", after: "el", answer: "k", full: "Fakel" },
-      { before: "Mu", after: "e", answer: "k", full: "Muke" },
-      { before: "Lu", after: "e", answer: "k", full: "Luke" },
-      { before: "Spu", after: "", answer: "k", full: "Spuk" },
-      { before: "Perru", after: "e", answer: "k", full: "Perruke" },
-      { before: "Mu", after: "e", answer: "k", full: "Muke" },
-      { before: "Bo", after: "al", answer: "k", full: "Bokal" },
-      { before: "Lo", after: "al", answer: "k", full: "Lokal" },
-      { before: "Vo", after: "al", answer: "k", full: "Vokal" },
-      { before: "Ei", after: "e", answer: "k", full: "Eiche" },
-      { before: "Musi", after: "", answer: "k", full: "Musik" },
-      { before: "Physi", after: "", answer: "k", full: "Physik" },
-      { before: "Techni", after: "", answer: "k", full: "Technik" },
-      { before: "Fabri", after: "", answer: "k", full: "Fabrik" },
-      { before: "Politi", after: "", answer: "k", full: "Politik" },
-      { before: "Kriti", after: "", answer: "k", full: "Kritik" },
-      { before: "E", after: "el", answer: "k", full: "Ekel" },
-      { before: "se", after: "el", answer: "k", full: "Sekel" },
+      // Word bank: 100 words - k vs ck based on vowel length
+      const allWords = [
+        // CK words - after SHORT vowel (50)
+        { word: "Backen", letter: "ck", phrase: "frische Brötchen backen", en: "to bake fresh rolls", file: "Backen_phrase" },
+        { word: "Zucker", letter: "ck", phrase: "weißer Zucker", en: "white sugar", file: "Zucker_phrase" },
+        { word: "Stock", letter: "ck", phrase: "ein dicker Stock", en: "a thick stick", file: "Stock_phrase" },
+        { word: "Decke", letter: "ck", phrase: "eine warme Decke", en: "a warm blanket", file: "Decke_phrase" },
+        { word: "Brücke", letter: "ck", phrase: "eine alte Brücke", en: "an old bridge", file: "Bruecke_phrase" },
+        { word: "Stück", letter: "ck", phrase: "ein großes Stück", en: "a big piece", file: "Stueck_phrase" },
+        { word: "Glück", letter: "ck", phrase: "viel Glück", en: "good luck", file: "Glueck_phrase" },
+        { word: "Blick", letter: "ck", phrase: "ein schneller Blick", en: "a quick glance", file: "Blick_phrase" },
+        { word: "dick", letter: "ck", phrase: "sehr dick", en: "very thick", file: "dick_phrase" },
+        { word: "Ecke", letter: "ck", phrase: "um die Ecke", en: "around the corner", file: "Ecke_phrase" },
+        { word: "wecken", letter: "ck", phrase: "früh wecken", en: "to wake early", file: "wecken_phrase" },
+        { word: "Fleck", letter: "ck", phrase: "ein roter Fleck", en: "a red spot", file: "Fleck_phrase" },
+        { word: "Schreck", letter: "ck", phrase: "ein großer Schreck", en: "a big fright", file: "Schreck_phrase" },
+        { word: "stecken", letter: "ck", phrase: "den Schlüssel stecken", en: "to put the key in", file: "stecken_phrase" },
+        { word: "Zweck", letter: "ck", phrase: "der eigentliche Zweck", en: "the actual purpose", file: "Zweck_phrase" },
+        { word: "drücken", letter: "ck", phrase: "den Knopf drücken", en: "to press the button", file: "druecken_phrase" },
+        { word: "Rücken", letter: "ck", phrase: "der ganze Rücken", en: "the whole back", file: "Ruecken_phrase" },
+        { word: "schicken", letter: "ck", phrase: "ein Paket schicken", en: "to send a package", file: "schicken_phrase" },
+        { word: "Jacke", letter: "ck", phrase: "eine neue Jacke", en: "a new jacket", file: "Jacke_phrase" },
+        { word: "packen", letter: "ck", phrase: "den Koffer packen", en: "to pack the suitcase", file: "packen_phrase" },
+        { word: "Hacke", letter: "ck", phrase: "eine scharfe Hacke", en: "a sharp hoe", file: "Hacke_phrase" },
+        { word: "Schnecke", letter: "ck", phrase: "eine kleine Schnecke", en: "a small snail", file: "Schnecke_phrase" },
+        { word: "Becken", letter: "ck", phrase: "das tiefe Becken", en: "the deep basin", file: "Becken_phrase" },
+        { word: "Socke", letter: "ck", phrase: "eine bunte Socke", en: "a colorful sock", file: "Socke_phrase" },
+        { word: "Locke", letter: "ck", phrase: "eine blonde Locke", en: "a blonde curl", file: "Locke_phrase" },
+        { word: "trocken", letter: "ck", phrase: "ganz trocken", en: "completely dry", file: "trocken_phrase" },
+        { word: "Bock", letter: "ck", phrase: "ein alter Bock", en: "an old billy goat", file: "Bock_phrase" },
+        { word: "Druck", letter: "ck", phrase: "unter großem Druck", en: "under great pressure", file: "Druck_phrase" },
+        { word: "Schmuck", letter: "ck", phrase: "teurer Schmuck", en: "expensive jewelry", file: "Schmuck_phrase" },
+        { word: "Ruck", letter: "ck", phrase: "ein kurzer Ruck", en: "a short jerk", file: "Ruck_phrase" },
+        { word: "Mücke", letter: "ck", phrase: "eine kleine Mücke", en: "a small mosquito", file: "Muecke_phrase" },
+        { word: "Lücke", letter: "ck", phrase: "eine große Lücke", en: "a big gap", file: "Luecke_phrase" },
+        { word: "zucken", letter: "ck", phrase: "mit den Schultern zucken", en: "to shrug shoulders", file: "zucken_phrase" },
+        { word: "Trick", letter: "ck", phrase: "ein guter Trick", en: "a good trick", file: "Trick_phrase" },
+        { word: "wickeln", letter: "ck", phrase: "das Baby wickeln", en: "to change the baby", file: "wickeln_phrase" },
+        { word: "Pickel", letter: "ck", phrase: "ein kleiner Pickel", en: "a small pimple", file: "Pickel_phrase" },
+        { word: "Nickel", letter: "ck", phrase: "aus reinem Nickel", en: "of pure nickel", file: "Nickel_phrase" },
+        { word: "kicken", letter: "ck", phrase: "den Ball kicken", en: "to kick the ball", file: "kicken_phrase" },
+        { word: "Speck", letter: "ck", phrase: "gebratener Speck", en: "fried bacon", file: "Speck_phrase" },
+        { word: "lecken", letter: "ck", phrase: "das Eis lecken", en: "to lick the ice cream", file: "lecken_phrase" },
+        { word: "erschrecken", letter: "ck", phrase: "nicht erschrecken", en: "don't be scared", file: "erschrecken_phrase" },
+        { word: "entdecken", letter: "ck", phrase: "etwas Neues entdecken", en: "to discover something new", file: "entdecken_phrase" },
+        { word: "verstecken", letter: "ck", phrase: "sich gut verstecken", en: "to hide well", file: "verstecken_phrase" },
+        { word: "Hocke", letter: "ck", phrase: "in die Hocke gehen", en: "to squat down", file: "Hocke_phrase" },
+        { word: "Glocke", letter: "ck", phrase: "die große Glocke", en: "the big bell", file: "Glocke_phrase" },
+        { word: "Block", letter: "ck", phrase: "ein neuer Block", en: "a new notepad", file: "Block_phrase" },
+        { word: "Schock", letter: "ck", phrase: "ein großer Schock", en: "a big shock", file: "Schock_phrase" },
+        { word: "Rock", letter: "ck", phrase: "ein kurzer Rock", en: "a short skirt", file: "Rock_phrase" },
+        { word: "Hockey", letter: "ck", phrase: "Hockey spielen", en: "to play hockey", file: "Hockey_phrase" },
+        { word: "Dackel", letter: "ck", phrase: "ein kleiner Dackel", en: "a small dachshund", file: "Dackel_phrase" },
 
-      // k - after consonants (25)
-      { before: "Mar", after: "t", answer: "k", full: "Markt" },
-      { before: "Wer", after: "", answer: "k", full: "Werk" },
-      { before: "Par", after: "", answer: "k", full: "Park" },
-      { before: "den", after: "en", answer: "k", full: "denken" },
-      { before: "trin", after: "en", answer: "k", full: "trinken" },
-      { before: "sin", after: "en", answer: "k", full: "sinken" },
-      { before: "win", after: "en", answer: "k", full: "winken" },
-      { before: "Dan", after: "", answer: "k", full: "Dank" },
-      { before: "Ban", after: "", answer: "k", full: "Bank" },
-      { before: "Ran", after: "", answer: "k", full: "Rank" },
-      { before: "Tan", after: "", answer: "k", full: "Tank" },
-      { before: "Schan", after: "", answer: "k", full: "Schank" },
-      { before: "Schran", after: "", answer: "k", full: "Schrank" },
-      { before: "Stun", after: "e", answer: "k", full: "Stunke" },
-      { before: "Wol", after: "e", answer: "k", full: "Wolke" },
-      { before: "Bir", after: "e", answer: "k", full: "Birke" },
-      { before: "Star", after: "", answer: "k", full: "stark" },
-      { before: "Mer", after: "mal", answer: "k", full: "Merkmal" },
-      { before: "wir", after: "en", answer: "k", full: "wirken" },
-      { before: "Gur", after: "e", answer: "k", full: "Gurke" },
-      { before: "Kir", after: "e", answer: "k", full: "Kirche" },
-      { before: "Tur", after: "e", answer: "k", full: "Turke" },
-      { before: "Fal", after: "e", answer: "k", full: "Falke" },
-      { before: "Kal", after: "", answer: "k", full: "Kalk" },
-      { before: "Bal", after: "on", answer: "k", full: "Balkon" }
-    ];
+        // K words - after LONG vowel (20)
+        { word: "Haken", letter: "k", phrase: "ein großer Haken", en: "a big hook", file: "Haken_phrase" },
+        { word: "Musik", letter: "k", phrase: "laute Musik", en: "loud music", file: "Musik_phrase" },
+        { word: "Pokal", letter: "k", phrase: "den Pokal gewinnen", en: "to win the trophy", file: "Pokal_phrase" },
+        { word: "Fabrik", letter: "k", phrase: "eine große Fabrik", en: "a big factory", file: "Fabrik_phrase" },
+        { word: "Panik", letter: "k", phrase: "keine Panik", en: "no panic", file: "Panik_phrase" },
+        { word: "Kritik", letter: "k", phrase: "harte Kritik", en: "harsh criticism", file: "Kritik_phrase" },
+        { word: "Logik", letter: "k", phrase: "klare Logik", en: "clear logic", file: "Logik_phrase" },
+        { word: "Republik", letter: "k", phrase: "die alte Republik", en: "the old republic", file: "Republik_phrase" },
+        { word: "Technik", letter: "k", phrase: "moderne Technik", en: "modern technology", file: "Technik_phrase" },
+        { word: "Taktik", letter: "k", phrase: "eine kluge Taktik", en: "a clever tactic", file: "Taktik_phrase" },
+        { word: "Thematik", letter: "k", phrase: "die ganze Thematik", en: "the whole topic", file: "Thematik_phrase" },
+        { word: "Mechanik", letter: "k", phrase: "einfache Mechanik", en: "simple mechanics", file: "Mechanik_phrase" },
+        { word: "Botanik", letter: "k", phrase: "die Botanik studieren", en: "to study botany", file: "Botanik_phrase" },
+        { word: "Keramik", letter: "k", phrase: "schöne Keramik", en: "beautiful ceramics", file: "Keramik_phrase" },
+        { word: "Komik", letter: "k", phrase: "echte Komik", en: "real comedy", file: "Komik_phrase" },
+        { word: "Klinik", letter: "k", phrase: "in die Klinik gehen", en: "to go to the clinic", file: "Klinik_phrase" },
+        { word: "Ethik", letter: "k", phrase: "medizinische Ethik", en: "medical ethics", file: "Ethik_phrase" },
+        { word: "Klassik", letter: "k", phrase: "die Klassik lieben", en: "to love classical music", file: "Klassik_phrase" },
+        { word: "Optik", letter: "k", phrase: "eine gute Optik", en: "good optics", file: "Optik_phrase" },
+        { word: "Grafik", letter: "k", phrase: "schöne Grafik", en: "nice graphics", file: "Grafik_phrase" },
 
-    let mastered = [];
-    let wrong = [];
-    let unseen = [];
-    let sessionWords = [];
-    let currentIndex = 0;
-    let sessionCorrect = 0;
-    let answered = false;
+        // K words - after DIPHTHONG (10)
+        { word: "Streik", letter: "k", phrase: "ein langer Streik", en: "a long strike", file: "Streik_phrase" },
+        { word: "Physik", letter: "k", phrase: "Physik lernen", en: "to learn physics", file: "Physik_phrase" },
+        { word: "Barock", letter: "k", phrase: "im Barock", en: "in the Baroque era", file: "Barock_phrase" },
+        { word: "Politik", letter: "k", phrase: "deutsche Politik", en: "German politics", file: "Politik_phrase" },
+        { word: "Mosaik", letter: "k", phrase: "ein buntes Mosaik", en: "a colorful mosaic", file: "Mosaik_phrase" },
+        { word: "Romantik", letter: "k", phrase: "echte Romantik", en: "real romance", file: "Romantik_phrase" },
+        { word: "Mystik", letter: "k", phrase: "alte Mystik", en: "ancient mysticism", file: "Mystik_phrase" },
+        { word: "Statistik", letter: "k", phrase: "die neue Statistik", en: "the new statistics", file: "Statistik_phrase" },
+        { word: "Dramatik", letter: "k", phrase: "pure Dramatik", en: "pure drama", file: "Dramatik_phrase" },
+        { word: "Akustik", letter: "k", phrase: "gute Akustik", en: "good acoustics", file: "Akustik_phrase" },
 
-    function loadProgress() {
-      const saved = localStorage.getItem('k-ck-progress');
-      if (saved) {
-        const data = JSON.parse(saved);
-        mastered = data.mastered || [];
-        wrong = data.wrong || [];
+        // K words - after CONSONANT (20)
+        { word: "Markt", letter: "k", phrase: "auf dem Markt", en: "at the market", file: "Markt_phrase" },
+        { word: "Werk", letter: "k", phrase: "ein großes Werk", en: "a great work", file: "Werk_phrase" },
+        { word: "Park", letter: "k", phrase: "ein schöner Park", en: "a beautiful park", file: "Park_phrase" },
+        { word: "Bank", letter: "k", phrase: "zur Bank gehen", en: "to go to the bank", file: "Bank_phrase" },
+        { word: "Dank", letter: "k", phrase: "vielen Dank", en: "many thanks", file: "Dank_phrase" },
+        { word: "stark", letter: "k", phrase: "sehr stark", en: "very strong", file: "stark_phrase" },
+        { word: "dunkel", letter: "k", phrase: "ganz dunkel", en: "completely dark", file: "dunkel_phrase" },
+        { word: "Geschenk", letter: "k", phrase: "ein tolles Geschenk", en: "a great gift", file: "Geschenk_phrase" },
+        { word: "Punkt", letter: "k", phrase: "ein wichtiger Punkt", en: "an important point", file: "Punkt_phrase" },
+        { word: "Enkel", letter: "k", phrase: "der kleine Enkel", en: "the little grandson", file: "Enkel_phrase" },
+        { word: "Onkel", letter: "k", phrase: "der nette Onkel", en: "the nice uncle", file: "Onkel_phrase" },
+        { word: "Schenkel", letter: "k", phrase: "der linke Schenkel", en: "the left thigh", file: "Schenkel_phrase" },
+        { word: "Henkel", letter: "k", phrase: "der große Henkel", en: "the big handle", file: "Henkel_phrase" },
+        { word: "Artikel", letter: "k", phrase: "ein neuer Artikel", en: "a new article", file: "Artikel_phrase" },
+        { word: "Funke", letter: "k", phrase: "ein kleiner Funke", en: "a small spark", file: "Funke_phrase" },
+        { word: "Schrank", letter: "k", phrase: "ein großer Schrank", en: "a big closet", file: "Schrank_phrase" },
+        { word: "krank", letter: "k", phrase: "sehr krank", en: "very sick", file: "krank_phrase" },
+        { word: "Gedanke", letter: "k", phrase: "ein guter Gedanke", en: "a good thought", file: "Gedanke_phrase" },
+        { word: "Stärke", letter: "k", phrase: "innere Stärke", en: "inner strength", file: "Staerke_phrase" },
+        { word: "Wolke", letter: "k", phrase: "eine weiße Wolke", en: "a white cloud", file: "Wolke_phrase" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let phraseAudio = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
       }
 
-      unseen = allWords
-        .map((_, i) => i)
-        .filter(i => !mastered.includes(i) && !wrong.includes(i));
-    }
-
-    function saveProgress() {
-      localStorage.setItem('k-ck-progress', JSON.stringify({ mastered, wrong }));
-    }
-
-    function shuffle(array) {
-      const arr = [...array];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function selectSessionWords() {
-      loadProgress();
-
-      const wrongIndices = wrong.slice();
-      const unseenIndices = unseen.slice();
-      const masteredIndices = mastered.slice();
-
-      let selected = [];
-
-      selected.push(...shuffle(wrongIndices).slice(0, Math.min(10, wrongIndices.length)));
-
-      const remaining = SESSION_SIZE - selected.length;
-      if (remaining > 0) {
-        selected.push(...shuffle(unseenIndices).slice(0, Math.min(remaining, unseenIndices.length)));
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
       }
 
-      const stillRemaining = SESSION_SIZE - selected.length;
-      if (stillRemaining > 0) {
-        selected.push(...shuffle(masteredIndices).slice(0, stillRemaining));
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
       }
 
-      return shuffle(selected);
-    }
-
-    function startSession() {
-      const indices = selectSessionWords();
-      sessionWords = indices.map(i => ({ ...allWords[i], index: i }));
-      currentIndex = 0;
-      sessionCorrect = 0;
-
-      document.getElementById('exerciseArea').classList.remove('hidden');
-      document.getElementById('resultsArea').classList.add('hidden');
-
-      showWord();
-    }
-
-    function showWord() {
-      answered = false;
-      const word = sessionWords[currentIndex];
-
-      document.getElementById('currentNum').textContent = currentIndex + 1;
-      document.getElementById('masteredCount').textContent = mastered.length;
-      document.getElementById('feedback').classList.add('hidden');
-
-      const progress = ((currentIndex) / SESSION_SIZE) * 100;
-      document.getElementById('progressBar').style.width = progress + '%';
-
-      // Display word with gap
-      document.getElementById('wordDisplay').innerHTML =
-        word.before + '<span class="gap"></span>' + word.after;
-
-      document.querySelectorAll('.answer-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.classList.remove('correct', 'wrong');
-      });
-    }
-
-    function checkAnswer(selected) {
-      if (answered) return;
-      answered = true;
-
-      const word = sessionWords[currentIndex];
-      const isCorrect = selected === word.answer;
-
-      document.querySelectorAll('.answer-btn').forEach(btn => btn.disabled = true);
-
-      const correctBtn = word.answer === 'k' ? document.getElementById('btnK') : document.getElementById('btnCK');
-      const selectedBtn = selected === 'k' ? document.getElementById('btnK') : document.getElementById('btnCK');
-
-      correctBtn.classList.add('correct');
-      if (!isCorrect) {
-        selectedBtn.classList.add('wrong');
-      }
-
-      const feedback = document.getElementById('feedback');
-
-      if (isCorrect) {
-        sessionCorrect++;
-        feedback.className = 'feedback correct';
-        feedback.textContent = `Correct! "${word.full}" is spelled with ${word.answer}.`;
-
-        if (!mastered.includes(word.index)) {
-          mastered.push(word.index);
-          wrong = wrong.filter(i => i !== word.index);
-          unseen = unseen.filter(i => i !== word.index);
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
         }
-      } else {
-        feedback.className = 'feedback wrong';
-        feedback.textContent = `Wrong! "${word.full}" is spelled with ${word.answer}, not ${selected}.`;
-
-        if (!wrong.includes(word.index)) {
-          wrong.push(word.index);
-          mastered = mastered.filter(i => i !== word.index);
-          unseen = unseen.filter(i => i !== word.index);
-        }
+        return a;
       }
 
-      feedback.classList.remove('hidden');
-      saveProgress();
-      document.getElementById('masteredCount').textContent = mastered.length;
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
 
-      setTimeout(() => {
-        if (currentIndex < SESSION_SIZE - 1) {
-          currentIndex++;
-          showWord();
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        phraseAudio = new Audio(AUDIO_BASE + ex.file + '.mp3');
+      }
+
+      window.playPhrase = function() {
+        if (phraseAudio) {
+          phraseAudio.currentTime = 0;
+          phraseAudio.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          phraseAudio.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnK = document.getElementById('btnK');
+        const btnCK = document.getElementById('btnCK');
+        const wordReveal = document.getElementById('wordReveal');
+        const phraseReveal = document.getElementById('phraseReveal');
+        const enReveal = document.getElementById('enReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          btnK.disabled = btnCK.disabled = true;
+          btnK.classList.remove('correct', 'wrong');
+          btnCK.classList.remove('correct', 'wrong');
+
+          wordReveal.textContent = ex.word;
+          wordReveal.classList.remove('hidden');
+          phraseReveal.textContent = ex.phrase;
+          phraseReveal.classList.remove('hidden');
+          enReveal.textContent = ex.en;
+          enReveal.classList.remove('hidden');
+
+          if (ex.letter === 'k') {
+            btnK.classList.add('correct');
+            if (prev !== 'k') btnCK.classList.add('wrong');
+          } else {
+            btnCK.classList.add('correct');
+            if (prev !== 'ck') btnK.classList.add('wrong');
+          }
         } else {
-          showResults();
+          answered = false;
+          btnK.disabled = btnCK.disabled = false;
+          btnK.classList.remove('correct', 'wrong');
+          btnCK.classList.remove('correct', 'wrong');
+          wordReveal.classList.add('hidden');
+          phraseReveal.classList.add('hidden');
+          enReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playPhrase();
+          }, 200);
         }
-      }, 1500);
-    }
-
-    function showResults() {
-      document.getElementById('exerciseArea').classList.add('hidden');
-      document.getElementById('resultsArea').classList.remove('hidden');
-
-      const pct = Math.round((sessionCorrect / SESSION_SIZE) * 100);
-      document.getElementById('percentage').textContent = pct + '%';
-      document.getElementById('resultText').textContent =
-        'You got ' + sessionCorrect + ' out of ' + SESSION_SIZE + ' correct!';
-    }
-
-    function resetProgress() {
-      if (confirm('Reset all progress? This cannot be undone.')) {
-        localStorage.removeItem('k-ck-progress');
-        mastered = [];
-        wrong = [];
-        unseen = allWords.map((_, i) => i);
-        startSession();
       }
-    }
 
-    function toggleInstructions() {
-      const info = document.getElementById('infoSection');
-      const divider = document.getElementById('divider');
-      const btn = document.getElementById('hideTextBtn');
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
 
-      if (info.classList.contains('sg-dark-hidden')) {
-        info.classList.remove('sg-dark-hidden');
-        divider.classList.remove('sg-dark-hidden');
-        btn.textContent = 'Hide Instructions';
-      } else {
-        info.classList.add('sg-dark-hidden');
-        divider.classList.add('sg-dark-hidden');
-        btn.textContent = 'Show Instructions';
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
       }
-    }
 
-    document.addEventListener('keydown', (e) => {
-      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.letter;
+        answers[idx] = sel;
 
-      const key = e.key.toLowerCase();
+        const btnK = document.getElementById('btnK');
+        const btnCK = document.getElementById('btnCK');
+        const wordReveal = document.getElementById('wordReveal');
+        const phraseReveal = document.getElementById('phraseReveal');
+        const enReveal = document.getElementById('enReveal');
 
-      if (key === 'k' && !answered) {
-        checkAnswer('k');
-      } else if (key === 'c' && !answered) {
-        checkAnswer('ck');
+        btnK.disabled = btnCK.disabled = true;
+        wordReveal.textContent = ex.word;
+        wordReveal.classList.remove('hidden');
+        phraseReveal.textContent = ex.phrase;
+        phraseReveal.classList.remove('hidden');
+        enReveal.textContent = ex.en;
+        enReveal.classList.remove('hidden');
+
+        if (ex.letter === 'k') {
+          btnK.classList.add('correct');
+          if (!correct) btnCK.classList.add('wrong');
+        } else {
+          btnCK.classList.add('correct');
+          if (!correct) btnK.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
       }
-    });
 
-    loadProgress();
-    startSession();
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.letter}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        const section = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = section.classList.toggle('hidden');
+        btn.textContent = isHidden ? 'Info' : 'Close';
+        try { localStorage.setItem('k_ck_info_open', !isHidden); } catch(e) {}
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      // Restore info state
+      (function() {
+        try {
+          const infoOpen = localStorage.getItem('k_ck_info_open');
+          if (infoOpen === 'true') {
+            document.getElementById('infoSection').classList.remove('hidden');
+            document.getElementById('toggleBtn').textContent = 'Close';
+          }
+        } catch(e) {}
+      })();
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key.toLowerCase();
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('k'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('ck'); }
+      });
+
+      startSession();
+    })();
   </script>
 </body>
 </html>
