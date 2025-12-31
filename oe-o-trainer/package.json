@@ -1,15 +1,11 @@
 {
-  "name": "oe-o-trainer",
+  "name": "oe-o-trainer-audio",
   "version": "1.0.0",
-  "description": "",
-  "main": "generate-audio.js",
+  "description": "Audio generator for ö-o trainer",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "node generate-audio.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@google-cloud/text-to-speech": "^6.4.0"
+    "@google-cloud/text-to-speech": "^5.0.0"
   }
 }
