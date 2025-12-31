@@ -220,12 +220,6 @@
       margin-top: 4px;
     }
 
-    .hint-reveal {
-      font-size: 14px;
-      color: #FF9800;
-      margin-top: 5px;
-    }
-
     .btn-row {
       display: flex;
       gap: 20px;
@@ -425,7 +419,6 @@
           <div id="wordReveal" class="word-reveal hidden"></div>
           <div id="phraseReveal" class="phrase-reveal hidden"></div>
           <div id="enReveal" class="en-reveal hidden"></div>
-          <div id="hintReveal" class="hint-reveal hidden"></div>
         </div>
       </div>
 
@@ -737,7 +730,6 @@
         const wordReveal = document.getElementById('wordReveal');
         const phraseReveal = document.getElementById('phraseReveal');
         const enReveal = document.getElementById('enReveal');
-        const hintReveal = document.getElementById('hintReveal');
         const hintBtn = document.getElementById('hintBtn');
 
         preloadAudio();
@@ -759,12 +751,6 @@
           phraseReveal.classList.remove('hidden');
           enReveal.textContent = ex.en;
           enReveal.classList.remove('hidden');
-          if (ex.hint) {
-            hintReveal.textContent = ex.hint;
-            hintReveal.classList.remove('hidden');
-          } else {
-            hintReveal.classList.add('hidden');
-          }
 
           // Highlight correct button
           if (ex.letter === currentButtons.voiced) {
@@ -783,7 +769,6 @@
           wordReveal.classList.add('hidden');
           phraseReveal.classList.add('hidden');
           enReveal.classList.add('hidden');
-          hintReveal.classList.add('hidden');
 
           setTimeout(() => {
             if (!answered && exercises[idx] === ex) playPhrase();
@@ -829,10 +814,6 @@
         phraseReveal.classList.remove('hidden');
         enReveal.textContent = ex.en;
         enReveal.classList.remove('hidden');
-        if (ex.hint) {
-          hintReveal.textContent = ex.hint;
-          hintReveal.classList.remove('hidden');
-        }
 
         // Highlight correct/wrong
         if (ex.letter === currentButtons.voiced) {
