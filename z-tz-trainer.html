@@ -195,6 +195,13 @@
 
     .option-btn:disabled { cursor: not-allowed; }
 
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
     .option-btn.correct {
       background: linear-gradient(135deg, #4CAF50, #45A049);
       color: white;
@@ -366,7 +373,7 @@
       <strong>TZ</strong> - after <strong>short vowels</strong> (never at word start!)
       <br>Examples: Ka<strong>tz</strong>e (short a), si<strong>tz</strong>en (short i), Pla<strong>tz</strong> (short a)
       <br><br>
-      <em>Tip: Short vowels are usually followed by double consonants (tt, mm, ss) or tz/ck!</em>
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">80 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
@@ -387,8 +394,8 @@
         <div id="wordDisplay" class="word-display"></div>
 
         <div id="optionsContainer" class="options-container">
-          <button class="option-btn" onclick="checkAnswer('z')" data-option="z">z</button>
-          <button class="option-btn" onclick="checkAnswer('tz')" data-option="tz">tz</button>
+          <button class="option-btn" onclick="checkAnswer('z')" data-option="z">z<span class="key-hint">F</span></button>
+          <button class="option-btn" onclick="checkAnswer('tz')" data-option="tz">tz<span class="key-hint">J</span></button>
         </div>
 
         <div id="feedback" class="feedback hidden"></div>
@@ -778,7 +785,10 @@
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
       };
 
       window.toggleShortcuts = function() {
@@ -786,16 +796,19 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
         if (k === ' ' || e.code === 'Space') {
           e.preventDefault();
           playWord();
-        } else if (k === 'z' && !answered) {
+        } else if ((k === 'z' || k === 'f') && !answered) {
           e.preventDefault();
           checkAnswer('z');
-        } else if (k === 't' && !answered) {
+        } else if ((k === 't' || k === 'j') && !answered) {
           e.preventDefault();
           checkAnswer('tz');
         }
