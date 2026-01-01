@@ -379,18 +379,16 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>Listen and decide: k or ck?</strong>
+      <strong>Listen whether you hear a long or a short vowel before the k-sound.</strong>
 
-      <p style="margin: 10px 0 0 0;">The key is <strong>vowel length</strong> before the k-sound:</p>
-
-      <p style="margin: 10px 0 0 0;"><strong>ck</strong> = after SHORT vowel<br>
-      <em>Ba<u>ck</u>en, Zu<u>ck</u>er, Sto<u>ck</u>, De<u>ck</u>e, Brü<u>ck</u>e</em></p>
+      <p style="margin: 10px 0 0 0;"><strong>ck</strong> = after SHORT vowel (put a dot under the vowel: ạ, ẹ, ọ, ụ...)<br>
+      <em>b<u>a</u>cken, Z<u>u</u>cker, St<u>o</u>ck, D<u>e</u>cke, Br<u>ü</u>cke</em></p>
 
       <p style="margin: 10px 0 0 0;"><strong>k</strong> = after LONG vowel<br>
-      <em>Ha<u>k</u>en, Mu<u>si</u>k, Po<u>k</u>al, Fa<u>bri</u>k</em></p>
+      <em>H<u>a</u>ken, Mus<u>i</u>k, Pok<u>a</u>l, Fabr<u>i</u>k</em></p>
 
-      <p style="margin: 10px 0 0 0;"><strong>k</strong> = after DIPHTHONG (always long: ei, au, eu, äu, ie)<br>
-      <em>St<u>rei</u>k, Ph<u>ysi</u>k</em></p>
+      <p style="margin: 10px 0 0 0;"><strong>k</strong> = after DIPHTHONG (always long: ei, au, äu, eu, ie)<br>
+      <em>Str<u>ei</u>k, Mos<u>ai</u>k</em></p>
 
       <p style="margin: 10px 0 0 0;"><strong>k</strong> = after CONSONANT<br>
       <em>Ma<u>r</u>kt, We<u>r</u>k, Pa<u>r</u>k, Ba<u>n</u>k, Da<u>n</u>k</em></p>
@@ -458,7 +456,7 @@
       // Word bank: 100 words - k vs ck based on vowel length
       const allWords = [
         // CK words - after SHORT vowel (50)
-        { word: "Backen", letter: "ck", phrase: "frische Brötchen backen", en: "to bake fresh rolls", file: "Backen_phrase" },
+        { word: "backen", letter: "ck", phrase: "frische Brötchen backen", en: "to bake fresh rolls", file: "Backen_phrase" },
         { word: "Zucker", letter: "ck", phrase: "weißer Zucker", en: "white sugar", file: "Zucker_phrase" },
         { word: "Stock", letter: "ck", phrase: "ein dicker Stock", en: "a thick stick", file: "Stock_phrase" },
         { word: "Decke", letter: "ck", phrase: "eine warme Decke", en: "a warm blanket", file: "Decke_phrase" },
@@ -531,12 +529,14 @@
         { word: "Optik", letter: "k", phrase: "eine gute Optik", en: "good optics", file: "Optik_phrase" },
         { word: "Grafik", letter: "k", phrase: "schöne Grafik", en: "nice graphics", file: "Grafik_phrase" },
 
-        // K words - after DIPHTHONG (10)
+        // K words - after DIPHTHONG (2)
         { word: "Streik", letter: "k", phrase: "ein langer Streik", en: "a long strike", file: "Streik_phrase" },
+        { word: "Mosaik", letter: "k", phrase: "ein buntes Mosaik", en: "a colorful mosaic", file: "Mosaik_phrase" },
+
+        // K words - after LONG vowel (moved from diphthong - these have long vowels, not diphthongs)
         { word: "Physik", letter: "k", phrase: "Physik lernen", en: "to learn physics", file: "Physik_phrase" },
         { word: "Barock", letter: "k", phrase: "im Barock", en: "in the Baroque era", file: "Barock_phrase" },
         { word: "Politik", letter: "k", phrase: "deutsche Politik", en: "German politics", file: "Politik_phrase" },
-        { word: "Mosaik", letter: "k", phrase: "ein buntes Mosaik", en: "a colorful mosaic", file: "Mosaik_phrase" },
         { word: "Romantik", letter: "k", phrase: "echte Romantik", en: "real romance", file: "Romantik_phrase" },
         { word: "Mystik", letter: "k", phrase: "alte Mystik", en: "ancient mysticism", file: "Mystik_phrase" },
         { word: "Statistik", letter: "k", phrase: "die neue Statistik", en: "the new statistics", file: "Statistik_phrase" },
