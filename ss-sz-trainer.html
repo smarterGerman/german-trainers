@@ -506,7 +506,12 @@
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved) {
             const p = JSON.parse(saved);
-            if (p.mastered && p.wrong && p.unseen) return p;
+            // Check if saved data matches current word list
+            if (p.unseen && p.unseen[0] && allWords.find(w => w.word === p.unseen[0])) {
+              return p;
+            }
+            // Old data doesn't match - clear it
+            localStorage.removeItem(STORAGE_KEY);
           }
         } catch (e) {}
         return {
