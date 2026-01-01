@@ -831,7 +831,7 @@
         const section = document.getElementById('infoSection');
         const btn = document.getElementById('toggleBtn');
         const isHidden = section.classList.toggle('hidden');
-        btn.textContent = isHidden ? 'Info' : 'Close';
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
         try { localStorage.setItem('s_z_info_open', !isHidden); } catch(e) {}
       };
 
