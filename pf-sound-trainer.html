@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>German PF Sound Trainer</title>
+  <title>PF or F? Listening Trainer</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
   <style>
     body {
@@ -32,7 +32,7 @@
     }
 
     .title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 800;
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       -webkit-background-clip: text;
@@ -101,7 +101,6 @@
     }
 
     .progress-current { color: #6B4E8C; }
-    .progress-score { color: #4CAF50; }
     .progress-mastered { color: #9C27B0; }
 
     .progress-bar-wrap {
@@ -126,7 +125,7 @@
       text-align: center;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 20px;
-      min-height: 200px;
+      min-height: 180px;
     }
 
     .play-btn {
@@ -142,7 +141,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
       transition: transform 0.2s;
     }
 
@@ -154,83 +153,67 @@
       50% { transform: scale(1.08); }
     }
 
-    .word-display {
-      font-size: 32px;
-      font-weight: 700;
-      color: #2C2C2C;
-      margin-bottom: 8px;
-    }
-
-    .translation {
-      font-size: 16px;
-      color: #6B4E8C;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-
-    .instruction {
-      font-size: 14px;
-      color: #666;
+    .reveal-area {
+      min-height: 50px;
       margin-bottom: 15px;
     }
 
-    .options-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
     }
 
-    .option-btn {
+    .translation-reveal {
+      font-size: 16px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .choice-btn {
       background: white;
       border: 3px solid #E0E0E0;
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
+      padding: 18px 45px;
+      border-radius: 15px;
+      font-size: 28px;
+      font-weight: 800;
       cursor: pointer;
       transition: all 0.2s;
-      min-width: 140px;
+      position: relative;
     }
 
-    .option-btn:hover:not(:disabled) {
+    .choice-btn:hover:not(:disabled) {
       transform: translateY(-2px);
       border-color: #9C27B0;
     }
 
-    .option-btn:disabled { cursor: not-allowed; }
+    .choice-btn.pf { color: #00BCD4; }
+    .choice-btn.f { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .option-btn.correct {
+    .choice-btn.correct {
       background: linear-gradient(135deg, #4CAF50, #45A049);
       color: white;
       border-color: #4CAF50;
     }
 
-    .option-btn.wrong {
+    .choice-btn.wrong {
       background: linear-gradient(135deg, #F44336, #E53935);
       color: white;
       border-color: #F44336;
     }
 
-    .option-btn.highlight {
-      background: linear-gradient(135deg, #4CAF50, #45A049);
-      color: white;
-      border-color: #4CAF50;
-    }
-
-    .feedback {
-      margin-top: 15px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .feedback.correct-text { color: #4CAF50; }
-    .feedback.wrong-text { color: #F44336; }
-
-    .position-note {
-      font-size: 13px;
-      color: #9C27B0;
-      margin-top: 8px;
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
     }
 
     .results {
@@ -263,42 +246,6 @@
       margin-bottom: 20px;
     }
 
-    .incorrect-list {
-      text-align: left;
-      background: #FFF3E0;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-
-    .incorrect-list h3 {
-      color: #F57C00;
-      margin: 0 0 10px;
-      font-size: 14px;
-    }
-
-    .incorrect-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
-      border-bottom: 1px solid #FFE0B2;
-      font-size: 14px;
-    }
-
-    .incorrect-item:last-child { border-bottom: none; }
-
-    .incorrect-play {
-      background: #9C27B0;
-      color: white;
-      border: none;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
     .action-btns {
       display: flex;
       justify-content: center;
@@ -317,30 +264,17 @@
       cursor: pointer;
     }
 
-    .retry-btn {
-      background: linear-gradient(135deg, #FF9800, #F57C00);
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 20px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
     @media (max-width: 500px) {
       .container { padding: 15px; }
-      .title { font-size: 20px; }
-      .play-btn { width: 70px; height: 70px; font-size: 28px; }
-      .word-display { font-size: 26px; }
-      .option-btn { padding: 12px 18px; font-size: 14px; min-width: 110px; }
+      .title { font-size: 24px; }
+      .choice-btn { padding: 14px 30px; font-size: 22px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header-row">
-      <h1 class="title">PF Sound</h1>
+      <h1 class="title">PF or F?</h1>
       <div class="header-btns">
         <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
         <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
@@ -349,31 +283,25 @@
 
     <div id="shortcutsSection" class="shortcuts-section hidden">
       <kbd>Space</kbd> Play
-      <kbd>F</kbd> pf (start)
-      <kbd>J</kbd> pf (middle/end)
+      <kbd>F</kbd> pf
+      <kbd>J</kbd> f
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>The German PF sound /pf/:</strong>
+      <strong>Listen for the difference between PF and F.</strong>
       <br><br>
-      This is an <strong>affricate</strong> - both sounds (p + f) are pronounced together!
-      <br><br>
-      <strong>Word start:</strong> <strong>Pf</strong>erd, <strong>Pf</strong>lanze, <strong>Pf</strong>anne
-      <br>Start with lips together (like "p"), then release into "f"
-      <br><br>
-      <strong>Word middle/end:</strong> A<strong>pf</strong>el, Ko<strong>pf</strong>, Kam<strong>pf</strong>
-      <br>Same sound, often easier to pronounce
-      <br><br>
-      <em>Common mistake: Saying just "f" instead of "pf" (Ferd instead of Pferd)</em>
-      <br><br>
-      Listen and identify where the PF sound occurs!
+      German <strong>pf</strong> is a single sound (affricate) where you start with closed lips (like "p") and release into "f". English speakers often drop the "p" and just say "f".
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>pf</strong>: Pferd, Apfel, Kopf</li>
+        <li><strong>f</strong>: Feld, Affe, Schaf</li>
+      </ul>
+      <span style="color: #888; font-size: 12px;">100 words total, 20 per session. Progress saved locally.</span>
     </div>
 
     <div id="exerciseArea">
       <div class="progress-row">
-        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
-        <span class="progress-score" id="scoreDisplay">0 correct</span>
-        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+        <span class="progress-current"><span id="currentQ">1</span>/20</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/100 learned</span>
       </div>
       <div class="progress-bar-wrap">
         <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
@@ -384,18 +312,15 @@
           <span>&#9654;</span>
         </button>
 
-        <div id="wordDisplay" class="word-display"></div>
-        <div id="translationDisplay" class="translation"></div>
-
-        <div class="instruction">Where is the PF sound?</div>
-
-        <div id="optionsContainer" class="options-container">
-          <button class="option-btn" onclick="checkAnswer('start')" data-option="start">Word Start (Pf...)</button>
-          <button class="option-btn" onclick="checkAnswer('middle')" data-option="middle">Middle/End (...pf...)</button>
+        <div class="reveal-area">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
         </div>
+      </div>
 
-        <div id="feedback" class="feedback hidden"></div>
-        <div id="positionNote" class="position-note hidden"></div>
+      <div class="btn-row">
+        <button class="choice-btn pf" onclick="checkAnswer('pf')" id="btnPf">pf<span class="key-hint">F</span></button>
+        <button class="choice-btn f" onclick="checkAnswer('f')" id="btnF">f<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -403,17 +328,10 @@
       <h2>Results</h2>
       <div id="resultPct" class="percentage">100%</div>
       <div class="result-text">
-        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+        <span id="resultScore">20</span>/20 correct
       </div>
-
-      <div id="incorrectSection" class="incorrect-list hidden">
-        <h3>Review (click to hear):</h3>
-        <div id="incorrectItems"></div>
-      </div>
-
       <div class="action-btns">
         <button class="restart-btn" onclick="startSession()">New Session</button>
-        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
       </div>
     </div>
   </div>
@@ -423,82 +341,112 @@
       'use strict';
 
       const AUDIO_BASE = 'pf-sound-trainer/audio/';
-      const STORAGE_KEY = 'pf_sound_progress';
+      const STORAGE_KEY = 'pf_f_progress';
       const SESSION_SIZE = 20;
 
-      // Word bank: pf at start vs middle/end
       const allWords = [
-        // PF at word start (40)
-        { word: "Pferd", position: "start", file: "Pferd", en: "horse", note: "PF at start: Pferd" },
-        { word: "Pflanze", position: "start", file: "Pflanze", en: "plant", note: "PF at start: Pflanze" },
-        { word: "Pfanne", position: "start", file: "Pfanne", en: "pan", note: "PF at start: Pfanne" },
-        { word: "Pfeffer", position: "start", file: "Pfeffer", en: "pepper", note: "PF at start: Pfeffer" },
-        { word: "Pfeil", position: "start", file: "Pfeil", en: "arrow", note: "PF at start: Pfeil" },
-        { word: "Pfund", position: "start", file: "Pfund", en: "pound", note: "PF at start: Pfund" },
-        { word: "Pflege", position: "start", file: "Pflege", en: "care", note: "PF at start: Pflege" },
-        { word: "Pflicht", position: "start", file: "Pflicht", en: "duty", note: "PF at start: Pflicht" },
-        { word: "Pfad", position: "start", file: "Pfad", en: "path", note: "PF at start: Pfad" },
-        { word: "Pfarrer", position: "start", file: "Pfarrer", en: "priest", note: "PF at start: Pfarrer" },
-        { word: "Pfau", position: "start", file: "Pfau", en: "peacock", note: "PF at start: Pfau" },
-        { word: "Pfeife", position: "start", file: "Pfeife", en: "pipe/whistle", note: "PF at start: Pfeife" },
-        { word: "pfeifen", position: "start", file: "pfeifen", en: "to whistle", note: "PF at start: pfeifen" },
-        { word: "pflegen", position: "start", file: "pflegen", en: "to care for", note: "PF at start: pflegen" },
-        { word: "pflücken", position: "start", file: "pfluecken", en: "to pick", note: "PF at start: pflücken" },
-        { word: "Pfote", position: "start", file: "Pfote", en: "paw", note: "PF at start: Pfote" },
-        { word: "Pfropfen", position: "start", file: "Pfropfen", en: "cork/plug", note: "PF at start: Pfropfen" },
-        { word: "Pflaster", position: "start", file: "Pflaster", en: "plaster/bandage", note: "PF at start: Pflaster" },
-        { word: "Pflaume", position: "start", file: "Pflaume", en: "plum", note: "PF at start: Pflaume" },
-        { word: "Pfingsten", position: "start", file: "Pfingsten", en: "Pentecost", note: "PF at start: Pfingsten" },
-        { word: "pflanzen", position: "start", file: "pflanzen", en: "to plant", note: "PF at start: pflanzen" },
-        { word: "Pfennig", position: "start", file: "Pfennig", en: "penny", note: "PF at start: Pfennig" },
-        { word: "Pfütze", position: "start", file: "Pfuetze", en: "puddle", note: "PF at start: Pfütze" },
-        { word: "pfui", position: "start", file: "pfui", en: "yuck", note: "PF at start: pfui" },
-        { word: "Pflock", position: "start", file: "Pflock", en: "peg/stake", note: "PF at start: Pflock" },
-        { word: "Pfiff", position: "start", file: "Pfiff", en: "whistle (sound)", note: "PF at start: Pfiff" },
-        { word: "Pforte", position: "start", file: "Pforte", en: "gate", note: "PF at start: Pforte" },
-        { word: "Pfosten", position: "start", file: "Pfosten", en: "post/pillar", note: "PF at start: Pfosten" },
-        { word: "Pflug", position: "start", file: "Pflug", en: "plow", note: "PF at start: Pflug" },
-        { word: "pflügen", position: "start", file: "pfluegen", en: "to plow", note: "PF at start: pflügen" },
-        // PF in middle/end (50)
-        { word: "Apfel", position: "middle", file: "Apfel", en: "apple", note: "PF in middle: Apfel" },
-        { word: "Kopf", position: "middle", file: "Kopf", en: "head", note: "PF at end: Kopf" },
-        { word: "Kampf", position: "middle", file: "Kampf", en: "fight", note: "PF at end: Kampf" },
-        { word: "Topf", position: "middle", file: "Topf", en: "pot", note: "PF at end: Topf" },
-        { word: "Strumpf", position: "middle", file: "Strumpf", en: "stocking", note: "PF at end: Strumpf" },
-        { word: "Dampf", position: "middle", file: "Dampf", en: "steam", note: "PF at end: Dampf" },
-        { word: "Zopf", position: "middle", file: "Zopf", en: "braid", note: "PF at end: Zopf" },
-        { word: "Sumpf", position: "middle", file: "Sumpf", en: "swamp", note: "PF at end: Sumpf" },
-        { word: "Schopf", position: "middle", file: "Schopf", en: "tuft", note: "PF at end: Schopf" },
-        { word: "Knopf", position: "middle", file: "Knopf", en: "button", note: "PF at end: Knopf" },
-        { word: "Empfang", position: "middle", file: "Empfang", en: "reception", note: "PF in middle: Empfang" },
-        { word: "empfehlen", position: "middle", file: "empfehlen", en: "to recommend", note: "PF in middle: empfehlen" },
-        { word: "empfinden", position: "middle", file: "empfinden", en: "to feel", note: "PF in middle: empfinden" },
-        { word: "empfangen", position: "middle", file: "empfangen", en: "to receive", note: "PF in middle: empfangen" },
-        { word: "kämpfen", position: "middle", file: "kaempfen", en: "to fight", note: "PF in middle: kämpfen" },
-        { word: "klopfen", position: "middle", file: "klopfen", en: "to knock", note: "PF in middle: klopfen" },
-        { word: "stopfen", position: "middle", file: "stopfen", en: "to stuff", note: "PF in middle: stopfen" },
-        { word: "tropfen", position: "middle", file: "tropfen", en: "to drip", note: "PF in middle: tropfen" },
-        { word: "Tropfen", position: "middle", file: "Tropfen2", en: "drop", note: "PF in middle: Tropfen" },
-        { word: "schöpfen", position: "middle", file: "schoepfen", en: "to scoop", note: "PF in middle: schöpfen" },
-        { word: "hüpfen", position: "middle", file: "huepfen", en: "to hop", note: "PF in middle: hüpfen" },
-        { word: "Kupfer", position: "middle", file: "Kupfer", en: "copper", note: "PF in middle: Kupfer" },
-        { word: "Gipfel", position: "middle", file: "Gipfel", en: "peak/summit", note: "PF in middle: Gipfel" },
-        { word: "Wipfel", position: "middle", file: "Wipfel", en: "treetop", note: "PF in middle: Wipfel" },
-        { word: "Kartoffel", position: "middle", file: "Kartoffel", en: "potato", note: "PF in middle: Kartoffel" },
-        { word: "schimpfen", position: "middle", file: "schimpfen", en: "to scold", note: "PF in middle: schimpfen" },
-        { word: "Schnupfen", position: "middle", file: "Schnupfen", en: "cold (illness)", note: "PF in middle: Schnupfen" },
-        { word: "schlüpfen", position: "middle", file: "schluepfen", en: "to slip", note: "PF in middle: schlüpfen" },
-        { word: "rümpfen", position: "middle", file: "ruempfen", en: "to wrinkle (nose)", note: "PF in middle: rümpfen" },
-        { word: "Opfer", position: "middle", file: "Opfer", en: "victim/sacrifice", note: "PF in middle: Opfer" },
-        { word: "Karpfen", position: "middle", file: "Karpfen", en: "carp (fish)", note: "PF in middle: Karpfen" },
-        { word: "Köpfchen", position: "middle", file: "Koepfchen", en: "little head", note: "PF in middle: Köpfchen" },
-        { word: "Äpfel", position: "middle", file: "Aepfel", en: "apples", note: "PF in middle: Äpfel" },
-        { word: "Töpfe", position: "middle", file: "Toepfe", en: "pots", note: "PF in middle: Töpfe" },
-        { word: "Köpfe", position: "middle", file: "Koepfe", en: "heads", note: "PF in middle: Köpfe" },
-        { word: "Knöpfe", position: "middle", file: "Knoepfe", en: "buttons", note: "PF in middle: Knöpfe" },
-        { word: "Strümpfe", position: "middle", file: "Struempfe", en: "stockings", note: "PF in middle: Strümpfe" },
-        { word: "Sümpfe", position: "middle", file: "Suempfe", en: "swamps", note: "PF in middle: Sümpfe" },
-        { word: "Zöpfe", position: "middle", file: "Zoepfe", en: "braids", note: "PF in middle: Zöpfe" }
+        // PF words (50)
+        { word: "Pferd", answer: "pf", en: "horse" },
+        { word: "Pflanze", answer: "pf", en: "plant" },
+        { word: "Pfanne", answer: "pf", en: "pan" },
+        { word: "Pfeffer", answer: "pf", en: "pepper" },
+        { word: "Pfeil", answer: "pf", en: "arrow" },
+        { word: "Pfund", answer: "pf", en: "pound" },
+        { word: "Pflege", answer: "pf", en: "care" },
+        { word: "Pflicht", answer: "pf", en: "duty" },
+        { word: "Pfad", answer: "pf", en: "path" },
+        { word: "Pfau", answer: "pf", en: "peacock" },
+        { word: "Pfeife", answer: "pf", en: "pipe" },
+        { word: "Pfote", answer: "pf", en: "paw" },
+        { word: "Pflaster", answer: "pf", en: "bandage" },
+        { word: "Pflaume", answer: "pf", en: "plum" },
+        { word: "Apfel", answer: "pf", en: "apple" },
+        { word: "Kopf", answer: "pf", en: "head" },
+        { word: "Kampf", answer: "pf", en: "fight" },
+        { word: "Topf", answer: "pf", en: "pot" },
+        { word: "Strumpf", answer: "pf", en: "stocking" },
+        { word: "Dampf", answer: "pf", en: "steam" },
+        { word: "Zopf", answer: "pf", en: "braid" },
+        { word: "Sumpf", answer: "pf", en: "swamp" },
+        { word: "Knopf", answer: "pf", en: "button" },
+        { word: "Empfang", answer: "pf", en: "reception" },
+        { word: "Kupfer", answer: "pf", en: "copper" },
+        { word: "Gipfel", answer: "pf", en: "summit" },
+        { word: "Kartoffel", answer: "pf", en: "potato" },
+        { word: "Schnupfen", answer: "pf", en: "cold" },
+        { word: "Opfer", answer: "pf", en: "victim" },
+        { word: "Karpfen", answer: "pf", en: "carp" },
+        { word: "Tropfen", answer: "pf", en: "drop" },
+        { word: "klopfen", answer: "pf", en: "to knock" },
+        { word: "stopfen", answer: "pf", en: "to stuff" },
+        { word: "schimpfen", answer: "pf", en: "to scold" },
+        { word: "empfehlen", answer: "pf", en: "to recommend" },
+        { word: "empfinden", answer: "pf", en: "to feel" },
+        { word: "kämpfen", answer: "pf", en: "to fight" },
+        { word: "hüpfen", answer: "pf", en: "to hop" },
+        { word: "schlüpfen", answer: "pf", en: "to slip" },
+        { word: "schöpfen", answer: "pf", en: "to scoop" },
+        { word: "Äpfel", answer: "pf", en: "apples" },
+        { word: "Köpfe", answer: "pf", en: "heads" },
+        { word: "Töpfe", answer: "pf", en: "pots" },
+        { word: "Knöpfe", answer: "pf", en: "buttons" },
+        { word: "Strümpfe", answer: "pf", en: "stockings" },
+        { word: "Zöpfe", answer: "pf", en: "braids" },
+        { word: "Sümpfe", answer: "pf", en: "swamps" },
+        { word: "pflanzen", answer: "pf", en: "to plant" },
+        { word: "pflegen", answer: "pf", en: "to care for" },
+        { word: "pfeifen", answer: "pf", en: "to whistle" },
+        // F words (50)
+        { word: "Feld", answer: "f", en: "field" },
+        { word: "Fenster", answer: "f", en: "window" },
+        { word: "Fisch", answer: "f", en: "fish" },
+        { word: "Feuer", answer: "f", en: "fire" },
+        { word: "Finger", answer: "f", en: "finger" },
+        { word: "Frage", answer: "f", en: "question" },
+        { word: "Freund", answer: "f", en: "friend" },
+        { word: "Frau", answer: "f", en: "woman" },
+        { word: "Farbe", answer: "f", en: "color" },
+        { word: "Familie", answer: "f", en: "family" },
+        { word: "Fahrt", answer: "f", en: "trip" },
+        { word: "Fest", answer: "f", en: "party" },
+        { word: "Film", answer: "f", en: "film" },
+        { word: "Flasche", answer: "f", en: "bottle" },
+        { word: "Fleisch", answer: "f", en: "meat" },
+        { word: "Fluss", answer: "f", en: "river" },
+        { word: "Foto", answer: "f", en: "photo" },
+        { word: "Affe", answer: "f", en: "monkey" },
+        { word: "Koffer", answer: "f", en: "suitcase" },
+        { word: "Schaf", answer: "f", en: "sheep" },
+        { word: "Stoff", answer: "f", en: "fabric" },
+        { word: "Hof", answer: "f", en: "yard" },
+        { word: "Dorf", answer: "f", en: "village" },
+        { word: "Brief", answer: "f", en: "letter" },
+        { word: "Beruf", answer: "f", en: "profession" },
+        { word: "Schlaf", answer: "f", en: "sleep" },
+        { word: "Tief", answer: "f", en: "deep" },
+        { word: "offen", answer: "f", en: "open" },
+        { word: "treffen", answer: "f", en: "to meet" },
+        { word: "hoffen", answer: "f", en: "to hope" },
+        { word: "schaffen", answer: "f", en: "to create" },
+        { word: "kaufen", answer: "f", en: "to buy" },
+        { word: "laufen", answer: "f", en: "to run" },
+        { word: "schlafen", answer: "f", en: "to sleep" },
+        { word: "rufen", answer: "f", en: "to call" },
+        { word: "helfen", answer: "f", en: "to help" },
+        { word: "werfen", answer: "f", en: "to throw" },
+        { word: "finden", answer: "f", en: "to find" },
+        { word: "fahren", answer: "f", en: "to drive" },
+        { word: "fallen", answer: "f", en: "to fall" },
+        { word: "fliegen", answer: "f", en: "to fly" },
+        { word: "fragen", answer: "f", en: "to ask" },
+        { word: "fühlen", answer: "f", en: "to feel" },
+        { word: "führen", answer: "f", en: "to lead" },
+        { word: "frei", answer: "f", en: "free" },
+        { word: "fremd", answer: "f", en: "foreign" },
+        { word: "früh", answer: "f", en: "early" },
+        { word: "fertig", answer: "f", en: "finished" },
+        { word: "Erfolg", answer: "f", en: "success" },
+        { word: "gefährlich", answer: "f", en: "dangerous" }
       ];
 
       const TOTAL_WORDS = allWords.length;
@@ -508,7 +456,6 @@
       let idx = 0;
       let score = 0;
       let answered = false;
-      let answers = [];
       let sessionWrong = [];
       let audioEl = null;
 
@@ -517,13 +464,16 @@
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved) {
             const p = JSON.parse(saved);
-            if (p.mastered && p.wrong && p.unseen) return p;
+            if (p.mastered && p.wrong && p.unseen &&
+                allWords.find(w => w.word === p.unseen[0] || p.mastered.includes(w.word) || p.wrong.includes(w.word))) {
+              return p;
+            }
           }
         } catch (e) {}
         return {
           mastered: [],
           wrong: [],
-          unseen: allWords.map(w => w.file)
+          unseen: allWords.map(w => w.word)
         };
       }
 
@@ -533,8 +483,8 @@
         } catch (e) {}
       }
 
-      function getWordByFile(file) {
-        return allWords.find(w => w.file === file);
+      function getWordByName(name) {
+        return allWords.find(w => w.word === name);
       }
 
       function shuffle(arr) {
@@ -548,199 +498,126 @@
 
       function buildSession() {
         let pool = [];
-        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        const wrongWords = progress.wrong.map(getWordByName).filter(Boolean);
         pool.push(...wrongWords);
-        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        const unseenWords = progress.unseen.map(getWordByName).filter(Boolean);
         pool.push(...shuffle(unseenWords));
         if (pool.length < SESSION_SIZE) {
-          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          const masteredWords = shuffle(progress.mastered.map(getWordByName).filter(Boolean));
           pool.push(...masteredWords);
         }
-        pool = shuffle(pool.slice(0, SESSION_SIZE));
-        return pool;
+        return shuffle(pool.slice(0, SESSION_SIZE));
       }
 
       function updateMasteredDisplay() {
         document.getElementById('masteredCount').textContent = progress.mastered.length;
       }
 
-      function updateScoreDisplay() {
-        document.getElementById('scoreDisplay').textContent = score + ' correct';
-      }
-
-      function preloadAudio() {
+      window.playWord = function() {
         const ex = exercises[idx];
         if (!ex) return;
-        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3?v=1');
-      }
-
-      window.playWord = function() {
         if (audioEl) {
+          audioEl.pause();
           audioEl.currentTime = 0;
-          audioEl.play().catch(() => {});
-          const btn = document.getElementById('playBtn');
-          btn.classList.add('speaking');
-          audioEl.onended = () => btn.classList.remove('speaking');
         }
-      };
-
-      window.playWordByFile = function(file) {
-        new Audio(AUDIO_BASE + file + '.mp3?v=1').play().catch(() => {});
+        audioEl = new Audio(AUDIO_BASE + ex.word + '.mp3');
+        audioEl.play().catch(() => {});
+        const btn = document.getElementById('playBtn');
+        btn.classList.add('speaking');
+        audioEl.onended = () => btn.classList.remove('speaking');
       };
 
       window.startSession = function() {
         exercises = buildSession();
         idx = 0;
         score = 0;
-        answers = new Array(exercises.length).fill(null);
         sessionWrong = [];
         document.getElementById('exerciseArea').classList.remove('hidden');
         document.getElementById('resultsArea').classList.add('hidden');
-        document.getElementById('totalQ').textContent = exercises.length;
         updateMasteredDisplay();
-        updateScoreDisplay();
         showExercise();
       };
-
-      window.retryIncorrect = function() {
-        if (sessionWrong.length === 0) return;
-        exercises = shuffle(sessionWrong);
-        idx = 0;
-        score = 0;
-        answers = new Array(exercises.length).fill(null);
-        sessionWrong = [];
-        document.getElementById('exerciseArea').classList.remove('hidden');
-        document.getElementById('resultsArea').classList.add('hidden');
-        document.getElementById('totalQ').textContent = exercises.length;
-        updateScoreDisplay();
-        showExercise();
-      };
-
-      function highlightPf(word) {
-        // Highlight pf in the word
-        return word.replace(/pf/gi, '<strong style="color: #E91E63;">pf</strong>');
-      }
 
       function showExercise() {
         const ex = exercises[idx];
-        const prev = answers[idx];
+        answered = false;
 
         document.getElementById('currentQ').textContent = idx + 1;
-        updateScoreDisplay();
         document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
 
-        const wordDisplay = document.getElementById('wordDisplay');
-        const transDisplay = document.getElementById('translationDisplay');
-        const feedback = document.getElementById('feedback');
-        const posNote = document.getElementById('positionNote');
-        const btns = document.querySelectorAll('.option-btn');
+        document.getElementById('wordReveal').classList.add('hidden');
+        document.getElementById('translationReveal').classList.add('hidden');
 
-        preloadAudio();
+        const btnPf = document.getElementById('btnPf');
+        const btnF = document.getElementById('btnF');
+        btnPf.disabled = btnF.disabled = false;
+        btnPf.classList.remove('correct', 'wrong');
+        btnF.classList.remove('correct', 'wrong');
 
-        // Reset buttons
-        btns.forEach(btn => {
-          btn.classList.remove('correct', 'wrong', 'highlight');
-          btn.disabled = false;
-        });
-        feedback.classList.add('hidden');
-        posNote.classList.add('hidden');
-
-        if (prev !== null) {
-          answered = true;
-          wordDisplay.innerHTML = highlightPf(ex.word);
-          transDisplay.textContent = ex.en;
-
-          btns.forEach(btn => {
-            btn.disabled = true;
-            if (btn.dataset.option === ex.position) {
-              btn.classList.add('highlight');
-            }
-            if (prev === btn.dataset.option && prev !== ex.position) {
-              btn.classList.add('wrong');
-            }
-          });
-
-          posNote.textContent = ex.note;
-          posNote.classList.remove('hidden');
-        } else {
-          answered = false;
-          wordDisplay.textContent = ex.word;
-          transDisplay.textContent = ex.en;
-
-          setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
-          }, 200);
-        }
+        setTimeout(() => {
+          if (!answered && exercises[idx] === ex) playWord();
+        }, 200);
       }
 
       window.checkAnswer = function(selected) {
         if (answered) return;
         answered = true;
         const ex = exercises[idx];
-        const correct = selected === ex.position;
-        answers[idx] = selected;
+        const correct = selected === ex.answer;
 
-        const wordDisplay = document.getElementById('wordDisplay');
-        const feedback = document.getElementById('feedback');
-        const posNote = document.getElementById('positionNote');
-        const btns = document.querySelectorAll('.option-btn');
+        const btnPf = document.getElementById('btnPf');
+        const btnF = document.getElementById('btnF');
+        btnPf.disabled = btnF.disabled = true;
 
-        wordDisplay.innerHTML = highlightPf(ex.word);
+        // Reveal word
+        const wordReveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+        wordReveal.textContent = ex.word;
+        wordReveal.style.color = correct ? '#4CAF50' : '#F44336';
+        wordReveal.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
 
-        btns.forEach(btn => {
-          btn.disabled = true;
-          if (btn.dataset.option === ex.position) {
-            btn.classList.add('highlight');
-          }
-          if (selected === btn.dataset.option && selected !== ex.position) {
-            btn.classList.add('wrong');
-          }
-        });
-
-        posNote.textContent = ex.note;
-        posNote.classList.remove('hidden');
+        // Highlight buttons
+        if (ex.answer === 'pf') {
+          btnPf.classList.add('correct');
+          if (!correct) btnF.classList.add('wrong');
+        } else {
+          btnF.classList.add('correct');
+          if (!correct) btnPf.classList.add('wrong');
+        }
 
         if (correct) {
           score++;
-          updateScoreDisplay();
-          feedback.textContent = 'Correct!';
-          feedback.className = 'feedback correct-text';
         } else {
           sessionWrong.push(ex);
-          const correctLabel = ex.position === 'start' ? 'Word Start' : 'Middle/End';
-          feedback.textContent = 'Wrong - it\'s ' + correctLabel;
-          feedback.className = 'feedback wrong-text';
         }
-        feedback.classList.remove('hidden');
 
         recordAnswer(ex, correct);
 
         setTimeout(() => {
-          if (answered && answers[idx] !== null) {
-            goNext();
+          if (idx < exercises.length - 1) {
+            idx++;
+            showExercise();
+          } else {
+            showResults();
           }
         }, 1200);
       };
 
       function recordAnswer(word, correct) {
-        const file = word.file;
-        progress.mastered = progress.mastered.filter(f => f !== file);
-        progress.wrong = progress.wrong.filter(f => f !== file);
-        progress.unseen = progress.unseen.filter(f => f !== file);
+        const name = word.word;
+        progress.mastered = progress.mastered.filter(n => n !== name);
+        progress.wrong = progress.wrong.filter(n => n !== name);
+        progress.unseen = progress.unseen.filter(n => n !== name);
 
         if (correct) {
-          progress.mastered.push(file);
+          progress.mastered.push(name);
         } else {
-          progress.wrong.push(file);
+          progress.wrong.push(name);
         }
         saveProgress();
         updateMasteredDisplay();
-      }
-
-      function goNext() {
-        if (!answered) return;
-        if (idx < exercises.length - 1) { idx++; showExercise(); }
-        else showResults();
       }
 
       function showResults() {
@@ -750,29 +627,13 @@
         const pct = Math.round(score / exercises.length * 100);
         document.getElementById('resultPct').textContent = pct + '%';
         document.getElementById('resultScore').textContent = score;
-        document.getElementById('resultTotal').textContent = exercises.length;
-
-        const sec = document.getElementById('incorrectSection');
-        const items = document.getElementById('incorrectItems');
-        const retry = document.getElementById('retryBtn');
-
-        if (sessionWrong.length > 0) {
-          sec.classList.remove('hidden');
-          retry.classList.remove('hidden');
-          items.innerHTML = sessionWrong.map(w => `
-            <div class="incorrect-item">
-              <span><strong>${w.word}</strong> (${w.position === 'start' ? 'Start' : 'Middle/End'}) - ${w.en}</span>
-              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
-            </div>
-          `).join('');
-        } else {
-          sec.classList.add('hidden');
-          retry.classList.add('hidden');
-        }
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
       };
 
       window.toggleShortcuts = function() {
@@ -780,18 +641,21 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
         if (k === ' ' || e.code === 'Space') {
           e.preventDefault();
           playWord();
         } else if (k === 'f' && !answered) {
           e.preventDefault();
-          checkAnswer('start');
+          checkAnswer('pf');
         } else if (k === 'j' && !answered) {
           e.preventDefault();
-          checkAnswer('middle');
+          checkAnswer('f');
         }
       });
 
