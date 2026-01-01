@@ -158,7 +158,7 @@
       font-size: 36px;
       font-weight: 700;
       color: #2C2C2C;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       min-height: 50px;
     }
 
@@ -231,15 +231,21 @@
 
     .translation-reveal {
       font-size: 16px;
-      color: #6B4E8C;
-      margin-top: 10px;
-      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+      min-height: 24px;
     }
 
     .rule-note {
       font-size: 13px;
       color: #9C27B0;
-      margin-top: 5px;
+      margin-top: 10px;
+      min-height: 20px;
+      visibility: hidden;
+    }
+
+    .rule-note.visible {
+      visibility: visible;
     }
 
     .results {
@@ -367,11 +373,14 @@
       <br><br>
       Both make the same /ts/ sound! The spelling depends on the vowel before:
       <br><br>
-      <strong>Z</strong> - after <strong>long vowels</strong>, diphthongs (ei, au, eu), consonants, or at word start
-      <br>Examples: du<strong>z</strong>en (long u), Her<strong>z</strong> (after r), <strong>Z</strong>eit (word start)
+      <strong>Z</strong> - after <strong>long vowels</strong>, diphthongs, consonants, or at word start
+      <br>- long vowel: du<strong>z</strong>en
+      <br>- diphthong: hei<strong>z</strong>en
+      <br>- consonant: Her<strong>z</strong>
+      <br>- word start: <strong>Z</strong>eit
       <br><br>
       <strong>TZ</strong> - after <strong>short vowels</strong> (never at word start!)
-      <br>Examples: Ka<strong>tz</strong>e (short a), si<strong>tz</strong>en (short i), Pla<strong>tz</strong> (short a)
+      <br>- Ka<strong>tz</strong>e, si<strong>tz</strong>en, Pla<strong>tz</strong>
       <br><br>
       <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">80 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
     </div>
@@ -392,14 +401,13 @@
         </button>
 
         <div id="wordDisplay" class="word-display"></div>
+        <div id="translationReveal" class="translation-reveal"></div>
 
         <div id="optionsContainer" class="options-container">
           <button class="option-btn" onclick="checkAnswer('z')" data-option="z">z<span class="key-hint">F</span></button>
           <button class="option-btn" onclick="checkAnswer('tz')" data-option="tz">tz<span class="key-hint">J</span></button>
         </div>
 
-        <div id="feedback" class="feedback hidden"></div>
-        <div id="translationReveal" class="translation-reveal hidden"></div>
         <div id="ruleNote" class="rule-note hidden"></div>
       </div>
     </div>
@@ -641,24 +649,22 @@
         document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
 
         const wordDisplay = document.getElementById('wordDisplay');
-        const feedback = document.getElementById('feedback');
         const transReveal = document.getElementById('translationReveal');
         const ruleNote = document.getElementById('ruleNote');
         const btns = document.querySelectorAll('.option-btn');
 
         preloadAudio();
 
-        // Display word with gap
+        // Display word with gap and translation
         wordDisplay.innerHTML = ex.gap.replace('_', '<span class="gap"></span>');
+        transReveal.textContent = ex.en;
 
         // Reset buttons
         btns.forEach(btn => {
           btn.classList.remove('correct', 'wrong', 'highlight');
           btn.disabled = false;
         });
-        feedback.classList.add('hidden');
-        transReveal.classList.add('hidden');
-        ruleNote.classList.add('hidden');
+        ruleNote.classList.remove('visible');
 
         if (prev !== null) {
           answered = true;
@@ -673,10 +679,8 @@
           });
 
           wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
-          transReveal.textContent = ex.en;
-          transReveal.classList.remove('hidden');
           ruleNote.textContent = ex.rule;
-          ruleNote.classList.remove('hidden');
+          ruleNote.classList.add('visible');
         } else {
           answered = false;
           setTimeout(() => {
@@ -693,8 +697,6 @@
         answers[idx] = selected;
 
         const wordDisplay = document.getElementById('wordDisplay');
-        const feedback = document.getElementById('feedback');
-        const transReveal = document.getElementById('translationReveal');
         const ruleNote = document.getElementById('ruleNote');
         const btns = document.querySelectorAll('.option-btn');
 
@@ -709,10 +711,8 @@
         });
 
         wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
-        transReveal.textContent = ex.en;
-        transReveal.classList.remove('hidden');
         ruleNote.textContent = ex.rule;
-        ruleNote.classList.remove('hidden');
+        ruleNote.classList.add('visible');
 
         if (correct) {
           score++;
