@@ -337,19 +337,22 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>German word stress patterns:</strong>
+      <strong>General rule:</strong> German stresses the <strong>first syllable</strong>.
+      <br>Examples: <strong>AR</strong>-beit, <strong>LE</strong>-ben, <strong>WAS</strong>-ser, <strong>SPIE</strong>-len
       <br><br>
-      <strong>Native words:</strong> Usually stress the <strong>first syllable</strong>
-      <br>Examples: <strong>AR</strong>-beit, <strong>LE</strong>-ben, <strong>SPIE</strong>-len
-      <br><br>
-      <strong>Separable prefixes:</strong> Stress on the <strong>prefix</strong>
-      <br>Examples: <strong>AN</strong>-fan-gen, <strong>AUF</strong>-ste-hen, <strong>AUS</strong>-ge-hen
-      <br><br>
-      <strong>Inseparable prefixes (be-, ge-, er-, ver-, zer-, ent-, emp-):</strong> Stress on <strong>root</strong>
-      <br>Examples: be-<strong>ZAHL</strong>-en, ver-<strong>STEH</strong>-en, er-<strong>KLÄR</strong>-en
-      <br><br>
-      <strong>Foreign words:</strong> Often stress <strong>last or second-to-last</strong>
-      <br>Examples: Stu-<strong>DENT</strong>, U-ni-ver-si-<strong>TÄT</strong>
+      <strong>Exceptions:</strong>
+      <ul style="margin: 5px 0; padding-left: 20px;">
+        <li><strong>Inseparable prefixes</strong> (be-, ent-, er-, ver-, zer-, ge-, miss-): stress the <strong>root</strong>
+        <br>be-<strong>ZAHL</strong>-en, ver-<strong>STEH</strong>-en, ent-<strong>SCHEI</strong>-den, ge-<strong>FAL</strong>-len</li>
+        <li><strong>-ieren verbs:</strong> always stress <strong>-IE-</strong>
+        <br>stu-<strong>DIE</strong>-ren, tele-fo-<strong>NIE</strong>-ren, reser-<strong>VIE</strong>-ren</li>
+        <li><strong>Foreign words:</strong> often stress the <strong>last or second-to-last</strong> syllable
+        <br>Stu-<strong>DENT</strong>, Ho-<strong>TEL</strong>, Restau-<strong>RANT</strong>, Uni-versi-<strong>TÄT</strong>, Informa-<strong>TI</strong>-on</li>
+        <li><strong>Names/places:</strong> often keep original stress
+        <br>Ber-<strong>LIN</strong>, Han-<strong>NO</strong>-ver, but <strong>HAM</strong>-burg, <strong>MÜN</strong>-chen</li>
+      </ul>
+      <strong>Compound words:</strong> stress the <strong>first element</strong>
+      <br><strong>KINDER</strong>-garten, <strong>HAUS</strong>-aufgabe, <strong>WOHN</strong>-zimmer
       <br><br>
       Click on the stressed syllable!
     </div>
@@ -407,22 +410,22 @@
 
       // Word bank: syllables array with stressed index (0-based)
       const allWords = [
-        // First syllable stress - native words (15)
-        { word: "Arbeit", syllables: ["AR", "beit"], stressed: 0, file: "Arbeit", en: "work", note: "Native - 1st syllable" },
-        { word: "Leben", syllables: ["LE", "ben"], stressed: 0, file: "Leben", en: "life", note: "Native - 1st syllable" },
-        { word: "spielen", syllables: ["SPIE", "len"], stressed: 0, file: "spielen", en: "to play", note: "Native - 1st syllable" },
-        { word: "Wasser", syllables: ["WAS", "ser"], stressed: 0, file: "Wasser", en: "water", note: "Native - 1st syllable" },
-        { word: "Zimmer", syllables: ["ZIM", "mer"], stressed: 0, file: "Zimmer", en: "room", note: "Native - 1st syllable" },
-        { word: "Mutter", syllables: ["MUT", "ter"], stressed: 0, file: "Mutter", en: "mother", note: "Native - 1st syllable" },
-        { word: "Vater", syllables: ["VA", "ter"], stressed: 0, file: "Vater", en: "father", note: "Native - 1st syllable" },
-        { word: "Bruder", syllables: ["BRU", "der"], stressed: 0, file: "Bruder", en: "brother", note: "Native - 1st syllable" },
-        { word: "Schwester", syllables: ["SCHWES", "ter"], stressed: 0, file: "Schwester", en: "sister", note: "Native - 1st syllable" },
-        { word: "Schule", syllables: ["SCHU", "le"], stressed: 0, file: "Schule", en: "school", note: "Native - 1st syllable" },
-        { word: "Lehrer", syllables: ["LEH", "rer"], stressed: 0, file: "Lehrer", en: "teacher", note: "Native - 1st syllable" },
-        { word: "Morgen", syllables: ["MOR", "gen"], stressed: 0, file: "Morgen", en: "morning", note: "Native - 1st syllable" },
-        { word: "Abend", syllables: ["A", "bend"], stressed: 0, file: "Abend", en: "evening", note: "Native - 1st syllable" },
-        { word: "Essen", syllables: ["ES", "sen"], stressed: 0, file: "Essen", en: "food/eating", note: "Native - 1st syllable" },
-        { word: "trinken", syllables: ["TRIN", "ken"], stressed: 0, file: "trinken", en: "to drink", note: "Native - 1st syllable" },
+        // First syllable stress - general rule (15)
+        { word: "Arbeit", syllables: ["AR", "beit"], stressed: 0, file: "Arbeit", en: "work", note: "General rule - 1st syllable" },
+        { word: "Leben", syllables: ["LE", "ben"], stressed: 0, file: "Leben", en: "life", note: "General rule - 1st syllable" },
+        { word: "spielen", syllables: ["SPIE", "len"], stressed: 0, file: "spielen", en: "to play", note: "General rule - 1st syllable" },
+        { word: "Wasser", syllables: ["WAS", "ser"], stressed: 0, file: "Wasser", en: "water", note: "General rule - 1st syllable" },
+        { word: "Zimmer", syllables: ["ZIM", "mer"], stressed: 0, file: "Zimmer", en: "room", note: "General rule - 1st syllable" },
+        { word: "Mutter", syllables: ["MUT", "ter"], stressed: 0, file: "Mutter", en: "mother", note: "General rule - 1st syllable" },
+        { word: "Vater", syllables: ["VA", "ter"], stressed: 0, file: "Vater", en: "father", note: "General rule - 1st syllable" },
+        { word: "Bruder", syllables: ["BRU", "der"], stressed: 0, file: "Bruder", en: "brother", note: "General rule - 1st syllable" },
+        { word: "Schwester", syllables: ["SCHWES", "ter"], stressed: 0, file: "Schwester", en: "sister", note: "General rule - 1st syllable" },
+        { word: "Schule", syllables: ["SCHU", "le"], stressed: 0, file: "Schule", en: "school", note: "General rule - 1st syllable" },
+        { word: "Lehrer", syllables: ["LEH", "rer"], stressed: 0, file: "Lehrer", en: "teacher", note: "General rule - 1st syllable" },
+        { word: "Morgen", syllables: ["MOR", "gen"], stressed: 0, file: "Morgen", en: "morning", note: "General rule - 1st syllable" },
+        { word: "Abend", syllables: ["A", "bend"], stressed: 0, file: "Abend", en: "evening", note: "General rule - 1st syllable" },
+        { word: "Essen", syllables: ["ES", "sen"], stressed: 0, file: "Essen", en: "food/eating", note: "General rule - 1st syllable" },
+        { word: "trinken", syllables: ["TRIN", "ken"], stressed: 0, file: "trinken", en: "to drink", note: "General rule - 1st syllable" },
         // Separable prefix stress (10)
         { word: "anfangen", syllables: ["AN", "fan", "gen"], stressed: 0, file: "anfangen", en: "to begin", note: "Separable - prefix stressed" },
         { word: "aufstehen", syllables: ["AUF", "ste", "hen"], stressed: 0, file: "aufstehen", en: "to get up", note: "Separable - prefix stressed" },
@@ -483,10 +486,10 @@
         { word: "Hausaufgabe", syllables: ["HAUS", "auf", "ga", "be"], stressed: 0, file: "Hausaufgabe", en: "homework", note: "Compound - 1st element stressed" },
         { word: "Geburtstag", syllables: ["Ge", "BURTS", "tag"], stressed: 1, file: "Geburtstag", en: "birthday", note: "ge- prefix + compound" },
         // Adjectives (5)
-        { word: "wichtig", syllables: ["WICH", "tig"], stressed: 0, file: "wichtig", en: "important", note: "Native - 1st syllable" },
-        { word: "richtig", syllables: ["RICH", "tig"], stressed: 0, file: "richtig", en: "correct", note: "Native - 1st syllable" },
-        { word: "fertig", syllables: ["FER", "tig"], stressed: 0, file: "fertig", en: "finished", note: "Native - 1st syllable" },
-        { word: "langsam", syllables: ["LANG", "sam"], stressed: 0, file: "langsam", en: "slow", note: "Native - 1st syllable" },
+        { word: "wichtig", syllables: ["WICH", "tig"], stressed: 0, file: "wichtig", en: "important", note: "General rule - 1st syllable" },
+        { word: "richtig", syllables: ["RICH", "tig"], stressed: 0, file: "richtig", en: "correct", note: "General rule - 1st syllable" },
+        { word: "fertig", syllables: ["FER", "tig"], stressed: 0, file: "fertig", en: "finished", note: "General rule - 1st syllable" },
+        { word: "langsam", syllables: ["LANG", "sam"], stressed: 0, file: "langsam", en: "slow", note: "General rule - 1st syllable" },
         { word: "gemeinsam", syllables: ["ge", "MEIN", "sam"], stressed: 1, file: "gemeinsam", en: "together", note: "ge- prefix - root stressed" }
       ];
 
