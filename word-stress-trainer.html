@@ -199,6 +199,14 @@
       border-color: #E91E63;
     }
 
+    .phrase-display {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 15px;
+      font-style: italic;
+      min-height: 24px;
+    }
+
     .translation-reveal {
       font-size: 16px;
       color: #6B4E8C;
@@ -364,6 +372,7 @@
       </div>
 
       <div class="question-area">
+        <div id="phraseDisplay" class="phrase-display"></div>
         <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
           <span>&#9654;</span>
         </button>
@@ -407,86 +416,86 @@
       // Word bank: syllables array with stressed index (0-based)
       const allWords = [
         // First syllable stress - general rule (15)
-        { word: "Arbeit", syllables: ["AR", "beit"], stressed: 0, file: "Arbeit", en: "work", note: "General rule - 1st syllable" },
-        { word: "Leben", syllables: ["LE", "ben"], stressed: 0, file: "Leben", en: "life", note: "General rule - 1st syllable" },
-        { word: "spielen", syllables: ["SPIE", "len"], stressed: 0, file: "spielen", en: "to play", note: "General rule - 1st syllable" },
-        { word: "Wasser", syllables: ["WAS", "ser"], stressed: 0, file: "Wasser", en: "water", note: "General rule - 1st syllable" },
-        { word: "Zimmer", syllables: ["ZIM", "mer"], stressed: 0, file: "Zimmer", en: "room", note: "General rule - 1st syllable" },
-        { word: "Mutter", syllables: ["MUT", "ter"], stressed: 0, file: "Mutter", en: "mother", note: "General rule - 1st syllable" },
-        { word: "Vater", syllables: ["VA", "ter"], stressed: 0, file: "Vater", en: "father", note: "General rule - 1st syllable" },
-        { word: "Bruder", syllables: ["BRU", "der"], stressed: 0, file: "Bruder", en: "brother", note: "General rule - 1st syllable" },
-        { word: "Schwester", syllables: ["SCHWES", "ter"], stressed: 0, file: "Schwester", en: "sister", note: "General rule - 1st syllable" },
-        { word: "Schule", syllables: ["SCHU", "le"], stressed: 0, file: "Schule", en: "school", note: "General rule - 1st syllable" },
-        { word: "Lehrer", syllables: ["LEH", "rer"], stressed: 0, file: "Lehrer", en: "teacher", note: "General rule - 1st syllable" },
-        { word: "Morgen", syllables: ["MOR", "gen"], stressed: 0, file: "Morgen", en: "morning", note: "General rule - 1st syllable" },
-        { word: "Abend", syllables: ["A", "bend"], stressed: 0, file: "Abend", en: "evening", note: "General rule - 1st syllable" },
-        { word: "Essen", syllables: ["ES", "sen"], stressed: 0, file: "Essen", en: "food/eating", note: "General rule - 1st syllable" },
-        { word: "trinken", syllables: ["TRIN", "ken"], stressed: 0, file: "trinken", en: "to drink", note: "General rule - 1st syllable" },
+        { word: "Arbeit", syllables: ["AR", "beit"], stressed: 0, file: "Arbeit", en: "work", note: "General rule - 1st syllable", phrase: "die schwere Arbeit" },
+        { word: "Leben", syllables: ["LE", "ben"], stressed: 0, file: "Leben", en: "life", note: "General rule - 1st syllable", phrase: "das ganze Leben" },
+        { word: "spielen", syllables: ["SPIE", "len"], stressed: 0, file: "spielen", en: "to play", note: "General rule - 1st syllable", phrase: "draußen spielen" },
+        { word: "Wasser", syllables: ["WAS", "ser"], stressed: 0, file: "Wasser", en: "water", note: "General rule - 1st syllable", phrase: "kaltes Wasser" },
+        { word: "Zimmer", syllables: ["ZIM", "mer"], stressed: 0, file: "Zimmer", en: "room", note: "General rule - 1st syllable", phrase: "ein großes Zimmer" },
+        { word: "Mutter", syllables: ["MUT", "ter"], stressed: 0, file: "Mutter", en: "mother", note: "General rule - 1st syllable", phrase: "meine Mutter" },
+        { word: "Vater", syllables: ["VA", "ter"], stressed: 0, file: "Vater", en: "father", note: "General rule - 1st syllable", phrase: "mein Vater" },
+        { word: "Bruder", syllables: ["BRU", "der"], stressed: 0, file: "Bruder", en: "brother", note: "General rule - 1st syllable", phrase: "mein Bruder" },
+        { word: "Schwester", syllables: ["SCHWES", "ter"], stressed: 0, file: "Schwester", en: "sister", note: "General rule - 1st syllable", phrase: "meine Schwester" },
+        { word: "Schule", syllables: ["SCHU", "le"], stressed: 0, file: "Schule", en: "school", note: "General rule - 1st syllable", phrase: "die Schule" },
+        { word: "Lehrer", syllables: ["LEH", "rer"], stressed: 0, file: "Lehrer", en: "teacher", note: "General rule - 1st syllable", phrase: "der Lehrer" },
+        { word: "Morgen", syllables: ["MOR", "gen"], stressed: 0, file: "Morgen", en: "morning", note: "General rule - 1st syllable", phrase: "guten Morgen" },
+        { word: "Abend", syllables: ["A", "bend"], stressed: 0, file: "Abend", en: "evening", note: "General rule - 1st syllable", phrase: "guten Abend" },
+        { word: "Essen", syllables: ["ES", "sen"], stressed: 0, file: "Essen", en: "food/eating", note: "General rule - 1st syllable", phrase: "gutes Essen" },
+        { word: "trinken", syllables: ["TRIN", "ken"], stressed: 0, file: "trinken", en: "to drink", note: "General rule - 1st syllable", phrase: "etwas trinken" },
         // Separable prefix stress (10)
-        { word: "anfangen", syllables: ["AN", "fan", "gen"], stressed: 0, file: "anfangen", en: "to begin", note: "Separable - prefix stressed" },
-        { word: "aufstehen", syllables: ["AUF", "ste", "hen"], stressed: 0, file: "aufstehen", en: "to get up", note: "Separable - prefix stressed" },
-        { word: "ausgehen", syllables: ["AUS", "ge", "hen"], stressed: 0, file: "ausgehen", en: "to go out", note: "Separable - prefix stressed" },
-        { word: "einkaufen", syllables: ["EIN", "kau", "fen"], stressed: 0, file: "einkaufen", en: "to shop", note: "Separable - prefix stressed" },
-        { word: "mitnehmen", syllables: ["MIT", "neh", "men"], stressed: 0, file: "mitnehmen", en: "to take along", note: "Separable - prefix stressed" },
-        { word: "zurückkommen", syllables: ["ZU", "rück", "kom", "men"], stressed: 0, file: "zurueckkommen", en: "to come back", note: "Separable - prefix stressed" },
-        { word: "abfahren", syllables: ["AB", "fah", "ren"], stressed: 0, file: "abfahren", en: "to depart", note: "Separable - prefix stressed" },
-        { word: "anrufen", syllables: ["AN", "ru", "fen"], stressed: 0, file: "anrufen", en: "to call", note: "Separable - prefix stressed" },
-        { word: "aufmachen", syllables: ["AUF", "ma", "chen"], stressed: 0, file: "aufmachen", en: "to open", note: "Separable - prefix stressed" },
-        { word: "zumachen", syllables: ["ZU", "ma", "chen"], stressed: 0, file: "zumachen", en: "to close", note: "Separable - prefix stressed" },
+        { word: "anfangen", syllables: ["AN", "fan", "gen"], stressed: 0, file: "anfangen", en: "to begin", note: "Separable - prefix stressed", phrase: "jetzt anfangen" },
+        { word: "aufstehen", syllables: ["AUF", "ste", "hen"], stressed: 0, file: "aufstehen", en: "to get up", note: "Separable - prefix stressed", phrase: "früh aufstehen" },
+        { word: "ausgehen", syllables: ["AUS", "ge", "hen"], stressed: 0, file: "ausgehen", en: "to go out", note: "Separable - prefix stressed", phrase: "heute ausgehen" },
+        { word: "einkaufen", syllables: ["EIN", "kau", "fen"], stressed: 0, file: "einkaufen", en: "to shop", note: "Separable - prefix stressed", phrase: "Lebensmittel einkaufen" },
+        { word: "mitnehmen", syllables: ["MIT", "neh", "men"], stressed: 0, file: "mitnehmen", en: "to take along", note: "Separable - prefix stressed", phrase: "etwas mitnehmen" },
+        { word: "zurückkommen", syllables: ["ZU", "rück", "kom", "men"], stressed: 0, file: "zurueckkommen", en: "to come back", note: "Separable - prefix stressed", phrase: "bald zurückkommen" },
+        { word: "abfahren", syllables: ["AB", "fah", "ren"], stressed: 0, file: "abfahren", en: "to depart", note: "Separable - prefix stressed", phrase: "morgen abfahren" },
+        { word: "anrufen", syllables: ["AN", "ru", "fen"], stressed: 0, file: "anrufen", en: "to call", note: "Separable - prefix stressed", phrase: "jemanden anrufen" },
+        { word: "aufmachen", syllables: ["AUF", "ma", "chen"], stressed: 0, file: "aufmachen", en: "to open", note: "Separable - prefix stressed", phrase: "die Tür aufmachen" },
+        { word: "zumachen", syllables: ["ZU", "ma", "chen"], stressed: 0, file: "zumachen", en: "to close", note: "Separable - prefix stressed", phrase: "das Fenster zumachen" },
         // Inseparable prefix - root stressed (15)
-        { word: "bezahlen", syllables: ["be", "ZAH", "len"], stressed: 1, file: "bezahlen", en: "to pay", note: "Inseparable - stem stressed" },
-        { word: "verstehen", syllables: ["ver", "STE", "hen"], stressed: 1, file: "verstehen", en: "to understand", note: "Inseparable - stem stressed" },
-        { word: "erklären", syllables: ["er", "KLÄ", "ren"], stressed: 1, file: "erklaeren", en: "to explain", note: "Inseparable - stem stressed" },
-        { word: "beginnen", syllables: ["be", "GIN", "nen"], stressed: 1, file: "beginnen", en: "to begin", note: "Inseparable - stem stressed" },
-        { word: "vergessen", syllables: ["ver", "GES", "sen"], stressed: 1, file: "vergessen", en: "to forget", note: "Inseparable - stem stressed" },
-        { word: "bekommen", syllables: ["be", "KOM", "men"], stressed: 1, file: "bekommen", en: "to receive", note: "Inseparable - stem stressed" },
-        { word: "erzählen", syllables: ["er", "ZÄH", "len"], stressed: 1, file: "erzaehlen", en: "to tell", note: "Inseparable - stem stressed" },
-        { word: "entscheiden", syllables: ["ent", "SCHEI", "den"], stressed: 1, file: "entscheiden", en: "to decide", note: "Inseparable - stem stressed" },
-        { word: "gewinnen", syllables: ["ge", "WIN", "nen"], stressed: 1, file: "gewinnen", en: "to win", note: "Inseparable - stem stressed" },
-        { word: "verlieren", syllables: ["ver", "LIE", "ren"], stressed: 1, file: "verlieren", en: "to lose", note: "Inseparable - stem stressed" },
-        { word: "besuchen", syllables: ["be", "SU", "chen"], stressed: 1, file: "besuchen", en: "to visit", note: "Inseparable - stem stressed" },
-        { word: "empfehlen", syllables: ["emp", "FEH", "len"], stressed: 1, file: "empfehlen", en: "to recommend", note: "Inseparable - stem stressed" },
-        { word: "entstehen", syllables: ["ent", "STE", "hen"], stressed: 1, file: "entstehen", en: "to arise", note: "Inseparable - stem stressed" },
-        { word: "zerbrechen", syllables: ["zer", "BRE", "chen"], stressed: 1, file: "zerbrechen", en: "to break", note: "Inseparable - stem stressed" },
-        { word: "gefallen", syllables: ["ge", "FAL", "len"], stressed: 1, file: "gefallen", en: "to please", note: "Inseparable - stem stressed" },
+        { word: "bezahlen", syllables: ["be", "ZAH", "len"], stressed: 1, file: "bezahlen", en: "to pay", note: "Inseparable - stem stressed", phrase: "die Rechnung bezahlen" },
+        { word: "verstehen", syllables: ["ver", "STE", "hen"], stressed: 1, file: "verstehen", en: "to understand", note: "Inseparable - stem stressed", phrase: "gut verstehen" },
+        { word: "erklären", syllables: ["er", "KLÄ", "ren"], stressed: 1, file: "erklaeren", en: "to explain", note: "Inseparable - stem stressed", phrase: "etwas erklären" },
+        { word: "beginnen", syllables: ["be", "GIN", "nen"], stressed: 1, file: "beginnen", en: "to begin", note: "Inseparable - stem stressed", phrase: "früh beginnen" },
+        { word: "vergessen", syllables: ["ver", "GES", "sen"], stressed: 1, file: "vergessen", en: "to forget", note: "Inseparable - stem stressed", phrase: "niemals vergessen" },
+        { word: "bekommen", syllables: ["be", "KOM", "men"], stressed: 1, file: "bekommen", en: "to receive", note: "Inseparable - stem stressed", phrase: "ein Geschenk bekommen" },
+        { word: "erzählen", syllables: ["er", "ZÄH", "len"], stressed: 1, file: "erzaehlen", en: "to tell", note: "Inseparable - stem stressed", phrase: "eine Geschichte erzählen" },
+        { word: "entscheiden", syllables: ["ent", "SCHEI", "den"], stressed: 1, file: "entscheiden", en: "to decide", note: "Inseparable - stem stressed", phrase: "schnell entscheiden" },
+        { word: "gewinnen", syllables: ["ge", "WIN", "nen"], stressed: 1, file: "gewinnen", en: "to win", note: "Inseparable - stem stressed", phrase: "das Spiel gewinnen" },
+        { word: "verlieren", syllables: ["ver", "LIE", "ren"], stressed: 1, file: "verlieren", en: "to lose", note: "Inseparable - stem stressed", phrase: "den Schlüssel verlieren" },
+        { word: "besuchen", syllables: ["be", "SU", "chen"], stressed: 1, file: "besuchen", en: "to visit", note: "Inseparable - stem stressed", phrase: "Freunde besuchen" },
+        { word: "empfehlen", syllables: ["emp", "FEH", "len"], stressed: 1, file: "empfehlen", en: "to recommend", note: "Inseparable - stem stressed", phrase: "das Restaurant empfehlen" },
+        { word: "entstehen", syllables: ["ent", "STE", "hen"], stressed: 1, file: "entstehen", en: "to arise", note: "Inseparable - stem stressed", phrase: "Probleme entstehen" },
+        { word: "zerbrechen", syllables: ["zer", "BRE", "chen"], stressed: 1, file: "zerbrechen", en: "to break", note: "Inseparable - stem stressed", phrase: "das Glas zerbrechen" },
+        { word: "gefallen", syllables: ["ge", "FAL", "len"], stressed: 1, file: "gefallen", en: "to please", note: "Inseparable - stem stressed", phrase: "mir gefallen" },
         // Foreign words - various stress patterns (15)
-        { word: "Student", syllables: ["Stu", "DENT"], stressed: 1, file: "Student", en: "student", note: "Foreign - final stress" },
-        { word: "Universität", syllables: ["U", "ni", "ver", "si", "TÄT"], stressed: 4, file: "Universitaet", en: "university", note: "Foreign - final stress" },
-        { word: "Restaurant", syllables: ["Res", "tau", "RANT"], stressed: 2, file: "Restaurant", en: "restaurant", note: "Foreign - final stress" },
-        { word: "Musik", syllables: ["Mu", "SIK"], stressed: 1, file: "Musik", en: "music", note: "Foreign - final stress" },
-        { word: "Telefon", syllables: ["Te", "le", "FON"], stressed: 2, file: "Telefon", en: "telephone", note: "Foreign - final stress" },
-        { word: "Hotel", syllables: ["Ho", "TEL"], stressed: 1, file: "Hotel", en: "hotel", note: "Foreign - final stress" },
-        { word: "Kaffee", syllables: ["KAF", "fee"], stressed: 0, file: "Kaffee", en: "coffee", note: "Foreign - 1st syllable" },
-        { word: "Computer", syllables: ["Com", "PU", "ter"], stressed: 1, file: "Computer", en: "computer", note: "Foreign - 2nd syllable" },
-        { word: "interessant", syllables: ["in", "ter", "es", "SANT"], stressed: 3, file: "interessant", en: "interesting", note: "Foreign - final stress" },
-        { word: "Information", syllables: ["In", "for", "ma", "ti", "ON"], stressed: 4, file: "Information", en: "information", note: "Foreign - final stress" },
-        { word: "Situation", syllables: ["Si", "tua", "ti", "ON"], stressed: 3, file: "Situation", en: "situation", note: "Foreign - final stress" },
-        { word: "Grammatik", syllables: ["Gram", "MA", "tik"], stressed: 1, file: "Grammatik", en: "grammar", note: "Foreign - 2nd syllable" },
-        { word: "Programm", syllables: ["Pro", "GRAMM"], stressed: 1, file: "Programm", en: "program", note: "Foreign - final stress" },
-        { word: "Problem", syllables: ["Pro", "BLEM"], stressed: 1, file: "Problem", en: "problem", note: "Foreign - final stress" },
-        { word: "Thema", syllables: ["THE", "ma"], stressed: 0, file: "Thema", en: "topic", note: "Foreign - 1st syllable" },
+        { word: "Student", syllables: ["Stu", "DENT"], stressed: 1, file: "Student", en: "student", note: "Foreign - final stress", phrase: "ein fleißiger Student" },
+        { word: "Universität", syllables: ["U", "ni", "ver", "si", "TÄT"], stressed: 4, file: "Universitaet", en: "university", note: "Foreign - final stress", phrase: "die große Universität" },
+        { word: "Restaurant", syllables: ["Res", "tau", "RANT"], stressed: 2, file: "Restaurant", en: "restaurant", note: "Foreign - final stress", phrase: "ein gutes Restaurant" },
+        { word: "Musik", syllables: ["Mu", "SIK"], stressed: 1, file: "Musik", en: "music", note: "Foreign - final stress", phrase: "laute Musik" },
+        { word: "Telefon", syllables: ["Te", "le", "FON"], stressed: 2, file: "Telefon", en: "telephone", note: "Foreign - final stress", phrase: "das neue Telefon" },
+        { word: "Hotel", syllables: ["Ho", "TEL"], stressed: 1, file: "Hotel", en: "hotel", note: "Foreign - final stress", phrase: "ein schönes Hotel" },
+        { word: "Kaffee", syllables: ["KAF", "fee"], stressed: 0, file: "Kaffee", en: "coffee", note: "Foreign - 1st syllable", phrase: "heißer Kaffee" },
+        { word: "Computer", syllables: ["Com", "PU", "ter"], stressed: 1, file: "Computer", en: "computer", note: "Foreign - 2nd syllable", phrase: "der alte Computer" },
+        { word: "interessant", syllables: ["in", "ter", "es", "SANT"], stressed: 3, file: "interessant", en: "interesting", note: "Foreign - final stress", phrase: "sehr interessant" },
+        { word: "Information", syllables: ["In", "for", "ma", "ti", "ON"], stressed: 4, file: "Information", en: "information", note: "Foreign - final stress", phrase: "wichtige Information" },
+        { word: "Situation", syllables: ["Si", "tua", "ti", "ON"], stressed: 3, file: "Situation", en: "situation", note: "Foreign - final stress", phrase: "eine schwierige Situation" },
+        { word: "Grammatik", syllables: ["Gram", "MA", "tik"], stressed: 1, file: "Grammatik", en: "grammar", note: "Foreign - 2nd syllable", phrase: "deutsche Grammatik" },
+        { word: "Programm", syllables: ["Pro", "GRAMM"], stressed: 1, file: "Programm", en: "program", note: "Foreign - final stress", phrase: "das neue Programm" },
+        { word: "Problem", syllables: ["Pro", "BLEM"], stressed: 1, file: "Problem", en: "problem", note: "Foreign - final stress", phrase: "ein großes Problem" },
+        { word: "Thema", syllables: ["THE", "ma"], stressed: 0, file: "Thema", en: "topic", note: "Foreign - 1st syllable", phrase: "ein wichtiges Thema" },
         // -ieren verbs - always stress -IE- (8)
-        { word: "studieren", syllables: ["stu", "DIE", "ren"], stressed: 1, file: "studieren", en: "to study", note: "-ieren - always -IE- stressed" },
-        { word: "telefonieren", syllables: ["te", "le", "fo", "NIE", "ren"], stressed: 3, file: "telefonieren", en: "to phone", note: "-ieren - always -IE- stressed" },
-        { word: "fotografieren", syllables: ["fo", "to", "gra", "FIE", "ren"], stressed: 3, file: "fotografieren", en: "to photograph", note: "-ieren - always -IE- stressed" },
-        { word: "reservieren", syllables: ["re", "ser", "VIE", "ren"], stressed: 2, file: "reservieren", en: "to reserve", note: "-ieren - always -IE- stressed" },
-        { word: "probieren", syllables: ["pro", "BIE", "ren"], stressed: 1, file: "probieren", en: "to try", note: "-ieren - always -IE- stressed" },
-        { word: "funktionieren", syllables: ["funk", "tio", "NIE", "ren"], stressed: 2, file: "funktionieren", en: "to work/function", note: "-ieren - always -IE- stressed" },
-        { word: "reparieren", syllables: ["re", "pa", "RIE", "ren"], stressed: 2, file: "reparieren", en: "to repair", note: "-ieren - always -IE- stressed" },
-        { word: "organisieren", syllables: ["or", "ga", "ni", "SIE", "ren"], stressed: 3, file: "organisieren", en: "to organize", note: "-ieren - always -IE- stressed" },
+        { word: "studieren", syllables: ["stu", "DIE", "ren"], stressed: 1, file: "studieren", en: "to study", note: "-ieren - always -IE- stressed", phrase: "Medizin studieren" },
+        { word: "telefonieren", syllables: ["te", "le", "fo", "NIE", "ren"], stressed: 3, file: "telefonieren", en: "to phone", note: "-ieren - always -IE- stressed", phrase: "lange telefonieren" },
+        { word: "fotografieren", syllables: ["fo", "to", "gra", "FIE", "ren"], stressed: 3, file: "fotografieren", en: "to photograph", note: "-ieren - always -IE- stressed", phrase: "Landschaften fotografieren" },
+        { word: "reservieren", syllables: ["re", "ser", "VIE", "ren"], stressed: 2, file: "reservieren", en: "to reserve", note: "-ieren - always -IE- stressed", phrase: "einen Tisch reservieren" },
+        { word: "probieren", syllables: ["pro", "BIE", "ren"], stressed: 1, file: "probieren", en: "to try", note: "-ieren - always -IE- stressed", phrase: "etwas Neues probieren" },
+        { word: "funktionieren", syllables: ["funk", "tio", "NIE", "ren"], stressed: 2, file: "funktionieren", en: "to work/function", note: "-ieren - always -IE- stressed", phrase: "gut funktionieren" },
+        { word: "reparieren", syllables: ["re", "pa", "RIE", "ren"], stressed: 2, file: "reparieren", en: "to repair", note: "-ieren - always -IE- stressed", phrase: "das Auto reparieren" },
+        { word: "organisieren", syllables: ["or", "ga", "ni", "SIE", "ren"], stressed: 3, file: "organisieren", en: "to organize", note: "-ieren - always -IE- stressed", phrase: "eine Party organisieren" },
         // Compound words (6)
-        { word: "Arbeitgeber", syllables: ["AR", "beit", "ge", "ber"], stressed: 0, file: "Arbeitgeber", en: "employer", note: "Compound - 1st element stressed" },
-        { word: "Kindergarten", syllables: ["KIN", "der", "gar", "ten"], stressed: 0, file: "Kindergarten", en: "kindergarten", note: "Compound - 1st element stressed" },
-        { word: "Wohnzimmer", syllables: ["WOHN", "zim", "mer"], stressed: 0, file: "Wohnzimmer", en: "living room", note: "Compound - 1st element stressed" },
-        { word: "Schlafzimmer", syllables: ["SCHLAF", "zim", "mer"], stressed: 0, file: "Schlafzimmer", en: "bedroom", note: "Compound - 1st element stressed" },
-        { word: "Hausaufgabe", syllables: ["HAUS", "auf", "ga", "be"], stressed: 0, file: "Hausaufgabe", en: "homework", note: "Compound - 1st element stressed" },
-        { word: "Geburtstag", syllables: ["Ge", "BURTS", "tag"], stressed: 1, file: "Geburtstag", en: "birthday", note: "ge- prefix + compound" },
+        { word: "Arbeitgeber", syllables: ["AR", "beit", "ge", "ber"], stressed: 0, file: "Arbeitgeber", en: "employer", note: "Compound - 1st element stressed", phrase: "der neue Arbeitgeber" },
+        { word: "Kindergarten", syllables: ["KIN", "der", "gar", "ten"], stressed: 0, file: "Kindergarten", en: "kindergarten", note: "Compound - 1st element stressed", phrase: "der Kindergarten" },
+        { word: "Wohnzimmer", syllables: ["WOHN", "zim", "mer"], stressed: 0, file: "Wohnzimmer", en: "living room", note: "Compound - 1st element stressed", phrase: "das große Wohnzimmer" },
+        { word: "Schlafzimmer", syllables: ["SCHLAF", "zim", "mer"], stressed: 0, file: "Schlafzimmer", en: "bedroom", note: "Compound - 1st element stressed", phrase: "mein Schlafzimmer" },
+        { word: "Hausaufgabe", syllables: ["HAUS", "auf", "ga", "be"], stressed: 0, file: "Hausaufgabe", en: "homework", note: "Compound - 1st element stressed", phrase: "die schwere Hausaufgabe" },
+        { word: "Geburtstag", syllables: ["Ge", "BURTS", "tag"], stressed: 1, file: "Geburtstag", en: "birthday", note: "ge- prefix + compound", phrase: "alles Gute zum Geburtstag" },
         // Adjectives (5)
-        { word: "wichtig", syllables: ["WICH", "tig"], stressed: 0, file: "wichtig", en: "important", note: "General rule - 1st syllable" },
-        { word: "richtig", syllables: ["RICH", "tig"], stressed: 0, file: "richtig", en: "correct", note: "General rule - 1st syllable" },
-        { word: "fertig", syllables: ["FER", "tig"], stressed: 0, file: "fertig", en: "finished", note: "General rule - 1st syllable" },
-        { word: "langsam", syllables: ["LANG", "sam"], stressed: 0, file: "langsam", en: "slow", note: "General rule - 1st syllable" },
-        { word: "gemeinsam", syllables: ["ge", "MEIN", "sam"], stressed: 1, file: "gemeinsam", en: "together", note: "ge- prefix - stem stressed" }
+        { word: "wichtig", syllables: ["WICH", "tig"], stressed: 0, file: "wichtig", en: "important", note: "General rule - 1st syllable", phrase: "sehr wichtig" },
+        { word: "richtig", syllables: ["RICH", "tig"], stressed: 0, file: "richtig", en: "correct", note: "General rule - 1st syllable", phrase: "ganz richtig" },
+        { word: "fertig", syllables: ["FER", "tig"], stressed: 0, file: "fertig", en: "finished", note: "General rule - 1st syllable", phrase: "schon fertig" },
+        { word: "langsam", syllables: ["LANG", "sam"], stressed: 0, file: "langsam", en: "slow", note: "General rule - 1st syllable", phrase: "ganz langsam" },
+        { word: "gemeinsam", syllables: ["ge", "MEIN", "sam"], stressed: 1, file: "gemeinsam", en: "together", note: "ge- prefix - stem stressed", phrase: "etwas gemeinsam" }
       ];
 
       const TOTAL_WORDS = allWords.length;
@@ -615,6 +624,10 @@
         const container = document.getElementById('syllableContainer');
         const transReveal = document.getElementById('translationReveal');
         const stressNote = document.getElementById('stressNote');
+        const phraseDisplay = document.getElementById('phraseDisplay');
+
+        // Show the phrase that will be spoken
+        phraseDisplay.textContent = ex.phrase || '';
 
         preloadAudio();
 
