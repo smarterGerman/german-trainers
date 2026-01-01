@@ -401,7 +401,7 @@
         { word: "kaltes Wasser", blank: "kaltes Wa_er", answer: "ss", en: "cold water" },
         { word: "gerne essen", blank: "gerne e_en", answer: "ss", en: "like to eat" },
         { word: "wir müssen", blank: "wir mü_en", answer: "ss", en: "we must" },
-        { word: "ich wissen", blank: "ich wi_en", answer: "ss", en: "I know" },
+        { word: "das wissen", blank: "das wi_en", answer: "ss", en: "to know that" },
         { word: "fallen lassen", blank: "fallen la_en", answer: "ss", en: "to drop" },
         { word: "gut passen", blank: "gut pa_en", answer: "ss", en: "to fit well" },
         { word: "Mut fassen", blank: "Mut fa_en", answer: "ss", en: "to take courage" },
@@ -578,18 +578,14 @@
         }
       };
 
-      function renderWord(word, showAnswer) {
+      function renderWord(word, showAnswer, correct) {
         const display = document.getElementById('wordDisplay');
+        const parts = word.blank.split('_');
         if (showAnswer) {
-          const full = word.word;
-          const blankPos = word.blank.indexOf('_');
-          const before = full.substring(0, blankPos);
-          const letters = word.answer;
-          const after = full.substring(blankPos + letters.length);
-          display.innerHTML = before + '<span class="revealed">' + letters + '</span>' + after;
+          const color = correct ? '#4CAF50' : '#F44336';
+          display.innerHTML = parts[0] + '<span style="color: ' + color + ';">' + word.answer + '</span>' + parts[1];
         } else {
-          const parts = word.blank.split('_');
-          display.innerHTML = parts[0] + '<span class="blank">__</span>' + parts[1];
+          display.innerHTML = parts[0] + '<span class="blank">_ _</span>' + parts[1];
         }
       }
 
@@ -637,10 +633,11 @@
 
         if (prev !== null) {
           answered = true;
+          const wasCorrect = prev === ex.answer;
           btnSs.disabled = btnSz.disabled = true;
           btnSs.classList.remove('correct', 'wrong');
           btnSz.classList.remove('correct', 'wrong');
-          renderWord(ex, true);
+          renderWord(ex, true, wasCorrect);
 
           if (ex.answer === 'ss') {
             btnSs.classList.add('correct');
@@ -689,7 +686,7 @@
         const btnSz = document.getElementById('btnSz');
 
         btnSs.disabled = btnSz.disabled = true;
-        renderWord(ex, true);
+        renderWord(ex, true, correct);
 
         if (ex.answer === 'ss') {
           btnSs.classList.add('correct');
