@@ -139,8 +139,7 @@
 
     .word-display .blank {
       color: #E91E63;
-      border-bottom: 4px solid #E91E63;
-      padding: 0 8px;
+      padding: 0 2px;
       margin: 0 2px;
     }
 
@@ -211,6 +210,14 @@
     .choice-btn.ie { color: #00BCD4; }
     .choice-btn.ei { color: #FF9800; }
     .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
 
     .choice-btn.correct {
       background: linear-gradient(135deg, #4CAF50, #45A049);
@@ -344,15 +351,15 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>100 words</strong> total, <strong>20 per session</strong>. Words you get wrong are repeated in future sessions.
-      <br><br>
-      <strong>The rule:</strong> In German, <strong>ie</strong> = long "ee" sound (like in "Liebe").
-      <strong>ei</strong> = "eye" sound (like in "Stein").
-      Remember: <strong>the second letter is the one you hear!</strong>
-      <br><br>
-      <strong>ie</strong> sounds like English "ee" (L<u>ie</u>be = Lee-buh)
-      <br>
-      <strong>ei</strong> sounds like English "eye" (St<u>ei</u>n = Shtine)
+      <p style="margin: 0;"><strong>The second letter is the one you hear with your English ear.</strong></p>
+
+      <p style="margin: 10px 0 0 0;"><strong>ie</strong> = you hear "E" (like English "ee")<br>
+      <em>Liebe, Bier, Tier, Spiel</em></p>
+
+      <p style="margin: 10px 0 0 0;"><strong>ei</strong> = you hear "I" (like English "eye")<br>
+      <em>Stein, Bein, klein, Wein</em></p>
+
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">100 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
@@ -372,8 +379,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn ie" onclick="checkAnswer('ie')" id="btnIe">ie</button>
-        <button class="choice-btn ei" onclick="checkAnswer('ei')" id="btnEi">ei</button>
+        <button class="choice-btn ie" onclick="checkAnswer('ie')" id="btnIe">ie<span class="key-hint">F</span></button>
+        <button class="choice-btn ei" onclick="checkAnswer('ei')" id="btnEi">ei<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -601,7 +608,7 @@
           display.innerHTML = before + '<span class="revealed' + wrongClass + '">' + letters + '</span>' + after;
         } else {
           const parts = word.blank.split('_');
-          display.innerHTML = parts[0] + '<span class="blank">__</span>' + parts[1];
+          display.innerHTML = parts[0] + '<span class="blank">_ _</span>' + parts[1];
         }
       }
 
@@ -784,7 +791,10 @@
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const section = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = section.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
       };
 
       window.toggleShortcuts = function() {
@@ -792,12 +802,15 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const key = e.key.toLowerCase();
+        if (key === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (key === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('ie'); }
-        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('ei'); }
+        if (key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (key === 'f' && !answered) { e.preventDefault(); checkAnswer('ie'); }
+        else if (key === 'j' && !answered) { e.preventDefault(); checkAnswer('ei'); }
       });
 
       startSession();
