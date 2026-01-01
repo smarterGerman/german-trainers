@@ -275,26 +275,6 @@
       color: #9E9E9E;
     }
 
-    .feedback {
-      text-align: center;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 700;
-      margin-top: 20px;
-      animation: fadeIn 0.3s;
-    }
-
-    .feedback.correct {
-      background: #E8F5E9;
-      color: #2E7D32;
-    }
-
-    .feedback.wrong {
-      background: #FFEBEE;
-      color: #C62828;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -380,10 +360,10 @@
 
     <div id="shortcutsSection" class="shortcuts-section hidden">
       <kbd>Space</kbd> Play
-      <kbd>E</kbd> -e
-      <kbd>N</kbd> -en
-      <kbd>L</kbd> -el
-      <kbd>R</kbd> -er
+      <kbd>F</kbd> -e
+      <kbd>J</kbd> -en
+      <kbd>V</kbd> -el
+      <kbd>N</kbd> -er
     </div>
 
     <div id="infoSection" class="info-section hidden">
@@ -424,23 +404,21 @@
         <div class="button-grid">
           <button class="answer-btn ending-e" onclick="checkAnswer('e')" id="btnE">
             -e
-            <span class="shortcut">E</span>
+            <span class="shortcut">F</span>
           </button>
           <button class="answer-btn ending-en" onclick="checkAnswer('en')" id="btnEN">
             -en
-            <span class="shortcut">N</span>
+            <span class="shortcut">J</span>
           </button>
           <button class="answer-btn ending-el" onclick="checkAnswer('el')" id="btnEL">
             -el
-            <span class="shortcut">L</span>
+            <span class="shortcut">V</span>
           </button>
           <button class="answer-btn ending-er" onclick="checkAnswer('er')" id="btnER">
             -er
-            <span class="shortcut">R</span>
+            <span class="shortcut">N</span>
           </button>
         </div>
-
-        <div id="feedback" class="feedback hidden"></div>
     </div>
 
     <div id="resultsArea" class="results hidden">
@@ -621,7 +599,6 @@
 
       document.getElementById('currentNum').textContent = currentIndex + 1;
       document.getElementById('masteredCount').textContent = mastered.length;
-      document.getElementById('feedback').classList.add('hidden');
       document.getElementById('wordReveal').classList.add('hidden');
       document.getElementById('translationReveal').classList.add('hidden');
 
@@ -673,22 +650,14 @@
       wordReveal.classList.remove('hidden');
       wordReveal.style.color = isCorrect ? '#4CAF50' : '#F44336';
 
-      const feedback = document.getElementById('feedback');
-
       if (isCorrect) {
         sessionCorrect++;
-        feedback.className = 'feedback correct';
-        feedback.textContent = 'Correct! "' + word.word + '" ends with -' + word.ending + '.';
-
         if (!mastered.includes(word.word)) {
           mastered.push(word.word);
           wrong = wrong.filter(w => w !== word.word);
           unseen = unseen.filter(w => w !== word.word);
         }
       } else {
-        feedback.className = 'feedback wrong';
-        feedback.textContent = 'Wrong! "' + word.word + '" ends with -' + word.ending + ', not -' + selected + '.';
-
         if (!wrong.includes(word.word)) {
           wrong.push(word.word);
           mastered = mastered.filter(w => w !== word.word);
@@ -696,7 +665,6 @@
         }
       }
 
-      feedback.classList.remove('hidden');
       saveProgress();
       document.getElementById('masteredCount').textContent = mastered.length;
 
@@ -752,13 +720,13 @@
       if (key === ' ' || key === 'spacebar') {
         e.preventDefault();
         playAudio();
-      } else if (key === 'e' && !answered) {
+      } else if (key === 'f' && !answered) {
         checkAnswer('e');
-      } else if (key === 'n' && !answered) {
+      } else if (key === 'j' && !answered) {
         checkAnswer('en');
-      } else if (key === 'l' && !answered) {
+      } else if (key === 'v' && !answered) {
         checkAnswer('el');
-      } else if (key === 'r' && !answered) {
+      } else if (key === 'n' && !answered) {
         checkAnswer('er');
       }
     });
