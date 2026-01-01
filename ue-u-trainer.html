@@ -216,6 +216,13 @@
       border-color: #F44336;
     }
 
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
     .results {
       text-align: center;
       background: white;
@@ -342,19 +349,20 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>80 words</strong> total, <strong>20 per session</strong>. Words you get wrong are repeated.
+      <strong>Listen and identify: ü or u?</strong>
       <br><br>
-      <strong>The difference:</strong>
-      <br><br>
-      <strong>u</strong> = round lips, tongue back (like English "oo" in "moon")
-      <br>Examples: Buch, Schule, Hund, Fuß
-      <br><br>
-      <strong>ü</strong> = round lips like "u", but tongue forward like "ee"
-      <br>Examples: Bücher, Schüler, Hündin, Füße
-      <br><br>
-      <strong>Tip:</strong> Say "ee" and round your lips without moving your tongue = ü!
-      <br><br>
-      Progress is stored locally. Wrong answers shown at end.
+      Both sounds use rounded lips, but the tongue position differs:
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>u</strong> = rounded lips, tongue <em>back</em> (like English "oo" in "moon")</li>
+        <li><strong>ü</strong> = rounded lips, tongue <em>forward</em> (like "ee" but with rounded lips)</li>
+      </ul>
+      <strong>How to produce ü:</strong>
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li>Say "ee" (as in "meet"), then round your lips without moving your tongue</li>
+        <li>Or: make the face you'd make when smelling something unpleasant</li>
+        <li>Or: say "oo", but push your tongue forward to where "ee" would be</li>
+      </ul>
+      <span style="color: #888; font-size: 12px;">80 words total, 20 per session. Progress saved locally.</span>
     </div>
 
     <div id="exerciseArea">
@@ -379,8 +387,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn ue" onclick="checkAnswer('ü')" id="btnUe">ü</button>
-        <button class="choice-btn u" onclick="checkAnswer('u')" id="btnU">u</button>
+        <button class="choice-btn ue" onclick="checkAnswer('ü')" id="btnUe">ü<span class="key-hint">F</span></button>
+        <button class="choice-btn u" onclick="checkAnswer('u')" id="btnU">u<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -751,7 +759,10 @@
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
       };
 
       window.toggleShortcuts = function() {
@@ -759,12 +770,15 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('ü'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('u'); }
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('ü'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('u'); }
       });
 
       startSession();
