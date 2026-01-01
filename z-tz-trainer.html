@@ -717,14 +717,9 @@
         if (correct) {
           score++;
           updateScoreDisplay();
-          feedback.textContent = 'Correct!';
-          feedback.className = 'feedback correct-text';
         } else {
           sessionWrong.push(ex);
-          feedback.textContent = 'Wrong - it\'s "' + ex.answer + '"';
-          feedback.className = 'feedback wrong-text';
         }
-        feedback.classList.remove('hidden');
 
         recordAnswer(ex, correct);
 
