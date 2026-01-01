@@ -27,100 +27,75 @@
       border: 3px solid #FFA8CC;
     }
 
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
     .sg-dark-title {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 800;
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 12px;
-      text-align: center;
+      margin: 0;
     }
 
     .sg-dark-subtitle {
-      font-size: 16px;
+      font-size: 14px;
       color: #6B4E8C;
-      margin-bottom: 25px;
-      text-align: center;
-      font-weight: 600;
+      margin: 2px 0 0 0;
     }
 
-    .sg-dark-articles-mini {
+    .header-btns {
       display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .sg-dark-article {
-      font-size: 15px;
-      font-weight: 700;
-      padding: 12px 20px;
-      border-radius: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      color: white;
-    }
-
-    .sg-dark-article:nth-child(1) {
-      background: linear-gradient(135deg, #00BCD4, #00ACC1);
-    }
-
-    .sg-dark-article:nth-child(2) {
-      background: linear-gradient(135deg, #FF9800, #F57C00);
-    }
-
-    .sg-dark-article:nth-child(3) {
-      background: linear-gradient(135deg, #E91E63, #C2185B);
-    }
-
-    .sg-dark-article:nth-child(4) {
-      background: linear-gradient(135deg, #4CAF50, #388E3C);
-    }
-
-    .sg-hide-text-btn {
+    .small-btn {
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       color: white;
       border: none;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      display: block;
-      margin: 0 auto 25px;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
     }
 
-    .sg-hide-text-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-    }
+    .small-btn:hover { opacity: 0.9; }
 
-    .sg-dark-hidden {
-      display: none !important;
-    }
-
-    .sg-divider {
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
-      margin: 30px 0;
-      border-radius: 2px;
-    }
-
-    .sg-dark-note {
+    .info-section {
       background: #FFF3E0;
       border-left: 4px solid #FF9800;
-      padding: 15px 20px;
+      padding: 12px 15px;
       border-radius: 8px;
-      margin: 20px 0;
-      font-size: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .trainer-section {
-      margin-top: 30px;
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
     }
 
     .progress-info {
@@ -162,43 +137,60 @@
 
     .question-area {
       background: white;
-      padding: 35px;
-      border-radius: 18px;
+      padding: 25px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      margin-bottom: 25px;
-    }
-
-    .word-display {
-      font-size: 48px;
-      font-weight: 800;
-      color: #E91E63;
-      margin-bottom: 10px;
-    }
-
-    .play-hint {
-      font-size: 14px;
-      color: #9E9E9E;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 20px;
+      min-height: 180px;
     }
 
-    .audio-btn {
+    .play-btn {
       background: linear-gradient(135deg, #9C27B0, #7B1FA2);
       color: white;
       border: none;
-      padding: 15px 30px;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: 700;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
       cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
-      margin-bottom: 20px;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
     }
 
-    .audio-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #666;
+      margin-top: 5px;
+      font-style: italic;
     }
 
     .button-grid {
@@ -375,45 +367,39 @@
 </head>
 <body>
   <div class="sg-unified-container">
-    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
-
-    <div id="infoSection">
-      <h1 class="sg-dark-title">German Schwa Sound Trainer</h1>
-      <p class="sg-dark-subtitle">Identify the schwa ending: -e, -en, -el, or -er</p>
-
-      <div class="sg-dark-articles-mini">
-        <div class="sg-dark-article">-e (Tasse)</div>
-        <div class="sg-dark-article">-en (gehen)</div>
-        <div class="sg-dark-article">-el (Artikel)</div>
-        <div class="sg-dark-article">-er (Lehrer)</div>
+    <div class="header-row">
+      <div>
+        <h1 class="sg-dark-title">Schwa Sound</h1>
+        <p class="sg-dark-subtitle">-e, -en, -el, or -er?</p>
       </div>
-
-      <p>
-        The German <strong>schwa</strong> sound /ə/ is a reduced, unstressed vowel that appears
-        in many common word endings.
-      </p>
-
-      <div class="sg-dark-note">
-        <strong>-e:</strong> Tasse, Lampe, heute, Frage<br>
-        <strong>-en:</strong> gehen, kommen, Garten, Wagen<br>
-        <strong>-el:</strong> Artikel, Handel, Mittel, Vogel<br>
-        <strong>-er:</strong> Lehrer, Wasser, Fenster, besser
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
       </div>
-
-      <p>
-        Listen to each word and identify which schwa ending it has. Focus on the unstressed
-        final syllable.
-      </p>
-
-      <p>
-        <strong>Keyboard shortcuts:</strong> Space = Play, E = -e, N = -en, L = -el, R = -er
-      </p>
     </div>
 
-    <div id="divider" class="sg-divider"></div>
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>E</kbd> -e
+      <kbd>N</kbd> -en
+      <kbd>L</kbd> -el
+      <kbd>R</kbd> -er
+    </div>
 
-    <div class="trainer-section">
-      <div id="exerciseArea">
+    <div id="infoSection" class="info-section hidden">
+      <strong>Listen for the unstressed ending.</strong>
+      <br><br>
+      The German schwa /ə/ is a reduced vowel in unstressed endings. They all sound similar but have different spellings:
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>-e</strong>: Tasse, Lampe, Frage, Straße</li>
+        <li><strong>-en</strong>: gehen, kommen, Garten, Wagen</li>
+        <li><strong>-el</strong>: Artikel, Handel, Mittel, Vogel</li>
+        <li><strong>-er</strong>: Lehrer, Wasser, Fenster, besser</li>
+      </ul>
+      <span style="color: #888; font-size: 12px;">80 words total, 20 per session. Progress saved locally.</span>
+    </div>
+
+    <div id="exerciseArea">
         <div class="progress-info">
           <span class="progress-current">Question <span id="currentNum">1</span>/20</span>
           <div class="progress-stats">
@@ -425,37 +411,39 @@
         </div>
 
         <div class="question-area">
-          <div class="word-display" id="wordDisplay">Tasse</div>
-          <div class="play-hint">Click the word or press Space to hear it</div>
-
-          <button class="audio-btn" onclick="playAudio()">
-            Play Audio (Space)
+          <button class="play-btn" onclick="playAudio()" id="playBtn" aria-label="Play word">
+            <span>&#9654;</span>
           </button>
+
+          <div class="reveal-container">
+            <div id="wordReveal" class="word-reveal hidden"></div>
+            <div id="translationReveal" class="translation-reveal hidden"></div>
+          </div>
         </div>
 
         <div class="button-grid">
           <button class="answer-btn ending-e" onclick="checkAnswer('e')" id="btnE">
-            -e (Tasse)
-            <span class="shortcut">(E)</span>
+            -e
+            <span class="shortcut">E</span>
           </button>
           <button class="answer-btn ending-en" onclick="checkAnswer('en')" id="btnEN">
-            -en (gehen)
-            <span class="shortcut">(N)</span>
+            -en
+            <span class="shortcut">N</span>
           </button>
           <button class="answer-btn ending-el" onclick="checkAnswer('el')" id="btnEL">
-            -el (Artikel)
-            <span class="shortcut">(L)</span>
+            -el
+            <span class="shortcut">L</span>
           </button>
           <button class="answer-btn ending-er" onclick="checkAnswer('er')" id="btnER">
-            -er (Lehrer)
-            <span class="shortcut">(R)</span>
+            -er
+            <span class="shortcut">R</span>
           </button>
         </div>
 
         <div id="feedback" class="feedback hidden"></div>
-      </div>
+    </div>
 
-      <div id="resultsArea" class="results hidden">
+    <div id="resultsArea" class="results hidden">
         <h2>Session Complete!</h2>
         <div class="percentage" id="percentage">100%</div>
         <div class="result-text" id="resultText">
@@ -463,7 +451,6 @@
         </div>
         <button class="restart-btn" onclick="startSession()">Practice Again</button>
         <button class="restart-btn secondary" onclick="resetProgress()">Reset All Progress</button>
-      </div>
     </div>
   </div>
 
@@ -634,8 +621,9 @@
 
       document.getElementById('currentNum').textContent = currentIndex + 1;
       document.getElementById('masteredCount').textContent = mastered.length;
-      document.getElementById('wordDisplay').textContent = word.word;
       document.getElementById('feedback').classList.add('hidden');
+      document.getElementById('wordReveal').classList.add('hidden');
+      document.getElementById('translationReveal').classList.add('hidden');
 
       const progress = ((currentIndex) / SESSION_SIZE) * 100;
       document.getElementById('progressBar').style.width = progress + '%';
@@ -656,6 +644,9 @@
       }
       currentAudio = new Audio(AUDIO_BASE + word.file + '.mp3?v=1');
       currentAudio.play().catch(() => {});
+      const btn = document.getElementById('playBtn');
+      btn.classList.add('speaking');
+      currentAudio.onended = () => btn.classList.remove('speaking');
     }
 
     function checkAnswer(selected) {
@@ -675,6 +666,12 @@
       if (!isCorrect) {
         selectedBtn.classList.add('wrong');
       }
+
+      // Reveal the word after answering
+      const wordReveal = document.getElementById('wordReveal');
+      wordReveal.textContent = word.word;
+      wordReveal.classList.remove('hidden');
+      wordReveal.style.color = isCorrect ? '#4CAF50' : '#F44336';
 
       const feedback = document.getElementById('feedback');
 
@@ -733,26 +730,24 @@
       }
     }
 
-    function toggleInstructions() {
-      const info = document.getElementById('infoSection');
-      const divider = document.getElementById('divider');
-      const btn = document.getElementById('hideTextBtn');
+    function toggleInfo() {
+      const sec = document.getElementById('infoSection');
+      const btn = document.getElementById('toggleBtn');
+      const isHidden = sec.classList.toggle('hidden');
+      btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
+    }
 
-      if (info.classList.contains('sg-dark-hidden')) {
-        info.classList.remove('sg-dark-hidden');
-        divider.classList.remove('sg-dark-hidden');
-        btn.textContent = 'Hide Instructions';
-      } else {
-        info.classList.add('sg-dark-hidden');
-        divider.classList.add('sg-dark-hidden');
-        btn.textContent = 'Show Instructions';
-      }
+    function toggleShortcuts() {
+      document.getElementById('shortcutsSection').classList.toggle('hidden');
     }
 
     document.addEventListener('keydown', (e) => {
-      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
-
       const key = e.key.toLowerCase();
+
+      if (key === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+      if (key === 'i') { e.preventDefault(); toggleInfo(); return; }
+
+      if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
 
       if (key === ' ' || key === 'spacebar') {
         e.preventDefault();
@@ -767,8 +762,6 @@
         checkAnswer('er');
       }
     });
-
-    document.getElementById('wordDisplay').addEventListener('click', playAudio);
 
     loadProgress();
     startSession();
