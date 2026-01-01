@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German F vs V Spelling Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 200px;
+    }
+
+    .word-display {
+      font-size: 36px;
+      font-weight: 700;
+      color: #2C2C2C;
+      margin-bottom: 5px;
+      min-height: 50px;
+    }
+
+    .word-display .gap {
+      display: inline-block;
+      min-width: 30px;
+      border-bottom: 3px solid #E91E63;
+      margin: 0 2px;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 15px;
+      min-height: 24px;
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 40px;
+      border-radius: 12px;
+      font-size: 26px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 100px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .option-btn:disabled { cursor: not-allowed; }
+
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
+    .option-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .option-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .option-btn.highlight {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .rule-note {
+      font-size: 13px;
+      color: #9C27B0;
+      margin-top: 10px;
+      min-height: 20px;
+      visibility: hidden;
+    }
+
+    .rule-note.visible {
+      visibility: visible;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 20px; }
+      .play-btn { width: 65px; height: 65px; font-size: 26px; }
+      .word-display { font-size: 28px; }
+      .option-btn { padding: 14px 28px; font-size: 22px; min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">F vs V</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>F</kbd> f
+      <kbd>J</kbd> v
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>F vs V - Both sound the same!</strong>
+      <br><br>
+      In native German words, both F and V are pronounced /f/. The spelling is historical - there's no sound difference to hear!
+      <br><br>
+      <strong>V</strong> - used in specific native German words:
+      <br>- <u>v</u>iel, <u>v</u>ier, <u>V</u>ater, <u>V</u>ogel
+      <br>- prefixes: <strong>ver-</strong>, <strong>vor-</strong>, <strong>voll-</strong>
+      <br>- word endings: bra<u>v</u>, akti<u>v</u>, nai<u>v</u>
+      <br><br>
+      <strong>F</strong> - used in most other words:
+      <br>- <u>F</u>isch, <u>F</u>rau, <u>f</u>rei, <u>F</u>arbe, o<u>ff</u>en
+      <br><br>
+      <em>Note: In loanwords (Vase, Verb, Vulkan), V sounds like English "v" - these are excluded from this trainer.</em>
+      <br><br>
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">80 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <div id="wordDisplay" class="word-display"></div>
+        <div id="translationReveal" class="translation-reveal"></div>
+
+        <div id="optionsContainer" class="options-container">
+          <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
+          <button class="option-btn" onclick="checkAnswer('v')" data-option="v">v<span class="key-hint">J</span></button>
+        </div>
+
+        <div id="ruleNote" class="rule-note"></div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const STORAGE_KEY = 'f_v_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: f vs v spelling (both pronounced /f/)
+      const allWords = [
+        // V words - native German words with V pronounced as /f/
+        // ver- prefix words
+        { word: "verstehen", gap: "_erstehen", answer: "v", file: "verstehen", en: "to understand", rule: "ver- prefix" },
+        { word: "vergessen", gap: "_ergessen", answer: "v", file: "vergessen", en: "to forget", rule: "ver- prefix" },
+        { word: "verlieren", gap: "_erlieren", answer: "v", file: "verlieren", en: "to lose", rule: "ver- prefix" },
+        { word: "verkaufen", gap: "_erkaufen", answer: "v", file: "verkaufen", en: "to sell", rule: "ver- prefix" },
+        { word: "versuchen", gap: "_ersuchen", answer: "v", file: "versuchen", en: "to try", rule: "ver- prefix" },
+        { word: "verbinden", gap: "_erbinden", answer: "v", file: "verbinden", en: "to connect", rule: "ver- prefix" },
+        { word: "vergleichen", gap: "_ergleichen", answer: "v", file: "vergleichen", en: "to compare", rule: "ver- prefix" },
+        { word: "versprechen", gap: "_ersprechen", answer: "v", file: "versprechen", en: "to promise", rule: "ver- prefix" },
+        // vor- prefix words
+        { word: "vorstellen", gap: "_orstellen", answer: "v", file: "vorstellen", en: "to introduce", rule: "vor- prefix" },
+        { word: "Vorsicht", gap: "_orsicht", answer: "v", file: "Vorsicht", en: "caution", rule: "vor- prefix" },
+        { word: "vorbereiten", gap: "_orbereiten", answer: "v", file: "vorbereiten", en: "to prepare", rule: "vor- prefix" },
+        { word: "vorher", gap: "_orher", answer: "v", file: "vorher", en: "before", rule: "vor- prefix" },
+        { word: "Vorname", gap: "_orname", answer: "v", file: "Vorname", en: "first name", rule: "vor- prefix" },
+        { word: "Vorteil", gap: "_orteil", answer: "v", file: "Vorteil", en: "advantage", rule: "vor- prefix" },
+        // voll- prefix words
+        { word: "vollständig", gap: "_ollständig", answer: "v", file: "vollstaendig", en: "complete", rule: "voll- prefix" },
+        { word: "völlig", gap: "_öllig", answer: "v", file: "voellig", en: "completely", rule: "voll- prefix" },
+        // Native V words
+        { word: "Vater", gap: "_ater", answer: "v", file: "Vater", en: "father", rule: "Native German word" },
+        { word: "Vogel", gap: "_ogel", answer: "v", file: "Vogel", en: "bird", rule: "Native German word" },
+        { word: "viel", gap: "_iel", answer: "v", file: "viel", en: "much/many", rule: "Native German word" },
+        { word: "vier", gap: "_ier", answer: "v", file: "vier", en: "four", rule: "Native German word" },
+        { word: "voll", gap: "_oll", answer: "v", file: "voll", en: "full", rule: "Native German word" },
+        { word: "von", gap: "_on", answer: "v", file: "von", en: "from/of", rule: "Native German word" },
+        { word: "vor", gap: "_or", answer: "v", file: "vor", en: "before/in front of", rule: "Native German word" },
+        { word: "vielleicht", gap: "_ielleicht", answer: "v", file: "vielleicht", en: "maybe", rule: "Native German word" },
+        { word: "Volk", gap: "_olk", answer: "v", file: "Volk", en: "people/nation", rule: "Native German word" },
+        { word: "Vieh", gap: "_ieh", answer: "v", file: "Vieh", en: "cattle", rule: "Native German word" },
+        // V at end (from Latin but naturalized)
+        { word: "brav", gap: "bra_", answer: "v", file: "brav", en: "well-behaved", rule: "Word ending -v" },
+        { word: "aktiv", gap: "akti_", answer: "v", file: "aktiv", en: "active", rule: "Word ending -iv" },
+        { word: "naiv", gap: "nai_", answer: "v", file: "naiv", en: "naive", rule: "Word ending -iv" },
+        { word: "positiv", gap: "positi_", answer: "v", file: "positiv", en: "positive", rule: "Word ending -iv" },
+        { word: "negativ", gap: "negati_", answer: "v", file: "negativ", en: "negative", rule: "Word ending -iv" },
+        { word: "kreativ", gap: "kreati_", answer: "v", file: "kreativ", en: "creative", rule: "Word ending -iv" },
+        { word: "relativ", gap: "relati_", answer: "v", file: "relativ", en: "relative", rule: "Word ending -iv" },
+        { word: "attraktiv", gap: "attrakti_", answer: "v", file: "attraktiv", en: "attractive", rule: "Word ending -iv" },
+        { word: "effektiv", gap: "effekti_", answer: "v", file: "effektiv", en: "effective", rule: "Word ending -iv" },
+        { word: "intensiv", gap: "intensi_", answer: "v", file: "intensiv", en: "intensive", rule: "Word ending -iv" },
+        { word: "Nerv", gap: "Ner_", answer: "v", file: "Nerv", en: "nerve", rule: "Word ending -v" },
+        { word: "Kurve", gap: "Kur_e", answer: "v", file: "Kurve", en: "curve", rule: "V in middle" },
+        { word: "Larve", gap: "Lar_e", answer: "v", file: "Larve", en: "larva", rule: "V in middle" },
+        { word: "November", gap: "No_ember", answer: "v", file: "November", en: "November", rule: "V in middle" },
+        // F words - most German words use F
+        { word: "Fisch", gap: "_isch", answer: "f", file: "Fisch", en: "fish", rule: "Standard F spelling" },
+        { word: "Frau", gap: "_rau", answer: "f", file: "Frau", en: "woman/wife", rule: "Standard F spelling" },
+        { word: "Freund", gap: "_reund", answer: "f", file: "Freund", en: "friend", rule: "Standard F spelling" },
+        { word: "frei", gap: "_rei", answer: "f", file: "frei", en: "free", rule: "Standard F spelling" },
+        { word: "fragen", gap: "_ragen", answer: "f", file: "fragen", en: "to ask", rule: "Standard F spelling" },
+        { word: "finden", gap: "_inden", answer: "f", file: "finden", en: "to find", rule: "Standard F spelling" },
+        { word: "fahren", gap: "_ahren", answer: "f", file: "fahren", en: "to drive", rule: "Standard F spelling" },
+        { word: "fallen", gap: "_allen", answer: "f", file: "fallen", en: "to fall", rule: "Standard F spelling" },
+        { word: "Familie", gap: "_amilie", answer: "f", file: "Familie", en: "family", rule: "Standard F spelling" },
+        { word: "Farbe", gap: "_arbe", answer: "f", file: "Farbe", en: "color", rule: "Standard F spelling" },
+        { word: "Fenster", gap: "_enster", answer: "f", file: "Fenster", en: "window", rule: "Standard F spelling" },
+        { word: "Feuer", gap: "_euer", answer: "f", file: "Feuer", en: "fire", rule: "Standard F spelling" },
+        { word: "Finger", gap: "_inger", answer: "f", file: "Finger", en: "finger", rule: "Standard F spelling" },
+        { word: "Flasche", gap: "_lasche", answer: "f", file: "Flasche", en: "bottle", rule: "Standard F spelling" },
+        { word: "fliegen", gap: "_liegen", answer: "f", file: "fliegen", en: "to fly", rule: "Standard F spelling" },
+        { word: "Fluss", gap: "_luss", answer: "f", file: "Fluss", en: "river", rule: "Standard F spelling" },
+        { word: "Foto", gap: "_oto", answer: "f", file: "Foto", en: "photo", rule: "Standard F spelling" },
+        { word: "Frühstück", gap: "_rühstück", answer: "f", file: "Fruehstueck", en: "breakfast", rule: "Standard F spelling" },
+        { word: "führen", gap: "_ühren", answer: "f", file: "fuehren", en: "to lead", rule: "Standard F spelling" },
+        { word: "fünf", gap: "_ünf", answer: "f", file: "fuenf", en: "five", rule: "Standard F spelling" },
+        { word: "für", gap: "_ür", answer: "f", file: "fuer", en: "for", rule: "Standard F spelling" },
+        { word: "Fuß", gap: "_uß", answer: "f", file: "Fuss", en: "foot", rule: "Standard F spelling" },
+        { word: "offen", gap: "o_en", answer: "ff", file: "offen", en: "open", rule: "Double ff after short vowel" },
+        { word: "Koffer", gap: "Ko_er", answer: "ff", file: "Koffer", en: "suitcase", rule: "Double ff after short vowel" },
+        { word: "Affe", gap: "A_e", answer: "ff", file: "Affe", en: "monkey", rule: "Double ff after short vowel" },
+        { word: "Schiff", gap: "Schi_", answer: "ff", file: "Schiff", en: "ship", rule: "Double ff after short vowel" },
+        { word: "treffen", gap: "tre_en", answer: "ff", file: "treffen", en: "to meet", rule: "Double ff after short vowel" },
+        { word: "hoffen", gap: "ho_en", answer: "ff", file: "hoffen", en: "to hope", rule: "Double ff after short vowel" },
+        { word: "schaffen", gap: "scha_en", answer: "ff", file: "schaffen", en: "to create/manage", rule: "Double ff after short vowel" },
+        { word: "Stoff", gap: "Sto_", answer: "ff", file: "Stoff", en: "fabric/material", rule: "Double ff after short vowel" },
+        { word: "Pferd", gap: "_erd", answer: "pf", file: "Pferd", en: "horse", rule: "Pf combination" },
+        { word: "Apfel", gap: "A_el", answer: "pf", file: "Apfel", en: "apple", rule: "Pf combination" },
+        { word: "Kopf", gap: "Ko_", answer: "pf", file: "Kopf", en: "head", rule: "Pf combination" },
+        { word: "Topf", gap: "To_", answer: "pf", file: "Topf", en: "pot", rule: "Pf combination" },
+        { word: "Pflanze", gap: "_lanze", answer: "pf", file: "Pflanze", en: "plant", rule: "Pf combination" },
+        { word: "Pfanne", gap: "_anne", answer: "pf", file: "Pfanne", en: "pan", rule: "Pf combination" },
+        { word: "Pflicht", gap: "_licht", answer: "pf", file: "Pflicht", en: "duty", rule: "Pf combination" },
+        { word: "empfehlen", gap: "em_ehlen", answer: "pf", file: "empfehlen", en: "to recommend", rule: "Pf combination" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function updateButtons(ex) {
+        const container = document.getElementById('optionsContainer');
+        // Show appropriate buttons based on answer type
+        if (ex.answer === 'ff') {
+          container.innerHTML = `
+            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
+            <button class="option-btn" onclick="checkAnswer('ff')" data-option="ff">ff<span class="key-hint">J</span></button>
+          `;
+        } else if (ex.answer === 'pf') {
+          container.innerHTML = `
+            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
+            <button class="option-btn" onclick="checkAnswer('pf')" data-option="pf">pf<span class="key-hint">J</span></button>
+          `;
+        } else {
+          container.innerHTML = `
+            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
+            <button class="option-btn" onclick="checkAnswer('v')" data-option="v">v<span class="key-hint">J</span></button>
+          `;
+        }
+      }
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const wordDisplay = document.getElementById('wordDisplay');
+        const transReveal = document.getElementById('translationReveal');
+        const ruleNote = document.getElementById('ruleNote');
+
+        updateButtons(ex);
+
+        // Display word with gap and translation
+        wordDisplay.innerHTML = ex.gap.replace('_', '<span class="gap"></span>');
+        transReveal.textContent = ex.en;
+
+        // Reset buttons
+        const btns = document.querySelectorAll('.option-btn');
+        btns.forEach(btn => {
+          btn.classList.remove('correct', 'wrong', 'highlight');
+          btn.disabled = false;
+        });
+        ruleNote.classList.remove('visible');
+
+        if (prev !== null) {
+          answered = true;
+          btns.forEach(btn => {
+            btn.disabled = true;
+            if (btn.dataset.option === ex.answer) {
+              btn.classList.add('highlight');
+            }
+            if (prev === btn.dataset.option && prev !== ex.answer) {
+              btn.classList.add('wrong');
+            }
+          });
+
+          wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+          ruleNote.textContent = ex.rule;
+          ruleNote.classList.add('visible');
+        } else {
+          answered = false;
+        }
+      }
+
+      window.checkAnswer = function(selected) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = selected === ex.answer;
+        answers[idx] = selected;
+
+        const wordDisplay = document.getElementById('wordDisplay');
+        const ruleNote = document.getElementById('ruleNote');
+        const btns = document.querySelectorAll('.option-btn');
+
+        btns.forEach(btn => {
+          btn.disabled = true;
+          if (btn.dataset.option === ex.answer) {
+            btn.classList.add('highlight');
+          }
+          if (selected === btn.dataset.option && selected !== ex.answer) {
+            btn.classList.add('wrong');
+          }
+        });
+
+        wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+        ruleNote.textContent = ex.rule;
+        ruleNote.classList.add('visible');
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1200);
+      };
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.answer}) - ${w.en}</span>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        if (k === 'f' && !answered) {
+          e.preventDefault();
+          checkAnswer('f');
+        } else if (k === 'j' && !answered) {
+          e.preventDefault();
+          // Check which second option is available
+          const ex = exercises[idx];
+          if (ex.answer === 'ff' || document.querySelector('[data-option="ff"]')) {
+            checkAnswer('ff');
+          } else if (ex.answer === 'pf' || document.querySelector('[data-option="pf"]')) {
+            checkAnswer('pf');
+          } else {
+            checkAnswer('v');
+          }
+        }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>
