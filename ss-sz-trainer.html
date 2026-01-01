@@ -126,7 +126,32 @@
       text-align: center;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 20px;
-      min-height: 120px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     .word-display {
@@ -139,9 +164,6 @@
 
     .word-display .blank {
       color: #E91E63;
-      border-bottom: 4px solid #E91E63;
-      padding: 0 8px;
-      margin: 0 2px;
     }
 
     .word-display .revealed {
@@ -191,6 +213,13 @@
       background: linear-gradient(135deg, #F44336, #E53935);
       color: white;
       border-color: #F44336;
+    }
+
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
     }
 
     .results {
@@ -296,20 +325,23 @@
     </div>
 
     <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
       <kbd>F</kbd> ss
       <kbd>J</kbd> ß
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>100 words</strong> total, <strong>20 per session</strong>. Words you get wrong are repeated in future sessions.
+      <strong>Listen whether the vowel before is short or long.</strong>
       <br><br>
-      <strong>The rule:</strong> Both <strong>ss</strong> and <strong>ß</strong> represent the same "s" sound. The difference is the vowel BEFORE:
+      Both <strong>ss</strong> and <strong>ß</strong> sound the same. The spelling depends on the vowel before:
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>ss</strong> = after a short vowel: W<u>a</u>sser, m<u>ü</u>ssen, Fl<u>u</u>ss</li>
+        <li><strong>ß</strong> = after a long vowel: Str<u>a</u>ße, gr<u>o</u>ß, s<u>ü</u>ß</li>
+        <li><strong>ß</strong> = after a diphthong: w<u>ei</u>ß, h<u>ei</u>ß, <u>au</u>ßen</li>
+      </ul>
+      <em style="font-size: 13px;">Note: Swiss German doesn't use ß - they write SS instead. This rule applies to standard German only.</em>
       <br><br>
-      <strong>ss</strong> = after a <u>short</u> vowel (Wasser, müssen, Fluss)
-      <br>
-      <strong>ß</strong> = after a <u>long</u> vowel or diphthong (Straße, groß, weiß, außen)
-      <br><br>
-      <strong>Tip:</strong> Say the word out loud. If the vowel is quick/short, use <strong>ss</strong>. If it's stretched/long, use <strong>ß</strong>.
+      <span style="color: #888; font-size: 12px;">100 words total, 20 per session. Progress saved locally.</span>
     </div>
 
     <div id="exerciseArea">
@@ -323,13 +355,16 @@
       </div>
 
       <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
         <div id="wordDisplay" class="word-display"></div>
         <div id="translationDisplay" class="translation"></div>
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn ss" onclick="checkAnswer('ss')" id="btnSs">ss</button>
-        <button class="choice-btn sz" onclick="checkAnswer('ß')" id="btnSz">ß</button>
+        <button class="choice-btn ss" onclick="checkAnswer('ss')" id="btnSs">ss<span class="key-hint">F</span></button>
+        <button class="choice-btn sz" onclick="checkAnswer('ß')" id="btnSz">ß<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -356,6 +391,7 @@
     (function() {
       'use strict';
 
+      const AUDIO_BASE = 'ss-sz-trainer/audio/';
       const STORAGE_KEY = 'ss_sz_progress';
       const SESSION_SIZE = 20;
 
@@ -473,6 +509,7 @@
       let answered = false;
       let answers = [];
       let sessionWrong = [];
+      let audioEl = null;
 
       function loadProgress() {
         try {
@@ -529,6 +566,22 @@
       function updateScoreDisplay() {
         document.getElementById('scoreDisplay').textContent = score + ' correct';
       }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.word + '.mp3');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
 
       function renderWord(word, showAnswer) {
         const display = document.getElementById('wordDisplay');
@@ -607,6 +660,11 @@
           btnSs.classList.remove('correct', 'wrong');
           btnSz.classList.remove('correct', 'wrong');
           renderWord(ex, false);
+
+          preloadAudio();
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
         }
       }
 
@@ -696,7 +754,10 @@
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
       };
 
       window.toggleShortcuts = function() {
@@ -704,10 +765,14 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
-        if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('ss'); }
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('ss'); }
         else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('ß'); }
       });
 
