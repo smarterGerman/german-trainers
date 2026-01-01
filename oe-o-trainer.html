@@ -338,8 +338,8 @@
     <div class="header-row">
       <h1 class="title">ö or o?</h1>
       <div class="header-btns">
-        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
-        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"<u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"<u>I</u>nfo</button>
       </div>
     </div>
 
@@ -766,12 +766,15 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const key = e.key.toLowerCase();
+        if (key === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (key === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('ö'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('o'); }
+        if (key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (key === 'f' && !answered) { e.preventDefault(); checkAnswer('ö'); }
+        else if (key === 'j' && !answered) { e.preventDefault(); checkAnswer('o'); }
       });
 
       startSession();

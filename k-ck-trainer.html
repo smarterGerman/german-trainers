@@ -367,8 +367,8 @@
         <span class="title-sub">Listening Trainer</span>
       </div>
       <div class="header-btns">
-        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
-        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"<u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"<u>I</u>nfo</button>
       </div>
     </div>
 
@@ -380,6 +380,8 @@
 
     <div id="infoSection" class="info-section hidden">
       <strong>Listen whether you hear a long or a short vowel before the k-sound.</strong>
+
+      <p style="margin: 10px 0 0 0;">It's not going to be easy to hear the k-sound itself - focus on the vowel length instead.</p>
 
       <p style="margin: 10px 0 0 0;"><strong>ck</strong> = after SHORT vowel<br>
       <em>b<u>a</u>cken, Z<u>u</u>cker, St<u>o</u>ck, D<u>e</u>cke, Br<u>ü</u>cke</em></p>
@@ -852,12 +854,15 @@
       })();
 
       document.addEventListener('keydown', function(e) {
+        const key = e.key.toLowerCase();
+        if (key === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (key === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
-        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('k'); }
-        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('ck'); }
+        if (key === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
+        else if (key === 'f' && !answered) { e.preventDefault(); checkAnswer('k'); }
+        else if (key === 'j' && !answered) { e.preventDefault(); checkAnswer('ck'); }
       });
 
       startSession();

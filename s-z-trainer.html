@@ -367,8 +367,8 @@
         <span class="title-sub">Listening Trainer</span>
       </div>
       <div class="header-btns">
-        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn">Keys</button>
-        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"<u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"<u>I</u>nfo</button>
       </div>
     </div>
 
@@ -851,12 +851,15 @@
       })();
 
       document.addEventListener('keydown', function(e) {
+        const key = e.key.toLowerCase();
+        if (key === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (key === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key.toLowerCase();
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
-        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('s'); }
-        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('z'); }
+        if (key === ' ' || e.code === 'Space') { e.preventDefault(); playPhrase(); }
+        else if (key === 'f' && !answered) { e.preventDefault(); checkAnswer('s'); }
+        else if (key === 'j' && !answered) { e.preventDefault(); checkAnswer('z'); }
       });
 
       startSession();
