@@ -61,7 +61,6 @@
 
     .info-section {
       background: #FFF3E0;
-      border-left: 4px solid #FF9800;
       padding: 12px 15px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -214,6 +213,13 @@
       background: linear-gradient(135deg, #F44336, #E53935);
       color: white;
       border-color: #F44336;
+    }
+
+    .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 2px;
     }
 
     .results {
@@ -379,8 +385,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn ae" onclick="checkAnswer('ä')" id="btnAe">ä</button>
-        <button class="choice-btn a" onclick="checkAnswer('a')" id="btnA">a</button>
+        <button class="choice-btn ae" onclick="checkAnswer('ä')" id="btnAe">ä<span class="key-hint">F</span></button>
+        <button class="choice-btn a" onclick="checkAnswer('a')" id="btnA">a<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -751,20 +757,26 @@
       }
 
       window.toggleInfo = function() {
-        document.getElementById('infoSection').classList.toggle('hidden');
+        const sec = document.getElementById('infoSection');
+        sec.classList.toggle('hidden');
+        document.getElementById('toggleBtn').innerHTML = '<u>I</u>nfo';
       };
 
       window.toggleShortcuts = function() {
-        document.getElementById('shortcutsSection').classList.toggle('hidden');
+        const sec = document.getElementById('shortcutsSection');
+        sec.classList.toggle('hidden');
+        document.getElementById('shortcutsBtn').innerHTML = '<u>K</u>eys';
       };
 
       document.addEventListener('keydown', function(e) {
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
+        const k = e.key.toLowerCase();
         if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('ä'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('a'); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('ä'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('a'); }
+        else if (k === 'k') { e.preventDefault(); toggleShortcuts(); }
+        else if (k === 'i') { e.preventDefault(); toggleInfo(); }
       });
 
       startSession();
