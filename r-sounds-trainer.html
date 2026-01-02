@@ -61,7 +61,6 @@
 
     .info-section {
       background: #FFF3E0;
-      border-left: 4px solid #FF9800;
       padding: 12px 15px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -223,6 +222,14 @@
       border-color: #F44336;
     }
 
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #999;
+      margin-top: 4px;
+    }
+
     .results {
       text-align: center;
       background: white;
@@ -343,23 +350,34 @@
     </div>
 
     <div id="shortcutsSection" class="shortcuts-section hidden">
-      <kbd>Space</kbd> Play
-      <kbd>F</kbd> Uvular R
+      <kbd>Space</kbd> Play &nbsp;
+      <kbd>F</kbd> Uvular R &nbsp;
       <kbd>J</kbd> Vocalic R
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>German has two main R pronunciations:</strong>
+      <strong>Quick rule:</strong> At end of syllable = Vocalic R (sounds like "uh"). Otherwise = Uvular R.
       <br><br>
-      <strong>Uvular R</strong> - The "real" R sound, produced in the throat.
-      <br>Used at the <strong>beginning of syllables</strong> or after consonants.
-      <br>Examples: <strong>r</strong>ot, B<strong>r</strong>ot, f<strong>r</strong>agen, g<strong>r</strong>un
-      <br><br>
-      <strong>Vocalic R</strong> - Sounds like a weak "a" or "uh" sound.
-      <br>Used at the <strong>end of syllables</strong>, especially after vowels.
-      <br>Examples: Vate<strong>r</strong>, hie<strong>r</strong>, Uh<strong>r</strong>, de<strong>r</strong>, we<strong>r</strong>
-      <br><br>
-      <strong>Quick rule:</strong> Beginning/after consonant = Uvular | End of syllable = Vocalic
+      <strong>Uvular R</strong> (the "gargling" R)
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li>Used at the <strong>beginning</strong> of syllables or <strong>after consonants</strong></li>
+        <li>Examples: <u>R</u>ot, B<u>r</u>ot, f<u>r</u>agen, g<u>r</u>ün</li>
+        <li><strong>How to produce it:</strong> Keep tongue tip resting against lower teeth. Raise the back of your tongue toward the uvula. It's the sound you make when gargling without water, or the "sexy cat purr" sound.</li>
+        <li><strong>Remember:</strong> R <strong>starts</strong> the action = use the <strong>real R</strong> (uvular)</li>
+      </ul>
+      <br>
+      <strong>Vocalic R</strong> (the "uh" sound)
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li>Used at the <strong>end</strong> of syllables, after vowels</li>
+        <li>Examples: Vat<u>er</u>, hi<u>er</u>, Uh<u>r</u>, d<u>er</u>, w<u>er</u></li>
+        <li><strong>How to produce it:</strong> Think British English! Say "fath<u>a</u>" for Vater, "wat<u>a</u>" for Wasser. The -er ending becomes a relaxed "uh" sound - don't pronounce any R at all.</li>
+        <li><strong>Remember:</strong> R at the <strong>end</strong> = just an "<strong>uh</strong>" (sounds like vowel)</li>
+      </ul>
+      <br>
+      <div style="background: #FFEBEE; padding: 10px; border-radius: 6px;">
+        <strong>Note:</strong> The rolled/trilled R (like in Spanish or Italian) is not standard High German. While some regional dialects use it, in standard German pronunciation (Hochdeutsch) the uvular R is the norm.
+      </div>
+      <p style="font-size: 12px; color: #666; margin: 10px 0 0 0;">80 words, 20 per session. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
@@ -385,8 +403,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn uvular" onclick="checkAnswer('uvular')" id="btnUvular">Uvular R</button>
-        <button class="choice-btn vocalic" onclick="checkAnswer('vocalic')" id="btnVocalic">Vocalic R</button>
+        <button class="choice-btn uvular" onclick="checkAnswer('uvular')" id="btnUvular">Uvular R<span class="key-hint">F</span></button>
+        <button class="choice-btn vocalic" onclick="checkAnswer('vocalic')" id="btnVocalic">Vocalic R<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -772,12 +790,16 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('uvular'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('vocalic'); }
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('uvular'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('vocalic'); }
       });
 
       startSession();
