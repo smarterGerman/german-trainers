@@ -4,107 +4,123 @@ const path = require('path');
 
 const client = new textToSpeech.TextToSpeechClient();
 
+// Filename = phrase with spaces→underscores, lowercase, umlauts→ue/ae/oe
+function phraseToFilename(phrase) {
+  return phrase
+    .toLowerCase()
+    .replace(/ü/g, 'ue')
+    .replace(/ö/g, 'oe')
+    .replace(/ä/g, 'ae')
+    .replace(/ß/g, 'ss')
+    .replace(/ /g, '_');
+}
+
+// All words with their phrases (nouns get articles, verbs get "zu", small words as-is)
 const words = [
   // UVULAR R - at beginning or after consonant (40)
-  { word: "rot", phrase: "ganz rot", file: "rot" },
-  { word: "Regen", phrase: "starker Regen", file: "Regen" },
-  { word: "reisen", phrase: "gern reisen", file: "reisen" },
-  { word: "richtig", phrase: "ganz richtig", file: "richtig" },
-  { word: "rufen", phrase: "laut rufen", file: "rufen" },
-  { word: "ruhig", phrase: "ganz ruhig", file: "ruhig" },
-  { word: "Reis", phrase: "weißer Reis", file: "Reis" },
-  { word: "Recht", phrase: "das Recht", file: "Recht" },
-  { word: "Rad", phrase: "ein großes Rad", file: "Rad" },
-  { word: "Raum", phrase: "ein großer Raum", file: "Raum" },
-  { word: "Brot", phrase: "frisches Brot", file: "Brot" },
-  { word: "Bruder", phrase: "mein Bruder", file: "Bruder" },
-  { word: "braun", phrase: "ganz braun", file: "braun" },
-  { word: "bringen", phrase: "etwas bringen", file: "bringen" },
-  { word: "Brille", phrase: "meine Brille", file: "Brille" },
-  { word: "fragen", phrase: "etwas fragen", file: "fragen" },
-  { word: "Frau", phrase: "die Frau", file: "Frau" },
-  { word: "frei", phrase: "ganz frei", file: "frei" },
-  { word: "Freund", phrase: "mein Freund", file: "Freund" },
-  { word: "froh", phrase: "sehr froh", file: "froh" },
-  { word: "grün", phrase: "ganz grün", file: "gruen" },
-  { word: "groß", phrase: "sehr groß", file: "gross" },
-  { word: "Gruppe", phrase: "eine Gruppe", file: "Gruppe" },
-  { word: "Gras", phrase: "grünes Gras", file: "Gras" },
-  { word: "Grund", phrase: "der Grund", file: "Grund" },
-  { word: "Preis", phrase: "der Preis", file: "Preis" },
-  { word: "Problem", phrase: "ein Problem", file: "Problem" },
-  { word: "Programm", phrase: "das Programm", file: "Programm" },
-  { word: "Prozent", phrase: "zehn Prozent", file: "Prozent" },
-  { word: "tragen", phrase: "schwer tragen", file: "tragen" },
-  { word: "treffen", phrase: "sich treffen", file: "treffen" },
-  { word: "trinken", phrase: "etwas trinken", file: "trinken" },
-  { word: "trocken", phrase: "ganz trocken", file: "trocken" },
-  { word: "Traum", phrase: "ein Traum", file: "Traum" },
-  { word: "drei", phrase: "genau drei", file: "drei" },
-  { word: "drin", phrase: "da drin", file: "drin" },
-  { word: "Schrift", phrase: "eine Schrift", file: "Schrift" },
-  { word: "sprechen", phrase: "laut sprechen", file: "sprechen" },
-  { word: "Straße", phrase: "die Straße", file: "Strasse" },
-  { word: "Strom", phrase: "der Strom", file: "Strom" },
+  { word: "rot", phrase: "rot", rtype: "uvular" },
+  { word: "Regen", phrase: "der Regen", rtype: "uvular" },
+  { word: "reisen", phrase: "zu reisen", rtype: "uvular" },
+  { word: "richtig", phrase: "richtig", rtype: "uvular" },
+  { word: "rufen", phrase: "zu rufen", rtype: "uvular" },
+  { word: "ruhig", phrase: "ruhig", rtype: "uvular" },
+  { word: "Reis", phrase: "der Reis", rtype: "uvular" },
+  { word: "Recht", phrase: "das Recht", rtype: "uvular" },
+  { word: "Rad", phrase: "das Rad", rtype: "uvular" },
+  { word: "Raum", phrase: "der Raum", rtype: "uvular" },
+  { word: "Brot", phrase: "das Brot", rtype: "uvular" },
+  { word: "Bruder", phrase: "der Bruder", rtype: "uvular" },
+  { word: "braun", phrase: "braun", rtype: "uvular" },
+  { word: "bringen", phrase: "zu bringen", rtype: "uvular" },
+  { word: "Brille", phrase: "die Brille", rtype: "uvular" },
+  { word: "fragen", phrase: "zu fragen", rtype: "uvular" },
+  { word: "Frau", phrase: "die Frau", rtype: "uvular" },
+  { word: "frei", phrase: "frei", rtype: "uvular" },
+  { word: "Freund", phrase: "der Freund", rtype: "uvular" },
+  { word: "froh", phrase: "froh", rtype: "uvular" },
+  { word: "grün", phrase: "grün", rtype: "uvular" },
+  { word: "groß", phrase: "groß", rtype: "uvular" },
+  { word: "Gruppe", phrase: "die Gruppe", rtype: "uvular" },
+  { word: "Gras", phrase: "das Gras", rtype: "uvular" },
+  { word: "Grund", phrase: "der Grund", rtype: "uvular" },
+  { word: "Preis", phrase: "der Preis", rtype: "uvular" },
+  { word: "Problem", phrase: "das Problem", rtype: "uvular" },
+  { word: "Programm", phrase: "das Programm", rtype: "uvular" },
+  { word: "Prozent", phrase: "Prozent", rtype: "uvular" },
+  { word: "tragen", phrase: "zu tragen", rtype: "uvular" },
+  { word: "treffen", phrase: "zu treffen", rtype: "uvular" },
+  { word: "trinken", phrase: "zu trinken", rtype: "uvular" },
+  { word: "trocken", phrase: "trocken", rtype: "uvular" },
+  { word: "Traum", phrase: "der Traum", rtype: "uvular" },
+  { word: "drei", phrase: "drei", rtype: "uvular" },
+  { word: "drin", phrase: "drin", rtype: "uvular" },
+  { word: "Schrift", phrase: "die Schrift", rtype: "uvular" },
+  { word: "sprechen", phrase: "zu sprechen", rtype: "uvular" },
+  { word: "Straße", phrase: "die Straße", rtype: "uvular" },
+  { word: "Strom", phrase: "der Strom", rtype: "uvular" },
   // VOCALIC R - at end of syllable (40)
-  { word: "Vater", phrase: "mein Vater", file: "Vater" },
-  { word: "Mutter", phrase: "meine Mutter", file: "Mutter" },
-  { word: "Bruder", phrase: "sein Bruder", file: "Bruder2" },
-  { word: "Schwester", phrase: "meine Schwester", file: "Schwester" },
-  { word: "Lehrer", phrase: "der Lehrer", file: "Lehrer" },
-  { word: "Fahrer", phrase: "der Fahrer", file: "Fahrer" },
-  { word: "Arbeiter", phrase: "der Arbeiter", file: "Arbeiter" },
-  { word: "Finger", phrase: "mein Finger", file: "Finger" },
-  { word: "Wasser", phrase: "kaltes Wasser", file: "Wasser" },
-  { word: "Zimmer", phrase: "mein Zimmer", file: "Zimmer" },
-  { word: "hier", phrase: "genau hier", file: "hier" },
-  { word: "Bier", phrase: "ein Bier", file: "Bier" },
-  { word: "Tier", phrase: "ein Tier", file: "Tier" },
-  { word: "wir", phrase: "wir alle", file: "wir" },
-  { word: "mir", phrase: "gib mir", file: "mir" },
-  { word: "dir", phrase: "für dir", file: "dir" },
-  { word: "Uhr", phrase: "die Uhr", file: "Uhr" },
-  { word: "nur", phrase: "nur so", file: "nur" },
-  { word: "der", phrase: "der Mann", file: "der" },
-  { word: "wer", phrase: "wer ist", file: "wer" },
-  { word: "sehr", phrase: "sehr gut", file: "sehr" },
-  { word: "mehr", phrase: "viel mehr", file: "mehr" },
-  { word: "Jahr", phrase: "ein Jahr", file: "Jahr" },
-  { word: "war", phrase: "es war", file: "war" },
-  { word: "wahr", phrase: "ganz wahr", file: "wahr" },
-  { word: "gar", phrase: "gar nicht", file: "gar" },
-  { word: "vor", phrase: "da vor", file: "vor" },
-  { word: "für", phrase: "für dich", file: "fuer" },
-  { word: "Tür", phrase: "die Tür", file: "Tuer" },
-  { word: "oder", phrase: "ja oder nein", file: "oder" },
-  { word: "aber", phrase: "aber ja", file: "aber" },
-  { word: "über", phrase: "da über", file: "ueber" },
-  { word: "unter", phrase: "da unter", file: "unter" },
-  { word: "hinter", phrase: "da hinter", file: "hinter" },
-  { word: "immer", phrase: "immer wieder", file: "immer" },
-  { word: "besser", phrase: "viel besser", file: "besser" },
-  { word: "Wetter", phrase: "das Wetter", file: "Wetter" },
-  { word: "Körper", phrase: "mein Körper", file: "Koerper" },
-  { word: "Sommer", phrase: "im Sommer", file: "Sommer" },
-  { word: "Nummer", phrase: "die Nummer", file: "Nummer" }
+  { word: "Vater", phrase: "der Vater", rtype: "vocalic" },
+  { word: "Mutter", phrase: "die Mutter", rtype: "vocalic" },
+  { word: "Schwester", phrase: "die Schwester", rtype: "vocalic" },
+  { word: "Lehrer", phrase: "der Lehrer", rtype: "vocalic" },
+  { word: "Fahrer", phrase: "der Fahrer", rtype: "vocalic" },
+  { word: "Arbeiter", phrase: "der Arbeiter", rtype: "vocalic" },
+  { word: "Finger", phrase: "der Finger", rtype: "vocalic" },
+  { word: "Wasser", phrase: "das Wasser", rtype: "vocalic" },
+  { word: "Zimmer", phrase: "das Zimmer", rtype: "vocalic" },
+  { word: "hier", phrase: "hier", rtype: "vocalic" },
+  { word: "Bier", phrase: "das Bier", rtype: "vocalic" },
+  { word: "Tier", phrase: "das Tier", rtype: "vocalic" },
+  { word: "wir", phrase: "wir", rtype: "vocalic" },
+  { word: "mir", phrase: "mir", rtype: "vocalic" },
+  { word: "dir", phrase: "dir", rtype: "vocalic" },
+  { word: "Uhr", phrase: "die Uhr", rtype: "vocalic" },
+  { word: "nur", phrase: "nur", rtype: "vocalic" },
+  { word: "der", phrase: "der", rtype: "vocalic" },
+  { word: "wer", phrase: "wer", rtype: "vocalic" },
+  { word: "sehr", phrase: "sehr", rtype: "vocalic" },
+  { word: "mehr", phrase: "mehr", rtype: "vocalic" },
+  { word: "Jahr", phrase: "das Jahr", rtype: "vocalic" },
+  { word: "war", phrase: "war", rtype: "vocalic" },
+  { word: "wahr", phrase: "wahr", rtype: "vocalic" },
+  { word: "gar", phrase: "gar", rtype: "vocalic" },
+  { word: "vor", phrase: "vor", rtype: "vocalic" },
+  { word: "für", phrase: "für", rtype: "vocalic" },
+  { word: "Tür", phrase: "die Tür", rtype: "vocalic" },
+  { word: "oder", phrase: "oder", rtype: "vocalic" },
+  { word: "aber", phrase: "aber", rtype: "vocalic" },
+  { word: "über", phrase: "über", rtype: "vocalic" },
+  { word: "unter", phrase: "unter", rtype: "vocalic" },
+  { word: "hinter", phrase: "hinter", rtype: "vocalic" },
+  { word: "immer", phrase: "immer", rtype: "vocalic" },
+  { word: "besser", phrase: "besser", rtype: "vocalic" },
+  { word: "Wetter", phrase: "das Wetter", rtype: "vocalic" },
+  { word: "Körper", phrase: "der Körper", rtype: "vocalic" },
+  { word: "Sommer", phrase: "der Sommer", rtype: "vocalic" },
+  { word: "Nummer", phrase: "die Nummer", rtype: "vocalic" }
 ];
 
 const voiceConfig = {
   languageCode: 'de-DE',
-  name: 'de-DE-Chirp3-HD-Algenib'
+  name: 'de-DE-Chirp3-HD-Achernar'
 };
 
-async function generateAudio(text, filename) {
+async function generateAudio(phrase, filename) {
+  const ssml = `<speak><lang xml:lang="de-DE">${phrase}</lang><break time="300ms"/></speak>`;
+
   const request = {
-    input: { text },
+    input: { ssml },
     voice: voiceConfig,
-    audioConfig: { audioEncoding: 'MP3' }
+    audioConfig: {
+      audioEncoding: 'MP3',
+      speakingRate: 0.9
+    }
   };
 
   const [response] = await client.synthesizeSpeech(request);
   const outputPath = path.join(__dirname, 'audio', filename + '.mp3');
   fs.writeFileSync(outputPath, response.audioContent);
-  console.log(`Generated: ${filename}.mp3`);
+  console.log(`Generated: ${filename}.mp3 ("${phrase}")`);
 }
 
 async function main() {
@@ -113,21 +129,36 @@ async function main() {
     fs.mkdirSync(audioDir, { recursive: true });
   }
 
-  console.log(`Generating ${words.length} audio files...`);
-
-  for (const w of words) {
-    await generateAudio(w.phrase, w.file);
+  // Clear old audio files
+  const oldFiles = fs.readdirSync(audioDir).filter(f => f.endsWith('.mp3'));
+  for (const f of oldFiles) {
+    fs.unlinkSync(path.join(audioDir, f));
+    console.log(`Deleted old: ${f}`);
   }
 
+  console.log(`\nGenerating ${words.length} audio files...`);
+  console.log(`Voice: ${voiceConfig.name}`);
+  console.log(`Speaking rate: 0.9 (10% slower)`);
+  console.log('');
+
+  for (const w of words) {
+    const filename = phraseToFilename(w.phrase);
+    await generateAudio(w.phrase, filename);
+  }
+
+  console.log('');
   console.log('Done!');
 
   const manifest = {
     generated: new Date().toISOString(),
     voice: voiceConfig.name,
+    speakingRate: 0.9,
+    totalWords: words.length,
     words: words.map(w => ({
       word: w.word,
-      file: w.file,
-      phrase: w.phrase
+      file: phraseToFilename(w.phrase),
+      phrase: w.phrase,
+      rtype: w.rtype
     }))
   };
 

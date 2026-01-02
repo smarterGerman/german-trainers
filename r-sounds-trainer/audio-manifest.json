@@ -1,406 +1,482 @@
 {
-  "generated": "2025-12-30T12:21:49.476Z",
-  "voice": "de-DE-Chirp3-HD-Algenib",
+  "generated": "2026-01-02T15:56:12.918Z",
+  "voice": "de-DE-Chirp3-HD-Achernar",
+  "speakingRate": 0.9,
+  "totalWords": 79,
   "words": [
     {
       "word": "rot",
       "file": "rot",
-      "phrase": "ganz rot"
+      "phrase": "rot",
+      "rtype": "uvular"
     },
     {
       "word": "Regen",
-      "file": "Regen",
-      "phrase": "starker Regen"
+      "file": "der_regen",
+      "phrase": "der Regen",
+      "rtype": "uvular"
     },
     {
       "word": "reisen",
-      "file": "reisen",
-      "phrase": "gern reisen"
+      "file": "zu_reisen",
+      "phrase": "zu reisen",
+      "rtype": "uvular"
     },
     {
       "word": "richtig",
       "file": "richtig",
-      "phrase": "ganz richtig"
+      "phrase": "richtig",
+      "rtype": "uvular"
     },
     {
       "word": "rufen",
-      "file": "rufen",
-      "phrase": "laut rufen"
+      "file": "zu_rufen",
+      "phrase": "zu rufen",
+      "rtype": "uvular"
     },
     {
       "word": "ruhig",
       "file": "ruhig",
-      "phrase": "ganz ruhig"
+      "phrase": "ruhig",
+      "rtype": "uvular"
     },
     {
       "word": "Reis",
-      "file": "Reis",
-      "phrase": "weißer Reis"
+      "file": "der_reis",
+      "phrase": "der Reis",
+      "rtype": "uvular"
     },
     {
       "word": "Recht",
-      "file": "Recht",
-      "phrase": "das Recht"
+      "file": "das_recht",
+      "phrase": "das Recht",
+      "rtype": "uvular"
     },
     {
       "word": "Rad",
-      "file": "Rad",
-      "phrase": "ein großes Rad"
+      "file": "das_rad",
+      "phrase": "das Rad",
+      "rtype": "uvular"
     },
     {
       "word": "Raum",
-      "file": "Raum",
-      "phrase": "ein großer Raum"
+      "file": "der_raum",
+      "phrase": "der Raum",
+      "rtype": "uvular"
     },
     {
       "word": "Brot",
-      "file": "Brot",
-      "phrase": "frisches Brot"
+      "file": "das_brot",
+      "phrase": "das Brot",
+      "rtype": "uvular"
     },
     {
       "word": "Bruder",
-      "file": "Bruder",
-      "phrase": "mein Bruder"
+      "file": "der_bruder",
+      "phrase": "der Bruder",
+      "rtype": "uvular"
     },
     {
       "word": "braun",
       "file": "braun",
-      "phrase": "ganz braun"
+      "phrase": "braun",
+      "rtype": "uvular"
     },
     {
       "word": "bringen",
-      "file": "bringen",
-      "phrase": "etwas bringen"
+      "file": "zu_bringen",
+      "phrase": "zu bringen",
+      "rtype": "uvular"
     },
     {
       "word": "Brille",
-      "file": "Brille",
-      "phrase": "meine Brille"
+      "file": "die_brille",
+      "phrase": "die Brille",
+      "rtype": "uvular"
     },
     {
       "word": "fragen",
-      "file": "fragen",
-      "phrase": "etwas fragen"
+      "file": "zu_fragen",
+      "phrase": "zu fragen",
+      "rtype": "uvular"
     },
     {
       "word": "Frau",
-      "file": "Frau",
-      "phrase": "die Frau"
+      "file": "die_frau",
+      "phrase": "die Frau",
+      "rtype": "uvular"
     },
     {
       "word": "frei",
       "file": "frei",
-      "phrase": "ganz frei"
+      "phrase": "frei",
+      "rtype": "uvular"
     },
     {
       "word": "Freund",
-      "file": "Freund",
-      "phrase": "mein Freund"
+      "file": "der_freund",
+      "phrase": "der Freund",
+      "rtype": "uvular"
     },
     {
       "word": "froh",
       "file": "froh",
-      "phrase": "sehr froh"
+      "phrase": "froh",
+      "rtype": "uvular"
     },
     {
       "word": "grün",
       "file": "gruen",
-      "phrase": "ganz grün"
+      "phrase": "grün",
+      "rtype": "uvular"
     },
     {
       "word": "groß",
       "file": "gross",
-      "phrase": "sehr groß"
+      "phrase": "groß",
+      "rtype": "uvular"
     },
     {
       "word": "Gruppe",
-      "file": "Gruppe",
-      "phrase": "eine Gruppe"
+      "file": "die_gruppe",
+      "phrase": "die Gruppe",
+      "rtype": "uvular"
     },
     {
       "word": "Gras",
-      "file": "Gras",
-      "phrase": "grünes Gras"
+      "file": "das_gras",
+      "phrase": "das Gras",
+      "rtype": "uvular"
     },
     {
       "word": "Grund",
-      "file": "Grund",
-      "phrase": "der Grund"
+      "file": "der_grund",
+      "phrase": "der Grund",
+      "rtype": "uvular"
     },
     {
       "word": "Preis",
-      "file": "Preis",
-      "phrase": "der Preis"
+      "file": "der_preis",
+      "phrase": "der Preis",
+      "rtype": "uvular"
     },
     {
       "word": "Problem",
-      "file": "Problem",
-      "phrase": "ein Problem"
+      "file": "das_problem",
+      "phrase": "das Problem",
+      "rtype": "uvular"
     },
     {
       "word": "Programm",
-      "file": "Programm",
-      "phrase": "das Programm"
+      "file": "das_programm",
+      "phrase": "das Programm",
+      "rtype": "uvular"
     },
     {
       "word": "Prozent",
-      "file": "Prozent",
-      "phrase": "zehn Prozent"
+      "file": "prozent",
+      "phrase": "Prozent",
+      "rtype": "uvular"
     },
     {
       "word": "tragen",
-      "file": "tragen",
-      "phrase": "schwer tragen"
+      "file": "zu_tragen",
+      "phrase": "zu tragen",
+      "rtype": "uvular"
     },
     {
       "word": "treffen",
-      "file": "treffen",
-      "phrase": "sich treffen"
+      "file": "zu_treffen",
+      "phrase": "zu treffen",
+      "rtype": "uvular"
     },
     {
       "word": "trinken",
-      "file": "trinken",
-      "phrase": "etwas trinken"
+      "file": "zu_trinken",
+      "phrase": "zu trinken",
+      "rtype": "uvular"
     },
     {
       "word": "trocken",
       "file": "trocken",
-      "phrase": "ganz trocken"
+      "phrase": "trocken",
+      "rtype": "uvular"
     },
     {
       "word": "Traum",
-      "file": "Traum",
-      "phrase": "ein Traum"
+      "file": "der_traum",
+      "phrase": "der Traum",
+      "rtype": "uvular"
     },
     {
       "word": "drei",
       "file": "drei",
-      "phrase": "genau drei"
+      "phrase": "drei",
+      "rtype": "uvular"
     },
     {
       "word": "drin",
       "file": "drin",
-      "phrase": "da drin"
+      "phrase": "drin",
+      "rtype": "uvular"
     },
     {
       "word": "Schrift",
-      "file": "Schrift",
-      "phrase": "eine Schrift"
+      "file": "die_schrift",
+      "phrase": "die Schrift",
+      "rtype": "uvular"
     },
     {
       "word": "sprechen",
-      "file": "sprechen",
-      "phrase": "laut sprechen"
+      "file": "zu_sprechen",
+      "phrase": "zu sprechen",
+      "rtype": "uvular"
     },
     {
       "word": "Straße",
-      "file": "Strasse",
-      "phrase": "die Straße"
+      "file": "die_strasse",
+      "phrase": "die Straße",
+      "rtype": "uvular"
     },
     {
       "word": "Strom",
-      "file": "Strom",
-      "phrase": "der Strom"
+      "file": "der_strom",
+      "phrase": "der Strom",
+      "rtype": "uvular"
     },
     {
       "word": "Vater",
-      "file": "Vater",
-      "phrase": "mein Vater"
+      "file": "der_vater",
+      "phrase": "der Vater",
+      "rtype": "vocalic"
     },
     {
       "word": "Mutter",
-      "file": "Mutter",
-      "phrase": "meine Mutter"
-    },
-    {
-      "word": "Bruder",
-      "file": "Bruder2",
-      "phrase": "sein Bruder"
+      "file": "die_mutter",
+      "phrase": "die Mutter",
+      "rtype": "vocalic"
     },
     {
       "word": "Schwester",
-      "file": "Schwester",
-      "phrase": "meine Schwester"
+      "file": "die_schwester",
+      "phrase": "die Schwester",
+      "rtype": "vocalic"
     },
     {
       "word": "Lehrer",
-      "file": "Lehrer",
-      "phrase": "der Lehrer"
+      "file": "der_lehrer",
+      "phrase": "der Lehrer",
+      "rtype": "vocalic"
     },
     {
       "word": "Fahrer",
-      "file": "Fahrer",
-      "phrase": "der Fahrer"
+      "file": "der_fahrer",
+      "phrase": "der Fahrer",
+      "rtype": "vocalic"
     },
     {
       "word": "Arbeiter",
-      "file": "Arbeiter",
-      "phrase": "der Arbeiter"
+      "file": "der_arbeiter",
+      "phrase": "der Arbeiter",
+      "rtype": "vocalic"
     },
     {
       "word": "Finger",
-      "file": "Finger",
-      "phrase": "mein Finger"
+      "file": "der_finger",
+      "phrase": "der Finger",
+      "rtype": "vocalic"
     },
     {
       "word": "Wasser",
-      "file": "Wasser",
-      "phrase": "kaltes Wasser"
+      "file": "das_wasser",
+      "phrase": "das Wasser",
+      "rtype": "vocalic"
     },
     {
       "word": "Zimmer",
-      "file": "Zimmer",
-      "phrase": "mein Zimmer"
+      "file": "das_zimmer",
+      "phrase": "das Zimmer",
+      "rtype": "vocalic"
     },
     {
       "word": "hier",
       "file": "hier",
-      "phrase": "genau hier"
+      "phrase": "hier",
+      "rtype": "vocalic"
     },
     {
       "word": "Bier",
-      "file": "Bier",
-      "phrase": "ein Bier"
+      "file": "das_bier",
+      "phrase": "das Bier",
+      "rtype": "vocalic"
     },
     {
       "word": "Tier",
-      "file": "Tier",
-      "phrase": "ein Tier"
+      "file": "das_tier",
+      "phrase": "das Tier",
+      "rtype": "vocalic"
     },
     {
       "word": "wir",
       "file": "wir",
-      "phrase": "wir alle"
+      "phrase": "wir",
+      "rtype": "vocalic"
     },
     {
       "word": "mir",
       "file": "mir",
-      "phrase": "gib mir"
+      "phrase": "mir",
+      "rtype": "vocalic"
     },
     {
       "word": "dir",
       "file": "dir",
-      "phrase": "für dir"
+      "phrase": "dir",
+      "rtype": "vocalic"
     },
     {
       "word": "Uhr",
-      "file": "Uhr",
-      "phrase": "die Uhr"
+      "file": "die_uhr",
+      "phrase": "die Uhr",
+      "rtype": "vocalic"
     },
     {
       "word": "nur",
       "file": "nur",
-      "phrase": "nur so"
+      "phrase": "nur",
+      "rtype": "vocalic"
     },
     {
       "word": "der",
       "file": "der",
-      "phrase": "der Mann"
+      "phrase": "der",
+      "rtype": "vocalic"
     },
     {
       "word": "wer",
       "file": "wer",
-      "phrase": "wer ist"
+      "phrase": "wer",
+      "rtype": "vocalic"
     },
     {
       "word": "sehr",
       "file": "sehr",
-      "phrase": "sehr gut"
+      "phrase": "sehr",
+      "rtype": "vocalic"
     },
     {
       "word": "mehr",
       "file": "mehr",
-      "phrase": "viel mehr"
+      "phrase": "mehr",
+      "rtype": "vocalic"
     },
     {
       "word": "Jahr",
-      "file": "Jahr",
-      "phrase": "ein Jahr"
+      "file": "das_jahr",
+      "phrase": "das Jahr",
+      "rtype": "vocalic"
     },
     {
       "word": "war",
       "file": "war",
-      "phrase": "es war"
+      "phrase": "war",
+      "rtype": "vocalic"
     },
     {
       "word": "wahr",
       "file": "wahr",
-      "phrase": "ganz wahr"
+      "phrase": "wahr",
+      "rtype": "vocalic"
     },
     {
       "word": "gar",
       "file": "gar",
-      "phrase": "gar nicht"
+      "phrase": "gar",
+      "rtype": "vocalic"
     },
     {
       "word": "vor",
       "file": "vor",
-      "phrase": "da vor"
+      "phrase": "vor",
+      "rtype": "vocalic"
     },
     {
       "word": "für",
       "file": "fuer",
-      "phrase": "für dich"
+      "phrase": "für",
+      "rtype": "vocalic"
     },
     {
       "word": "Tür",
-      "file": "Tuer",
-      "phrase": "die Tür"
+      "file": "die_tuer",
+      "phrase": "die Tür",
+      "rtype": "vocalic"
     },
     {
       "word": "oder",
       "file": "oder",
-      "phrase": "ja oder nein"
+      "phrase": "oder",
+      "rtype": "vocalic"
     },
     {
       "word": "aber",
       "file": "aber",
-      "phrase": "aber ja"
+      "phrase": "aber",
+      "rtype": "vocalic"
     },
     {
       "word": "über",
       "file": "ueber",
-      "phrase": "da über"
+      "phrase": "über",
+      "rtype": "vocalic"
     },
     {
       "word": "unter",
       "file": "unter",
-      "phrase": "da unter"
+      "phrase": "unter",
+      "rtype": "vocalic"
     },
     {
       "word": "hinter",
       "file": "hinter",
-      "phrase": "da hinter"
+      "phrase": "hinter",
+      "rtype": "vocalic"
     },
     {
       "word": "immer",
       "file": "immer",
-      "phrase": "immer wieder"
+      "phrase": "immer",
+      "rtype": "vocalic"
     },
     {
       "word": "besser",
       "file": "besser",
-      "phrase": "viel besser"
+      "phrase": "besser",
+      "rtype": "vocalic"
     },
     {
       "word": "Wetter",
-      "file": "Wetter",
-      "phrase": "das Wetter"
+      "file": "das_wetter",
+      "phrase": "das Wetter",
+      "rtype": "vocalic"
     },
     {
       "word": "Körper",
-      "file": "Koerper",
-      "phrase": "mein Körper"
+      "file": "der_koerper",
+      "phrase": "der Körper",
+      "rtype": "vocalic"
     },
     {
       "word": "Sommer",
-      "file": "Sommer",
-      "phrase": "im Sommer"
+      "file": "der_sommer",
+      "phrase": "der Sommer",
+      "rtype": "vocalic"
     },
     {
       "word": "Nummer",
-      "file": "Nummer",
-      "phrase": "die Nummer"
+      "file": "die_nummer",
+      "phrase": "die Nummer",
+      "rtype": "vocalic"
     }
   ]
 }

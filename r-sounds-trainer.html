@@ -356,35 +356,27 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>Quick rule:</strong> At end of syllable = Vocalic R (sounds like "uh"). Otherwise = Uvular R.
+      <strong>Quick rule:</strong> At end of syllable = Vocalic R. Otherwise = Uvular R.
       <br><br>
-      <strong>Uvular R</strong> (the "gargling" R)
-      <ul style="margin: 5px 0 0 20px; padding: 0;">
-        <li>Used at the <strong>beginning</strong> of syllables or <strong>after consonants</strong></li>
-        <li>Examples: <u>R</u>ot, B<u>r</u>ot, f<u>r</u>agen, g<u>r</u>ün</li>
-        <li><strong>How to produce it:</strong> Keep tongue tip resting against lower teeth. Raise the back of your tongue toward the uvula. It's the sound you make when gargling without water, or the "sexy cat purr" sound.</li>
-        <li><strong>Remember:</strong> R <strong>starts</strong> the action = use the <strong>real R</strong> (uvular)</li>
-      </ul>
-      <br>
-      <strong>Vocalic R</strong> (the "uh" sound)
-      <ul style="margin: 5px 0 0 20px; padding: 0;">
-        <li>Used at the <strong>end</strong> of syllables, after vowels</li>
-        <li>Examples: Vat<u>er</u>, hi<u>er</u>, Uh<u>r</u>, d<u>er</u>, w<u>er</u></li>
-        <li><strong>How to produce it:</strong> Think British English! Say "fath<u>a</u>" for Vater, "wat<u>a</u>" for Wasser. The -er ending becomes a relaxed "uh" sound - don't pronounce any R at all.</li>
-        <li><strong>Remember:</strong> R at the <strong>end</strong> = just an "<strong>uh</strong>" (sounds like vowel)</li>
-      </ul>
-      <br>
+      <strong>Uvular R</strong> (the "gargling" R)<br>
+      Used at the <strong>beginning</strong> of syllables or <strong>after consonants</strong>: <u>R</u>ot, B<u>r</u>ot, f<u>r</u>agen, g<u>r</u>ün<br>
+      Keep tongue tip resting against lower teeth. Raise the back of your tongue toward the uvula. It's the sound you make when gargling without water.
+      <br><br>
+      <strong>Vocalic R</strong> (the open "o" sound)<br>
+      Used at the <strong>end</strong> of syllables, after vowels: Vat<u>er</u>, hi<u>er</u>, Uh<u>r</u>, d<u>er</u>, w<u>er</u><br>
+      It's like a very short, open "o" (IPA: /ɐ/). Don't pronounce any R sound at all - the tongue stays relaxed and low. "Vater" sounds like "Fah-tah" with a very short final vowel.
+      <br><br>
       <div style="background: #FFEBEE; padding: 10px; border-radius: 6px;">
         <strong>Note:</strong> The rolled/trilled R (like in Spanish or Italian) is not standard High German. While some regional dialects use it, in standard German pronunciation (Hochdeutsch) the uvular R is the norm.
       </div>
-      <p style="font-size: 12px; color: #666; margin: 10px 0 0 0;">80 words, 20 per session. Progress saved locally.</p>
+      <p style="font-size: 12px; color: #666; margin: 10px 0 0 0;">79 words, 20 per session. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
       <div class="progress-row">
         <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
         <span class="progress-score" id="scoreDisplay">0 correct</span>
-        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/79 learned</span>
       </div>
       <div class="progress-bar-wrap">
         <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
@@ -439,75 +431,74 @@
       const allWords = [
         // UVULAR R - at beginning or after consonant (40)
         { word: "rot", rtype: "uvular", file: "rot", en: "red", note: "R at start" },
-        { word: "Regen", rtype: "uvular", file: "Regen", en: "rain", note: "R at start" },
-        { word: "reisen", rtype: "uvular", file: "reisen", en: "to travel", note: "R at start" },
+        { word: "Regen", rtype: "uvular", file: "der_regen", en: "rain", note: "R at start" },
+        { word: "reisen", rtype: "uvular", file: "zu_reisen", en: "to travel", note: "R at start" },
         { word: "richtig", rtype: "uvular", file: "richtig", en: "correct", note: "R at start" },
-        { word: "rufen", rtype: "uvular", file: "rufen", en: "to call", note: "R at start" },
+        { word: "rufen", rtype: "uvular", file: "zu_rufen", en: "to call", note: "R at start" },
         { word: "ruhig", rtype: "uvular", file: "ruhig", en: "quiet", note: "R at start" },
-        { word: "Reis", rtype: "uvular", file: "Reis", en: "rice", note: "R at start" },
-        { word: "Recht", rtype: "uvular", file: "Recht", en: "right/law", note: "R at start" },
-        { word: "Rad", rtype: "uvular", file: "Rad", en: "wheel", note: "R at start" },
-        { word: "Raum", rtype: "uvular", file: "Raum", en: "room/space", note: "R at start" },
-        { word: "Brot", rtype: "uvular", file: "Brot", en: "bread", note: "R after consonant" },
-        { word: "Bruder", rtype: "uvular", file: "Bruder", en: "brother", note: "R after consonant" },
+        { word: "Reis", rtype: "uvular", file: "der_reis", en: "rice", note: "R at start" },
+        { word: "Recht", rtype: "uvular", file: "das_recht", en: "right/law", note: "R at start" },
+        { word: "Rad", rtype: "uvular", file: "das_rad", en: "wheel", note: "R at start" },
+        { word: "Raum", rtype: "uvular", file: "der_raum", en: "room/space", note: "R at start" },
+        { word: "Brot", rtype: "uvular", file: "das_brot", en: "bread", note: "R after consonant" },
+        { word: "Bruder", rtype: "uvular", file: "der_bruder", en: "brother", note: "R after consonant" },
         { word: "braun", rtype: "uvular", file: "braun", en: "brown", note: "R after consonant" },
-        { word: "bringen", rtype: "uvular", file: "bringen", en: "to bring", note: "R after consonant" },
-        { word: "Brille", rtype: "uvular", file: "Brille", en: "glasses", note: "R after consonant" },
-        { word: "fragen", rtype: "uvular", file: "fragen", en: "to ask", note: "R after consonant" },
-        { word: "Frau", rtype: "uvular", file: "Frau", en: "woman", note: "R after consonant" },
+        { word: "bringen", rtype: "uvular", file: "zu_bringen", en: "to bring", note: "R after consonant" },
+        { word: "Brille", rtype: "uvular", file: "die_brille", en: "glasses", note: "R after consonant" },
+        { word: "fragen", rtype: "uvular", file: "zu_fragen", en: "to ask", note: "R after consonant" },
+        { word: "Frau", rtype: "uvular", file: "die_frau", en: "woman", note: "R after consonant" },
         { word: "frei", rtype: "uvular", file: "frei", en: "free", note: "R after consonant" },
-        { word: "Freund", rtype: "uvular", file: "Freund", en: "friend", note: "R after consonant" },
+        { word: "Freund", rtype: "uvular", file: "der_freund", en: "friend", note: "R after consonant" },
         { word: "froh", rtype: "uvular", file: "froh", en: "happy", note: "R after consonant" },
         { word: "grün", rtype: "uvular", file: "gruen", en: "green", note: "R after consonant" },
         { word: "groß", rtype: "uvular", file: "gross", en: "big", note: "R after consonant" },
-        { word: "Gruppe", rtype: "uvular", file: "Gruppe", en: "group", note: "R after consonant" },
-        { word: "Gras", rtype: "uvular", file: "Gras", en: "grass", note: "R after consonant" },
-        { word: "Grund", rtype: "uvular", file: "Grund", en: "reason", note: "R after consonant" },
-        { word: "Preis", rtype: "uvular", file: "Preis", en: "price", note: "R after consonant" },
-        { word: "Problem", rtype: "uvular", file: "Problem", en: "problem", note: "R after consonant" },
-        { word: "Programm", rtype: "uvular", file: "Programm", en: "program", note: "R after consonant" },
-        { word: "Prozent", rtype: "uvular", file: "Prozent", en: "percent", note: "R after consonant" },
-        { word: "tragen", rtype: "uvular", file: "tragen", en: "to carry", note: "R after consonant" },
-        { word: "treffen", rtype: "uvular", file: "treffen", en: "to meet", note: "R after consonant" },
-        { word: "trinken", rtype: "uvular", file: "trinken", en: "to drink", note: "R after consonant" },
+        { word: "Gruppe", rtype: "uvular", file: "die_gruppe", en: "group", note: "R after consonant" },
+        { word: "Gras", rtype: "uvular", file: "das_gras", en: "grass", note: "R after consonant" },
+        { word: "Grund", rtype: "uvular", file: "der_grund", en: "reason", note: "R after consonant" },
+        { word: "Preis", rtype: "uvular", file: "der_preis", en: "price", note: "R after consonant" },
+        { word: "Problem", rtype: "uvular", file: "das_problem", en: "problem", note: "R after consonant" },
+        { word: "Programm", rtype: "uvular", file: "das_programm", en: "program", note: "R after consonant" },
+        { word: "Prozent", rtype: "uvular", file: "prozent", en: "percent", note: "R after consonant" },
+        { word: "tragen", rtype: "uvular", file: "zu_tragen", en: "to carry", note: "R after consonant" },
+        { word: "treffen", rtype: "uvular", file: "zu_treffen", en: "to meet", note: "R after consonant" },
+        { word: "trinken", rtype: "uvular", file: "zu_trinken", en: "to drink", note: "R after consonant" },
         { word: "trocken", rtype: "uvular", file: "trocken", en: "dry", note: "R after consonant" },
-        { word: "Traum", rtype: "uvular", file: "Traum", en: "dream", note: "R after consonant" },
+        { word: "Traum", rtype: "uvular", file: "der_traum", en: "dream", note: "R after consonant" },
         { word: "drei", rtype: "uvular", file: "drei", en: "three", note: "R after consonant" },
         { word: "drin", rtype: "uvular", file: "drin", en: "inside", note: "R after consonant" },
-        { word: "Schrift", rtype: "uvular", file: "Schrift", en: "writing", note: "R after consonant" },
-        { word: "sprechen", rtype: "uvular", file: "sprechen", en: "to speak", note: "R after consonant" },
-        { word: "Straße", rtype: "uvular", file: "Strasse", en: "street", note: "R after consonant" },
-        { word: "Strom", rtype: "uvular", file: "Strom", en: "electricity", note: "R after consonant" },
-        // VOCALIC R - at end of syllable (40)
-        { word: "Vater", rtype: "vocalic", file: "Vater", en: "father", note: "R at end" },
-        { word: "Mutter", rtype: "vocalic", file: "Mutter", en: "mother", note: "R at end" },
-        { word: "Bruder", rtype: "vocalic", file: "Bruder2", en: "brother", note: "final R vocalic" },
-        { word: "Schwester", rtype: "vocalic", file: "Schwester", en: "sister", note: "R at end" },
-        { word: "Lehrer", rtype: "vocalic", file: "Lehrer", en: "teacher", note: "R at end" },
-        { word: "Fahrer", rtype: "vocalic", file: "Fahrer", en: "driver", note: "R at end" },
-        { word: "Arbeiter", rtype: "vocalic", file: "Arbeiter", en: "worker", note: "R at end" },
-        { word: "Finger", rtype: "vocalic", file: "Finger", en: "finger", note: "R at end" },
-        { word: "Wasser", rtype: "vocalic", file: "Wasser", en: "water", note: "R at end" },
-        { word: "Zimmer", rtype: "vocalic", file: "Zimmer", en: "room", note: "R at end" },
+        { word: "Schrift", rtype: "uvular", file: "die_schrift", en: "writing", note: "R after consonant" },
+        { word: "sprechen", rtype: "uvular", file: "zu_sprechen", en: "to speak", note: "R after consonant" },
+        { word: "Straße", rtype: "uvular", file: "die_strasse", en: "street", note: "R after consonant" },
+        { word: "Strom", rtype: "uvular", file: "der_strom", en: "electricity", note: "R after consonant" },
+        // VOCALIC R - at end of syllable (39)
+        { word: "Vater", rtype: "vocalic", file: "der_vater", en: "father", note: "R at end" },
+        { word: "Mutter", rtype: "vocalic", file: "die_mutter", en: "mother", note: "R at end" },
+        { word: "Schwester", rtype: "vocalic", file: "die_schwester", en: "sister", note: "R at end" },
+        { word: "Lehrer", rtype: "vocalic", file: "der_lehrer", en: "teacher", note: "R at end" },
+        { word: "Fahrer", rtype: "vocalic", file: "der_fahrer", en: "driver", note: "R at end" },
+        { word: "Arbeiter", rtype: "vocalic", file: "der_arbeiter", en: "worker", note: "R at end" },
+        { word: "Finger", rtype: "vocalic", file: "der_finger", en: "finger", note: "R at end" },
+        { word: "Wasser", rtype: "vocalic", file: "das_wasser", en: "water", note: "R at end" },
+        { word: "Zimmer", rtype: "vocalic", file: "das_zimmer", en: "room", note: "R at end" },
         { word: "hier", rtype: "vocalic", file: "hier", en: "here", note: "R after vowel" },
-        { word: "Bier", rtype: "vocalic", file: "Bier", en: "beer", note: "R after vowel" },
-        { word: "Tier", rtype: "vocalic", file: "Tier", en: "animal", note: "R after vowel" },
+        { word: "Bier", rtype: "vocalic", file: "das_bier", en: "beer", note: "R after vowel" },
+        { word: "Tier", rtype: "vocalic", file: "das_tier", en: "animal", note: "R after vowel" },
         { word: "wir", rtype: "vocalic", file: "wir", en: "we", note: "R after vowel" },
         { word: "mir", rtype: "vocalic", file: "mir", en: "me (dat)", note: "R after vowel" },
         { word: "dir", rtype: "vocalic", file: "dir", en: "you (dat)", note: "R after vowel" },
-        { word: "Uhr", rtype: "vocalic", file: "Uhr", en: "clock", note: "R after vowel" },
+        { word: "Uhr", rtype: "vocalic", file: "die_uhr", en: "clock", note: "R after vowel" },
         { word: "nur", rtype: "vocalic", file: "nur", en: "only", note: "R after vowel" },
         { word: "der", rtype: "vocalic", file: "der", en: "the (masc)", note: "R after vowel" },
         { word: "wer", rtype: "vocalic", file: "wer", en: "who", note: "R after vowel" },
         { word: "sehr", rtype: "vocalic", file: "sehr", en: "very", note: "R after vowel" },
         { word: "mehr", rtype: "vocalic", file: "mehr", en: "more", note: "R after vowel" },
-        { word: "Jahr", rtype: "vocalic", file: "Jahr", en: "year", note: "R after vowel" },
+        { word: "Jahr", rtype: "vocalic", file: "das_jahr", en: "year", note: "R after vowel" },
         { word: "war", rtype: "vocalic", file: "war", en: "was", note: "R after vowel" },
         { word: "wahr", rtype: "vocalic", file: "wahr", en: "true", note: "R after vowel" },
         { word: "gar", rtype: "vocalic", file: "gar", en: "at all", note: "R after vowel" },
         { word: "vor", rtype: "vocalic", file: "vor", en: "before", note: "R after vowel" },
         { word: "für", rtype: "vocalic", file: "fuer", en: "for", note: "R after vowel" },
-        { word: "Tür", rtype: "vocalic", file: "Tuer", en: "door", note: "R after vowel" },
+        { word: "Tür", rtype: "vocalic", file: "die_tuer", en: "door", note: "R after vowel" },
         { word: "oder", rtype: "vocalic", file: "oder", en: "or", note: "R at end" },
         { word: "aber", rtype: "vocalic", file: "aber", en: "but", note: "R at end" },
         { word: "über", rtype: "vocalic", file: "ueber", en: "over", note: "R at end" },
@@ -515,10 +506,10 @@
         { word: "hinter", rtype: "vocalic", file: "hinter", en: "behind", note: "R at end" },
         { word: "immer", rtype: "vocalic", file: "immer", en: "always", note: "R at end" },
         { word: "besser", rtype: "vocalic", file: "besser", en: "better", note: "R at end" },
-        { word: "Wetter", rtype: "vocalic", file: "Wetter", en: "weather", note: "R at end" },
-        { word: "Körper", rtype: "vocalic", file: "Koerper", en: "body", note: "R at end" },
-        { word: "Sommer", rtype: "vocalic", file: "Sommer", en: "summer", note: "R at end" },
-        { word: "Nummer", rtype: "vocalic", file: "Nummer", en: "number", note: "R at end" }
+        { word: "Wetter", rtype: "vocalic", file: "das_wetter", en: "weather", note: "R at end" },
+        { word: "Körper", rtype: "vocalic", file: "der_koerper", en: "body", note: "R at end" },
+        { word: "Sommer", rtype: "vocalic", file: "der_sommer", en: "summer", note: "R at end" },
+        { word: "Nummer", rtype: "vocalic", file: "die_nummer", en: "number", note: "R at end" }
       ];
 
       const TOTAL_WORDS = allWords.length;
