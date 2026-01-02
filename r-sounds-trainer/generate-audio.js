@@ -12,7 +12,8 @@ function phraseToFilename(phrase) {
     .replace(/ö/g, 'oe')
     .replace(/ä/g, 'ae')
     .replace(/ß/g, 'ss')
-    .replace(/ /g, '_');
+    .replace(/ /g, '_')
+    .replace(/[?!]/g, '');
 }
 
 // All words with their phrases (nouns get articles, verbs get "zu", small words as-is)
