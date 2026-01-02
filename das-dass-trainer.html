@@ -38,77 +38,66 @@
       text-align: center;
     }
 
-    .sg-dark-subtitle {
-      font-size: 16px;
-      color: #6B4E8C;
-      margin-bottom: 25px;
-      text-align: center;
-      font-weight: 600;
-    }
 
-    .sg-dark-articles-mini {
+    .header-row {
       display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
-    .sg-dark-article {
-      font-size: 15px;
-      font-weight: 700;
-      padding: 12px 20px;
-      border-radius: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      color: white;
+    .header-btns {
+      display: flex;
+      gap: 8px;
     }
 
-    .sg-dark-article:nth-child(1) {
-      background: linear-gradient(135deg, #00BCD4, #00ACC1);
-    }
-
-    .sg-dark-article:nth-child(2) {
-      background: linear-gradient(135deg, #E91E63, #C2185B);
-    }
-
-    .sg-hide-text-btn {
+    .small-btn {
       background: linear-gradient(135deg, #E91E63, #9C27B0);
       color: white;
       border: none;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      display: block;
-      margin: 0 auto 25px;
-      transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
     }
 
-    .sg-hide-text-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-    }
+    .small-btn:hover { opacity: 0.9; }
 
-    .sg-dark-hidden {
-      display: none !important;
-    }
-
-    .sg-divider {
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
-      margin: 30px 0;
-      border-radius: 2px;
-    }
-
-    .sg-dark-note {
+    .info-section {
       background: #FFF3E0;
-      border-left: 4px solid #FF9800;
-      padding: 15px 20px;
+      padding: 12px 15px;
       border-radius: 8px;
-      margin: 20px 0;
-      font-size: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .key-hint {
+      font-size: 12px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 2px;
     }
 
     .trainer-section {
@@ -172,18 +161,11 @@
     .blank {
       display: inline-block;
       min-width: 80px;
-      border-bottom: 3px solid #E91E63;
       margin: 0 5px;
       color: #E91E63;
       font-weight: 800;
     }
 
-    .tip-text {
-      font-size: 14px;
-      color: #9E9E9E;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
 
     .button-grid {
       display: grid;
@@ -250,14 +232,6 @@
       75% { transform: translateX(10px); }
     }
 
-    .shortcut {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #9E9E9E;
-    }
 
     .feedback {
       text-align: center;
@@ -351,37 +325,34 @@
 </head>
 <body>
   <div class="sg-unified-container">
-    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
-
-    <div id="infoSection">
+    <div class="header-row">
       <h1 class="sg-dark-title">das oder dass?</h1>
-      <p class="sg-dark-subtitle">Learn when to use "das" vs "dass" in German</p>
-
-      <div class="sg-dark-articles-mini">
-        <div class="sg-dark-article">das (Article/Pronoun)</div>
-        <div class="sg-dark-article">dass (Conjunction)</div>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
       </div>
-
-      <p>
-        One of the most common spelling mistakes in German is confusing <strong>"das"</strong> and <strong>"dass"</strong>.
-      </p>
-
-      <div class="sg-dark-note">
-        <strong>das</strong> = Article (das Buch) or relative/demonstrative pronoun (das Buch, das ich lese)<br>
-        <strong>dass</strong> = Conjunction introducing a subordinate clause (Ich denke, dass...)
-      </div>
-
-      <p>
-        <strong>Tip:</strong> If you can replace "das" with "dieses", "jenes", or "welches", use <strong>das</strong>.
-        If not, use <strong>dass</strong>.
-      </p>
-
-      <p>
-        <strong>Keyboard shortcuts:</strong> A = das, S = dass
-      </p>
     </div>
 
-    <div id="divider" class="sg-divider"></div>
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>F</kbd> das &nbsp;
+      <kbd>J</kbd> dass
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>Task:</strong> Fill in the blank with "das" or "dass"
+      <br><br>
+      <strong>No sound difference!</strong> "das" and "dass" are pronounced exactly the same. This is a spelling exercise only.
+      <br><br>
+      <strong>das</strong> = article (das Buch) or pronoun — points at <strong>s</strong>tuff<br>
+      <strong>dass</strong> = conjunction — joins <strong>s</strong>entence<strong>s</strong>
+      <br><br>
+      <strong>The trick:</strong> Can you replace it with "dieses" or "welches"?<br>
+      Yes → <strong>das</strong> (Das Buch, das ich lese → Das Buch, welches ich lese)<br>
+      No → <strong>dass</strong> (Ich weiß, dass du recht hast → "welches" doesn't work)
+      <br><br>
+      <strong>Another way:</strong> Does it refer to a noun? → das. Does it just connect clauses? → dass.
+      <p style="font-size: 12px; color: #666; margin: 10px 0 0 0;">100 sentences, 20 per session. Progress saved locally.</p>
+    </div>
 
     <div class="trainer-section">
       <div id="exerciseArea">
@@ -399,17 +370,16 @@
           <div class="sentence-display" id="sentenceDisplay">
             Ich weiß, <span class="blank">___</span> du recht hast.
           </div>
-          <div class="tip-text">Can you replace it with "dieses/jenes/welches"?</div>
         </div>
 
         <div class="button-grid">
           <button class="answer-btn das-btn" onclick="checkAnswer('das')" id="btnDas">
             das
-            <span class="shortcut">(A)</span>
+            <span class="key-hint">F</span>
           </button>
           <button class="answer-btn dass-btn" onclick="checkAnswer('dass')" id="btnDass">
             dass
-            <span class="shortcut">(S)</span>
+            <span class="key-hint">J</span>
           </button>
         </div>
 
@@ -701,31 +671,35 @@
       }
     }
 
-    function toggleInstructions() {
-      const info = document.getElementById('infoSection');
-      const divider = document.getElementById('divider');
-      const btn = document.getElementById('hideTextBtn');
+    window.toggleInfo = function() {
+      const sec = document.getElementById('infoSection');
+      sec.classList.toggle('hidden');
+      document.getElementById('toggleBtn').innerHTML = '<u>I</u>nfo';
+    };
 
-      if (info.classList.contains('sg-dark-hidden')) {
-        info.classList.remove('sg-dark-hidden');
-        divider.classList.remove('sg-dark-hidden');
-        btn.textContent = 'Hide Instructions';
-      } else {
-        info.classList.add('sg-dark-hidden');
-        divider.classList.add('sg-dark-hidden');
-        btn.textContent = 'Show Instructions';
-      }
-    }
+    window.toggleShortcuts = function() {
+      const sec = document.getElementById('shortcutsSection');
+      sec.classList.toggle('hidden');
+      document.getElementById('shortcutsBtn').innerHTML = '<u>K</u>eys';
+    };
 
     document.addEventListener('keydown', (e) => {
       if (document.getElementById('exerciseArea').classList.contains('hidden')) return;
 
       const key = e.key.toLowerCase();
 
-      if (key === 'a' && !answered) {
+      if (key === 'f' && !answered) {
+        e.preventDefault();
         checkAnswer('das');
-      } else if (key === 's' && !answered) {
+      } else if (key === 'j' && !answered) {
+        e.preventDefault();
         checkAnswer('dass');
+      } else if (key === 'k') {
+        e.preventDefault();
+        toggleShortcuts();
+      } else if (key === 'i') {
+        e.preventDefault();
+        toggleInfo();
       }
     });
 
