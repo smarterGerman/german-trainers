@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>-ig or -ich? Listening Trainer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    /* Progress */
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    /* Question area */
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .hint-btn {
+      background: #FF9800;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 15px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hint-btn:hover { background: #F57C00; }
+
+    /* Word reveal - fixed height container */
+    .reveal-container {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    /* Button row with nav arrows */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .ending-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .ending-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .ending-btn.ig { color: #00BCD4; }
+    .ending-btn.ich { color: #FF9800; }
+    .ending-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .ending-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .ending-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .key-hint {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.5;
+      color: inherit;
+    }
+
+    /* Results */
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 22px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .ending-btn { padding: 14px 25px; font-size: 22px; }
+      .word-reveal { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <h1 class="title">-ig or -ich?</h1>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>H</kbd> Hint
+      <kbd>F</kbd> -ig
+      <kbd>J</kbd> -ich
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>The trick:</strong> You cannot hear the difference between <strong>-ig</strong> and <strong>-ich</strong> in isolation.
+      But if you add an <strong>-e</strong> (like in "eine eis<u>ig</u>e Nacht"), the ending becomes audible:
+      <strong>-ig</strong> sounds like "ige" while <strong>-ich</strong> sounds like "iche".
+      Use the <strong><u>H</u>int</strong> button to hear the declined form.
+      <p style="font-size: 12px; color: #666; margin: 10px 0 0 0;">70 words, 20 per session. Progress saved locally.</p>
+    </div>
+
+    <!-- Exercise Area -->
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/70 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playBase()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <button class="hint-btn" onclick="playHint()" id="hintBtn"><u>H</u>int</button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="ending-btn ig" onclick="checkAnswer('ig')" id="btnIg">-ig<span class="key-hint">F</span></button>
+        <button class="ending-btn ich" onclick="checkAnswer('ich')" id="btnIch">-ich<span class="key-hint">J</span></button>
+      </div>
+
+    </div>
+
+    <!-- Results Area -->
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">40</span>/<span id="resultTotal">40</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear +e form):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'ig-ich-trainer/audio/base/';
+      const AUDIO_HINT = 'ig-ich-trainer/audio/hint/';
+      const STORAGE_KEY = 'ig_ich_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank with translations (70 words)
+      const allWords = [
+        { word: "billig", ending: "ig", file: "billig", en: "cheap" },
+        { word: "richtig", ending: "ig", file: "richtig", en: "correct" },
+        { word: "wichtig", ending: "ig", file: "wichtig", en: "important" },
+        { word: "fertig", ending: "ig", file: "fertig", en: "finished" },
+        { word: "ruhig", ending: "ig", file: "ruhig", en: "calm, quiet" },
+        { word: "lustig", ending: "ig", file: "lustig", en: "funny" },
+        { word: "traurig", ending: "ig", file: "traurig", en: "sad" },
+        { word: "hungrig", ending: "ig", file: "hungrig", en: "hungry" },
+        { word: "durstig", ending: "ig", file: "durstig", en: "thirsty" },
+        { word: "sonnig", ending: "ig", file: "sonnig", en: "sunny" },
+        { word: "windig", ending: "ig", file: "windig", en: "windy" },
+        { word: "schmutzig", ending: "ig", file: "schmutzig", en: "dirty" },
+        { word: "schwierig", ending: "ig", file: "schwierig", en: "difficult" },
+        { word: "fleißig", ending: "ig", file: "fleissig", en: "diligent" },
+        { word: "mutig", ending: "ig", file: "mutig", en: "brave" },
+        { word: "eilig", ending: "ig", file: "eilig", en: "urgent" },
+        { word: "häufig", ending: "ig", file: "haeufig", en: "frequent" },
+        { word: "nötig", ending: "ig", file: "noetig", en: "necessary" },
+        { word: "gültig", ending: "ig", file: "gueltig", en: "valid" },
+        { word: "salzig", ending: "ig", file: "salzig", en: "salty" },
+        { word: "würzig", ending: "ig", file: "wuerzig", en: "spicy" },
+        { word: "fettig", ending: "ig", file: "fettig", en: "greasy" },
+        { word: "klebrig", ending: "ig", file: "klebrig", en: "sticky" },
+        { word: "eisig", ending: "ig", file: "eisig", en: "icy" },
+        { word: "regelmäßig", ending: "ig", file: "regelmaessig", en: "regular" },
+        { word: "zufällig", ending: "ig", file: "zufaellig", en: "random" },
+        { word: "einzig", ending: "ig", file: "einzig", en: "only" },
+        { word: "übrig", ending: "ig", file: "uebrig", en: "remaining" },
+        { word: "künftig", ending: "ig", file: "kuenftig", en: "future" },
+        { word: "endgültig", ending: "ig", file: "endgueltig", en: "final" },
+        { word: "abhängig", ending: "ig", file: "abhaengig", en: "dependent" },
+        { word: "unabhängig", ending: "ig", file: "unabhaengig", en: "independent" },
+        { word: "vernünftig", ending: "ig", file: "vernuenftig", en: "reasonable" },
+        { word: "zuverlässig", ending: "ig", file: "zuverlaessig", en: "reliable" },
+        { word: "sorgfältig", ending: "ig", file: "sorgfaeltig", en: "careful" },
+        { word: "neugierig", ending: "ig", file: "neugierig", en: "curious" },
+        { word: "geduldig", ending: "ig", file: "geduldig", en: "patient" },
+        { word: "natürlich", ending: "ich", file: "natuerlich", en: "natural" },
+        { word: "möglich", ending: "ich", file: "moeglich", en: "possible" },
+        { word: "unmöglich", ending: "ich", file: "unmoeglich", en: "impossible" },
+        { word: "persönlich", ending: "ich", file: "persoenlich", en: "personal" },
+        { word: "freundlich", ending: "ich", file: "freundlich", en: "friendly" },
+        { word: "ehrlich", ending: "ich", file: "ehrlich", en: "honest" },
+        { word: "ähnlich", ending: "ich", file: "aehnlich", en: "similar" },
+        { word: "öffentlich", ending: "ich", file: "oeffentlich", en: "public" },
+        { word: "endlich", ending: "ich", file: "endlich", en: "finally" },
+        { word: "deutlich", ending: "ich", file: "deutlich", en: "clear" },
+        { word: "wirklich", ending: "ich", file: "wirklich", en: "really" },
+        { word: "glücklich", ending: "ich", file: "gluecklich", en: "happy" },
+        { word: "fröhlich", ending: "ich", file: "froehlich", en: "cheerful" },
+        { word: "höflich", ending: "ich", file: "hoeflich", en: "polite" },
+        { word: "peinlich", ending: "ich", file: "peinlich", en: "embarrassing" },
+        { word: "gefährlich", ending: "ich", file: "gefaehrlich", en: "dangerous" },
+        { word: "lächerlich", ending: "ich", file: "laecherlich", en: "ridiculous" },
+        { word: "schrecklich", ending: "ich", file: "schrecklich", en: "terrible" },
+        { word: "menschlich", ending: "ich", file: "menschlich", en: "human" },
+        { word: "ordentlich", ending: "ich", file: "ordentlich", en: "tidy" },
+        { word: "unordentlich", ending: "ich", file: "unordentlich", en: "messy" },
+        { word: "wahrscheinlich", ending: "ich", file: "wahrscheinlich", en: "probably" },
+        { word: "ungewöhnlich", ending: "ich", file: "ungewoehnlich", en: "unusual" },
+        { word: "üblich", ending: "ich", file: "ueblich", en: "usual" },
+        { word: "pünktlich", ending: "ich", file: "puenktlich", en: "punctual" },
+        { word: "eigentlich", ending: "ich", file: "eigentlich", en: "actually" },
+        { word: "selbstverständlich", ending: "ich", file: "selbstverstaendlich", en: "of course" },
+        { word: "verantwortlich", ending: "ich", file: "verantwortlich", en: "responsible" },
+        { word: "verständlich", ending: "ich", file: "verstaendlich", en: "understandable" },
+        { word: "unverständlich", ending: "ich", file: "unverstaendlich", en: "incomprehensible" },
+        { word: "nützlich", ending: "ich", file: "nuetzlich", en: "useful" },
+        { word: "schädlich", ending: "ich", file: "schaedlich", en: "harmful" },
+        { word: "wesentlich", ending: "ich", file: "wesentlich", en: "essential" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      // Progress tracking: { mastered: [files], wrong: [files], unseen: [files] }
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioBase = null;
+      let audioHint = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            // Validate structure
+            if (p.mastered && p.wrong && p.unseen) return p;
+          }
+        } catch (e) {}
+        // Initialize fresh
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.file)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByFile(file) {
+        return allWords.find(w => w.file === file);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        // Priority: wrong words first, then unseen, then mastered (for review)
+        let pool = [];
+
+        // Add all wrong words (high priority)
+        const wrongWords = progress.wrong.map(getWordByFile).filter(Boolean);
+        pool.push(...wrongWords);
+
+        // Add unseen words
+        const unseenWords = progress.unseen.map(getWordByFile).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+
+        // If we still need more, add mastered words (focus on wrong ones more)
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByFile).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+
+        // Take SESSION_SIZE, shuffle the selection
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioBase = new Audio(AUDIO_BASE + ex.file + '.mp3');
+        audioHint = new Audio(AUDIO_HINT + ex.file + '.mp3');
+      }
+
+      window.playBase = function() {
+        if (audioBase) {
+          audioBase.currentTime = 0;
+          audioBase.play().catch(() => {});
+          document.getElementById('playBtn').classList.add('speaking');
+          audioBase.onended = () => document.getElementById('playBtn').classList.remove('speaking');
+        }
+      };
+
+      window.playHint = function() {
+        if (audioHint) {
+          audioHint.currentTime = 0;
+          audioHint.play().catch(() => {});
+        }
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.resetProgress = function() {
+        if (confirm('Reset all progress? This cannot be undone.')) {
+          progress = {
+            mastered: [],
+            wrong: [],
+            unseen: allWords.map(w => w.file)
+          };
+          saveProgress();
+          startSession();
+        }
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnIg = document.getElementById('btnIg');
+        const btnIch = document.getElementById('btnIch');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          btnIg.disabled = btnIch.disabled = true;
+          btnIg.classList.remove('correct', 'wrong');
+          btnIch.classList.remove('correct', 'wrong');
+
+          reveal.textContent = ex.word;
+          reveal.classList.remove('hidden');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+
+          if (ex.ending === 'ig') {
+            btnIg.classList.add('correct');
+            if (prev !== 'ig') btnIch.classList.add('wrong');
+          } else {
+            btnIch.classList.add('correct');
+            if (prev !== 'ich') btnIg.classList.add('wrong');
+          }
+        } else {
+          answered = false;
+          btnIg.disabled = btnIch.disabled = false;
+          btnIg.classList.remove('correct', 'wrong');
+          btnIch.classList.remove('correct', 'wrong');
+          reveal.classList.add('hidden');
+          transReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playBase();
+          }, 200);
+        }
+
+      }
+
+      function recordAnswer(word, correct) {
+        const file = word.file;
+
+        // Remove from all lists first
+        progress.mastered = progress.mastered.filter(f => f !== file);
+        progress.wrong = progress.wrong.filter(f => f !== file);
+        progress.unseen = progress.unseen.filter(f => f !== file);
+
+        // Add to appropriate list
+        if (correct) {
+          progress.mastered.push(file);
+        } else {
+          progress.wrong.push(file);
+        }
+
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.ending;
+        answers[idx] = sel;
+
+        const btnIg = document.getElementById('btnIg');
+        const btnIch = document.getElementById('btnIch');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        btnIg.disabled = btnIch.disabled = true;
+        reveal.textContent = ex.word;
+        reveal.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+
+        if (ex.ending === 'ig') {
+          btnIg.classList.add('correct');
+          if (!correct) btnIch.classList.add('wrong');
+        } else {
+          btnIch.classList.add('correct');
+          if (!correct) btnIg.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        // Update persistent progress
+        recordAnswer(ex, correct);
+
+        // Auto-advance after 1 second
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      };
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (-${w.ending}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWord('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.playWord = function(file) {
+        new Audio(AUDIO_HINT + file + '.mp3').play().catch(() => {});
+      };
+
+      window.toggleInfo = function() {
+        document.getElementById('infoSection').classList.toggle('hidden');
+        document.getElementById('toggleBtn').innerHTML = '<u>I</u>nfo';
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+        document.getElementById('shortcutsBtn').innerHTML = '<u>K</u>eys';
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const k = e.key;
+        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playBase(); }
+        else if (k.toLowerCase() === 'h') { e.preventDefault(); playHint(); }
+        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('ig'); }
+        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('ich'); }
+        else if (k.toLowerCase() === 'k') { e.preventDefault(); toggleShortcuts(); }
+        else if (k.toLowerCase() === 'i') { e.preventDefault(); toggleInfo(); }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>
