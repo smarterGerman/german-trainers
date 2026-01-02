@@ -82,7 +82,7 @@ const words = [
   { word: "mehr", phrase: "noch mehr", rtype: "vocalic" },
   { word: "Jahr", phrase: "das Jahr", rtype: "vocalic" },
   { word: "war", phrase: "das war gut", rtype: "vocalic" },
-  { word: "wahr", phrase: "ganz wahr", rtype: "vocalic" },
+  { word: "wahr", phrase: "echt wahr?", rtype: "vocalic" },
   { word: "gar", phrase: "gar nicht", rtype: "vocalic" },
   { word: "vor", phrase: "vor dem Haus", rtype: "vocalic" },
   { word: "für", phrase: "für dich", rtype: "vocalic" },
