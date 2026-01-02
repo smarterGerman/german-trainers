@@ -233,25 +233,6 @@
     }
 
 
-    .feedback {
-      text-align: center;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 700;
-      margin-top: 20px;
-      animation: fadeIn 0.3s;
-    }
-
-    .feedback.correct {
-      background: #E8F5E9;
-      color: #2E7D32;
-    }
-
-    .feedback.wrong {
-      background: #FFEBEE;
-      color: #C62828;
-    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
@@ -383,7 +364,6 @@
           </button>
         </div>
 
-        <div id="feedback" class="feedback hidden"></div>
       </div>
 
       <div id="resultsArea" class="results hidden">
@@ -418,10 +398,10 @@
       { sentence: "Sie merkt, ___ etwas nicht stimmt.", answer: "dass", id: 13 },
       { sentence: "Ich habe gehört, ___ du umziehst.", answer: "dass", id: 14 },
       { sentence: "Es ist schade, ___ du nicht kommen kannst.", answer: "dass", id: 15 },
-      { sentence: "Ich finde, ___ das eine gute Idee ist.", answer: "dass", id: 16 },
+      { sentence: "Ich finde, ___ es eine gute Idee ist.", answer: "dass", id: 16 },
       { sentence: "Er vergisst, ___ er versprochen hat.", answer: "dass", id: 17 },
       { sentence: "Sie erwartet, ___ du anrufst.", answer: "dass", id: 18 },
-      { sentence: "Ich bezweifle, ___ das stimmt.", answer: "dass", id: 19 },
+      { sentence: "Ich bezweifle, ___ es stimmt.", answer: "dass", id: 19 },
       { sentence: "Es ist klar, ___ wir gehen müssen.", answer: "dass", id: 20 },
       { sentence: "Ich hoffe, ___ du glücklich bist.", answer: "dass", id: 21 },
       { sentence: "Er bemerkt, ___ sie traurig ist.", answer: "dass", id: 22 },
@@ -458,8 +438,8 @@
       { sentence: "___ Kind spielt im Garten.", answer: "das", id: 52 },
       { sentence: "___ Auto ist rot.", answer: "das", id: 53 },
       { sentence: "___ Haus ist sehr alt.", answer: "das", id: 54 },
-      { sentence: "Ich lese ___ Buch, ___ du empfohlen hast.", answer: "das", id: 55 },
-      { sentence: "___ Mädchen, ___ dort steht, ist meine Schwester.", answer: "das", id: 56 },
+      { sentence: "Ich lese ___ Buch gerade.", answer: "das", id: 55 },
+      { sentence: "___ Mädchen heißt Anna.", answer: "das", id: 56 },
       { sentence: "___ ist eine gute Idee.", answer: "das", id: 57 },
       { sentence: "___ habe ich nicht gewusst.", answer: "das", id: 58 },
       { sentence: "___ stimmt nicht.", answer: "das", id: 59 },
@@ -470,8 +450,8 @@
       { sentence: "___ Fenster ist offen.", answer: "das", id: 64 },
       { sentence: "___ Kleid gefällt mir.", answer: "das", id: 65 },
       { sentence: "___ Foto ist schön.", answer: "das", id: 66 },
-      { sentence: "___ ist der Mann, ___ ich meine.", answer: "das", id: 67 },
-      { sentence: "___ Tier, ___ ich sah, war ein Fuchs.", answer: "das", id: 68 },
+      { sentence: "___ ist der Mann von nebenan.", answer: "das", id: 67 },
+      { sentence: "___ Tier war ein Fuchs.", answer: "das", id: 68 },
       { sentence: "___ Ergebnis überrascht mich.", answer: "das", id: 69 },
       { sentence: "___ weiß ich schon.", answer: "das", id: 70 },
       { sentence: "___ Leben ist kurz.", answer: "das", id: 71 },
@@ -489,7 +469,7 @@
       { sentence: "___ Geheimnis bleibt unter uns.", answer: "das", id: 83 },
       { sentence: "___ Thema interessiert mich.", answer: "das", id: 84 },
       { sentence: "___ war ein Fehler.", answer: "das", id: 85 },
-      { sentence: "___ Kind, ___ weint, ist müde.", answer: "das", id: 86 },
+      { sentence: "___ Kind ist müde.", answer: "das", id: 86 },
       { sentence: "___ Zimmer ist sauber.", answer: "das", id: 87 },
       { sentence: "___ Wasser ist kalt.", answer: "das", id: 88 },
       { sentence: "___ Radio spielt Musik.", answer: "das", id: 89 },
@@ -585,8 +565,6 @@
       const display = sentence.sentence.replace(/_+/g, '<span class="blank">___</span>');
       document.getElementById('sentenceDisplay').innerHTML = display;
 
-      document.getElementById('feedback').classList.add('hidden');
-
       const progress = ((currentIndex) / SESSION_SIZE) * 100;
       document.getElementById('progressBar').style.width = progress + '%';
 
@@ -613,23 +591,14 @@
         selectedBtn.classList.add('wrong');
       }
 
-      const feedback = document.getElementById('feedback');
-      const fullSentence = sentence.sentence.replace(/_+/g, sentence.answer);
-
       if (isCorrect) {
         sessionCorrect++;
-        feedback.className = 'feedback correct';
-        feedback.textContent = 'Correct! ' + fullSentence;
-
         if (!mastered.includes(sentence.id)) {
           mastered.push(sentence.id);
           wrong = wrong.filter(id => id !== sentence.id);
           unseen = unseen.filter(id => id !== sentence.id);
         }
       } else {
-        feedback.className = 'feedback wrong';
-        feedback.textContent = 'Wrong! Correct: ' + fullSentence;
-
         if (!wrong.includes(sentence.id)) {
           wrong.push(sentence.id);
           mastered = mastered.filter(id => id !== sentence.id);
@@ -637,7 +606,6 @@
         }
       }
 
-      feedback.classList.remove('hidden');
       saveProgress();
       document.getElementById('masteredCount').textContent = mastered.length;
 
