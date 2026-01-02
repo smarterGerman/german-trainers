@@ -531,7 +531,18 @@
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved) {
             const p = JSON.parse(saved);
-            if (p.mastered && p.wrong && p.unseen) return p;
+            if (p.mastered && p.wrong && p.unseen) {
+              // Migrate old file names (remove ? and ! that were in old filenames)
+              const validFiles = new Set(allWords.map(w => w.file));
+              const migrate = arr => arr.map(f => f.replace(/[?!]/g, '')).filter(f => validFiles.has(f));
+              p.mastered = migrate(p.mastered);
+              p.wrong = migrate(p.wrong);
+              p.unseen = migrate(p.unseen);
+              // Add any missing files to unseen
+              const allKnown = new Set([...p.mastered, ...p.wrong, ...p.unseen]);
+              allWords.forEach(w => { if (!allKnown.has(w.file)) p.unseen.push(w.file); });
+              return p;
+            }
           }
         } catch (e) {}
         return {
