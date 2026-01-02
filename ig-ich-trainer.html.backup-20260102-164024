@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Adjective Endings: -ig or -ich? (Listening)</title>
+  <style>
+    /* Pink Frame Light Mode */
+    body {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .course-mainbar,
+    .lecture-content,
+    .lecture-container,
+    .course-sidebar,
+    .course-block,
+    #lecture_heading,
+    .fedora-navbar,
+    .lecture-left,
+    .lecture-nav,
+    header.full-width.half-height.is-at-top,
+    .col-sm-12.course-section,
+    .course-sidebar-head,
+    .course-progress.lecture-page.is-at-top {
+      background: #FFCCE0 !important;
+      color: #2C2C2C !important;
+    }
+
+    .course-sidebar {
+      background: #FAFAFA !important;
+      border-left: 1px solid #E0E0E0 !important;
+    }
+
+    /* Unified Widget Container */
+    .sg-unified-container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 22px;
+      padding: 35px;
+      max-width: 900px;
+      margin: 10px auto;
+      line-height: 1.6;
+      box-shadow: 0 8px 30px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .sg-dark-title {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .sg-dark-subtitle {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .sg-hide-text-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 25px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+
+    .sg-hide-text-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    }
+
+    .sg-dark-hidden {
+      display: none !important;
+    }
+
+    .sg-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFA8CC, transparent);
+      margin: 30px 0;
+      border-radius: 2px;
+    }
+
+    .sg-dark-note {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    .sg-endings-mini {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .sg-ending-badge {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+
+    .sg-ending-badge.ig {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+    }
+
+    .sg-ending-badge.ich {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #6B4E8C;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #E91E63;
+    }
+
+    /* Trainer Section */
+    .trainer-section {
+      margin-top: 30px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .progress-current {
+      color: #6B4E8C;
+    }
+
+    .progress-score {
+      color: #2C2C2C;
+    }
+
+    .progress-bar-container {
+      height: 14px;
+      background: #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    /* Audio play button */
+    .play-audio-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      font-size: 48px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .play-audio-btn:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(156, 39, 176, 0.5);
+    }
+
+    .play-audio-btn:focus {
+      outline: 3px solid #E91E63;
+      outline-offset: 3px;
+    }
+
+    .play-audio-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .play-audio-btn.speaking {
+      animation: pulse-speaking 1s infinite;
+    }
+
+    @keyframes pulse-speaking {
+      0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4); }
+      50% { transform: scale(1.08); box-shadow: 0 8px 30px rgba(156, 39, 176, 0.6); }
+    }
+
+    .listen-prompt {
+      font-size: 18px;
+      color: #6B4E8C;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .listen-hint {
+      font-size: 14px;
+      color: #9E9E9E;
+      margin-bottom: 25px;
+    }
+
+    /* Word reveal after answer */
+    .word-reveal {
+      font-size: 48px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 20px 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .ending-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 25px 20px;
+      border-radius: 18px;
+      font-size: 32px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .ending-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      border-color: #9C27B0;
+    }
+
+    .ending-btn:focus {
+      outline: 3px solid #9C27B0;
+      outline-offset: 2px;
+    }
+
+    .ending-btn.ig {
+      color: #00BCD4;
+    }
+
+    .ending-btn.ich {
+      color: #FF9800;
+    }
+
+    .ending-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .ending-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+      animation: pulse 0.5s;
+    }
+
+    .ending-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+      animation: shake 0.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shortcut {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9E9E9E;
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 20px;
+      animation: fadeIn 0.3s;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .nav-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 3px 10px rgba(156, 39, 176, 0.3);
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .nav-btn:focus {
+      outline: 3px solid #E91E63;
+      outline-offset: 2px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Results Section */
+    .results-section {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .results-section h2 {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .percentage {
+      font-size: 72px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      color: #6B4E8C;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 12px;
+      padding: 20px 30px;
+      margin: 25px 0;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 16px;
+    }
+
+    .incorrect-item:last-child {
+      border-bottom: none;
+    }
+
+    .incorrect-word {
+      font-weight: 700;
+      color: #2C2C2C;
+    }
+
+    .incorrect-ending {
+      font-weight: 700;
+      color: #FF9800;
+    }
+
+    .incorrect-play-btn {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+
+    .incorrect-play-btn:hover {
+      background: #7B1FA2;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .restart-btn:focus {
+      outline: 3px solid #00BCD4;
+      outline-offset: 2px;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+    }
+
+    .retry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+    }
+
+    .retry-btn:focus {
+      outline: 3px solid #FF9800;
+      outline-offset: 2px;
+    }
+
+    .keyboard-hint {
+      font-size: 13px;
+      color: #9E9E9E;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .keyboard-hint kbd {
+      background: #F5F5F5;
+      border: 1px solid #E0E0E0;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    /* TTS Warning */
+    .tts-warning {
+      background: #FFEBEE;
+      border: 2px solid #F44336;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tts-warning h3 {
+      color: #C62828;
+      margin-bottom: 10px;
+    }
+
+    .tts-warning p {
+      color: #2C2C2C;
+      margin: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .sg-unified-container {
+        padding: 20px;
+      }
+
+      .sg-dark-title {
+        font-size: 28px;
+      }
+
+      .play-audio-btn {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+      }
+
+      .word-reveal {
+        font-size: 36px;
+      }
+
+      .ending-btn {
+        font-size: 24px;
+        padding: 20px 15px;
+      }
+
+      .percentage {
+        font-size: 56px;
+      }
+
+      .stats-container {
+        gap: 15px;
+      }
+
+      .stat-box {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sg-unified-container">
+    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn" aria-expanded="true" aria-controls="infoSection">Hide Instructions</button>
+
+    <div id="infoSection">
+      <h1 class="sg-dark-title">-ig or -ich?</h1>
+      <p class="sg-dark-subtitle">Listening exercise for German adjective endings</p>
+
+      <div class="sg-endings-mini">
+        <div class="sg-ending-badge ig" role="text" aria-label="ig ending">-ig</div>
+        <div class="sg-ending-badge ich" role="text" aria-label="ich ending">-ich</div>
+      </div>
+
+      <p>
+        German adjectives ending in <strong>-ig</strong> and <strong>-ich</strong> sound almost identical when spoken.
+        Listen carefully to the word, then decide which ending it has. The spelling will be revealed after you answer.
+      </p>
+
+      <div class="sg-dark-note">
+        <strong>How it works:</strong> Click the play button (or press <kbd>Space</kbd>) to hear the word.
+        Then choose <strong>-ig</strong> or <strong>-ich</strong>. You can replay the audio as many times as you need before answering.
+      </div>
+    </div>
+
+    <div id="dividerLine" class="sg-divider"></div>
+
+    <!-- TTS Warning (shown if not supported) -->
+    <div id="ttsWarning" class="tts-warning hidden">
+      <h3>Audio Not Available</h3>
+      <p>Your browser does not support German text-to-speech. Please use Chrome, Edge, or Safari for the best experience.</p>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-container" aria-label="Your statistics">
+      <div class="stat-box">
+        <div class="stat-label">Total Attempts</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Correct</div>
+        <div class="stat-value" id="statCorrect">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Accuracy</div>
+        <div class="stat-value" id="statAccuracy">0%</div>
+      </div>
+    </div>
+
+    <!-- Trainer Section -->
+    <div class="trainer-section">
+      <!-- Exercise Area -->
+      <div id="exerciseArea">
+        <div class="progress-info">
+          <span class="progress-current">Question <span id="currentQ">1</span> of <span id="totalQ">40</span></span>
+          <span class="progress-score">Score: <span id="sessionScore" style="color: #FF9800; font-weight: 700;">0</span></span>
+        </div>
+        <div class="progress-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-area">
+          <p class="listen-prompt">Listen to the adjective:</p>
+
+          <button class="play-audio-btn" onclick="playCurrentWord()" id="playBtn" aria-label="Play audio (Space)">
+            <span id="playIcon">&#9654;</span>
+          </button>
+
+          <p class="listen-hint" id="listenHint">Click or press Space to play</p>
+
+          <!-- Word revealed after answer -->
+          <div id="wordReveal" class="word-reveal hidden" aria-live="polite"></div>
+        </div>
+
+        <div class="button-grid" role="group" aria-label="Choose the correct ending">
+          <button class="ending-btn ig" onclick="checkAnswer('ig')" id="btnIg" aria-label="ending ig">
+            -ig<span class="shortcut">(I)</span>
+          </button>
+          <button class="ending-btn ich" onclick="checkAnswer('ich')" id="btnIch" aria-label="ending ich">
+            -ich<span class="shortcut">(C)</span>
+          </button>
+        </div>
+
+        <div id="feedback" class="feedback hidden" aria-live="assertive"></div>
+
+        <div class="nav-controls">
+          <button class="nav-btn" onclick="goToPrevious()" id="prevBtn" disabled aria-label="Previous question (Backspace)">Previous</button>
+          <button class="nav-btn" onclick="goToNext()" id="nextBtn" disabled aria-label="Next question (Enter)">Next</button>
+        </div>
+
+        <div class="keyboard-hint">
+          <kbd>Space</kbd> = Play | <kbd>I</kbd> = -ig | <kbd>C</kbd> = -ich | <kbd>Enter</kbd> = Next | <kbd>Backspace</kbd> = Previous
+        </div>
+      </div>
+
+      <!-- Results Area -->
+      <div id="resultsArea" class="results-section hidden">
+        <h2>Results</h2>
+        <div id="resultPercentage" class="percentage">100%</div>
+        <div class="result-text">
+          You got <span id="resultScore">40</span> out of <span id="resultTotal">40</span> correct!
+        </div>
+
+        <div id="incorrectSection" class="incorrect-list hidden">
+          <h3>Words to Review (click to hear):</h3>
+          <div id="incorrectItems"></div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="restart-btn" onclick="startNewSession()" aria-label="Start a new practice session">New Session</button>
+          <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn" aria-label="Practice only the words you got wrong">Retry Incorrect</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // Word bank - exactly as specified
+      const allWords = [
+        // -ig endings (40 words)
+        { word: "billig", ending: "ig" },
+        { word: "richtig", ending: "ig" },
+        { word: "wichtig", ending: "ig" },
+        { word: "fertig", ending: "ig" },
+        { word: "ruhig", ending: "ig" },
+        { word: "lustig", ending: "ig" },
+        { word: "traurig", ending: "ig" },
+        { word: "hungrig", ending: "ig" },
+        { word: "durstig", ending: "ig" },
+        { word: "sonnig", ending: "ig" },
+        { word: "windig", ending: "ig" },
+        { word: "schmutzig", ending: "ig" },
+        { word: "schwierig", ending: "ig" },
+        { word: "fleißig", ending: "ig" },
+        { word: "mutig", ending: "ig" },
+        { word: "eilig", ending: "ig" },
+        { word: "häufig", ending: "ig" },
+        { word: "nötig", ending: "ig" },
+        { word: "gültig", ending: "ig" },
+        { word: "salzig", ending: "ig" },
+        { word: "würzig", ending: "ig" },
+        { word: "fettig", ending: "ig" },
+        { word: "klebrig", ending: "ig" },
+        { word: "eisig", ending: "ig" },
+        { word: "plötzlich", ending: "ig" },
+        { word: "regelmäßig", ending: "ig" },
+        { word: "zufällig", ending: "ig" },
+        { word: "einzig", ending: "ig" },
+        { word: "übrig", ending: "ig" },
+        { word: "künftig", ending: "ig" },
+        { word: "endgültig", ending: "ig" },
+        { word: "offensichtlich", ending: "ig" },
+        { word: "abhängig", ending: "ig" },
+        { word: "unabhängig", ending: "ig" },
+        { word: "vernünftig", ending: "ig" },
+        { word: "zuverlässig", ending: "ig" },
+        { word: "sorgfältig", ending: "ig" },
+        { word: "neugierig", ending: "ig" },
+        { word: "geduldig", ending: "ig" },
+        // -ich endings (35 words)
+        { word: "natürlich", ending: "ich" },
+        { word: "möglich", ending: "ich" },
+        { word: "unmöglich", ending: "ich" },
+        { word: "persönlich", ending: "ich" },
+        { word: "freundlich", ending: "ich" },
+        { word: "ehrlich", ending: "ich" },
+        { word: "ähnlich", ending: "ich" },
+        { word: "öffentlich", ending: "ich" },
+        { word: "endlich", ending: "ich" },
+        { word: "deutlich", ending: "ich" },
+        { word: "wirklich", ending: "ich" },
+        { word: "glücklich", ending: "ich" },
+        { word: "fröhlich", ending: "ich" },
+        { word: "höflich", ending: "ich" },
+        { word: "peinlich", ending: "ich" },
+        { word: "gefährlich", ending: "ich" },
+        { word: "lächerlich", ending: "ich" },
+        { word: "schrecklich", ending: "ich" },
+        { word: "komisch", ending: "ich" },
+        { word: "kritisch", ending: "ich" },
+        { word: "menschlich", ending: "ich" },
+        { word: "ordentlich", ending: "ich" },
+        { word: "unordentlich", ending: "ich" },
+        { word: "wahrscheinlich", ending: "ich" },
+        { word: "ungewöhnlich", ending: "ich" },
+        { word: "üblich", ending: "ich" },
+        { word: "pünktlich", ending: "ich" },
+        { word: "eigentlich", ending: "ich" },
+        { word: "selbstverständlich", ending: "ich" },
+        { word: "verantwortlich", ending: "ich" },
+        { word: "verständlich", ending: "ich" },
+        { word: "unverständlich", ending: "ich" },
+        { word: "nützlich", ending: "ich" },
+        { word: "schädlich", ending: "ich" },
+        { word: "wesentlich", ending: "ich" }
+      ];
+
+      const QUESTIONS_PER_SESSION = 40;
+      const STORAGE_KEY = 'german_ig_ich_stats';
+
+      let currentExercises = [];
+      let currentIndex = 0;
+      let sessionScore = 0;
+      let answered = false;
+      let userAnswers = [];
+      let incorrectWords = [];
+      let isRetryMode = false;
+      let germanVoice = null;
+      let isSpeaking = false;
+
+      // Initialize TTS
+      function initTTS() {
+        if (!('speechSynthesis' in window)) {
+          document.getElementById('ttsWarning').classList.remove('hidden');
+          return false;
+        }
+
+        // Load voices
+        function loadVoices() {
+          const voices = speechSynthesis.getVoices();
+          // Try to find a German voice
+          germanVoice = voices.find(v => v.lang.startsWith('de')) || null;
+
+          if (!germanVoice && voices.length > 0) {
+            // Fallback: use any voice but warn
+            console.warn('No German voice found, using default');
+          }
+        }
+
+        loadVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+          speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        return true;
+      }
+
+      // Speak a word
+      function speakWord(word) {
+        if (!('speechSynthesis' in window)) return;
+
+        // Cancel any ongoing speech
+        speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9; // Slightly slower for clarity
+
+        if (germanVoice) {
+          utterance.voice = germanVoice;
+        }
+
+        const playBtn = document.getElementById('playBtn');
+
+        utterance.onstart = function() {
+          isSpeaking = true;
+          playBtn.classList.add('speaking');
+        };
+
+        utterance.onend = function() {
+          isSpeaking = false;
+          playBtn.classList.remove('speaking');
+        };
+
+        utterance.onerror = function() {
+          isSpeaking = false;
+          playBtn.classList.remove('speaking');
+        };
+
+        speechSynthesis.speak(utterance);
+      }
+
+      // Play current word
+      window.playCurrentWord = function() {
+        if (currentExercises.length === 0) return;
+        const exercise = currentExercises[currentIndex];
+        speakWord(exercise.word);
+      };
+
+      // Load stats from localStorage
+      function loadStats() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            return JSON.parse(stored);
+          }
+        } catch (e) {
+          console.warn('Could not load stats:', e);
+        }
+        return { totalAttempts: 0, correctAnswers: 0 };
+      }
+
+      // Save stats to localStorage
+      function saveStats(stats) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+        } catch (e) {
+          console.warn('Could not save stats:', e);
+        }
+      }
+
+      // Update stats display
+      function updateStatsDisplay() {
+        const stats = loadStats();
+        document.getElementById('statTotal').textContent = stats.totalAttempts;
+        document.getElementById('statCorrect').textContent = stats.correctAnswers;
+        const accuracy = stats.totalAttempts > 0
+          ? Math.round((stats.correctAnswers / stats.totalAttempts) * 100)
+          : 0;
+        document.getElementById('statAccuracy').textContent = accuracy + '%';
+      }
+
+      // Shuffle array
+      function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      // Start new session
+      window.startNewSession = function() {
+        isRetryMode = false;
+        const shuffled = shuffleArray([...allWords]);
+        currentExercises = shuffled.slice(0, QUESTIONS_PER_SESSION);
+        currentIndex = 0;
+        sessionScore = 0;
+        userAnswers = new Array(currentExercises.length).fill(null);
+        incorrectWords = [];
+
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = currentExercises.length;
+
+        showExercise();
+        updateStatsDisplay();
+      };
+
+      // Retry incorrect words
+      window.retryIncorrect = function() {
+        if (incorrectWords.length === 0) return;
+
+        isRetryMode = true;
+        currentExercises = shuffleArray([...incorrectWords]);
+        currentIndex = 0;
+        sessionScore = 0;
+        userAnswers = new Array(currentExercises.length).fill(null);
+        incorrectWords = [];
+
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = currentExercises.length;
+
+        showExercise();
+      };
+
+      // Show current exercise
+      function showExercise() {
+        const exercise = currentExercises[currentIndex];
+        const previousAnswer = userAnswers[currentIndex];
+
+        document.getElementById('currentQ').textContent = currentIndex + 1;
+        document.getElementById('sessionScore').textContent = sessionScore;
+
+        const progressPercent = (currentIndex / currentExercises.length) * 100;
+        const progressBar = document.getElementById('progressBar');
+        progressBar.style.width = progressPercent + '%';
+        progressBar.parentElement.setAttribute('aria-valuenow', Math.round(progressPercent));
+
+        const btnIg = document.getElementById('btnIg');
+        const btnIch = document.getElementById('btnIch');
+        const feedback = document.getElementById('feedback');
+        const wordReveal = document.getElementById('wordReveal');
+        const listenHint = document.getElementById('listenHint');
+
+        if (previousAnswer !== null) {
+          // Already answered this question
+          answered = true;
+          btnIg.disabled = true;
+          btnIch.disabled = true;
+
+          btnIg.classList.remove('correct', 'wrong');
+          btnIch.classList.remove('correct', 'wrong');
+
+          // Show the word
+          wordReveal.textContent = exercise.word;
+          wordReveal.classList.remove('hidden');
+          listenHint.textContent = 'Click to hear again';
+
+          if (exercise.ending === 'ig') {
+            btnIg.classList.add('correct');
+            if (previousAnswer !== 'ig') {
+              btnIch.classList.add('wrong');
+            }
+          } else {
+            btnIch.classList.add('correct');
+            if (previousAnswer !== 'ich') {
+              btnIg.classList.add('wrong');
+            }
+          }
+
+          const isCorrect = previousAnswer === exercise.ending;
+          feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'wrong');
+          feedback.textContent = isCorrect
+            ? 'Correct!'
+            : 'Wrong! The correct ending is: -' + exercise.ending;
+          feedback.classList.remove('hidden');
+        } else {
+          // Fresh question - hide word, play audio
+          answered = false;
+          btnIg.disabled = false;
+          btnIch.disabled = false;
+          btnIg.classList.remove('correct', 'wrong');
+          btnIch.classList.remove('correct', 'wrong');
+          feedback.classList.add('hidden');
+          wordReveal.classList.add('hidden');
+          listenHint.textContent = 'Click or press Space to play';
+
+          // Auto-play the word after a short delay
+          setTimeout(() => {
+            if (!answered && currentExercises[currentIndex] === exercise) {
+              playCurrentWord();
+            }
+          }, 300);
+        }
+
+        updateNavButtons();
+      }
+
+      // Update navigation buttons
+      function updateNavButtons() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        prevBtn.disabled = currentIndex === 0;
+
+        const isLastQuestion = currentIndex === currentExercises.length - 1;
+        nextBtn.disabled = !answered || isLastQuestion;
+
+        if (isLastQuestion && answered) {
+          nextBtn.textContent = 'See Results';
+          nextBtn.disabled = false;
+        } else {
+          nextBtn.textContent = 'Next';
+        }
+      }
+
+      // Check answer
+      window.checkAnswer = function(selectedEnding) {
+        if (answered) return;
+
+        answered = true;
+        const exercise = currentExercises[currentIndex];
+        const isCorrect = selectedEnding === exercise.ending;
+
+        userAnswers[currentIndex] = selectedEnding;
+
+        const btnIg = document.getElementById('btnIg');
+        const btnIch = document.getElementById('btnIch');
+        const wordReveal = document.getElementById('wordReveal');
+        const listenHint = document.getElementById('listenHint');
+
+        btnIg.disabled = true;
+        btnIch.disabled = true;
+
+        // Reveal the word
+        wordReveal.textContent = exercise.word;
+        wordReveal.classList.remove('hidden');
+        listenHint.textContent = 'Click to hear again';
+
+        // Show correct answer
+        if (exercise.ending === 'ig') {
+          btnIg.classList.add('correct');
+          if (!isCorrect) {
+            btnIch.classList.add('wrong');
+          }
+        } else {
+          btnIch.classList.add('correct');
+          if (!isCorrect) {
+            btnIg.classList.add('wrong');
+          }
+        }
+
+        if (isCorrect) {
+          sessionScore++;
+          document.getElementById('sessionScore').textContent = sessionScore;
+        } else {
+          incorrectWords.push(exercise);
+        }
+
+        // Update localStorage stats
+        const stats = loadStats();
+        stats.totalAttempts++;
+        if (isCorrect) {
+          stats.correctAnswers++;
+        }
+        saveStats(stats);
+        updateStatsDisplay();
+
+        // Show feedback
+        const feedback = document.getElementById('feedback');
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'wrong');
+        feedback.textContent = isCorrect
+          ? 'Correct!'
+          : 'Wrong! The correct ending is: -' + exercise.ending;
+        feedback.classList.remove('hidden');
+
+        updateNavButtons();
+      };
+
+      // Go to previous question
+      window.goToPrevious = function() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          showExercise();
+        }
+      };
+
+      // Go to next question
+      window.goToNext = function() {
+        if (!answered) return;
+
+        if (currentIndex < currentExercises.length - 1) {
+          currentIndex++;
+          showExercise();
+        } else {
+          showResults();
+        }
+      };
+
+      // Show results
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const total = currentExercises.length;
+        const percentage = Math.round((sessionScore / total) * 100);
+
+        document.getElementById('resultPercentage').textContent = percentage + '%';
+        document.getElementById('resultScore').textContent = sessionScore;
+        document.getElementById('resultTotal').textContent = total;
+
+        const incorrectSection = document.getElementById('incorrectSection');
+        const incorrectItems = document.getElementById('incorrectItems');
+        const retryBtn = document.getElementById('retryBtn');
+
+        if (incorrectWords.length > 0) {
+          incorrectSection.classList.remove('hidden');
+          retryBtn.classList.remove('hidden');
+
+          incorrectItems.innerHTML = incorrectWords.map((item, idx) => `
+            <div class="incorrect-item">
+              <span class="incorrect-word">${item.word}</span>
+              <span class="incorrect-ending">-${item.ending}</span>
+              <button class="incorrect-play-btn" onclick="speakWordDirect('${item.word}')" aria-label="Play ${item.word}">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          incorrectSection.classList.add('hidden');
+          retryBtn.classList.add('hidden');
+        }
+      }
+
+      // Speak word directly (for results page)
+      window.speakWordDirect = function(word) {
+        speakWord(word);
+      };
+
+      // Toggle instructions
+      window.toggleInstructions = function() {
+        const infoSection = document.getElementById('infoSection');
+        const divider = document.getElementById('dividerLine');
+        const btn = document.getElementById('hideTextBtn');
+
+        if (infoSection.classList.contains('sg-dark-hidden')) {
+          infoSection.classList.remove('sg-dark-hidden');
+          divider.classList.remove('sg-dark-hidden');
+          btn.textContent = 'Hide Instructions';
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          infoSection.classList.add('sg-dark-hidden');
+          divider.classList.add('sg-dark-hidden');
+          btn.textContent = 'Show Instructions';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      };
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        // Ignore if in results view
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        const key = e.key.toLowerCase();
+
+        if (key === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          playCurrentWord();
+        } else if (key === 'i' && !answered) {
+          e.preventDefault();
+          checkAnswer('ig');
+        } else if (key === 'c' && !answered) {
+          e.preventDefault();
+          checkAnswer('ich');
+        } else if (key === 'enter' && answered) {
+          e.preventDefault();
+          goToNext();
+        } else if (key === 'backspace' && currentIndex > 0) {
+          e.preventDefault();
+          goToPrevious();
+        }
+      });
+
+      // Initialize on load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          initTTS();
+          updateStatsDisplay();
+          startNewSession();
+        });
+      } else {
+        initTTS();
+        updateStatsDisplay();
+        startNewSession();
+      }
+    })();
+  </script>
+</body>
+</html>

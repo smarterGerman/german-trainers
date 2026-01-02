@@ -61,7 +61,6 @@
 
     .info-section {
       background: #FFF3E0;
-      border-left: 4px solid #FF9800;
       padding: 12px 15px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -69,7 +68,8 @@
       line-height: 1.5;
     }
 
-    .info-section strong { color: #E91E63; }
+    .info-section strong { color: #333; }
+    .info-section .examples { color: #666; font-size: 13px; }
 
     .shortcuts-section {
       background: #F5F5F5;
@@ -216,6 +216,13 @@
       border-color: #F44336;
     }
 
+    .key-hint {
+      display: block;
+      font-size: 11px;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
     .results {
       text-align: center;
       background: white;
@@ -342,26 +349,28 @@
     </div>
 
     <div id="infoSection" class="info-section hidden">
-      <strong>80 word pairs</strong> total, <strong>20 per session</strong>. Train your ear for vowel length!
+      <strong>Listen for vowel length - it changes meaning!</strong>
       <br><br>
-      <strong>Why it matters:</strong> Vowel length changes meaning!
-      <br>bitten (to ask) vs bieten (to offer)
-      <br>Stadt (city) vs Staat (state)
-      <br><br>
-      <strong>Long vowels:</strong> Held longer, often followed by single consonant or h
-      <br>Examples: Bahn, Sohn, Mehl, lieben
-      <br><br>
-      <strong>Short vowels:</strong> Quick, often followed by double consonant
-      <br>Examples: Mann, kommen, Bett, offen
-      <br><br>
-      Progress is stored locally. Wrong answers shown at end.
+      <strong>Long vowels:</strong> held a bit longer
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li>doubled vowel: St<u>aa</u>t, B<u>oo</u>t, M<u>oo</u>s</li>
+        <li>followed by h: B<u>a</u>hn, S<u>o</u>hn, M<u>e</u>hl</li>
+        <li>diphthongs (eu, au, äu): H<u>äu</u>ser, l<u>au</u>fen</li>
+      </ul>
+      <br>
+      <strong>Short vowels:</strong>
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li>in front of two consecutive consonants: M<u>ä</u>nner, <u>E</u>cke, l<u>e</u>rnen, k<u>o</u>mmen</li>
+      </ul>
+      <br>
+      <span style="font-size: 12px; color: #888;">20 per session. Progress saved locally.</span>
     </div>
 
     <div id="exerciseArea">
       <div class="progress-row">
         <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
         <span class="progress-score" id="scoreDisplay">0 correct</span>
-        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/97 learned</span>
       </div>
       <div class="progress-bar-wrap">
         <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
@@ -379,8 +388,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="choice-btn long" onclick="checkAnswer('long')" id="btnLong">Long</button>
-        <button class="choice-btn short" onclick="checkAnswer('short')" id="btnShort">Short</button>
+        <button class="choice-btn long" onclick="checkAnswer('long')" id="btnLong">Long<span class="key-hint">F</span></button>
+        <button class="choice-btn short" onclick="checkAnswer('short')" id="btnShort">Short<span class="key-hint">J</span></button>
       </div>
     </div>
 
@@ -411,90 +420,111 @@
       const STORAGE_KEY = 'long_short_vowel_progress';
       const SESSION_SIZE = 20;
 
-      // Word bank: 80 A1-B1 words - long vs short vowels
+      // Word bank: file = phrase in lowercase with underscores
       const allWords = [
-        // Long vowels (40)
-        { word: "Staat", length: "long", file: "Staat", en: "state" },
-        { word: "Bahn", length: "long", file: "Bahn", en: "train/railway" },
-        { word: "Sohn", length: "long", file: "Sohn", en: "son" },
-        { word: "Mehl", length: "long", file: "Mehl", en: "flour" },
-        { word: "Zahl", length: "long", file: "Zahl", en: "number" },
-        { word: "Wahl", length: "long", file: "Wahl", en: "choice/election" },
-        { word: "Schule", length: "long", file: "Schule", en: "school" },
-        { word: "Stuhl", length: "long", file: "Stuhl", en: "chair" },
-        { word: "Ofen", length: "long", file: "Ofen", en: "oven" },
-        { word: "Boden", length: "long", file: "Boden", en: "floor" },
-        { word: "lieben", length: "long", file: "lieben", en: "to love" },
-        { word: "bieten", length: "long", file: "bieten", en: "to offer" },
-        { word: "Miete", length: "long", file: "Miete", en: "rent" },
-        { word: "Tier", length: "long", file: "Tier", en: "animal" },
-        { word: "Bier", length: "long", file: "Bier", en: "beer" },
-        { word: "Name", length: "long", file: "Name", en: "name" },
-        { word: "Laden", length: "long", file: "Laden", en: "shop" },
-        { word: "Faden", length: "long", file: "Faden", en: "thread" },
-        { word: "Regen", length: "long", file: "Regen", en: "rain" },
-        { word: "legen", length: "long", file: "legen", en: "to lay" },
-        { word: "wohnen", length: "long", file: "wohnen", en: "to live" },
-        { word: "Bohne", length: "long", file: "Bohne", en: "bean" },
-        { word: "Sahne", length: "long", file: "Sahne", en: "cream" },
-        { word: "fahren", length: "long", file: "fahren", en: "to drive" },
-        { word: "Gefahr", length: "long", file: "Gefahr", en: "danger" },
-        { word: "Jahr", length: "long", file: "Jahr", en: "year" },
-        { word: "Uhr", length: "long", file: "Uhr", en: "clock" },
-        { word: "Kur", length: "long", file: "Kur", en: "cure/spa" },
-        { word: "Ton", length: "long", file: "Ton", en: "tone/clay" },
-        { word: "Hof", length: "long", file: "Hof", en: "courtyard" },
-        { word: "Moos", length: "long", file: "Moos", en: "moss" },
-        { word: "Boot", length: "long", file: "Boot", en: "boat" },
-        { word: "rot", length: "long", file: "rot", en: "red" },
-        { word: "Brot", length: "long", file: "Brot", en: "bread" },
-        { word: "Tag", length: "long", file: "Tag", en: "day" },
-        { word: "Weg", length: "long", file: "Weg", en: "way/path" },
-        { word: "sagen", length: "long", file: "sagen", en: "to say" },
-        { word: "tragen", length: "long", file: "tragen", en: "to carry" },
-        { word: "Glas", length: "long", file: "Glas", en: "glass" },
-        { word: "Spaß", length: "long", file: "Spass", en: "fun" },
-        // Short vowels (40)
-        { word: "Stadt", length: "short", file: "Stadt", en: "city" },
-        { word: "Mann", length: "short", file: "Mann", en: "man" },
-        { word: "dann", length: "short", file: "dann", en: "then" },
-        { word: "kommen", length: "short", file: "kommen", en: "to come" },
-        { word: "Sommer", length: "short", file: "Sommer", en: "summer" },
-        { word: "offen", length: "short", file: "offen", en: "open" },
-        { word: "hoffen", length: "short", file: "hoffen", en: "to hope" },
-        { word: "bitten", length: "short", file: "bitten", en: "to ask" },
-        { word: "Mitte", length: "short", file: "Mitte", en: "middle" },
-        { word: "Bett", length: "short", file: "Bett", en: "bed" },
-        { word: "nett", length: "short", file: "nett", en: "nice" },
-        { word: "Wetter", length: "short", file: "Wetter", en: "weather" },
-        { word: "Zimmer", length: "short", file: "Zimmer", en: "room" },
-        { word: "immer", length: "short", file: "immer", en: "always" },
-        { word: "Nummer", length: "short", file: "Nummer", en: "number" },
-        { word: "Butter", length: "short", file: "Butter", en: "butter" },
-        { word: "Mutter", length: "short", file: "Mutter", en: "mother" },
-        { word: "Suppe", length: "short", file: "Suppe", en: "soup" },
-        { word: "Gruppe", length: "short", file: "Gruppe", en: "group" },
-        { word: "Lippe", length: "short", file: "Lippe", en: "lip" },
-        { word: "Mappe", length: "short", file: "Mappe", en: "folder" },
-        { word: "Kasse", length: "short", file: "Kasse", en: "cash register" },
-        { word: "Tasse", length: "short", file: "Tasse", en: "cup" },
-        { word: "Wasser", length: "short", file: "Wasser", en: "water" },
-        { word: "essen", length: "short", file: "essen", en: "to eat" },
-        { word: "Messer", length: "short", file: "Messer", en: "knife" },
-        { word: "kennen", length: "short", file: "kennen", en: "to know" },
-        { word: "rennen", length: "short", file: "rennen", en: "to run" },
-        { word: "Sonne", length: "short", file: "Sonne", en: "sun" },
-        { word: "können", length: "short", file: "koennen", en: "can" },
-        { word: "Bock", length: "short", file: "Bock", en: "buck/desire" },
-        { word: "Stock", length: "short", file: "Stock", en: "stick/floor" },
-        { word: "Rock", length: "short", file: "Rock", en: "skirt" },
-        { word: "Kopf", length: "short", file: "Kopf", en: "head" },
-        { word: "Topf", length: "short", file: "Topf", en: "pot" },
-        { word: "Gott", length: "short", file: "Gott", en: "god" },
-        { word: "voll", length: "short", file: "voll", en: "full" },
-        { word: "toll", length: "short", file: "toll", en: "great" },
-        { word: "sollen", length: "short", file: "sollen", en: "should" },
-        { word: "wollen", length: "short", file: "wollen", en: "to want" }
+        // MINIMAL PAIRS - Nouns
+        { word: "Staat", length: "long", file: "der_staat", en: "state", phrase: "der Staat" },
+        { word: "Stadt", length: "short", file: "die_stadt", en: "city", phrase: "die Stadt" },
+        { word: "Miete", length: "long", file: "die_miete", en: "rent", phrase: "die Miete" },
+        { word: "Mitte", length: "short", file: "die_mitte", en: "middle", phrase: "die Mitte" },
+        { word: "Beet", length: "long", file: "das_beet", en: "flowerbed", phrase: "das Beet" },
+        { word: "Bett", length: "short", file: "das_bett", en: "bed", phrase: "das Bett" },
+        { word: "Hüte", length: "long", file: "die_huete", en: "hats", phrase: "die Hüte" },
+        { word: "Hütte", length: "short", file: "die_huette", en: "hut", phrase: "die Hütte" },
+        { word: "Höhle", length: "long", file: "die_hoehle", en: "cave", phrase: "die Höhle" },
+        { word: "Hölle", length: "short", file: "die_hoelle", en: "hell", phrase: "die Hölle" },
+        { word: "Stahl", length: "long", file: "der_stahl", en: "steel", phrase: "der Stahl" },
+        { word: "Stall", length: "short", file: "der_stall", en: "stable", phrase: "der Stall" },
+        { word: "Schal", length: "long", file: "der_schal", en: "scarf", phrase: "der Schal" },
+        { word: "Schall", length: "short", file: "der_schall", en: "sound", phrase: "der Schall" },
+        { word: "Ton", length: "long", file: "der_ton", en: "tone/clay", phrase: "der Ton" },
+        { word: "Tonne", length: "short", file: "die_tonne", en: "barrel/ton", phrase: "die Tonne" },
+        { word: "Sohn", length: "long", file: "der_sohn", en: "son", phrase: "der Sohn" },
+        { word: "Sonne", length: "short", file: "die_sonne", en: "sun", phrase: "die Sonne" },
+        { word: "Wahn", length: "long", file: "der_wahn", en: "delusion", phrase: "der Wahn" },
+        { word: "Wanne", length: "short", file: "die_wanne", en: "bathtub", phrase: "die Wanne" },
+        { word: "Mut", length: "long", file: "der_mut", en: "courage", phrase: "der Mut" },
+        { word: "Mutter", length: "short", file: "die_mutter", en: "mother", phrase: "die Mutter" },
+        { word: "Ruhm", length: "long", file: "der_ruhm", en: "fame", phrase: "der Ruhm" },
+        { word: "Rum", length: "short", file: "der_rum", en: "rum", phrase: "der Rum" },
+        { word: "Mus", length: "long", file: "das_mus", en: "puree", phrase: "das Mus" },
+        { word: "Muss", length: "short", file: "das_muss", en: "must/necessity", phrase: "das Muss" },
+        // MINIMAL PAIRS - Verbs
+        { word: "bieten", length: "long", file: "zu_bieten", en: "to offer", phrase: "zu bieten" },
+        { word: "bitten", length: "short", file: "zu_bitten", en: "to ask", phrase: "zu bitten" },
+        { word: "raten", length: "long", file: "zu_raten", en: "to advise", phrase: "zu raten" },
+        { word: "Ratten", length: "short", file: "die_ratten", en: "rats", phrase: "die Ratten" },
+        // Long vowels - Nouns
+        { word: "Weg", length: "long", file: "der_weg", en: "way/path", phrase: "der Weg" },
+        { word: "Ofen", length: "long", file: "der_ofen", en: "oven", phrase: "der Ofen" },
+        { word: "Bahn", length: "long", file: "die_bahn", en: "train/railway", phrase: "die Bahn" },
+        { word: "Mehl", length: "long", file: "das_mehl", en: "flour", phrase: "das Mehl" },
+        { word: "Zahl", length: "long", file: "die_zahl", en: "number", phrase: "die Zahl" },
+        { word: "Wahl", length: "long", file: "die_wahl", en: "choice/election", phrase: "die Wahl" },
+        { word: "Schule", length: "long", file: "die_schule", en: "school", phrase: "die Schule" },
+        { word: "Stuhl", length: "long", file: "der_stuhl", en: "chair", phrase: "der Stuhl" },
+        { word: "Boden", length: "long", file: "der_boden", en: "floor", phrase: "der Boden" },
+        { word: "Tier", length: "long", file: "das_tier", en: "animal", phrase: "das Tier" },
+        { word: "Bier", length: "long", file: "das_bier", en: "beer", phrase: "das Bier" },
+        { word: "Name", length: "long", file: "der_name", en: "name", phrase: "der Name" },
+        { word: "Laden", length: "long", file: "der_laden", en: "shop", phrase: "der Laden" },
+        { word: "Regen", length: "long", file: "der_regen", en: "rain", phrase: "der Regen" },
+        { word: "Bohne", length: "long", file: "die_bohne", en: "bean", phrase: "die Bohne" },
+        { word: "Sahne", length: "long", file: "die_sahne", en: "cream", phrase: "die Sahne" },
+        { word: "Jahr", length: "long", file: "das_jahr", en: "year", phrase: "das Jahr" },
+        { word: "Uhr", length: "long", file: "die_uhr", en: "clock", phrase: "die Uhr" },
+        { word: "Hof", length: "long", file: "der_hof", en: "courtyard", phrase: "der Hof" },
+        { word: "Boot", length: "long", file: "das_boot", en: "boat", phrase: "das Boot" },
+        { word: "Brot", length: "long", file: "das_brot", en: "bread", phrase: "das Brot" },
+        { word: "Tag", length: "long", file: "der_tag", en: "day", phrase: "der Tag" },
+        // Long vowels - Verbs
+        { word: "lieben", length: "long", file: "zu_lieben", en: "to love", phrase: "zu lieben" },
+        { word: "wohnen", length: "long", file: "zu_wohnen", en: "to live", phrase: "zu wohnen" },
+        { word: "fahren", length: "long", file: "zu_fahren", en: "to drive", phrase: "zu fahren" },
+        { word: "legen", length: "long", file: "zu_legen", en: "to lay", phrase: "zu legen" },
+        { word: "tragen", length: "long", file: "zu_tragen", en: "to carry", phrase: "zu tragen" },
+        { word: "sagen", length: "long", file: "zu_sagen", en: "to say", phrase: "zu sagen" },
+        // Short vowels - Nouns
+        { word: "Kamm", length: "short", file: "der_kamm", en: "comb", phrase: "der Kamm" },
+        { word: "Mann", length: "short", file: "der_mann", en: "man", phrase: "der Mann" },
+        { word: "Sommer", length: "short", file: "der_sommer", en: "summer", phrase: "der Sommer" },
+        { word: "Wetter", length: "short", file: "das_wetter", en: "weather", phrase: "das Wetter" },
+        { word: "Zimmer", length: "short", file: "das_zimmer", en: "room", phrase: "das Zimmer" },
+        { word: "Nummer", length: "short", file: "die_nummer", en: "number", phrase: "die Nummer" },
+        { word: "Butter", length: "short", file: "die_butter", en: "butter", phrase: "die Butter" },
+        { word: "Suppe", length: "short", file: "die_suppe", en: "soup", phrase: "die Suppe" },
+        { word: "Gruppe", length: "short", file: "die_gruppe", en: "group", phrase: "die Gruppe" },
+        { word: "Lippe", length: "short", file: "die_lippe", en: "lip", phrase: "die Lippe" },
+        { word: "Mappe", length: "short", file: "die_mappe", en: "folder", phrase: "die Mappe" },
+        { word: "Kasse", length: "short", file: "die_kasse", en: "cash register", phrase: "die Kasse" },
+        { word: "Tasse", length: "short", file: "die_tasse", en: "cup", phrase: "die Tasse" },
+        { word: "Wasser", length: "short", file: "das_wasser", en: "water", phrase: "das Wasser" },
+        { word: "Messer", length: "short", file: "das_messer", en: "knife", phrase: "das Messer" },
+        { word: "Bock", length: "short", file: "der_bock", en: "buck/desire", phrase: "der Bock" },
+        { word: "Stock", length: "short", file: "der_stock", en: "stick/floor", phrase: "der Stock" },
+        { word: "Rock", length: "short", file: "der_rock", en: "skirt", phrase: "der Rock" },
+        { word: "Kopf", length: "short", file: "der_kopf", en: "head", phrase: "der Kopf" },
+        { word: "Topf", length: "short", file: "der_topf", en: "pot", phrase: "der Topf" },
+        { word: "Gott", length: "short", file: "der_gott", en: "god", phrase: "der Gott" },
+        { word: "Schnitt", length: "short", file: "der_schnitt", en: "cut", phrase: "der Schnitt" },
+        { word: "Schritt", length: "short", file: "der_schritt", en: "step", phrase: "der Schritt" },
+        { word: "Müll", length: "short", file: "der_muell", en: "garbage", phrase: "der Müll" },
+        { word: "Sinn", length: "short", file: "der_sinn", en: "sense", phrase: "der Sinn" },
+        { word: "Tipp", length: "short", file: "der_tipp", en: "tip", phrase: "der Tipp" },
+        { word: "Schiff", length: "short", file: "das_schiff", en: "ship", phrase: "das Schiff" },
+        { word: "Pflicht", length: "short", file: "die_pflicht", en: "duty", phrase: "die Pflicht" },
+        { word: "Knopf", length: "short", file: "der_knopf", en: "button", phrase: "der Knopf" },
+        { word: "Schloss", length: "short", file: "das_schloss", en: "castle/lock", phrase: "das Schloss" },
+        { word: "Fluss", length: "short", file: "der_fluss", en: "river", phrase: "der Fluss" },
+        { word: "Kuss", length: "short", file: "der_kuss", en: "kiss", phrase: "der Kuss" },
+        // Short vowels - Verbs
+        { word: "kommen", length: "short", file: "zu_kommen", en: "to come", phrase: "zu kommen" },
+        { word: "hoffen", length: "short", file: "zu_hoffen", en: "to hope", phrase: "zu hoffen" },
+        { word: "essen", length: "short", file: "zu_essen", en: "to eat", phrase: "zu essen" },
+        { word: "kennen", length: "short", file: "zu_kennen", en: "to know", phrase: "zu kennen" },
+        { word: "rennen", length: "short", file: "zu_rennen", en: "to run", phrase: "zu rennen" },
+        { word: "schwimmen", length: "short", file: "zu_schwimmen", en: "to swim", phrase: "zu schwimmen" },
+        { word: "treffen", length: "short", file: "zu_treffen", en: "to meet", phrase: "zu treffen" }
       ];
 
       const TOTAL_WORDS = allWords.length;
@@ -509,11 +539,23 @@
       let audioEl = null;
 
       function loadProgress() {
+        const allFiles = new Set(allWords.map(w => w.file));
         try {
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved) {
             const p = JSON.parse(saved);
-            if (p.mastered && p.wrong && p.unseen) return p;
+            if (p.mastered && p.wrong && p.unseen) {
+              // Filter out any words no longer in word list
+              p.mastered = p.mastered.filter(f => allFiles.has(f));
+              p.wrong = p.wrong.filter(f => allFiles.has(f));
+              p.unseen = p.unseen.filter(f => allFiles.has(f));
+              // Add any new words to unseen
+              const known = new Set([...p.mastered, ...p.wrong, ...p.unseen]);
+              for (const f of allFiles) {
+                if (!known.has(f)) p.unseen.push(f);
+              }
+              return p;
+            }
           }
         } catch (e) {}
         return {
@@ -759,12 +801,15 @@
       };
 
       document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
         if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
 
-        const k = e.key;
-        if (k === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
-        else if (k.toLowerCase() === 'f' && !answered) { e.preventDefault(); checkAnswer('long'); }
-        else if (k.toLowerCase() === 'j' && !answered) { e.preventDefault(); checkAnswer('short'); }
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('long'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('short'); }
       });
 
       startSession();

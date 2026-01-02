@@ -328,15 +328,23 @@
       Both F and V are pronounced /f/ in German. You can't hear the difference - you have to memorize which words use V.
       <br><br>
       <strong>V</strong> - only in these cases:
-      <br>- prefixes: <strong>ver-</strong>, <strong>vor-</strong>, <strong>voll-</strong> (always V!)
-      <br>- a few native words: <u>V</u>ater, <u>V</u>ogel, <u>v</u>iel, <u>v</u>ier, <u>v</u>oll, <u>v</u>on, <u>v</u>or
-      <br>- word endings -iv: akti<u>v</u>, nai<u>v</u>, positi<u>v</u>
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li>prefixes: <strong>ver-</strong>, <strong>vor-</strong>, <strong>voll-</strong></li>
+        <li>ending <strong>-iv</strong>: aktiv, naiv, positiv</li>
+        <li>12 words: <em>Vater, Vetter, Vogel, Vieh, Veilchen, Volk, Nerv, viel, vier, voll, von, vor</em><br>
+        <span style="color: #888; font-size: 12px;">Mnemonic: "Vater, Vetter, Vogel, Vieh, Veilchen, Volk, Nerv vergess ich nie"</span><br>
+        <table style="color: #888; font-size: 12px; margin-left: 12px; border-collapse: collapse;">
+          <tr><td>viel<span style="color: #E91E63;">|</span>leicht, viel<span style="color: #E91E63;">|</span>mals</td><td style="padding-left: 8px;">are related to</td><td style="padding-left: 8px;">viel</td></tr>
+          <tr><td>vier<span style="color: #E91E63;">|</span>zehn, Vier<span style="color: #E91E63;">|</span>tel</td><td style="padding-left: 8px;">are related to</td><td style="padding-left: 8px;">vier</td></tr>
+          <tr><td>völl<span style="color: #E91E63;">|</span>ig, voll<span style="color: #E91E63;">|</span>ständig</td><td style="padding-left: 8px;">are related to</td><td style="padding-left: 8px;">voll</td></tr>
+          <tr><td>Vor<span style="color: #E91E63;">|</span>teil, vor<span style="color: #E91E63;">|</span>wärts</td><td style="padding-left: 8px;">are related to</td><td style="padding-left: 8px;">vor</td></tr>
+        </table></li>
+      </ul>
+      <strong style="margin-top: -5px; display: inline-block;">F</strong> - everything else (the default)
       <br><br>
-      <strong>F</strong> - everything else (the default)
+      <em>Note: Loanwords like Vase, Verb, Video, Visier, Vulkan, Kurve, Larve, brave use the English /v/ sound - excluded here.</em>
       <br><br>
-      <em>Note: Loanwords like Vase, Verb, Vulkan have English "v" sound - excluded here.</em>
-      <br><br>
-      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">80 words total, 20 per session. Wrong answers repeat. Progress saved locally.</p>
+      <p style="margin: 10px 0 0 0; color: #666; font-size: 13px;">61 words, 20 per session. Wrong answers repeat. Progress saved locally.</p>
     </div>
 
     <div id="exerciseArea">
@@ -410,19 +418,20 @@
         // voll- prefix words
         { word: "vollständig", gap: "_ollständig", answer: "v", file: "vollstaendig", en: "complete", rule: "voll- prefix" },
         { word: "völlig", gap: "_öllig", answer: "v", file: "voellig", en: "completely", rule: "voll- prefix" },
-        // Native V words
-        { word: "Vater", gap: "_ater", answer: "v", file: "Vater", en: "father", rule: "Native German word" },
-        { word: "Vogel", gap: "_ogel", answer: "v", file: "Vogel", en: "bird", rule: "Native German word" },
-        { word: "viel", gap: "_iel", answer: "v", file: "viel", en: "much/many", rule: "Native German word" },
-        { word: "vier", gap: "_ier", answer: "v", file: "vier", en: "four", rule: "Native German word" },
-        { word: "voll", gap: "_oll", answer: "v", file: "voll", en: "full", rule: "Native German word" },
-        { word: "von", gap: "_on", answer: "v", file: "von", en: "from/of", rule: "Native German word" },
-        { word: "vor", gap: "_or", answer: "v", file: "vor", en: "before/in front of", rule: "Native German word" },
-        { word: "vielleicht", gap: "_ielleicht", answer: "v", file: "vielleicht", en: "maybe", rule: "Native German word" },
-        { word: "Volk", gap: "_olk", answer: "v", file: "Volk", en: "people/nation", rule: "Native German word" },
-        { word: "Vieh", gap: "_ieh", answer: "v", file: "Vieh", en: "cattle", rule: "Native German word" },
-        // V at end (from Latin but naturalized)
-        { word: "brav", gap: "bra_", answer: "v", file: "brav", en: "well-behaved", rule: "Word ending -v" },
+        // Native V words - just have to memorize these
+        { word: "Vater", gap: "_ater", answer: "v", file: "Vater", en: "father", rule: "Memorize" },
+        { word: "Vogel", gap: "_ogel", answer: "v", file: "Vogel", en: "bird", rule: "Memorize" },
+        { word: "viel", gap: "_iel", answer: "v", file: "viel", en: "much/many", rule: "Memorize" },
+        { word: "vier", gap: "_ier", answer: "v", file: "vier", en: "four", rule: "Memorize" },
+        { word: "voll", gap: "_oll", answer: "v", file: "voll", en: "full", rule: "Memorize" },
+        { word: "von", gap: "_on", answer: "v", file: "von", en: "from/of", rule: "Memorize" },
+        { word: "vor", gap: "_or", answer: "v", file: "vor", en: "before/in front of", rule: "Memorize" },
+        { word: "vielleicht", gap: "_ielleicht", answer: "v", file: "vielleicht", en: "maybe", rule: "Memorize (from viel)" },
+        { word: "Volk", gap: "_olk", answer: "v", file: "Volk", en: "people/nation", rule: "Memorize" },
+        { word: "Vieh", gap: "_ieh", answer: "v", file: "Vieh", en: "cattle", rule: "Memorize" },
+        { word: "Vetter", gap: "_etter", answer: "v", file: "Vetter", en: "cousin", rule: "Memorize" },
+        { word: "Veilchen", gap: "_eilchen", answer: "v", file: "Veilchen", en: "violet", rule: "Memorize" },
+        { word: "Nerv", gap: "Ner_", answer: "v", file: "Nerv", en: "nerve", rule: "Memorize" },
         { word: "aktiv", gap: "akti_", answer: "v", file: "aktiv", en: "active", rule: "Word ending -iv" },
         { word: "naiv", gap: "nai_", answer: "v", file: "naiv", en: "naive", rule: "Word ending -iv" },
         { word: "positiv", gap: "positi_", answer: "v", file: "positiv", en: "positive", rule: "Word ending -iv" },
@@ -432,10 +441,6 @@
         { word: "attraktiv", gap: "attrakti_", answer: "v", file: "attraktiv", en: "attractive", rule: "Word ending -iv" },
         { word: "effektiv", gap: "effekti_", answer: "v", file: "effektiv", en: "effective", rule: "Word ending -iv" },
         { word: "intensiv", gap: "intensi_", answer: "v", file: "intensiv", en: "intensive", rule: "Word ending -iv" },
-        { word: "Nerv", gap: "Ner_", answer: "v", file: "Nerv", en: "nerve", rule: "Word ending -v" },
-        { word: "Kurve", gap: "Kur_e", answer: "v", file: "Kurve", en: "curve", rule: "V in middle" },
-        { word: "Larve", gap: "Lar_e", answer: "v", file: "Larve", en: "larva", rule: "V in middle" },
-        { word: "November", gap: "No_ember", answer: "v", file: "November", en: "November", rule: "V in middle" },
         // F words - most German words use F
         { word: "Fisch", gap: "_isch", answer: "f", file: "Fisch", en: "fish", rule: "Standard F spelling" },
         { word: "Frau", gap: "_rau", answer: "f", file: "Frau", en: "woman/wife", rule: "Standard F spelling" },
@@ -459,22 +464,7 @@
         { word: "fünf", gap: "_ünf", answer: "f", file: "fuenf", en: "five", rule: "Standard F spelling" },
         { word: "für", gap: "_ür", answer: "f", file: "fuer", en: "for", rule: "Standard F spelling" },
         { word: "Fuß", gap: "_uß", answer: "f", file: "Fuss", en: "foot", rule: "Standard F spelling" },
-        { word: "offen", gap: "o_en", answer: "ff", file: "offen", en: "open", rule: "Double ff after short vowel" },
-        { word: "Koffer", gap: "Ko_er", answer: "ff", file: "Koffer", en: "suitcase", rule: "Double ff after short vowel" },
-        { word: "Affe", gap: "A_e", answer: "ff", file: "Affe", en: "monkey", rule: "Double ff after short vowel" },
-        { word: "Schiff", gap: "Schi_", answer: "ff", file: "Schiff", en: "ship", rule: "Double ff after short vowel" },
-        { word: "treffen", gap: "tre_en", answer: "ff", file: "treffen", en: "to meet", rule: "Double ff after short vowel" },
-        { word: "hoffen", gap: "ho_en", answer: "ff", file: "hoffen", en: "to hope", rule: "Double ff after short vowel" },
-        { word: "schaffen", gap: "scha_en", answer: "ff", file: "schaffen", en: "to create/manage", rule: "Double ff after short vowel" },
-        { word: "Stoff", gap: "Sto_", answer: "ff", file: "Stoff", en: "fabric/material", rule: "Double ff after short vowel" },
-        { word: "Pferd", gap: "_erd", answer: "pf", file: "Pferd", en: "horse", rule: "Pf combination" },
-        { word: "Apfel", gap: "A_el", answer: "pf", file: "Apfel", en: "apple", rule: "Pf combination" },
-        { word: "Kopf", gap: "Ko_", answer: "pf", file: "Kopf", en: "head", rule: "Pf combination" },
-        { word: "Topf", gap: "To_", answer: "pf", file: "Topf", en: "pot", rule: "Pf combination" },
-        { word: "Pflanze", gap: "_lanze", answer: "pf", file: "Pflanze", en: "plant", rule: "Pf combination" },
-        { word: "Pfanne", gap: "_anne", answer: "pf", file: "Pfanne", en: "pan", rule: "Pf combination" },
-        { word: "Pflicht", gap: "_licht", answer: "pf", file: "Pflicht", en: "duty", rule: "Pf combination" },
-        { word: "empfehlen", gap: "em_ehlen", answer: "pf", file: "empfehlen", en: "to recommend", rule: "Pf combination" }
+        { word: "Ofen", gap: "O_en", answer: "f", file: "Ofen", en: "oven", rule: "Standard F spelling" }
       ];
 
       const TOTAL_WORDS = allWords.length;
@@ -571,27 +561,6 @@
         showExercise();
       };
 
-      function updateButtons(ex) {
-        const container = document.getElementById('optionsContainer');
-        // Show appropriate buttons based on answer type
-        if (ex.answer === 'ff') {
-          container.innerHTML = `
-            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
-            <button class="option-btn" onclick="checkAnswer('ff')" data-option="ff">ff<span class="key-hint">J</span></button>
-          `;
-        } else if (ex.answer === 'pf') {
-          container.innerHTML = `
-            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
-            <button class="option-btn" onclick="checkAnswer('pf')" data-option="pf">pf<span class="key-hint">J</span></button>
-          `;
-        } else {
-          container.innerHTML = `
-            <button class="option-btn" onclick="checkAnswer('f')" data-option="f">f<span class="key-hint">F</span></button>
-            <button class="option-btn" onclick="checkAnswer('v')" data-option="v">v<span class="key-hint">J</span></button>
-          `;
-        }
-      }
-
       function showExercise() {
         const ex = exercises[idx];
         const prev = answers[idx];
@@ -603,8 +572,6 @@
         const wordDisplay = document.getElementById('wordDisplay');
         const transReveal = document.getElementById('translationReveal');
         const ruleNote = document.getElementById('ruleNote');
-
-        updateButtons(ex);
 
         // Display word with gap and translation
         wordDisplay.innerHTML = ex.gap.replace('_', '<span class="gap"></span>');
@@ -630,7 +597,11 @@
             }
           });
 
-          wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+          const wasCorrect = prev === ex.answer;
+          const letterColor = wasCorrect ? '#4CAF50' : '#F44336';
+          const regex = new RegExp(ex.answer, 'i');
+          const match = ex.word.match(regex);
+          wordDisplay.innerHTML = ex.word.replace(regex, '<strong style="color: ' + letterColor + ';">' + match[0] + '</strong>');
           ruleNote.textContent = ex.rule;
           ruleNote.classList.add('visible');
         } else {
@@ -659,7 +630,10 @@
           }
         });
 
-        wordDisplay.innerHTML = ex.word.replace(ex.answer, '<strong style="color: #E91E63;">' + ex.answer + '</strong>');
+        const letterColor = correct ? '#4CAF50' : '#F44336';
+        const regex = new RegExp(ex.answer, 'i');
+        const match = ex.word.match(regex);
+        wordDisplay.innerHTML = ex.word.replace(regex, '<strong style="color: ' + letterColor + ';">' + match[0] + '</strong>');
         ruleNote.textContent = ex.rule;
         ruleNote.classList.add('visible');
 
@@ -750,15 +724,7 @@
           checkAnswer('f');
         } else if (k === 'j' && !answered) {
           e.preventDefault();
-          // Check which second option is available
-          const ex = exercises[idx];
-          if (ex.answer === 'ff' || document.querySelector('[data-option="ff"]')) {
-            checkAnswer('ff');
-          } else if (ex.answer === 'pf' || document.querySelector('[data-option="pf"]')) {
-            checkAnswer('pf');
-          } else {
-            checkAnswer('v');
-          }
+          checkAnswer('v');
         }
       });
 

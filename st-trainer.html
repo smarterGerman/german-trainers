@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST Sound Trainer - sht vs st</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+  <style>
+    body {
+      background: #FFCCE0;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAFAFA;
+      color: #2C2C2C;
+      border-radius: 18px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 25px rgba(233, 30, 99, 0.25);
+      border: 3px solid #FFA8CC;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #6B4E8C;
+      margin: 2px 0 0 0;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .small-btn {
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .small-btn:hover { opacity: 0.9; }
+
+    .info-section {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-section strong { color: #E91E63; }
+
+    .shortcuts-section {
+      background: #F5F5F5;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .shortcuts-section kbd {
+      background: white;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: monospace;
+      margin: 0 2px;
+    }
+
+    .hidden { display: none !important; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .progress-current { color: #6B4E8C; }
+    .progress-score { color: #4CAF50; }
+    .progress-mastered { color: #9C27B0; }
+
+    .progress-bar-wrap {
+      height: 10px;
+      background: #E0E0E0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+
+    .question-area {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      min-height: 180px;
+    }
+
+    .play-btn {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      border: none;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 36px;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(156, 39, 176, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover { transform: scale(1.05); }
+    .play-btn.speaking { animation: pulse-speak 0.8s infinite; }
+
+    @keyframes pulse-speak {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .reveal-container {
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word-reveal {
+      font-size: 32px;
+      font-weight: 800;
+      color: #E91E63;
+      margin: 0;
+      animation: fadeIn 0.3s;
+    }
+
+    .translation-reveal {
+      font-size: 16px;
+      color: #666;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .choice-btn {
+      background: white;
+      border: 3px solid #E0E0E0;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-size: 22px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #9C27B0;
+    }
+
+    .choice-btn.sht { color: #00BCD4; }
+    .choice-btn.st { color: #FF9800; }
+    .choice-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .choice-btn.correct {
+      background: linear-gradient(135deg, #4CAF50, #45A049);
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    .choice-btn.wrong {
+      background: linear-gradient(135deg, #F44336, #E53935);
+      color: white;
+      border-color: #F44336;
+    }
+
+    .key-hint {
+      display: block;
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
+    .results {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .results h2 {
+      color: #E91E63;
+      margin: 0 0 15px;
+      font-size: 24px;
+    }
+
+    .percentage {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #E91E63, #9C27B0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      font-size: 16px;
+      color: #6B4E8C;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list {
+      text-align: left;
+      background: #FFF3E0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .incorrect-list h3 {
+      color: #F57C00;
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .incorrect-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #FFE0B2;
+      font-size: 14px;
+    }
+
+    .incorrect-item:last-child { border-bottom: none; }
+
+    .incorrect-play {
+      background: #9C27B0;
+      color: white;
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .restart-btn {
+      background: linear-gradient(135deg, #00BCD4, #00ACC1);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .retry-btn {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 15px; }
+      .title { font-size: 22px; }
+      .play-btn { width: 70px; height: 70px; font-size: 28px; }
+      .choice-btn { padding: 14px 25px; font-size: 18px; }
+      .word-reveal { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-row">
+      <div>
+        <h1 class="title">ST Sound</h1>
+        <p class="subtitle">"sht" or "st"?</p>
+      </div>
+      <div class="header-btns">
+        <button class="small-btn" onclick="toggleShortcuts()" id="shortcutsBtn"><u>K</u>eys</button>
+        <button class="small-btn" onclick="toggleInfo()" id="toggleBtn"><u>I</u>nfo</button>
+      </div>
+    </div>
+
+    <div id="shortcutsSection" class="shortcuts-section hidden">
+      <kbd>Space</kbd> Play
+      <kbd>F</kbd> "sht"
+      <kbd>J</kbd> "st"
+    </div>
+
+    <div id="infoSection" class="info-section hidden">
+      <strong>Listen whether ST sounds like "sht" or "st".</strong>
+      <br><br>
+      The spelling is always ST, but pronunciation depends on position:
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>sht</strong> = ST at the <u>beginning of a syllable</u>: <u>St</u>adt, <u>St</u>ein, ver<u>st</u>ehen</li>
+        <li><strong>st</strong> = ST in the <u>middle or end</u>: fe<u>st</u>, Ga<u>st</u>, Fen<u>st</u>er</li>
+      </ul>
+      <p style="margin: 8px 0;">The key is syllable structure. In "verstehen", the syllables are "ver-ste-hen" - ST starts a syllable, so it's "sht". In "Fenster", the syllables are "Fens-ter" - ST doesn't start a syllable, so it's "st".</p>
+      <span style="color: #888; font-size: 12px;">80 phrases total, 20 per session. Progress saved locally.</span>
+    </div>
+
+    <div id="exerciseArea">
+      <div class="progress-row">
+        <span class="progress-current"><span id="currentQ">1</span>/<span id="totalQ">20</span></span>
+        <span class="progress-score" id="scoreDisplay">0 correct</span>
+        <span class="progress-mastered"><span id="masteredCount">0</span>/80 learned</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <div class="question-area">
+        <button class="play-btn" onclick="playWord()" id="playBtn" aria-label="Play word">
+          <span>&#9654;</span>
+        </button>
+
+        <div class="reveal-container">
+          <div id="wordReveal" class="word-reveal hidden"></div>
+          <div id="translationReveal" class="translation-reveal hidden"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="choice-btn sht" onclick="checkAnswer('sht')" id="btnSht">sht<span class="key-hint">F</span></button>
+        <button class="choice-btn st" onclick="checkAnswer('st')" id="btnSt">st<span class="key-hint">J</span></button>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="results hidden">
+      <h2>Results</h2>
+      <div id="resultPct" class="percentage">100%</div>
+      <div class="result-text">
+        <span id="resultScore">20</span>/<span id="resultTotal">20</span> correct
+      </div>
+
+      <div id="incorrectSection" class="incorrect-list hidden">
+        <h3>Review (click to hear):</h3>
+        <div id="incorrectItems"></div>
+      </div>
+
+      <div class="action-btns">
+        <button class="restart-btn" onclick="startSession()">New Session</button>
+        <button class="retry-btn hidden" onclick="retryIncorrect()" id="retryBtn">Retry Wrong</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const AUDIO_BASE = 'st-trainer/audio/';
+      const STORAGE_KEY = 'st_sound_progress';
+      const SESSION_SIZE = 20;
+
+      // Word bank: ST words only (sht at syllable start, st otherwise)
+      const allWords = [
+        // SHT - ST at syllable beginning (40)
+        { word: "die Stadt", sound: "sht", file: "die_Stadt", en: "the city" },
+        { word: "eine Straße", sound: "sht", file: "eine_Strasse", en: "a street" },
+        { word: "sehr stark", sound: "sht", file: "sehr_stark", en: "very strong" },
+        { word: "ein Stein", sound: "sht", file: "ein_Stein", en: "a stone" },
+        { word: "dort stehen", sound: "sht", file: "dort_stehen", en: "to stand there" },
+        { word: "eine Stelle", sound: "sht", file: "eine_Stelle", en: "a position" },
+        { word: "laute Stimme", sound: "sht", file: "laute_Stimme", en: "loud voice" },
+        { word: "im Stock", sound: "sht", file: "im_Stock", en: "on the floor" },
+        { word: "der Strom", sound: "sht", file: "der_Strom", en: "the electricity" },
+        { word: "ein Stück", sound: "sht", file: "ein_Stueck", en: "a piece" },
+        { word: "gut verstehen", sound: "sht", file: "gut_verstehen", en: "to understand well" },
+        { word: "etwas bestellen", sound: "sht", file: "etwas_bestellen", en: "to order something" },
+        { word: "es entsteht", sound: "sht", file: "es_entsteht", en: "it arises" },
+        { word: "sich vorstellen", sound: "sht", file: "sich_vorstellen", en: "to introduce oneself" },
+        { word: "anstatt dessen", sound: "sht", file: "anstatt_dessen", en: "instead of that" },
+        { word: "ein Stuhl", sound: "sht", file: "ein_Stuhl", en: "a chair" },
+        { word: "mein Studium", sound: "sht", file: "mein_Studium", en: "my studies" },
+        { word: "fleißig studieren", sound: "sht", file: "fleissig_studieren", en: "to study hard" },
+        { word: "ein Stern", sound: "sht", file: "ein_Stern", en: "a star" },
+        { word: "leider sterben", sound: "sht", file: "leider_sterben", en: "unfortunately die" },
+        { word: "die Steuer", sound: "sht", file: "die_Steuer", en: "the tax" },
+        { word: "etwas stellen", sound: "sht", file: "etwas_stellen", en: "to put something" },
+        { word: "kurz stoppen", sound: "sht", file: "kurz_stoppen", en: "to stop briefly" },
+        { word: "sehr stolz", sound: "sht", file: "sehr_stolz", en: "very proud" },
+        { word: "am Strand", sound: "sht", file: "am_Strand", en: "at the beach" },
+        { word: "die Struktur", sound: "sht", file: "die_Struktur", en: "the structure" },
+        { word: "eine Strafe", sound: "sht", file: "eine_Strafe", en: "a punishment" },
+        { word: "der Stress", sound: "sht", file: "der_Stress", en: "the stress" },
+        { word: "ein Stift", sound: "sht", file: "ein_Stift", en: "a pen" },
+        { word: "die Stille", sound: "sht", file: "die_Stille", en: "the silence" },
+        { word: "eine Stirn", sound: "sht", file: "eine_Stirn", en: "a forehead" },
+        { word: "der Stoff", sound: "sht", file: "der_Stoff", en: "the fabric" },
+        { word: "ich störe", sound: "sht", file: "ich_stoere", en: "I disturb" },
+        { word: "die Stunde", sound: "sht", file: "die_Stunde", en: "the hour" },
+        { word: "der Sturm", sound: "sht", file: "der_Sturm", en: "the storm" },
+        { word: "aufstehen", sound: "sht", file: "aufstehen", en: "to get up" },
+        { word: "umsteigen", sound: "sht", file: "umsteigen", en: "to change trains" },
+        { word: "aussteigen", sound: "sht", file: "aussteigen", en: "to get off" },
+        { word: "einsteigen", sound: "sht", file: "einsteigen", en: "to get on" },
+        { word: "abstellen", sound: "sht", file: "abstellen", en: "to turn off" },
+        // ST - not at syllable beginning (40)
+        { word: "ganz fest", sound: "st", file: "ganz_fest", en: "very firm" },
+        { word: "ein Gast", sound: "st", file: "ein_Gast", en: "a guest" },
+        { word: "große Last", sound: "st", file: "grosse_Last", en: "heavy burden" },
+        { word: "keine Lust", sound: "st", file: "keine_Lust", en: "no desire" },
+        { word: "die Kunst", sound: "st", file: "die_Kunst", en: "the art" },
+        { word: "eine Wurst", sound: "st", file: "eine_Wurst", en: "a sausage" },
+        { word: "großer Durst", sound: "st", file: "grosser_Durst", en: "great thirst" },
+        { word: "du bist", sound: "st", file: "du_bist", en: "you are" },
+        { word: "es ist", sound: "st", file: "es_ist", en: "it is" },
+        { word: "fast fertig", sound: "st", file: "fast_fertig", en: "almost done" },
+        { word: "das Fenster", sound: "st", file: "das_Fenster", en: "the window" },
+        { word: "meine Schwester", sound: "st", file: "meine_Schwester", en: "my sister" },
+        { word: "der Meister", sound: "st", file: "der_Meister", en: "the master" },
+        { word: "die Küste", sound: "st", file: "die_Kueste", en: "the coast" },
+        { word: "eine Liste", sound: "st", file: "eine_Liste", en: "a list" },
+        { word: "im Westen", sound: "st", file: "im_Westen", en: "in the west" },
+        { word: "im Osten", sound: "st", file: "im_Osten", en: "in the east" },
+        { word: "es kostet", sound: "st", file: "es_kostet", en: "it costs" },
+        { word: "ein Kasten", sound: "st", file: "ein_Kasten", en: "a box" },
+        { word: "der Posten", sound: "st", file: "der_Posten", en: "the position" },
+        { word: "starker Frost", sound: "st", file: "starker_Frost", en: "strong frost" },
+        { word: "viel Rost", sound: "st", file: "viel_Rost", en: "a lot of rust" },
+        { word: "die Post", sound: "st", file: "die_Post", en: "the mail" },
+        { word: "frisches Obst", sound: "st", file: "frisches_Obst", en: "fresh fruit" },
+        { word: "ich selbst", sound: "st", file: "ich_selbst", en: "myself" },
+        { word: "sonst nichts", sound: "st", file: "sonst_nichts", en: "nothing else" },
+        { word: "ganz ernst", sound: "st", file: "ganz_ernst", en: "very serious" },
+        { word: "du hast", sound: "st", file: "du_hast", en: "you have" },
+        { word: "du musst", sound: "st", file: "du_musst", en: "you must" },
+        { word: "du kannst", sound: "st", file: "du_kannst", en: "you can" },
+        { word: "du willst", sound: "st", file: "du_willst", en: "you want" },
+        { word: "du sollst", sound: "st", file: "du_sollst", en: "you should" },
+        { word: "große Hast", sound: "st", file: "grosse_Hast", en: "great haste" },
+        { word: "ein Mast", sound: "st", file: "ein_Mast", en: "a mast" },
+        { word: "meine Brust", sound: "st", file: "meine_Brust", en: "my chest" },
+        { word: "die Frist", sound: "st", file: "die_Frist", en: "the deadline" },
+        { word: "der Geist", sound: "st", file: "der_Geist", en: "the ghost" },
+        { word: "ein Test", sound: "st", file: "ein_Test", en: "a test" },
+        { word: "ein Nest", sound: "st", file: "ein_Nest", en: "a nest" },
+        { word: "der Rest", sound: "st", file: "der_Rest", en: "the rest" }
+      ];
+
+      const TOTAL_WORDS = allWords.length;
+
+      let progress = loadProgress();
+      let exercises = [];
+      let idx = 0;
+      let score = 0;
+      let answered = false;
+      let answers = [];
+      let sessionWrong = [];
+      let audioEl = null;
+
+      function loadProgress() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const p = JSON.parse(saved);
+            if (p.unseen && p.unseen[0] && allWords.find(w => w.word === p.unseen[0])) {
+              return p;
+            }
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        } catch (e) {}
+        return {
+          mastered: [],
+          wrong: [],
+          unseen: allWords.map(w => w.word)
+        };
+      }
+
+      function saveProgress() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        } catch (e) {}
+      }
+
+      function getWordByName(name) {
+        return allWords.find(w => w.word === name);
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildSession() {
+        let pool = [];
+        const wrongWords = progress.wrong.map(getWordByName).filter(Boolean);
+        pool.push(...wrongWords);
+        const unseenWords = progress.unseen.map(getWordByName).filter(Boolean);
+        pool.push(...shuffle(unseenWords));
+        if (pool.length < SESSION_SIZE) {
+          const masteredWords = shuffle(progress.mastered.map(getWordByName).filter(Boolean));
+          pool.push(...masteredWords);
+        }
+        pool = shuffle(pool.slice(0, SESSION_SIZE));
+        return pool;
+      }
+
+      function updateMasteredDisplay() {
+        document.getElementById('masteredCount').textContent = progress.mastered.length;
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('scoreDisplay').textContent = score + ' correct';
+      }
+
+      function preloadAudio() {
+        const ex = exercises[idx];
+        if (!ex) return;
+        audioEl = new Audio(AUDIO_BASE + ex.file + '.mp3');
+      }
+
+      window.playWord = function() {
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          audioEl.play().catch(() => {});
+          const btn = document.getElementById('playBtn');
+          btn.classList.add('speaking');
+          audioEl.onended = () => btn.classList.remove('speaking');
+        }
+      };
+
+      window.playWordByFile = function(file) {
+        new Audio(AUDIO_BASE + file + '.mp3').play().catch(() => {});
+      };
+
+      window.startSession = function() {
+        exercises = buildSession();
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateMasteredDisplay();
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      window.retryIncorrect = function() {
+        if (sessionWrong.length === 0) return;
+        exercises = shuffle(sessionWrong);
+        idx = 0;
+        score = 0;
+        answers = new Array(exercises.length).fill(null);
+        sessionWrong = [];
+        document.getElementById('exerciseArea').classList.remove('hidden');
+        document.getElementById('resultsArea').classList.add('hidden');
+        document.getElementById('totalQ').textContent = exercises.length;
+        updateScoreDisplay();
+        showExercise();
+      };
+
+      function showExercise() {
+        const ex = exercises[idx];
+        const prev = answers[idx];
+
+        document.getElementById('currentQ').textContent = idx + 1;
+        updateScoreDisplay();
+        document.getElementById('progressBar').style.width = (idx / exercises.length * 100) + '%';
+
+        const btnSht = document.getElementById('btnSht');
+        const btnSt = document.getElementById('btnSt');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        preloadAudio();
+
+        if (prev !== null) {
+          answered = true;
+          const wasCorrect = prev === ex.sound;
+          btnSht.disabled = btnSt.disabled = true;
+          btnSht.classList.remove('correct', 'wrong');
+          btnSt.classList.remove('correct', 'wrong');
+
+          reveal.textContent = ex.word;
+          reveal.style.color = wasCorrect ? '#4CAF50' : '#F44336';
+          reveal.classList.remove('hidden');
+          transReveal.textContent = ex.en;
+          transReveal.classList.remove('hidden');
+
+          if (ex.sound === 'sht') {
+            btnSht.classList.add('correct');
+            if (prev !== 'sht') btnSt.classList.add('wrong');
+          } else {
+            btnSt.classList.add('correct');
+            if (prev !== 'st') btnSht.classList.add('wrong');
+          }
+        } else {
+          answered = false;
+          btnSht.disabled = btnSt.disabled = false;
+          btnSht.classList.remove('correct', 'wrong');
+          btnSt.classList.remove('correct', 'wrong');
+          reveal.classList.add('hidden');
+          transReveal.classList.add('hidden');
+
+          setTimeout(() => {
+            if (!answered && exercises[idx] === ex) playWord();
+          }, 200);
+        }
+      }
+
+      function recordAnswer(word, correct) {
+        const name = word.word;
+        progress.mastered = progress.mastered.filter(n => n !== name);
+        progress.wrong = progress.wrong.filter(n => n !== name);
+        progress.unseen = progress.unseen.filter(n => n !== name);
+
+        if (correct) {
+          progress.mastered.push(name);
+        } else {
+          progress.wrong.push(name);
+        }
+        saveProgress();
+        updateMasteredDisplay();
+      }
+
+      window.checkAnswer = function(sel) {
+        if (answered) return;
+        answered = true;
+        const ex = exercises[idx];
+        const correct = sel === ex.sound;
+        answers[idx] = sel;
+
+        const btnSht = document.getElementById('btnSht');
+        const btnSt = document.getElementById('btnSt');
+        const reveal = document.getElementById('wordReveal');
+        const transReveal = document.getElementById('translationReveal');
+
+        btnSht.disabled = btnSt.disabled = true;
+        reveal.textContent = ex.word;
+        reveal.style.color = correct ? '#4CAF50' : '#F44336';
+        reveal.classList.remove('hidden');
+        transReveal.textContent = ex.en;
+        transReveal.classList.remove('hidden');
+
+        if (ex.sound === 'sht') {
+          btnSht.classList.add('correct');
+          if (!correct) btnSt.classList.add('wrong');
+        } else {
+          btnSt.classList.add('correct');
+          if (!correct) btnSht.classList.add('wrong');
+        }
+
+        if (correct) {
+          score++;
+          updateScoreDisplay();
+        } else {
+          sessionWrong.push(ex);
+        }
+
+        recordAnswer(ex, correct);
+
+        setTimeout(() => {
+          if (answered && answers[idx] !== null) {
+            goNext();
+          }
+        }, 1000);
+      };
+
+      function goNext() {
+        if (!answered) return;
+        if (idx < exercises.length - 1) { idx++; showExercise(); }
+        else showResults();
+      }
+
+      function showResults() {
+        document.getElementById('exerciseArea').classList.add('hidden');
+        document.getElementById('resultsArea').classList.remove('hidden');
+
+        const pct = Math.round(score / exercises.length * 100);
+        document.getElementById('resultPct').textContent = pct + '%';
+        document.getElementById('resultScore').textContent = score;
+        document.getElementById('resultTotal').textContent = exercises.length;
+
+        const sec = document.getElementById('incorrectSection');
+        const items = document.getElementById('incorrectItems');
+        const retry = document.getElementById('retryBtn');
+
+        if (sessionWrong.length > 0) {
+          sec.classList.remove('hidden');
+          retry.classList.remove('hidden');
+          items.innerHTML = sessionWrong.map(w => `
+            <div class="incorrect-item">
+              <span><strong>${w.word}</strong> (${w.sound}) - ${w.en}</span>
+              <button class="incorrect-play" onclick="playWordByFile('${w.file}')">&#9654;</button>
+            </div>
+          `).join('');
+        } else {
+          sec.classList.add('hidden');
+          retry.classList.add('hidden');
+        }
+      }
+
+      window.toggleInfo = function() {
+        const sec = document.getElementById('infoSection');
+        const btn = document.getElementById('toggleBtn');
+        const isHidden = sec.classList.toggle('hidden');
+        btn.innerHTML = isHidden ? '<u>I</u>nfo' : 'Close';
+      };
+
+      window.toggleShortcuts = function() {
+        document.getElementById('shortcutsSection').classList.toggle('hidden');
+      };
+
+      document.addEventListener('keydown', function(e) {
+        const k = e.key.toLowerCase();
+        if (k === 'k') { e.preventDefault(); toggleShortcuts(); return; }
+        if (k === 'i') { e.preventDefault(); toggleInfo(); return; }
+
+        if (!document.getElementById('resultsArea').classList.contains('hidden')) return;
+
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); playWord(); }
+        else if (k === 'f' && !answered) { e.preventDefault(); checkAnswer('sht'); }
+        else if (k === 'j' && !answered) { e.preventDefault(); checkAnswer('st'); }
+      });
+
+      startSession();
+    })();
+  </script>
+</body>
+</html>

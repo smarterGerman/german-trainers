@@ -1,13 +1,13 @@
 {
-  "generated": "2026-01-02T15:56:12.918Z",
+  "generated": "2026-01-02T18:06:44.246Z",
   "voice": "de-DE-Chirp3-HD-Achernar",
   "speakingRate": 0.9,
   "totalWords": 79,
   "words": [
     {
       "word": "rot",
-      "file": "rot",
-      "phrase": "rot",
+      "file": "ganz_rot",
+      "phrase": "ganz rot",
       "rtype": "uvular"
     },
     {
@@ -24,8 +24,8 @@
     },
     {
       "word": "richtig",
-      "file": "richtig",
-      "phrase": "richtig",
+      "file": "ganz_richtig",
+      "phrase": "ganz richtig",
       "rtype": "uvular"
     },
     {
@@ -36,8 +36,8 @@
     },
     {
       "word": "ruhig",
-      "file": "ruhig",
-      "phrase": "ruhig",
+      "file": "ganz_ruhig",
+      "phrase": "ganz ruhig",
       "rtype": "uvular"
     },
     {
@@ -78,8 +78,8 @@
     },
     {
       "word": "braun",
-      "file": "braun",
-      "phrase": "braun",
+      "file": "ganz_braun",
+      "phrase": "ganz braun",
       "rtype": "uvular"
     },
     {
@@ -108,8 +108,8 @@
     },
     {
       "word": "frei",
-      "file": "frei",
-      "phrase": "frei",
+      "file": "ganz_frei",
+      "phrase": "ganz frei",
       "rtype": "uvular"
     },
     {
@@ -120,20 +120,20 @@
     },
     {
       "word": "froh",
-      "file": "froh",
-      "phrase": "froh",
+      "file": "ganz_froh",
+      "phrase": "ganz froh",
       "rtype": "uvular"
     },
     {
       "word": "grün",
-      "file": "gruen",
-      "phrase": "grün",
+      "file": "ganz_gruen",
+      "phrase": "ganz grün",
       "rtype": "uvular"
     },
     {
       "word": "groß",
-      "file": "gross",
-      "phrase": "groß",
+      "file": "ganz_gross",
+      "phrase": "ganz groß",
       "rtype": "uvular"
     },
     {
@@ -174,8 +174,8 @@
     },
     {
       "word": "Prozent",
-      "file": "prozent",
-      "phrase": "Prozent",
+      "file": "zehn_prozent",
+      "phrase": "zehn Prozent",
       "rtype": "uvular"
     },
     {
@@ -198,8 +198,8 @@
     },
     {
       "word": "trocken",
-      "file": "trocken",
-      "phrase": "trocken",
+      "file": "ganz_trocken",
+      "phrase": "ganz trocken",
       "rtype": "uvular"
     },
     {
@@ -210,14 +210,14 @@
     },
     {
       "word": "drei",
-      "file": "drei",
-      "phrase": "drei",
+      "file": "eins_zwei_drei",
+      "phrase": "eins zwei drei",
       "rtype": "uvular"
     },
     {
       "word": "drin",
-      "file": "drin",
-      "phrase": "drin",
+      "file": "da_drin",
+      "phrase": "da drin",
       "rtype": "uvular"
     },
     {
@@ -300,8 +300,8 @@
     },
     {
       "word": "hier",
-      "file": "hier",
-      "phrase": "hier",
+      "file": "hier_bitte",
+      "phrase": "hier bitte",
       "rtype": "vocalic"
     },
     {
@@ -318,20 +318,20 @@
     },
     {
       "word": "wir",
-      "file": "wir",
-      "phrase": "wir",
+      "file": "und_wir?",
+      "phrase": "und wir?",
       "rtype": "vocalic"
     },
     {
       "word": "mir",
-      "file": "mir",
-      "phrase": "mir",
+      "file": "und_mir?",
+      "phrase": "und mir?",
       "rtype": "vocalic"
     },
     {
       "word": "dir",
-      "file": "dir",
-      "phrase": "dir",
+      "file": "und_dir?",
+      "phrase": "und dir?",
       "rtype": "vocalic"
     },
     {
@@ -342,32 +342,32 @@
     },
     {
       "word": "nur",
-      "file": "nur",
-      "phrase": "nur",
+      "file": "nur_das",
+      "phrase": "nur das",
       "rtype": "vocalic"
     },
     {
       "word": "der",
-      "file": "der",
-      "phrase": "der",
+      "file": "der_mann",
+      "phrase": "der Mann",
       "rtype": "vocalic"
     },
     {
       "word": "wer",
-      "file": "wer",
-      "phrase": "wer",
+      "file": "wer_ist_das?",
+      "phrase": "wer ist das?",
       "rtype": "vocalic"
     },
     {
       "word": "sehr",
-      "file": "sehr",
-      "phrase": "sehr",
+      "file": "sehr_gut",
+      "phrase": "sehr gut",
       "rtype": "vocalic"
     },
     {
       "word": "mehr",
-      "file": "mehr",
-      "phrase": "mehr",
+      "file": "noch_mehr",
+      "phrase": "noch mehr",
       "rtype": "vocalic"
     },
     {
@@ -378,32 +378,32 @@
     },
     {
       "word": "war",
-      "file": "war",
-      "phrase": "war",
+      "file": "das_war_gut",
+      "phrase": "das war gut",
       "rtype": "vocalic"
     },
     {
       "word": "wahr",
-      "file": "wahr",
-      "phrase": "wahr",
+      "file": "ganz_wahr",
+      "phrase": "ganz wahr",
       "rtype": "vocalic"
     },
     {
       "word": "gar",
-      "file": "gar",
-      "phrase": "gar",
+      "file": "gar_nicht",
+      "phrase": "gar nicht",
       "rtype": "vocalic"
     },
     {
       "word": "vor",
-      "file": "vor",
-      "phrase": "vor",
+      "file": "vor_dem_haus",
+      "phrase": "vor dem Haus",
       "rtype": "vocalic"
     },
     {
       "word": "für",
-      "file": "fuer",
-      "phrase": "für",
+      "file": "fuer_dich",
+      "phrase": "für dich",
       "rtype": "vocalic"
     },
     {
@@ -414,44 +414,44 @@
     },
     {
       "word": "oder",
-      "file": "oder",
-      "phrase": "oder",
+      "file": "ja_oder_nein?",
+      "phrase": "ja oder nein?",
       "rtype": "vocalic"
     },
     {
       "word": "aber",
-      "file": "aber",
-      "phrase": "aber",
+      "file": "aber_ja!",
+      "phrase": "aber ja!",
       "rtype": "vocalic"
     },
     {
       "word": "über",
-      "file": "ueber",
-      "phrase": "über",
+      "file": "ueber_dem_tisch",
+      "phrase": "über dem Tisch",
       "rtype": "vocalic"
     },
     {
       "word": "unter",
-      "file": "unter",
-      "phrase": "unter",
+      "file": "unter_dem_bett",
+      "phrase": "unter dem Bett",
       "rtype": "vocalic"
     },
     {
       "word": "hinter",
-      "file": "hinter",
-      "phrase": "hinter",
+      "file": "hinter_dem_haus",
+      "phrase": "hinter dem Haus",
       "rtype": "vocalic"
     },
     {
       "word": "immer",
-      "file": "immer",
-      "phrase": "immer",
+      "file": "immer_wieder",
+      "phrase": "immer wieder",
       "rtype": "vocalic"
     },
     {
       "word": "besser",
-      "file": "besser",
-      "phrase": "besser",
+      "file": "viel_besser",
+      "phrase": "viel besser",
       "rtype": "vocalic"
     },
     {
