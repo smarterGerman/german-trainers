@@ -62,10 +62,13 @@
 
     .streak {
       text-align: right;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
     }
 
     .streak-number {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 800;
       color: #E91E63;
       line-height: 1;
@@ -720,8 +723,8 @@
         </div>
       </div>
       <div class="streak">
-        <div class="streak-number" id="streakNumber">0</div>
-        <div class="streak-label">Day Streak</div>
+        <span class="streak-number" id="streakNumber">0</span>
+        <span class="streak-label">Day Streak</span>
       </div>
     </div>
 
@@ -1272,34 +1275,34 @@
     const UNLOCK_THRESHOLD = 80;
 
     const storageKeys = {
-      'ie-ei': 'ieEiTrainerProgress',
-      'ae-a': 'aeATrainerProgress',
-      'ue-u': 'ueUTrainerProgress',
-      'oe-o': 'oeOTrainerProgress',
-      'long-short': 'longShortVowelProgress',
-      'schwa': 'schwaTrainerProgress',
-      'ch': 'chSoundsProgress_v2',
-      'r': 'rSoundsProgress_v2',
-      's-z': 'szTrainerProgress',
-      'pf': 'pfSoundProgress',
-      'ig-ich': 'igIchTrainerProgress',
-      'devoicing': 'devoicingProgress',
-      'st': 'stTrainerProgress',
-      'sp': 'spTrainerProgress',
-      'ng-nk': 'ngNkTrainerProgress',
-      'glottal': 'glottalStopProgress',
-      'h': 'hAspirationProgress',
-      'tion': 'tionSionProgress',
-      'ss-sz': 'ssSzTrainerProgress',
-      'k-ck': 'kCkTrainerProgress',
-      'z-tz': 'zTzTrainerProgress',
-      'f-v': 'fVTrainerProgress',
-      'das-dass': 'das-dass-progress',
-      'double': 'doubleConsonantsProgress',
-      'caps': 'capitalizationProgress',
-      'stress': 'wordStressProgress',
-      'compound': 'compoundBuilderProgress',
-      'anglicisms': 'anglicismsProgress'
+      'ie-ei': 'ie_ei_progress',
+      'ae-a': 'ae_a_progress',
+      'ue-u': 'ue_u_progress',
+      'oe-o': 'oe_o_progress',
+      'long-short': 'long_short_vowel_progress',
+      'schwa': 'schwa_progress',
+      'ch': 'ch_sounds_progress_v2',
+      'r': 'r_sounds_progress_v2',
+      's-z': 's_z_progress',
+      'pf': 'pf_f_progress',
+      'ig-ich': 'ig_ich_progress',
+      'devoicing': 'final_devoicing_v3_progress',
+      'st': 'st_sound_progress',
+      'sp': 'sp_sound_progress',
+      'ng-nk': 'ng_nk_progress',
+      'glottal': 'glottal_stop_progress',
+      'h': 'h_aspiration_progress',
+      'tion': 'tion_sion_progress',
+      'ss-sz': 'ss_sz_progress',
+      'k-ck': 'k_ck_progress',
+      'z-tz': 'z_tz_progress',
+      'f-v': 'f_v_progress',
+      'das-dass': 'das_dass_progress',
+      'double': 'double_consonants_progress',
+      'caps': 'capitalization_progress',
+      'stress': 'word_stress_progress',
+      'compound': 'compound_builder_progress',
+      'anglicisms': 'anglicisms_progress'
     };
 
     const totalWords = {
