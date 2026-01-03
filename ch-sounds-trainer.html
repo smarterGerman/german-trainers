@@ -436,6 +436,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'ch-sounds-trainer/audio/';
@@ -604,6 +605,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         if (audioEl) {
           audioEl.currentTime = 0;
           audioEl.play().catch(() => {});
@@ -668,6 +670,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           btnIch.disabled = btnAch.disabled = true;
           btnIch.classList.remove('correct', 'wrong');
           btnAch.classList.remove('correct', 'wrong');
@@ -694,7 +697,7 @@
           transReveal.classList.remove('visible');
 
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
           }, 200);
         }
       }
@@ -717,6 +720,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.sound;
         answers[idx] = sel;

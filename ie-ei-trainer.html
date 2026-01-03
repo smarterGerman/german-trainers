@@ -412,6 +412,7 @@
       const AUDIO_BASE = 'ie-ei-trainer/audio/';
 
       let audioEl = null;
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
 
       function sanitizeFilename(word) {
         return word
@@ -620,6 +621,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         if (audioEl) {
           audioEl.currentTime = 0;
           audioEl.play().catch(() => {});
@@ -699,7 +701,7 @@
 
           preloadAudio();
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
           }, 200);
         }
       }
@@ -722,6 +724,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.answer;
         answers[idx] = sel;

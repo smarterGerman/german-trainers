@@ -614,7 +614,7 @@
         btn.classList.remove('correct', 'wrong');
       });
 
-      setTimeout(() => playAudio(), 300);
+      if (!noAutoPlay) setTimeout(() => playAudio(), 300);
     }
 
     function playAudio() {
@@ -630,6 +630,7 @@
     function checkAnswer(selected) {
       if (answered) return;
       answered = true;
+        userHasInteracted = true;
 
       const word = sessionWords[currentIndex];
       const isCorrect = selected === word.ending;

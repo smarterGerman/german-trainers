@@ -414,6 +414,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'long-short-vowel-trainer/audio/';
@@ -613,6 +614,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         if (audioEl) {
           audioEl.currentTime = 0;
           audioEl.play().catch(() => {});
@@ -671,6 +673,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           btnLong.disabled = btnShort.disabled = true;
           btnLong.classList.remove('correct', 'wrong');
           btnShort.classList.remove('correct', 'wrong');
@@ -696,7 +699,7 @@
           transReveal.classList.add('hidden');
 
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
           }, 200);
         }
       }
@@ -719,6 +722,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.length;
         answers[idx] = sel;

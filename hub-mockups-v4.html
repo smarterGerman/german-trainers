@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Trainers Hub - Compact List Variations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .mockup-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #25373F;
+      padding: 10px 15px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .mockup-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .mockup-nav a:hover {
+      background: #F42E2E;
+    }
+
+    .mockup-nav a.active {
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+    }
+
+    .mockup-section {
+      min-height: 100vh;
+      padding: 70px 15px 40px;
+      background: linear-gradient(180deg, #25373F 0%, #1a2830 100%);
+    }
+
+    .mockup-label {
+      text-align: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00BCD4;
+      margin-bottom: 4px;
+    }
+
+    .mockup-name {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .mockup-desc {
+      text-align: center;
+      color: #7A7A7A;
+      font-size: 11px;
+      margin-bottom: 25px;
+    }
+
+    /* ==================== SHARED STYLES ==================== */
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+    }
+
+    .stat-val {
+      font-weight: 700;
+      color: #00BCD4;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(0,188,212,0.1);
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #00BCD4;
+      font-weight: 600;
+    }
+
+    .unlock-all {
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* ==================== OPTION A: PROGRESS BAR BELOW ==================== */
+    .a-row {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 14px;
+      background: #1a2830;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .a-row:hover {
+      background: #1f3038;
+    }
+
+    .a-row.in-progress { background: rgba(0,188,212,0.08); }
+    .a-row.locked { opacity: 0.6; }
+
+    .a-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .a-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .a-row-status {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .a-row.completed .a-row-status { background: #4CAF50; }
+    .a-row.in-progress .a-row-status { background: #00BCD4; }
+    .a-row.locked .a-row-status { background: #3a4a52; }
+
+    .a-row-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .a-row.locked .a-row-title::after {
+      content: ' [locked]';
+      font-size: 10px;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .a-row-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .a-row-pct {
+      font-size: 14px;
+      color: #00BCD4;
+      font-weight: 700;
+    }
+
+    .a-row.locked .a-row-pct {
+      color: #7A7A7A;
+    }
+
+    .a-row-action {
+      font-size: 11px;
+      color: #F42E2E;
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid #F42E2E;
+      border-radius: 20px;
+    }
+
+    .a-row-bar {
+      width: 100%;
+      height: 6px;
+      background: #3a4a52;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .a-row-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      border-radius: 3px;
+    }
+
+    /* ==================== OPTION B: INLINE COMPACT ==================== */
+    .b-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background: #1a2830;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      gap: 10px;
+    }
+
+    .b-row:hover {
+      background: #1f3038;
+    }
+
+    .b-row.in-progress { background: rgba(0,188,212,0.08); }
+    .b-row.locked { opacity: 0.6; }
+
+    .b-row-status {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .b-row.completed .b-row-status { background: #4CAF50; }
+    .b-row.in-progress .b-row-status { background: #00BCD4; }
+    .b-row.locked .b-row-status { background: #3a4a52; }
+
+    .b-row-title {
+      font-size: 15px;
+      font-weight: 600;
+      min-width: 90px;
+    }
+
+    .b-row.locked .b-row-title::after {
+      content: ' [locked]';
+      font-size: 9px;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .b-row-bar {
+      flex: 1;
+      height: 8px;
+      background: #3a4a52;
+      border-radius: 4px;
+      overflow: hidden;
+      min-width: 60px;
+    }
+
+    .b-row-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      border-radius: 4px;
+    }
+
+    .b-row-pct {
+      font-size: 13px;
+      color: #00BCD4;
+      font-weight: 700;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .b-row.locked .b-row-pct {
+      color: #7A7A7A;
+    }
+
+    .b-row-action {
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    /* ==================== OPTION C: TWO ROWS STACKED ==================== */
+    .c-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .c-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background: #1a2830;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      gap: 8px;
+    }
+
+    .c-item:hover {
+      background: #1f3038;
+    }
+
+    .c-item.in-progress { background: rgba(0,188,212,0.08); }
+    .c-item.locked { opacity: 0.6; }
+
+    .c-item-status {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .c-item.completed .c-item-status { background: #4CAF50; }
+    .c-item.in-progress .c-item-status { background: #00BCD4; }
+    .c-item.locked .c-item-status { background: #3a4a52; }
+
+    .c-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .c-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .c-item.locked .c-item-title::after {
+      content: ' [locked]';
+      font-size: 9px;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .c-item-bar {
+      height: 4px;
+      background: #3a4a52;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .c-item-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .c-item-pct {
+      font-size: 12px;
+      color: #00BCD4;
+      font-weight: 700;
+    }
+
+    .c-item.locked .c-item-pct {
+      color: #7A7A7A;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 500px) {
+      .mockup-nav {
+        padding: 8px 10px;
+        gap: 5px;
+      }
+
+      .mockup-nav a {
+        padding: 6px 10px;
+        font-size: 10px;
+      }
+
+      .mockup-section {
+        padding: 60px 10px 30px;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .stats {
+        gap: 8px;
+        font-size: 10px;
+      }
+
+      /* Option A mobile */
+      .a-row {
+        padding: 10px 12px;
+      }
+
+      .a-row-title {
+        font-size: 15px;
+      }
+
+      .a-row-pct {
+        font-size: 13px;
+      }
+
+      /* Option B mobile */
+      .b-row {
+        padding: 8px 10px;
+        gap: 8px;
+      }
+
+      .b-row-title {
+        font-size: 14px;
+        min-width: 70px;
+      }
+
+      .b-row-bar {
+        height: 6px;
+      }
+
+      .b-row-pct {
+        font-size: 12px;
+        min-width: 35px;
+      }
+
+      /* Option C mobile - single column */
+      .c-row {
+        grid-template-columns: 1fr;
+      }
+
+      .c-item {
+        padding: 10px 12px;
+      }
+
+      .c-item-title {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="mockup-nav">
+    <a href="#optionA" class="active">A. Bar Below</a>
+    <a href="#optionB">B. Inline Bar</a>
+    <a href="#optionC">C. Two Columns</a>
+  </nav>
+
+  <!-- OPTION A: PROGRESS BAR BELOW NAME -->
+  <section id="optionA" class="mockup-section">
+    <div class="mockup-label">Option A</div>
+    <div class="mockup-name">Progress Bar Below Name</div>
+    <div class="mockup-desc">Name + percentage on top line, full-width progress bar below. No wasted space.</div>
+
+    <div class="container">
+      <div class="header">
+        <h1>German Trainers</h1>
+        <div class="stats">
+          <span><span class="stat-val">847</span> mastered</span>
+          <span><span class="stat-val">68%</span> done</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Vowel Sounds</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="a-row completed">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">+</div>
+                <div class="a-row-title">ie / ei</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">100%</div>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="a-row in-progress">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">></div>
+                <div class="a-row-title">u / u</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">60%</div>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:60%"></div></div>
+          </div>
+          <div class="a-row locked">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">x</div>
+                <div class="a-row-title">o / o</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">0%</div>
+                <a href="#" class="a-row-action">Unlock</a>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Consonants</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="a-row in-progress">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">></div>
+                <div class="a-row-title">ch sounds</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">55%</div>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="a-row locked">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">x</div>
+                <div class="a-row-title">r sounds</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">0%</div>
+                <a href="#" class="a-row-action">Unlock</a>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:0%"></div></div>
+          </div>
+          <div class="a-row locked">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">x</div>
+                <div class="a-row-title">pf / f</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">0%</div>
+                <a href="#" class="a-row-action">Unlock</a>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Spelling</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="a-row completed">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">+</div>
+                <div class="a-row-title">ss / ß</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">100%</div>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="a-row locked">
+            <div class="a-row-top">
+              <div class="a-row-left">
+                <div class="a-row-status">x</div>
+                <div class="a-row-title">das / dass</div>
+              </div>
+              <div class="a-row-right">
+                <div class="a-row-pct">0%</div>
+                <a href="#" class="a-row-action">Unlock</a>
+              </div>
+            </div>
+            <div class="a-row-bar"><div class="a-row-bar-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTION B: INLINE COMPACT -->
+  <section id="optionB" class="mockup-section">
+    <div class="mockup-label">Option B</div>
+    <div class="mockup-name">Inline Progress Bar</div>
+    <div class="mockup-desc">Everything on one line: status, name, bar, percentage. Thicker bar fills the gap.</div>
+
+    <div class="container">
+      <div class="header">
+        <h1>German Trainers</h1>
+        <div class="stats">
+          <span><span class="stat-val">847</span> mastered</span>
+          <span><span class="stat-val">68%</span> done</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Vowel Sounds</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="b-row completed">
+            <div class="b-row-status">+</div>
+            <div class="b-row-title">ie / ei</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:100%"></div></div>
+            <div class="b-row-pct">100%</div>
+          </div>
+          <div class="b-row completed">
+            <div class="b-row-status">+</div>
+            <div class="b-row-title">a / a</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:100%"></div></div>
+            <div class="b-row-pct">100%</div>
+          </div>
+          <div class="b-row in-progress">
+            <div class="b-row-status">></div>
+            <div class="b-row-title">u / u</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:60%"></div></div>
+            <div class="b-row-pct">60%</div>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">o / o</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Consonants</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="b-row in-progress">
+            <div class="b-row-status">></div>
+            <div class="b-row-title">ch sounds</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:55%"></div></div>
+            <div class="b-row-pct">55%</div>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">r sounds</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">pf / f</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">-ig / -ich</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">schwa</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Spelling</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="list">
+          <div class="b-row completed">
+            <div class="b-row-status">+</div>
+            <div class="b-row-title">ss / ß</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:100%"></div></div>
+            <div class="b-row-pct">100%</div>
+          </div>
+          <div class="b-row in-progress">
+            <div class="b-row-status">></div>
+            <div class="b-row-title">k / ck</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:40%"></div></div>
+            <div class="b-row-pct">40%</div>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">z / tz</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+          <div class="b-row locked">
+            <div class="b-row-status">x</div>
+            <div class="b-row-title">das / dass</div>
+            <div class="b-row-bar"><div class="b-row-bar-fill" style="width:0%"></div></div>
+            <div class="b-row-pct">0%</div>
+            <a href="#" class="b-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTION C: TWO COLUMNS -->
+  <section id="optionC" class="mockup-section">
+    <div class="mockup-label">Option C</div>
+    <div class="mockup-name">Two Column Grid</div>
+    <div class="mockup-desc">Two trainers per row on desktop, stacks to one column on mobile. Compact cards.</div>
+
+    <div class="container">
+      <div class="header">
+        <h1>German Trainers</h1>
+        <div class="stats">
+          <span><span class="stat-val">847</span> mastered</span>
+          <span><span class="stat-val">68%</span> done</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Vowel Sounds</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="c-row">
+          <div class="c-item completed">
+            <div class="c-item-status">+</div>
+            <div class="c-item-info">
+              <div class="c-item-title">ie / ei</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="c-item-pct">100%</div>
+          </div>
+          <div class="c-item completed">
+            <div class="c-item-status">+</div>
+            <div class="c-item-info">
+              <div class="c-item-title">a / a</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="c-item-pct">100%</div>
+          </div>
+          <div class="c-item in-progress">
+            <div class="c-item-status">></div>
+            <div class="c-item-info">
+              <div class="c-item-title">u / u</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:60%"></div></div>
+            </div>
+            <div class="c-item-pct">60%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">o / o</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Consonants</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="c-row">
+          <div class="c-item in-progress">
+            <div class="c-item-status">></div>
+            <div class="c-item-info">
+              <div class="c-item-title">ch sounds</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:55%"></div></div>
+            </div>
+            <div class="c-item-pct">55%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">r sounds</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">pf / f</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">-ig / -ich</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">schwa</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">devoicing</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Spelling</div>
+          <a href="#" class="unlock-all">Unlock all</a>
+        </div>
+        <div class="c-row">
+          <div class="c-item completed">
+            <div class="c-item-status">+</div>
+            <div class="c-item-info">
+              <div class="c-item-title">ss / ß</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="c-item-pct">100%</div>
+          </div>
+          <div class="c-item in-progress">
+            <div class="c-item-status">></div>
+            <div class="c-item-info">
+              <div class="c-item-title">k / ck</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:40%"></div></div>
+            </div>
+            <div class="c-item-pct">40%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">z / tz</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+          <div class="c-item locked">
+            <div class="c-item-status">x</div>
+            <div class="c-item-info">
+              <div class="c-item-title">das / dass</div>
+              <div class="c-item-bar"><div class="c-item-bar-fill" style="width:0%"></div></div>
+            </div>
+            <div class="c-item-pct">0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.mockup-nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.mockup-nav a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.mockup-section');
+      let current = '';
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+      });
+      document.querySelectorAll('.mockup-nav a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+</body>
+</html>

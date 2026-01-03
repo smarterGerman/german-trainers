@@ -342,6 +342,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'pf-sound-trainer/audio/';
@@ -518,6 +519,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         const ex = exercises[idx];
         if (!ex) return;
         if (audioEl) {
@@ -559,13 +561,14 @@
         btnF.classList.remove('correct', 'wrong');
 
         setTimeout(() => {
-          if (!answered && exercises[idx] === ex) playWord();
+          if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
         }, 200);
       }
 
       window.checkAnswer = function(selected) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = selected === ex.answer;
 

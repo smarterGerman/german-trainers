@@ -389,6 +389,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'ss-sz-trainer/audio/';
@@ -569,6 +570,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         if (audioEl) {
           audioEl.currentTime = 0;
           audioEl.play().catch(() => {});
@@ -633,6 +635,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           const wasCorrect = prev === ex.answer;
           btnSs.disabled = btnSz.disabled = true;
           btnSs.classList.remove('correct', 'wrong');
@@ -655,7 +658,7 @@
 
           preloadAudio();
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
           }, 200);
         }
       }
@@ -678,6 +681,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.answer;
         answers[idx] = sel;

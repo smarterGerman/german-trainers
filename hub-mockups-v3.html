@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Trainers Hub - Compact Dark Mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .mockup-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #25373F;
+      padding: 12px 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .mockup-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .mockup-nav a:hover {
+      background: #F42E2E;
+    }
+
+    .mockup-nav a.active {
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+    }
+
+    .mockup-section {
+      min-height: 100vh;
+      padding: 80px 20px 40px;
+      background: linear-gradient(180deg, #25373F 0%, #1a2830 100%);
+    }
+
+    .mockup-label {
+      text-align: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00BCD4;
+      margin-bottom: 5px;
+    }
+
+    .mockup-name {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .mockup-desc {
+      text-align: center;
+      color: #7A7A7A;
+      font-size: 12px;
+      margin-bottom: 30px;
+    }
+
+    /* ==================== MOCKUP 1: MINI TILES ==================== */
+    .m1-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .m1-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .m1-header h1 {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .m1-stats {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+    }
+
+    .m1-stat {
+      text-align: center;
+    }
+
+    .m1-stat-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: #00BCD4;
+    }
+
+    .m1-stat-lbl {
+      color: #7A7A7A;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .m1-section {
+      margin-bottom: 25px;
+    }
+
+    .m1-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .m1-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #00BCD4;
+    }
+
+    .m1-unlock-all {
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    .m1-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    .m1-tile {
+      background: #1a2830;
+      border-radius: 10px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid #3a4a52;
+      position: relative;
+    }
+
+    .m1-tile:hover {
+      transform: translateY(-3px);
+      border-color: #00BCD4;
+    }
+
+    .m1-tile.completed { border-color: #4CAF50; }
+    .m1-tile.in-progress { border-color: #00BCD4; box-shadow: 0 0 10px rgba(0,188,212,0.3); }
+    .m1-tile.locked { opacity: 0.5; }
+
+    .m1-tile-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .m1-tile.completed .m1-tile-badge { background: #4CAF50; }
+    .m1-tile.locked .m1-tile-badge { background: #3a4a52; font-size: 10px; }
+
+    .m1-tile-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .m1-tile-progress {
+      height: 3px;
+      background: #3a4a52;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .m1-tile-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .m1-tile-pct {
+      font-size: 9px;
+      color: #7A7A7A;
+    }
+
+    /* ==================== MOCKUP 2: COMPACT LIST ==================== */
+    .m2-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .m2-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .m2-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .m2-stats {
+      display: flex;
+      gap: 15px;
+      font-size: 11px;
+    }
+
+    .m2-stat-val {
+      font-weight: 700;
+      color: #00BCD4;
+    }
+
+    .m2-section {
+      margin-bottom: 20px;
+    }
+
+    .m2-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(0,188,212,0.1);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .m2-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #00BCD4;
+      font-weight: 600;
+    }
+
+    .m2-unlock-all {
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    .m2-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .m2-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #1a2830;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .m2-row:hover {
+      background: #1f3038;
+    }
+
+    .m2-row.in-progress { background: rgba(0,188,212,0.08); }
+    .m2-row.locked { opacity: 0.6; }
+
+    .m2-row-status {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .m2-row.completed .m2-row-status { background: #4CAF50; }
+    .m2-row.in-progress .m2-row-status { background: #00BCD4; }
+    .m2-row.locked .m2-row-status { background: #3a4a52; }
+
+    .m2-row-info {
+      flex: 1;
+      min-width: 0;
+      margin-right: auto;
+    }
+
+    .m2-row-title {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .m2-row-sub {
+      font-size: 12px;
+      color: #7A7A7A;
+    }
+
+    .m2-row-progress {
+      width: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .m2-row-bar {
+      flex: 1;
+      height: 5px;
+      background: #3a4a52;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .m2-row-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .m2-row-pct {
+      font-size: 13px;
+      color: #00BCD4;
+      font-weight: 600;
+      min-width: 38px;
+      text-align: right;
+    }
+
+    .m2-row.locked .m2-row-pct {
+      color: #7A7A7A;
+    }
+
+    .m2-row.locked .m2-row-title::after {
+      content: ' [locked]';
+      font-size: 11px;
+      color: #666;
+      font-weight: 400;
+    }
+
+    .m2-row-action {
+      font-size: 12px;
+      color: #F42E2E;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ==================== MOCKUP 3: ACCORDION LANES ==================== */
+    .m3-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .m3-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .m3-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .m3-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .m3-stat {
+      text-align: center;
+    }
+
+    .m3-stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: #00BCD4;
+    }
+
+    .m3-stat-lbl {
+      font-size: 9px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+    }
+
+    .m3-lane {
+      margin-bottom: 15px;
+      background: #1a2830;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .m3-lane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .m3-lane-header:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .m3-lane-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .m3-lane-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .m3-lane-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .m3-lane-meta {
+      font-size: 10px;
+      color: #7A7A7A;
+    }
+
+    .m3-lane-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .m3-lane-progress {
+      width: 100px;
+      height: 6px;
+      background: #3a4a52;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .m3-lane-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .m3-lane-pct {
+      font-size: 12px;
+      font-weight: 600;
+      color: #00BCD4;
+      min-width: 35px;
+    }
+
+    .m3-lane-toggle {
+      color: #7A7A7A;
+      font-size: 12px;
+      transition: transform 0.3s;
+    }
+
+    .m3-lane.open .m3-lane-toggle {
+      transform: rotate(180deg);
+    }
+
+    .m3-lane-content {
+      display: none;
+      padding: 0 16px 16px;
+    }
+
+    .m3-lane.open .m3-lane-content {
+      display: block;
+    }
+
+    .m3-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .m3-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #25373F;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .m3-chip:hover {
+      background: #2a424d;
+    }
+
+    .m3-chip.completed { border-color: #4CAF50; }
+    .m3-chip.in-progress { border-color: #00BCD4; }
+    .m3-chip.locked { opacity: 0.5; }
+
+    .m3-chip-status {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: bold;
+    }
+
+    .m3-chip.completed .m3-chip-status { background: #4CAF50; }
+    .m3-chip.in-progress .m3-chip-status { background: #00BCD4; }
+    .m3-chip.locked .m3-chip-status { background: #3a4a52; }
+
+    .m3-chip-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .m3-chip-pct {
+      font-size: 10px;
+      color: #7A7A7A;
+    }
+
+    .m3-unlock {
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .m3-unlock a {
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .mockup-nav {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .mockup-nav a {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      .m1-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .m2-row-progress {
+        width: 60px;
+      }
+
+      .m3-lane-progress {
+        width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="mockup-nav">
+    <a href="#mockup1" class="active">1. Mini Tiles</a>
+    <a href="#mockup2">2. Compact List</a>
+    <a href="#mockup3">3. Accordion Lanes</a>
+  </nav>
+
+  <!-- MOCKUP 1: MINI TILES -->
+  <section id="mockup1" class="mockup-section">
+    <div class="mockup-label">Mockup 1</div>
+    <div class="mockup-name">Mini Tiles Grid</div>
+    <div class="mockup-desc">Small square tiles, max density. Good for 15-20+ trainers.</div>
+
+    <div class="m1-container">
+      <div class="m1-header">
+        <h1>German Trainers</h1>
+        <div class="m1-stats">
+          <div class="m1-stat">
+            <div class="m1-stat-val">847</div>
+            <div class="m1-stat-lbl">Mastered</div>
+          </div>
+          <div class="m1-stat">
+            <div class="m1-stat-val">68%</div>
+            <div class="m1-stat-lbl">Complete</div>
+          </div>
+          <div class="m1-stat">
+            <div class="m1-stat-val">12</div>
+            <div class="m1-stat-lbl">Streak</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m1-section">
+        <div class="m1-section-header">
+          <div class="m1-section-title">Vowel Sounds</div>
+          <a href="#" class="m1-unlock-all">Unlock all</a>
+        </div>
+        <div class="m1-grid">
+          <div class="m1-tile completed">
+            <div class="m1-tile-badge">+</div>
+            <div class="m1-tile-title">ie/ei</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:100%"></div></div>
+            <div class="m1-tile-pct">100%</div>
+          </div>
+          <div class="m1-tile completed">
+            <div class="m1-tile-badge">+</div>
+            <div class="m1-tile-title">a/a</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:100%"></div></div>
+            <div class="m1-tile-pct">100%</div>
+          </div>
+          <div class="m1-tile in-progress">
+            <div class="m1-tile-title">u/u</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:60%"></div></div>
+            <div class="m1-tile-pct">60%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">o/o</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">au/au</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">NEW</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m1-section">
+        <div class="m1-section-header">
+          <div class="m1-section-title">Consonants</div>
+          <a href="#" class="m1-unlock-all">Unlock all</a>
+        </div>
+        <div class="m1-grid">
+          <div class="m1-tile in-progress">
+            <div class="m1-tile-title">ch</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:55%"></div></div>
+            <div class="m1-tile-pct">55%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">r</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">pf/f</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">-ig/-ich</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">schwa</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">s/z</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">NEW</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">devoice</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">NEW</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m1-section">
+        <div class="m1-section-header">
+          <div class="m1-section-title">Spelling & Grammar</div>
+          <a href="#" class="m1-unlock-all">Unlock all</a>
+        </div>
+        <div class="m1-grid">
+          <div class="m1-tile completed">
+            <div class="m1-tile-badge">+</div>
+            <div class="m1-tile-title">ss/ß</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:100%"></div></div>
+            <div class="m1-tile-pct">100%</div>
+          </div>
+          <div class="m1-tile in-progress">
+            <div class="m1-tile-title">k/ck</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:40%"></div></div>
+            <div class="m1-tile-pct">40%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">z/tz</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">f/v</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">das/dass</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">0%</div>
+          </div>
+          <div class="m1-tile locked">
+            <div class="m1-tile-badge">x</div>
+            <div class="m1-tile-title">stress</div>
+            <div class="m1-tile-progress"><div class="m1-tile-progress-fill" style="width:0%"></div></div>
+            <div class="m1-tile-pct">NEW</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP 2: COMPACT LIST -->
+  <section id="mockup2" class="mockup-section">
+    <div class="mockup-label">Mockup 2</div>
+    <div class="mockup-name">Compact List Rows</div>
+    <div class="mockup-desc">Vertical list, one trainer per row. Scannable, mobile-friendly.</div>
+
+    <div class="m2-container">
+      <div class="m2-header">
+        <h1>German Trainers</h1>
+        <div class="m2-stats">
+          <span><span class="m2-stat-val">847</span> mastered</span>
+          <span><span class="m2-stat-val">68%</span> complete</span>
+        </div>
+      </div>
+
+      <div class="m2-section">
+        <div class="m2-section-header">
+          <div class="m2-section-title">Vowel Sounds</div>
+          <a href="#" class="m2-unlock-all">Unlock all</a>
+        </div>
+        <div class="m2-list">
+          <div class="m2-row completed">
+            <div class="m2-row-status">+</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">ie / ei</div>
+              <div class="m2-row-sub">Long vowels</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:100%"></div></div>
+              <div class="m2-row-pct">100%</div>
+            </div>
+          </div>
+          <div class="m2-row completed">
+            <div class="m2-row-status">+</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">a / a</div>
+              <div class="m2-row-sub">Umlauts</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:100%"></div></div>
+              <div class="m2-row-pct">100%</div>
+            </div>
+          </div>
+          <div class="m2-row in-progress">
+            <div class="m2-row-status">></div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">u / u</div>
+              <div class="m2-row-sub">Umlauts</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:60%"></div></div>
+              <div class="m2-row-pct">60%</div>
+            </div>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">o / o</div>
+              <div class="m2-row-sub">Umlauts</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">au / au</div>
+              <div class="m2-row-sub">Diphthongs</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">NEW</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="m2-section">
+        <div class="m2-section-header">
+          <div class="m2-section-title">Consonants</div>
+          <a href="#" class="m2-unlock-all">Unlock all</a>
+        </div>
+        <div class="m2-list">
+          <div class="m2-row in-progress">
+            <div class="m2-row-status">></div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">ch sounds</div>
+              <div class="m2-row-sub">ich-Laut / ach-Laut</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:55%"></div></div>
+              <div class="m2-row-pct">55%</div>
+            </div>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">r sounds</div>
+              <div class="m2-row-sub">Uvular / vocalic</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">pf / f</div>
+              <div class="m2-row-sub">Affricate</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">-ig / -ich</div>
+              <div class="m2-row-sub">Endings</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">Final devoicing</div>
+              <div class="m2-row-sub">d/t, b/p, g/k</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">NEW</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="m2-section">
+        <div class="m2-section-header">
+          <div class="m2-section-title">Spelling & Grammar</div>
+          <a href="#" class="m2-unlock-all">Unlock all</a>
+        </div>
+        <div class="m2-list">
+          <div class="m2-row completed">
+            <div class="m2-row-status">+</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">ss / ß</div>
+              <div class="m2-row-sub">Spelling</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:100%"></div></div>
+              <div class="m2-row-pct">100%</div>
+            </div>
+          </div>
+          <div class="m2-row in-progress">
+            <div class="m2-row-status">></div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">k / ck</div>
+              <div class="m2-row-sub">Spelling</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:40%"></div></div>
+              <div class="m2-row-pct">40%</div>
+            </div>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">z / tz</div>
+              <div class="m2-row-sub">Spelling</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">das / dass</div>
+              <div class="m2-row-sub">Grammar</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">0%</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+          <div class="m2-row locked">
+            <div class="m2-row-status">x</div>
+            <div class="m2-row-info">
+              <div class="m2-row-title">Word stress</div>
+              <div class="m2-row-sub">Pronunciation</div>
+            </div>
+            <div class="m2-row-progress">
+              <div class="m2-row-bar"><div class="m2-row-bar-fill" style="width:0%"></div></div>
+              <div class="m2-row-pct">NEW</div>
+            </div>
+            <a href="#" class="m2-row-action">Unlock</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP 3: ACCORDION LANES -->
+  <section id="mockup3" class="mockup-section">
+    <div class="mockup-label">Mockup 3</div>
+    <div class="mockup-name">Collapsible Accordion</div>
+    <div class="mockup-desc">Categories collapse/expand. Shows overview, click to reveal trainers.</div>
+
+    <div class="m3-container">
+      <div class="m3-header">
+        <h1>German Trainers</h1>
+        <div class="m3-stats">
+          <div class="m3-stat">
+            <div class="m3-stat-val">847</div>
+            <div class="m3-stat-lbl">Mastered</div>
+          </div>
+          <div class="m3-stat">
+            <div class="m3-stat-val">68%</div>
+            <div class="m3-stat-lbl">Complete</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m3-lane open">
+        <div class="m3-lane-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="m3-lane-left">
+            <div class="m3-lane-icon">V</div>
+            <div>
+              <div class="m3-lane-title">Vowel Sounds</div>
+              <div class="m3-lane-meta">5 trainers - 2 complete</div>
+            </div>
+          </div>
+          <div class="m3-lane-right">
+            <div class="m3-lane-progress"><div class="m3-lane-progress-fill" style="width:65%"></div></div>
+            <div class="m3-lane-pct">65%</div>
+            <div class="m3-lane-toggle">v</div>
+          </div>
+        </div>
+        <div class="m3-lane-content">
+          <div class="m3-chips">
+            <div class="m3-chip completed">
+              <div class="m3-chip-status">+</div>
+              <div class="m3-chip-title">ie/ei</div>
+              <div class="m3-chip-pct">100%</div>
+            </div>
+            <div class="m3-chip completed">
+              <div class="m3-chip-status">+</div>
+              <div class="m3-chip-title">a/a</div>
+              <div class="m3-chip-pct">100%</div>
+            </div>
+            <div class="m3-chip in-progress">
+              <div class="m3-chip-status">></div>
+              <div class="m3-chip-title">u/u</div>
+              <div class="m3-chip-pct">60%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">o/o</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">au/au</div>
+              <div class="m3-chip-pct">NEW</div>
+            </div>
+          </div>
+          <div class="m3-unlock"><a href="#">Unlock all vowel trainers</a></div>
+        </div>
+      </div>
+
+      <div class="m3-lane">
+        <div class="m3-lane-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="m3-lane-left">
+            <div class="m3-lane-icon">C</div>
+            <div>
+              <div class="m3-lane-title">Consonant Sounds</div>
+              <div class="m3-lane-meta">7 trainers - 0 complete</div>
+            </div>
+          </div>
+          <div class="m3-lane-right">
+            <div class="m3-lane-progress"><div class="m3-lane-progress-fill" style="width:8%"></div></div>
+            <div class="m3-lane-pct">8%</div>
+            <div class="m3-lane-toggle">v</div>
+          </div>
+        </div>
+        <div class="m3-lane-content">
+          <div class="m3-chips">
+            <div class="m3-chip in-progress">
+              <div class="m3-chip-status">></div>
+              <div class="m3-chip-title">ch</div>
+              <div class="m3-chip-pct">55%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">r</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">pf/f</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">-ig/-ich</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">schwa</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">s/z</div>
+              <div class="m3-chip-pct">NEW</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">devoicing</div>
+              <div class="m3-chip-pct">NEW</div>
+            </div>
+          </div>
+          <div class="m3-unlock"><a href="#">Unlock all consonant trainers</a></div>
+        </div>
+      </div>
+
+      <div class="m3-lane">
+        <div class="m3-lane-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="m3-lane-left">
+            <div class="m3-lane-icon">S</div>
+            <div>
+              <div class="m3-lane-title">Spelling & Grammar</div>
+              <div class="m3-lane-meta">6 trainers - 1 complete</div>
+            </div>
+          </div>
+          <div class="m3-lane-right">
+            <div class="m3-lane-progress"><div class="m3-lane-progress-fill" style="width:23%"></div></div>
+            <div class="m3-lane-pct">23%</div>
+            <div class="m3-lane-toggle">v</div>
+          </div>
+        </div>
+        <div class="m3-lane-content">
+          <div class="m3-chips">
+            <div class="m3-chip completed">
+              <div class="m3-chip-status">+</div>
+              <div class="m3-chip-title">ss/ß</div>
+              <div class="m3-chip-pct">100%</div>
+            </div>
+            <div class="m3-chip in-progress">
+              <div class="m3-chip-status">></div>
+              <div class="m3-chip-title">k/ck</div>
+              <div class="m3-chip-pct">40%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">z/tz</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">f/v</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">das/dass</div>
+              <div class="m3-chip-pct">0%</div>
+            </div>
+            <div class="m3-chip locked">
+              <div class="m3-chip-status">x</div>
+              <div class="m3-chip-title">stress</div>
+              <div class="m3-chip-pct">NEW</div>
+            </div>
+          </div>
+          <div class="m3-unlock"><a href="#">Unlock all spelling trainers</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Nav scroll
+    document.querySelectorAll('.mockup-nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.mockup-nav a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.mockup-section');
+      let current = '';
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+      });
+      document.querySelectorAll('.mockup-nav a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+</body>
+</html>

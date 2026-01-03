@@ -409,6 +409,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'ng-nk-trainer/audio/';
@@ -575,6 +576,7 @@
       }
 
       window.playWord = function() {
+        userHasInteracted = true;
         if (audioEl) {
           audioEl.currentTime = 0;
           audioEl.play().catch(() => {});
@@ -647,6 +649,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           btns.forEach(btn => {
             btn.disabled = true;
             if (btn.dataset.option === ex.sound) {
@@ -664,7 +667,7 @@
         } else {
           answered = false;
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playWord();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playWord();
           }, 200);
         }
       }
@@ -672,6 +675,7 @@
       window.checkAnswer = function(selected) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = selected === ex.sound;
         answers[idx] = selected;

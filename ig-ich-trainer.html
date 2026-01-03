@@ -433,6 +433,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'ig-ich-trainer/audio/base/';
@@ -675,6 +676,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           btnIg.disabled = btnIch.disabled = true;
           btnIg.classList.remove('correct', 'wrong');
           btnIch.classList.remove('correct', 'wrong');
@@ -700,7 +702,7 @@
           transReveal.classList.add('hidden');
 
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playBase();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playBase();
           }, 200);
         }
 
@@ -728,6 +730,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.ending;
         answers[idx] = sel;

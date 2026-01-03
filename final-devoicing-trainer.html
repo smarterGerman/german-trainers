@@ -460,6 +460,7 @@
 
   <script>
     (function() {
+      let userHasInteracted = !new URLSearchParams(window.location.search).has('noauto');
       'use strict';
 
       const AUDIO_BASE = 'final-devoicing-trainer/audio/';
@@ -764,6 +765,7 @@
 
         if (prev !== null) {
           answered = true;
+        userHasInteracted = true;
           btnVoiced.disabled = true;
           btnVoiceless.disabled = true;
           btnVoiced.classList.remove('correct', 'wrong');
@@ -795,7 +797,7 @@
           enReveal.classList.add('hidden');
 
           setTimeout(() => {
-            if (!answered && exercises[idx] === ex) playPhrase();
+            if (!answered && exercises[idx] === ex && userHasInteracted) playPhrase();
           }, 200);
         }
       }
@@ -818,6 +820,7 @@
       window.checkAnswer = function(sel) {
         if (answered) return;
         answered = true;
+        userHasInteracted = true;
         const ex = exercises[idx];
         const correct = sel === ex.letter;
         answers[idx] = sel;

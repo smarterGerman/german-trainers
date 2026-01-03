@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Trainers Hub - Combo Mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .mockup-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #25373F;
+      padding: 15px 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .mockup-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .mockup-nav a:hover {
+      background: #F42E2E;
+      transform: scale(1.05);
+    }
+
+    .mockup-nav a.active {
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+    }
+
+    .mockup-section {
+      min-height: 100vh;
+      padding: 100px 30px 60px;
+    }
+
+    .mockup-title {
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #00BCD4;
+      margin-bottom: 10px;
+    }
+
+    .mockup-name {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #FF0080, #FFD700, #00CED1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mockup-desc {
+      text-align: center;
+      color: #7A7A7A;
+      font-size: 14px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ==================== MOCKUP A: VERTICAL JOURNEY ==================== */
+    #mockupA {
+      background: linear-gradient(180deg, #F3F4F6 0%, #E8E8E8 100%);
+      color: #25373F;
+    }
+
+    .va-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .va-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .va-header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: #25373F;
+      margin-bottom: 10px;
+    }
+
+    .va-header p {
+      color: #7A7A7A;
+      font-size: 16px;
+    }
+
+    /* Stats Row */
+    .va-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .va-stat {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .va-stat-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .va-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #25373F;
+    }
+
+    .va-stat-label {
+      font-size: 12px;
+      color: #7A7A7A;
+    }
+
+    /* Journey Path */
+    .va-journey {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .va-journey::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #4CAF50, #00BCD4, #F42E2E);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .va-section-label {
+      text-align: center;
+      padding: 10px 25px;
+      background: #25373F;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: inline-block;
+      margin: 0 auto 30px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .va-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .va-card {
+      width: 200px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      border: 3px solid transparent;
+    }
+
+    .va-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .va-card.completed {
+      border-color: #4CAF50;
+    }
+
+    .va-card.in-progress {
+      border-color: #00BCD4;
+    }
+
+    .va-card.locked {
+      opacity: 0.6;
+      border-color: #ccc;
+    }
+
+    .va-card-status {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .va-card.completed .va-card-status {
+      background: #4CAF50;
+      color: #fff;
+    }
+
+    .va-card.in-progress .va-card-status {
+      background: #00BCD4;
+      color: #fff;
+    }
+
+    .va-card.locked .va-card-status {
+      background: #E0E0E0;
+      font-size: 16px;
+    }
+
+    .va-card-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #25373F;
+      margin-bottom: 5px;
+    }
+
+    .va-card-type {
+      font-size: 11px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .va-card-progress {
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .va-card-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+      border-radius: 3px;
+    }
+
+    .va-card-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .va-card.completed .va-card-btn,
+    .va-card.in-progress .va-card-btn {
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+      color: #fff;
+    }
+
+    .va-card.locked .va-card-btn {
+      background: #E0E0E0;
+      color: #666;
+    }
+
+    .va-card-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .va-unlock-hint {
+      font-size: 10px;
+      color: #999;
+      margin-top: 8px;
+    }
+
+    .va-unlock-hint a {
+      color: #F42E2E;
+      text-decoration: none;
+    }
+
+    /* ==================== MOCKUP B: HORIZONTAL LANES ==================== */
+    #mockupB {
+      background: linear-gradient(180deg, #25373F 0%, #1a2830 100%);
+    }
+
+    .hb-container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .hb-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hb-header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .hb-stats-mini {
+      display: flex;
+      gap: 20px;
+    }
+
+    .hb-stat-mini {
+      text-align: center;
+    }
+
+    .hb-stat-mini-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #00BCD4;
+    }
+
+    .hb-stat-mini-label {
+      font-size: 10px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hb-lane {
+      margin-bottom: 40px;
+    }
+
+    .hb-lane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .hb-lane-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00BCD4;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hb-lane-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: #00BCD4;
+      border-radius: 2px;
+    }
+
+    .hb-unlock-all {
+      font-size: 12px;
+      color: #F42E2E;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .hb-unlock-all:hover {
+      opacity: 1;
+    }
+
+    .hb-track {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 10px 0 20px;
+      scrollbar-width: thin;
+      scrollbar-color: #3a4a52 transparent;
+    }
+
+    .hb-track::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .hb-track::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .hb-track::-webkit-scrollbar-thumb {
+      background: #3a4a52;
+      border-radius: 3px;
+    }
+
+    .hb-node {
+      flex: 0 0 160px;
+      background: #1a2830;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 2px solid #3a4a52;
+      position: relative;
+    }
+
+    .hb-node:hover {
+      transform: translateY(-5px);
+      border-color: #00BCD4;
+    }
+
+    .hb-node.completed {
+      border-color: #4CAF50;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.05));
+    }
+
+    .hb-node.in-progress {
+      border-color: #00BCD4;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .hb-node.locked {
+      opacity: 0.5;
+    }
+
+    .hb-node-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .hb-node.completed .hb-node-badge {
+      background: #4CAF50;
+    }
+
+    .hb-node.locked .hb-node-badge {
+      background: #3a4a52;
+      font-size: 14px;
+    }
+
+    .hb-node-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .hb-node-sub {
+      font-size: 10px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .hb-node-progress {
+      height: 4px;
+      background: #3a4a52;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .hb-node-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .hb-node-percent {
+      font-size: 12px;
+      color: #00BCD4;
+      font-weight: 600;
+    }
+
+    .hb-node.locked .hb-node-percent {
+      color: #7A7A7A;
+    }
+
+    .hb-connector {
+      flex: 0 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3a4a52;
+      font-size: 20px;
+    }
+
+    /* ==================== MOCKUP C: CARD GRID + PROGRESS TREE ==================== */
+    #mockupC {
+      background: #F3F4F6;
+      color: #25373F;
+    }
+
+    .gc-container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .gc-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gc-header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: #25373F;
+      margin-bottom: 5px;
+    }
+
+    .gc-header p {
+      color: #7A7A7A;
+    }
+
+    /* Big Stats */
+    .gc-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .gc-stat {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+
+    .gc-stat:hover {
+      transform: translateY(-3px);
+    }
+
+    .gc-stat-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 15px;
+    }
+
+    .gc-stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #25373F;
+    }
+
+    .gc-stat-label {
+      font-size: 12px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Two Column Layout */
+    .gc-main {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 30px;
+    }
+
+    /* Card Grid */
+    .gc-grid-section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .gc-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .gc-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .gc-card.completed { border-color: #4CAF50; }
+    .gc-card.in-progress { border-color: #00BCD4; }
+    .gc-card.locked { opacity: 0.6; border-color: #E0E0E0; }
+
+    .gc-card-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .gc-card.completed .gc-card-badge { background: #4CAF50; color: #fff; }
+    .gc-card.in-progress .gc-card-badge { background: #00BCD4; color: #fff; }
+    .gc-card.locked .gc-card-badge { background: #E0E0E0; }
+
+    .gc-card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #25373F;
+      margin-bottom: 3px;
+    }
+
+    .gc-card-type {
+      font-size: 10px;
+      color: #7A7A7A;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .gc-card-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .gc-card-progress-bar {
+      flex: 1;
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .gc-card-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00BCD4, #00ACC1);
+    }
+
+    .gc-card-progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #00BCD4;
+      min-width: 35px;
+    }
+
+    .gc-card-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gc-card:not(.locked) .gc-card-btn {
+      background: linear-gradient(135deg, #F42E2E, #FF8C00);
+      color: #fff;
+    }
+
+    .gc-card.locked .gc-card-btn {
+      background: #E0E0E0;
+      color: #666;
+    }
+
+    .gc-unlock-link {
+      display: block;
+      text-align: center;
+      font-size: 10px;
+      color: #F42E2E;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    /* Progress Sidebar */
+    .gc-sidebar {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .gc-sidebar h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #25373F;
+    }
+
+    .gc-tree {
+      position: relative;
+    }
+
+    .gc-tree::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #E0E0E0;
+    }
+
+    .gc-tree-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .gc-tree-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .gc-tree-item.completed .gc-tree-dot {
+      background: #4CAF50;
+      color: #fff;
+    }
+
+    .gc-tree-item.in-progress .gc-tree-dot {
+      background: #00BCD4;
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.2);
+    }
+
+    .gc-tree-item.locked .gc-tree-dot {
+      background: #E0E0E0;
+      color: #999;
+    }
+
+    .gc-tree-info {
+      flex: 1;
+    }
+
+    .gc-tree-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #25373F;
+    }
+
+    .gc-tree-item.locked .gc-tree-title {
+      color: #999;
+    }
+
+    .gc-tree-percent {
+      font-size: 12px;
+      color: #7A7A7A;
+    }
+
+    .gc-sidebar-footer {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #E0E0E0;
+      text-align: center;
+    }
+
+    .gc-unlock-all-btn {
+      padding: 12px 20px;
+      background: #fff;
+      border: 2px solid #F42E2E;
+      color: #F42E2E;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gc-unlock-all-btn:hover {
+      background: #F42E2E;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .gc-main {
+        grid-template-columns: 1fr;
+      }
+
+      .gc-sidebar {
+        position: static;
+      }
+
+      .va-stats,
+      .gc-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .mockup-nav {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+      }
+
+      .mockup-nav a {
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+
+      .mockup-section {
+        padding: 80px 15px 40px;
+      }
+
+      .va-stats,
+      .gc-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hb-stats-mini {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="mockup-nav">
+    <a href="#mockupA" class="active">A. Vertical Journey</a>
+    <a href="#mockupB">B. Horizontal Lanes</a>
+    <a href="#mockupC">C. Grid + Sidebar</a>
+  </nav>
+
+  <!-- MOCKUP A: VERTICAL JOURNEY + STATS -->
+  <section id="mockupA" class="mockup-section">
+    <div class="mockup-title">Mockup A</div>
+    <div class="mockup-name">Vertical Journey + Dashboard Stats</div>
+    <div class="mockup-desc">Stats at top, vertical skill tree below. Locked items show "unlock anyway" option.</div>
+
+    <div class="va-container">
+      <div class="va-header">
+        <h1>German Sound Trainers</h1>
+        <p>Master pronunciation & spelling step by step</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="va-stats">
+        <div class="va-stat">
+          <div class="va-stat-icon">E</div>
+          <div class="va-stat-value">1,240</div>
+          <div class="va-stat-label">Exercises</div>
+        </div>
+        <div class="va-stat">
+          <div class="va-stat-icon">M</div>
+          <div class="va-stat-value">847</div>
+          <div class="va-stat-label">Mastered</div>
+        </div>
+        <div class="va-stat">
+          <div class="va-stat-icon">S</div>
+          <div class="va-stat-value">12</div>
+          <div class="va-stat-label">Day Streak</div>
+        </div>
+        <div class="va-stat">
+          <div class="va-stat-icon">%</div>
+          <div class="va-stat-value">68%</div>
+          <div class="va-stat-label">Complete</div>
+        </div>
+      </div>
+
+      <!-- Journey -->
+      <div class="va-journey">
+        <div class="va-section-label">Listening - Vowels</div>
+
+        <div class="va-row">
+          <div class="va-card completed">
+            <div class="va-card-status">✓</div>
+            <div class="va-card-title">ie / ei</div>
+            <div class="va-card-type">Vowel Sounds</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 100%"></div></div>
+            <button class="va-card-btn">Review</button>
+          </div>
+          <div class="va-card completed">
+            <div class="va-card-status">✓</div>
+            <div class="va-card-title">ä / a</div>
+            <div class="va-card-type">Vowel Sounds</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 100%"></div></div>
+            <button class="va-card-btn">Review</button>
+          </div>
+          <div class="va-card in-progress">
+            <div class="va-card-status">></div>
+            <div class="va-card-title">ü / u</div>
+            <div class="va-card-type">Vowel Sounds</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 60%"></div></div>
+            <button class="va-card-btn">Continue</button>
+          </div>
+        </div>
+
+        <div class="va-row">
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">ö / o</div>
+            <div class="va-card-type">Vowel Sounds</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+        </div>
+
+        <div class="va-section-label">Listening - Consonants</div>
+
+        <div class="va-row">
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">ch</div>
+            <div class="va-card-type">Consonants</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">r sounds</div>
+            <div class="va-card-type">Consonants</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">pf / f</div>
+            <div class="va-card-type">Consonants</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+        </div>
+
+        <div class="va-section-label">Spelling</div>
+
+        <div class="va-row">
+          <div class="va-card completed">
+            <div class="va-card-status">✓</div>
+            <div class="va-card-title">ss / ß</div>
+            <div class="va-card-type">Spelling</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 100%"></div></div>
+            <button class="va-card-btn">Review</button>
+          </div>
+          <div class="va-card in-progress">
+            <div class="va-card-status">></div>
+            <div class="va-card-title">k / ck</div>
+            <div class="va-card-type">Spelling</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 40%"></div></div>
+            <button class="va-card-btn">Continue</button>
+          </div>
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">z / tz</div>
+            <div class="va-card-type">Spelling</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+          <div class="va-card locked">
+            <div class="va-card-status">x</div>
+            <div class="va-card-title">das / dass</div>
+            <div class="va-card-type">Grammar</div>
+            <div class="va-card-progress"><div class="va-card-progress-fill" style="width: 0%"></div></div>
+            <button class="va-card-btn">Locked</button>
+            <div class="va-unlock-hint"><a href="#">Unlock anyway</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP B: HORIZONTAL LANES -->
+  <section id="mockupB" class="mockup-section">
+    <div class="mockup-title">Mockup B</div>
+    <div class="mockup-name">Horizontal Lanes + Mini Stats</div>
+    <div class="mockup-desc">Dark theme, horizontal scrolling lanes per category. Stats in header.</div>
+
+    <div class="hb-container">
+      <div class="hb-header">
+        <h1>German Trainers</h1>
+        <div class="hb-stats-mini">
+          <div class="hb-stat-mini">
+            <div class="hb-stat-mini-value">847</div>
+            <div class="hb-stat-mini-label">Mastered</div>
+          </div>
+          <div class="hb-stat-mini">
+            <div class="hb-stat-mini-value">68%</div>
+            <div class="hb-stat-mini-label">Complete</div>
+          </div>
+          <div class="hb-stat-mini">
+            <div class="hb-stat-mini-value">12</div>
+            <div class="hb-stat-mini-label">Streak</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vowels Lane -->
+      <div class="hb-lane">
+        <div class="hb-lane-header">
+          <div class="hb-lane-title">Vowel Sounds</div>
+          <a href="#" class="hb-unlock-all">Unlock all</a>
+        </div>
+        <div class="hb-track">
+          <div class="hb-node completed">
+            <div class="hb-node-badge">✓</div>
+            <div class="hb-node-title">ie / ei</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 100%"></div></div>
+            <div class="hb-node-percent">100%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node completed">
+            <div class="hb-node-badge">✓</div>
+            <div class="hb-node-title">ä / a</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 100%"></div></div>
+            <div class="hb-node-percent">100%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node in-progress">
+            <div class="hb-node-title">ü / u</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 60%"></div></div>
+            <div class="hb-node-percent">60%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">ö / o</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consonants Lane -->
+      <div class="hb-lane">
+        <div class="hb-lane-header">
+          <div class="hb-lane-title">Consonant Sounds</div>
+          <a href="#" class="hb-unlock-all">Unlock all</a>
+        </div>
+        <div class="hb-track">
+          <div class="hb-node in-progress">
+            <div class="hb-node-title">ch</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 55%"></div></div>
+            <div class="hb-node-percent">55%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">r</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">pf / f</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">-ig/-ich</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">schwa</div>
+            <div class="hb-node-sub">Listening</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spelling Lane -->
+      <div class="hb-lane">
+        <div class="hb-lane-header">
+          <div class="hb-lane-title">Spelling & Grammar</div>
+          <a href="#" class="hb-unlock-all">Unlock all</a>
+        </div>
+        <div class="hb-track">
+          <div class="hb-node completed">
+            <div class="hb-node-badge">✓</div>
+            <div class="hb-node-title">ss / ß</div>
+            <div class="hb-node-sub">Spelling</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 100%"></div></div>
+            <div class="hb-node-percent">100%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node in-progress">
+            <div class="hb-node-title">k / ck</div>
+            <div class="hb-node-sub">Spelling</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 40%"></div></div>
+            <div class="hb-node-percent">40%</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">z / tz</div>
+            <div class="hb-node-sub">Spelling</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">f / v</div>
+            <div class="hb-node-sub">Spelling</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+          <div class="hb-connector">→</div>
+          <div class="hb-node locked">
+            <div class="hb-node-badge">x</div>
+            <div class="hb-node-title">das/dass</div>
+            <div class="hb-node-sub">Grammar</div>
+            <div class="hb-node-progress"><div class="hb-node-progress-fill" style="width: 0%"></div></div>
+            <div class="hb-node-percent">Unlock</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP C: CARD GRID + PROGRESS SIDEBAR -->
+  <section id="mockupC" class="mockup-section">
+    <div class="mockup-title">Mockup C</div>
+    <div class="mockup-name">Card Grid + Progress Sidebar</div>
+    <div class="mockup-desc">Light theme, card grid on left, journey progress tree on right sidebar.</div>
+
+    <div class="gc-container">
+      <div class="gc-header">
+        <h1>German Trainers</h1>
+        <p>Master pronunciation & spelling</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="gc-stats">
+        <div class="gc-stat">
+          <div class="gc-stat-icon">E</div>
+          <div class="gc-stat-value">1,240</div>
+          <div class="gc-stat-label">Exercises</div>
+        </div>
+        <div class="gc-stat">
+          <div class="gc-stat-icon">✓</div>
+          <div class="gc-stat-value">847</div>
+          <div class="gc-stat-label">Mastered</div>
+        </div>
+        <div class="gc-stat">
+          <div class="gc-stat-icon">S</div>
+          <div class="gc-stat-value">12</div>
+          <div class="gc-stat-label">Streak</div>
+        </div>
+        <div class="gc-stat">
+          <div class="gc-stat-icon">%</div>
+          <div class="gc-stat-value">68%</div>
+          <div class="gc-stat-label">Complete</div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="gc-main">
+        <!-- Card Grid -->
+        <div class="gc-grid-section">
+          <h2>E Listening Trainers</h2>
+          <div class="gc-grid">
+            <div class="gc-card completed">
+              <div class="gc-card-badge">✓</div>
+              <div class="gc-card-title">ie / ei</div>
+              <div class="gc-card-type">Vowel Sounds</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 100%"></div></div>
+                <div class="gc-card-progress-text">100%</div>
+              </div>
+              <button class="gc-card-btn">Review</button>
+            </div>
+            <div class="gc-card completed">
+              <div class="gc-card-badge">✓</div>
+              <div class="gc-card-title">ä / a</div>
+              <div class="gc-card-type">Vowel Sounds</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 100%"></div></div>
+                <div class="gc-card-progress-text">100%</div>
+              </div>
+              <button class="gc-card-btn">Review</button>
+            </div>
+            <div class="gc-card in-progress">
+              <div class="gc-card-badge">></div>
+              <div class="gc-card-title">ü / u</div>
+              <div class="gc-card-type">Vowel Sounds</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 60%"></div></div>
+                <div class="gc-card-progress-text">60%</div>
+              </div>
+              <button class="gc-card-btn">Continue</button>
+            </div>
+            <div class="gc-card locked">
+              <div class="gc-card-badge">x</div>
+              <div class="gc-card-title">ö / o</div>
+              <div class="gc-card-type">Vowel Sounds</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 0%"></div></div>
+                <div class="gc-card-progress-text">0%</div>
+              </div>
+              <button class="gc-card-btn">Locked</button>
+              <a href="#" class="gc-unlock-link">Unlock anyway</a>
+            </div>
+            <div class="gc-card locked">
+              <div class="gc-card-badge">x</div>
+              <div class="gc-card-title">ch</div>
+              <div class="gc-card-type">Consonants</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 0%"></div></div>
+                <div class="gc-card-progress-text">0%</div>
+              </div>
+              <button class="gc-card-btn">Locked</button>
+              <a href="#" class="gc-unlock-link">Unlock anyway</a>
+            </div>
+            <div class="gc-card locked">
+              <div class="gc-card-badge">x</div>
+              <div class="gc-card-title">r sounds</div>
+              <div class="gc-card-type">Consonants</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 0%"></div></div>
+                <div class="gc-card-progress-text">0%</div>
+              </div>
+              <button class="gc-card-btn">Locked</button>
+              <a href="#" class="gc-unlock-link">Unlock anyway</a>
+            </div>
+          </div>
+
+          <h2>S Spelling Trainers</h2>
+          <div class="gc-grid">
+            <div class="gc-card completed">
+              <div class="gc-card-badge">✓</div>
+              <div class="gc-card-title">ss / ß</div>
+              <div class="gc-card-type">Spelling</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 100%"></div></div>
+                <div class="gc-card-progress-text">100%</div>
+              </div>
+              <button class="gc-card-btn">Review</button>
+            </div>
+            <div class="gc-card in-progress">
+              <div class="gc-card-badge">></div>
+              <div class="gc-card-title">k / ck</div>
+              <div class="gc-card-type">Spelling</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 40%"></div></div>
+                <div class="gc-card-progress-text">40%</div>
+              </div>
+              <button class="gc-card-btn">Continue</button>
+            </div>
+            <div class="gc-card locked">
+              <div class="gc-card-badge">x</div>
+              <div class="gc-card-title">z / tz</div>
+              <div class="gc-card-type">Spelling</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 0%"></div></div>
+                <div class="gc-card-progress-text">0%</div>
+              </div>
+              <button class="gc-card-btn">Locked</button>
+              <a href="#" class="gc-unlock-link">Unlock anyway</a>
+            </div>
+            <div class="gc-card locked">
+              <div class="gc-card-badge">x</div>
+              <div class="gc-card-title">das / dass</div>
+              <div class="gc-card-type">Grammar</div>
+              <div class="gc-card-progress">
+                <div class="gc-card-progress-bar"><div class="gc-card-progress-fill" style="width: 0%"></div></div>
+                <div class="gc-card-progress-text">0%</div>
+              </div>
+              <button class="gc-card-btn">Locked</button>
+              <a href="#" class="gc-unlock-link">Unlock anyway</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="gc-sidebar">
+          <h3>Your Journey</h3>
+          <div class="gc-tree">
+            <div class="gc-tree-item completed">
+              <div class="gc-tree-dot">✓</div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">ie / ei</div>
+                <div class="gc-tree-percent">100% complete</div>
+              </div>
+            </div>
+            <div class="gc-tree-item completed">
+              <div class="gc-tree-dot">✓</div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">ä / a</div>
+                <div class="gc-tree-percent">100% complete</div>
+              </div>
+            </div>
+            <div class="gc-tree-item in-progress">
+              <div class="gc-tree-dot">></div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">ü / u</div>
+                <div class="gc-tree-percent">60% complete</div>
+              </div>
+            </div>
+            <div class="gc-tree-item locked">
+              <div class="gc-tree-dot">x</div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">ö / o</div>
+                <div class="gc-tree-percent">Locked</div>
+              </div>
+            </div>
+            <div class="gc-tree-item locked">
+              <div class="gc-tree-dot">x</div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">ch sounds</div>
+                <div class="gc-tree-percent">Locked</div>
+              </div>
+            </div>
+            <div class="gc-tree-item locked">
+              <div class="gc-tree-dot">x</div>
+              <div class="gc-tree-info">
+                <div class="gc-tree-title">r sounds</div>
+                <div class="gc-tree-percent">Locked</div>
+              </div>
+            </div>
+          </div>
+          <div class="gc-sidebar-footer">
+            <button class="gc-unlock-all-btn">Unlock All Trainers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('.mockup-nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+
+        document.querySelectorAll('.mockup-nav a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Update active nav on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.mockup-section');
+      let current = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.mockup-nav a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
