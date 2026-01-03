@@ -367,6 +367,130 @@
       .choice-btn { padding: 14px 25px; font-size: 20px; }
       .word-reveal { font-size: 26px; }
     }
+    /* Light Mode - Warm Cream + Teal */
+    body.light-mode {
+      background: #F5F3EF;
+    }
+
+    body.light-mode .container {
+      background: #FFFDF9;
+      color: #2D3142;
+      border-color: #E2DED6;
+      box-shadow: 0 4px 20px rgba(45, 49, 66, 0.08);
+    }
+
+    body.light-mode .title {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    body.light-mode .info-section {
+      background: #F9F7F3;
+      border-left-color: #2E7D6E;
+      color: #4A4E5A;
+    }
+
+    body.light-mode .info-section strong {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .shortcuts-section {
+      background: #F9F7F3;
+      color: #6B6F7B;
+    }
+
+    body.light-mode .shortcuts-section kbd {
+      background: #FFFDF9;
+      border-color: #E2DED6;
+      color: #2D3142;
+    }
+
+    body.light-mode .question-area {
+      background: #FFFDF9;
+      box-shadow: 0 2px 12px rgba(45, 49, 66, 0.06);
+    }
+
+    body.light-mode .word-display {
+      color: #2D3142;
+    }
+
+    body.light-mode .word-display .blank {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .translation {
+      color: #6B6F7B;
+    }
+
+    body.light-mode .progress-bar-wrap {
+      background: #E8E6E1;
+    }
+
+    body.light-mode .progress-current {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .progress-mastered {
+      color: #1B5E50;
+    }
+
+    body.light-mode .choice-btn {
+      background: #FFFDF9;
+      color: #2D3142;
+      border-color: #E2DED6;
+    }
+
+    body.light-mode .choice-btn:hover:not(:disabled) {
+      background: #E8F4F0;
+      border-color: #2E7D6E;
+    }
+
+    body.light-mode .results {
+      background: #FFFDF9;
+      box-shadow: 0 4px 15px rgba(45, 49, 66, 0.08);
+    }
+
+    body.light-mode .results h2 {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .percentage {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    body.light-mode .result-text {
+      color: #6B6F7B;
+    }
+
+    body.light-mode .incorrect-list {
+      background: #F9F7F3;
+    }
+
+    body.light-mode .incorrect-list h3 {
+      color: #C75B7A;
+    }
+
+    body.light-mode .incorrect-item {
+      border-bottom-color: #E2DED6;
+    }
+
+    body.light-mode .back-btn {
+      background: #E8E6E1;
+      color: #2D3142;
+    }
+
+    body.light-mode .back-btn:hover {
+      background: #DDD9D2;
+    }
+
+    body.light-mode .small-btn {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+    }
+
+
 
     /* Dark Mode */
     body.dark-mode {
@@ -441,8 +565,11 @@
 <body>
   <script>
     // Apply theme from hub preference immediately
-    if (localStorage.getItem('gst_theme') === 'dark') {
+    const theme = localStorage.getItem('gst_theme');
+    if (theme === 'dark') {
       document.body.classList.add('dark-mode');
+    } else if (theme === 'light') {
+      document.body.classList.add('light-mode');
     }
   </script>
   <div class="container">

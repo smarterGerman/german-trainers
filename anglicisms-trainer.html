@@ -363,6 +363,127 @@
     .restart-btn.secondary:hover {
       box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
     }
+    /* Light Mode - Warm Cream + Teal */
+    body.light-mode {
+      background: #F5F3EF !important;
+    }
+
+    body.light-mode .sg-unified-container {
+      background: #FFFDF9;
+      color: #2D3142;
+      border-color: #E2DED6;
+      box-shadow: 0 4px 20px rgba(45, 49, 66, 0.08);
+    }
+
+    body.light-mode .sg-dark-title {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    body.light-mode .sg-dark-subtitle {
+      color: #6B6F7B;
+    }
+
+    body.light-mode .sg-dark-note {
+      background: #F9F7F3;
+      border-left-color: #2E7D6E;
+      color: #4A4E5A;
+    }
+
+    body.light-mode .sg-divider {
+      background: linear-gradient(90deg, transparent, #E2DED6, transparent);
+    }
+
+    body.light-mode .question-area {
+      background: #FFFDF9;
+      box-shadow: 0 2px 12px rgba(45, 49, 66, 0.06);
+    }
+
+    body.light-mode .word-display {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .progress-bar-container {
+      background: #E8E6E1;
+    }
+
+    body.light-mode .progress-current {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .progress-mastered {
+      color: #1B5E50;
+    }
+
+    body.light-mode .answer-btn {
+      background: #FFFDF9;
+      color: #2D3142;
+      border-color: #E2DED6;
+    }
+
+    body.light-mode .answer-btn:hover:not(:disabled) {
+      background: #E8F4F0;
+      border-color: #2E7D6E;
+    }
+
+    body.light-mode .answer-btn.tion-btn,
+    body.light-mode .answer-btn.sion-btn {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .results {
+      background: #FFFDF9;
+      box-shadow: 0 4px 15px rgba(45, 49, 66, 0.08);
+    }
+
+    body.light-mode .results h2 {
+      color: #2E7D6E;
+    }
+
+    body.light-mode .percentage {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    body.light-mode .result-text {
+      color: #6B6F7B;
+    }
+
+    body.light-mode .back-btn {
+      background: #E8E6E1;
+      color: #2D3142;
+    }
+
+    body.light-mode .back-btn:hover {
+      background: #DDD9D2;
+    }
+
+    body.light-mode .sg-hide-text-btn {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+    }
+
+    body.light-mode .audio-btn {
+      background: linear-gradient(135deg, #2E7D6E, #1B5E50);
+      box-shadow: 0 4px 15px rgba(46, 125, 110, 0.3);
+    }
+
+    body.light-mode .shortcut {
+      color: #9A9DA8;
+    }
+
+    body.light-mode .feedback.correct {
+      background: #E8F4F0;
+      color: #1B5E50;
+    }
+
+    body.light-mode .feedback.wrong {
+      background: #FCE8EC;
+      color: #C75B7A;
+    }
+
+
 
     /* Dark Mode */
     body.dark-mode {
@@ -434,8 +555,11 @@
 <body>
   <script>
     // Apply theme from hub preference immediately
-    if (localStorage.getItem('gst_theme') === 'dark') {
+    const theme = localStorage.getItem('gst_theme');
+    if (theme === 'dark') {
       document.body.classList.add('dark-mode');
+    } else if (theme === 'light') {
+      document.body.classList.add('light-mode');
     }
   </script>
   <div class="sg-unified-container">
