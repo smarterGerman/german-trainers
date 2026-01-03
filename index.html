@@ -292,9 +292,20 @@
       display: none;
     }
 
-    .item.locked::after {
-      content: '';
+    .item-lock {
+      display: none;
       font-size: 12px;
+      color: #F42E2E;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .item.locked .item-lock {
+      display: inline;
+    }
+
+    .item.locked .item-percent {
+      display: none;
     }
 
     /* Data Management Section */
@@ -553,31 +564,37 @@
           <a href="ie-ei-trainer.html?noauto=1" class="item" data-id="ie-ei">
             <span class="item-name">ie / ei</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="ae-a-trainer.html?noauto=1" class="item" data-id="ae-a">
             <span class="item-name">a / ae</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="ue-u-trainer.html?noauto=1" class="item" data-id="ue-u">
             <span class="item-name">u / ue</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="oe-o-trainer.html?noauto=1" class="item" data-id="oe-o">
             <span class="item-name">o / oe</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="long-short-vowel-trainer.html?noauto=1" class="item" data-id="long-short">
             <span class="item-name">long / short</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="schwa-sound-trainer.html?noauto=1" class="item" data-id="schwa">
             <span class="item-name">schwa</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
         </div>
@@ -594,61 +611,73 @@
           <a href="ch-sounds-trainer.html?noauto=1" class="item" data-id="ch">
             <span class="item-name">ch sounds</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="r-sounds-trainer.html?noauto=1" class="item" data-id="r">
             <span class="item-name">r sounds</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="s-z-trainer.html?noauto=1" class="item" data-id="s-z">
             <span class="item-name">s / z</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="pf-sound-trainer.html?noauto=1" class="item" data-id="pf">
             <span class="item-name">pf / f</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="ig-ich-trainer.html?noauto=1" class="item" data-id="ig-ich">
             <span class="item-name">-ig / -ich</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="final-devoicing-trainer.html?noauto=1" class="item" data-id="devoicing">
             <span class="item-name">final devoicing</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="st-trainer.html?noauto=1" class="item" data-id="st">
             <span class="item-name">st- sound</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="sp-trainer.html?noauto=1" class="item" data-id="sp">
             <span class="item-name">sp- sound</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="ng-nk-trainer.html?noauto=1" class="item" data-id="ng-nk">
             <span class="item-name">ng / nk</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="glottal-stop-trainer.html?noauto=1" class="item" data-id="glottal">
             <span class="item-name">glottal stop</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="h-aspiration-trainer.html?noauto=1" class="item" data-id="h">
             <span class="item-name">h aspiration</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="tion-sion-trainer.html?noauto=1" class="item" data-id="tion">
             <span class="item-name">-tion / -sion</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
         </div>
@@ -665,36 +694,43 @@
           <a href="ss-sz-trainer.html?noauto=1" class="item" data-id="ss-sz">
             <span class="item-name">ss / sharp-s</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="k-ck-trainer.html?noauto=1" class="item" data-id="k-ck">
             <span class="item-name">k / ck</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="z-tz-trainer.html?noauto=1" class="item" data-id="z-tz">
             <span class="item-name">z / tz</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="f-v-trainer.html?noauto=1" class="item" data-id="f-v">
             <span class="item-name">f / v</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="das-dass-trainer.html?noauto=1" class="item" data-id="das-dass">
             <span class="item-name">das / dass</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="double-consonants-trainer.html?noauto=1" class="item" data-id="double">
             <span class="item-name">double consonants</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="capitalization-trainer.html?noauto=1" class="item" data-id="caps">
             <span class="item-name">capitalization</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
         </div>
@@ -711,6 +747,7 @@
           <a href="word-stress-trainer.html?noauto=1" class="item" data-id="stress">
             <span class="item-name">word stress</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
         </div>
@@ -727,11 +764,13 @@
           <a href="compound-builder.html?noauto=1" class="item" data-id="compound">
             <span class="item-name">compound words</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
           <a href="anglicisms-trainer.html?noauto=1" class="item" data-id="anglicisms">
             <span class="item-name">anglicisms</span>
             <span class="item-percent">0%</span>
+            <span class="item-lock">&#128274;</span>
             <span class="item-arrow">&#8250;</span>
           </a>
         </div>
@@ -969,7 +1008,7 @@
       'compound': 'vocabulary', 'anglicisms': 'vocabulary'
     };
 
-    let unlockedSections = JSON.parse(localStorage.getItem('unlockedSections-v4') || '[]');
+    let unlockedSections = JSON.parse(localStorage.getItem('unlockedSections-v5') || '[]');
 
     function getProgress(trainerId) {
       const key = storageKeys[trainerId];
@@ -1061,7 +1100,7 @@
 
       if (!unlockedSections.includes(sectionId)) {
         unlockedSections.push(sectionId);
-        localStorage.setItem('unlockedSections-v4', JSON.stringify(unlockedSections));
+        localStorage.setItem('unlockedSections-v5', JSON.stringify(unlockedSections));
       }
 
       updateUI();
@@ -1079,7 +1118,7 @@
       if (confirm('Locked: Finish "' + prevName + '" with 80% first.\n\nSkip ahead anyway?')) {
         if (!unlockedSections.includes(trainerId)) {
           unlockedSections.push(trainerId);
-          localStorage.setItem('unlockedSections-v4', JSON.stringify(unlockedSections));
+          localStorage.setItem('unlockedSections-v5', JSON.stringify(unlockedSections));
         }
         updateUI();
         window.location.href = itemEl.href;
@@ -1189,7 +1228,7 @@
       localStorage.removeItem('gst_dailyQuestProgress');
       localStorage.removeItem('gst_dailyQuestDate');
       localStorage.removeItem('gst_dailyQuestCompleted');
-      localStorage.removeItem('unlockedSections-v4');
+      localStorage.removeItem('unlockedSections-v5');
 
       gstXP = 0;
       gstLevel = 1;
