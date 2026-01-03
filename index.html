@@ -65,6 +65,7 @@
       display: flex;
       align-items: baseline;
       gap: 6px;
+      margin-top: 8px;
     }
 
     .streak-number {
@@ -717,7 +718,6 @@
   </style>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">Light Mode</button>
   <div class="container">
     <!-- Header -->
     <div class="header">
@@ -728,9 +728,12 @@
           <span class="xp" id="xpDisplay">0 / 100 XP</span>
         </div>
       </div>
-      <div class="streak">
-        <span class="streak-number" id="streakNumber">0</span>
-        <span class="streak-label">Day Streak</span>
+      <div class="header-right">
+        <div class="streak">
+          <span class="streak-number" id="streakNumber">0</span>
+          <span class="streak-label">Day Streak</span>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">Light Mode</button>
       </div>
     </div>
 
