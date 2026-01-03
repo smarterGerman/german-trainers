@@ -370,9 +370,81 @@
     .restart-btn.secondary:hover {
       box-shadow: 0 6px 20px rgba(156, 39, 176, 0.5);
     }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #1a1a2e !important;
+    }
+
+    body.dark-mode .sg-unified-container {
+      background: #16213e;
+      color: #e8e8e8;
+      border-color: #4a4a6a;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-mode .sg-dark-title {
+      background: linear-gradient(135deg, #FF6B9D, #C77DFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    body.dark-mode .sg-dark-subtitle {
+      color: #aaa;
+    }
+
+    body.dark-mode .sg-dark-question,
+    body.dark-mode .sg-dark-word-area {
+      background: #1f2940;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .sg-dark-word {
+      color: #e8e8e8;
+    }
+
+    body.dark-mode .sg-dark-choice {
+      background: #2a3550 !important;
+      color: #e8e8e8 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .sg-dark-choice:hover {
+      background: #3a4560 !important;
+    }
+
+    body.dark-mode .sg-divider {
+      background: linear-gradient(90deg, transparent, #4a4a6a, transparent);
+    }
+
+    body.dark-mode .sg-dark-results {
+      background: #1f2940;
+    }
+
+    body.dark-mode .sg-dark-result-item {
+      border-bottom-color: #3a4560;
+    }
+
+    body.dark-mode .back-btn {
+      background: #3a4560;
+    }
+
+    body.dark-mode .back-btn:hover {
+      background: #4a5570;
+    }
+
+    body.dark-mode .sg-dark-progress-wrap {
+      background: #2a3550;
+    }
   </style>
 </head>
 <body>
+  <script>
+    // Apply theme from hub preference immediately
+    if (localStorage.getItem('gst_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
   <div class="sg-unified-container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
       <a href="index.html" class="back-btn">Dashboard</a>

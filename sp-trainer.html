@@ -351,9 +351,84 @@
       .choice-btn { padding: 14px 25px; font-size: 18px; }
       .word-reveal { font-size: 26px; }
     }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #1a1a2e;
+    }
+
+    body.dark-mode .container {
+      background: #16213e;
+      color: #e8e8e8;
+      border-color: #4a4a6a;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-mode .info-section {
+      background: #1f2940;
+      border-left-color: #FF9800;
+      color: #ccc;
+    }
+
+    body.dark-mode .shortcuts-section {
+      background: #1f2940;
+      color: #aaa;
+    }
+
+    body.dark-mode .shortcuts-section kbd {
+      background: #2a3550;
+      border-color: #4a4a6a;
+      color: #ddd;
+    }
+
+    body.dark-mode .question-area {
+      background: #1f2940;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .word-display {
+      color: #e8e8e8;
+    }
+
+    body.dark-mode .progress-bar-wrap {
+      background: #2a3550;
+    }
+
+    body.dark-mode .choice-btn {
+      background: #2a3550;
+      color: #e8e8e8;
+      border-color: #4a4a6a;
+    }
+
+    body.dark-mode .choice-btn:hover {
+      background: #3a4560;
+      border-color: #6a6a8a;
+    }
+
+    body.dark-mode .result-area {
+      background: #1f2940;
+    }
+
+    body.dark-mode .result-item {
+      border-bottom-color: #3a4560;
+    }
+
+    body.dark-mode .back-btn {
+      background: #3a4560;
+    }
+
+    body.dark-mode .back-btn:hover {
+      background: #4a5570;
+    }
   </style>
 </head>
 <body>
+  <script>
+    // Apply theme from hub preference immediately
+    if (localStorage.getItem('gst_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
   <div class="container">
     <div class="header-row">
       <a href="index.html" class="back-btn">Dashboard</a>
