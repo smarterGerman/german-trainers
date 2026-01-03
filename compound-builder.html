@@ -218,6 +218,12 @@
       border-radius: 12px;
       font-size: 16px;
       font-weight: 600;
+      min-height: 24px;
+      visibility: hidden;
+    }
+
+    .feedback.show {
+      visibility: visible;
     }
 
     .feedback.correct {
@@ -235,6 +241,12 @@
       padding: 15px;
       background: #F5F5F5;
       border-radius: 12px;
+      min-height: 100px;
+      visibility: hidden;
+    }
+
+    .reveal-section.show {
+      visibility: visible;
     }
 
     .reveal-compound {
@@ -606,9 +618,9 @@
           <button class="submit-btn" id="checkCompoundBtn" onclick="checkCompound()">Check</button>
         </div>
 
-        <div id="feedbackArea" class="feedback hidden"></div>
+        <div id="feedbackArea" class="feedback"></div>
 
-        <div id="revealArea" class="reveal-section hidden">
+        <div id="revealArea" class="reveal-section">
           <div class="reveal-compound" id="revealCompound"></div>
           <div class="reveal-meaning" id="revealMeaning"></div>
           <div class="reveal-explanation" id="revealExplanation"></div>
@@ -832,8 +844,8 @@
         document.getElementById('trans2').textContent = ex.trans2;
 
         document.getElementById('step1Area').classList.remove('hidden');
-        document.getElementById('feedbackArea').classList.add('hidden');
-        document.getElementById('revealArea').classList.add('hidden');
+        document.getElementById('feedbackArea').classList.remove('show');
+        document.getElementById('revealArea').classList.remove('show');
 
         const compoundInput = document.getElementById('compoundInput');
         compoundInput.value = '';
@@ -866,7 +878,7 @@
         }
 
         // Show the answer
-        document.getElementById('revealArea').classList.remove('hidden');
+        document.getElementById('revealArea').classList.add('show');
         document.getElementById('revealCompound').textContent = ex.compound;
         document.getElementById('revealMeaning').textContent = ex.meaning;
         document.getElementById('revealExplanation').textContent = ex.explanation;
