@@ -59,6 +59,21 @@
 
     .small-btn:hover { opacity: 0.9; }
 
+    .back-btn {
+      background: #666;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-btn:hover { background: #555; }
+
     .info-section {
       background: #FFF3E0;
       border-left: 4px solid #FF9800;
@@ -333,6 +348,7 @@
 <body>
   <div class="container">
     <div class="header-row">
+      <a href="index.html" class="back-btn">Dashboard</a>
       <h1 class="title">Compound Builder</h1>
       <div class="header-btns">
         <button class="small-btn" onclick="toggleInfo()" id="toggleBtn">Info</button>

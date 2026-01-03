@@ -91,6 +91,21 @@
       box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
     }
 
+    .back-btn {
+      background: #666;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-btn:hover { background: #555; }
+
     .sg-dark-hidden {
       display: none !important;
     }
@@ -359,7 +374,10 @@
 </head>
 <body>
   <div class="sg-unified-container">
-    <button class="sg-hide-text-btn" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+      <a href="index.html" class="back-btn">Dashboard</a>
+      <button class="sg-hide-text-btn" style="margin: 0;" onclick="toggleInstructions()" id="hideTextBtn">Hide Instructions</button>
+    </div>
 
     <div id="infoSection">
       <h1 class="sg-dark-title">German H Aspiration Trainer</h1>
