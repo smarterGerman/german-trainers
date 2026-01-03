@@ -408,94 +408,150 @@
       background: rgba(255,255,255,0.2);
     }
 
-    /* Light Mode */
+    /* Light Mode - Material Design inspired */
     body.light-mode {
-      background: #f5f5f5;
-      color: #333;
+      background: #FAFAFA;
+      color: rgba(0,0,0,0.87);
+    }
+
+    body.light-mode .title-section h1 {
+      background: linear-gradient(135deg, #1565C0, #0D47A1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     body.light-mode .category {
-      background: rgba(0,0,0,0.05);
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.12);
     }
 
     body.light-mode .category-header {
-      border-bottom-color: rgba(0,0,0,0.1);
+      border-bottom-color: #EEEEEE;
     }
 
     body.light-mode .category-name {
-      color: #666;
+      color: rgba(0,0,0,0.6);
     }
 
     body.light-mode .category-count {
-      color: #999;
+      color: rgba(0,0,0,0.38);
     }
 
     body.light-mode .item {
-      background: rgba(0,0,0,0.03);
+      background: #FAFAFA;
     }
 
     body.light-mode .item:hover {
-      background: rgba(0, 188, 212, 0.1);
+      background: #E3F2FD;
+      border-left-color: #1976D2;
+    }
+
+    body.light-mode .item-name {
+      color: rgba(0,0,0,0.87);
+    }
+
+    body.light-mode .item-percent {
+      color: #1976D2;
     }
 
     body.light-mode .item-arrow {
-      color: #999;
+      color: rgba(0,0,0,0.38);
+    }
+
+    body.light-mode .item.locked .item-lock {
+      color: #D32F2F;
     }
 
     body.light-mode .quest-strip {
-      border-top-color: rgba(0,0,0,0.1);
-      border-bottom-color: rgba(0,0,0,0.1);
+      border-top-color: #EEEEEE;
+      border-bottom-color: #EEEEEE;
+    }
+
+    body.light-mode .quest-label {
+      color: #F57C00;
     }
 
     body.light-mode .quest-text {
-      color: #666;
+      color: rgba(0,0,0,0.6);
+    }
+
+    body.light-mode .quest-count {
+      color: #1976D2;
+    }
+
+    body.light-mode .quest-reward {
+      color: #F57C00;
     }
 
     body.light-mode .xp {
-      color: #666;
+      color: rgba(0,0,0,0.6);
+    }
+
+    body.light-mode .streak-number {
+      color: #C2185B;
     }
 
     body.light-mode .streak-label {
-      color: #666;
+      color: rgba(0,0,0,0.6);
+    }
+
+    body.light-mode .level-badge {
+      background: linear-gradient(135deg, #FFB300, #FF8F00);
     }
 
     body.light-mode .data-section {
-      background: rgba(0,0,0,0.05);
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
     body.light-mode .data-title {
-      color: #666;
+      color: rgba(0,0,0,0.6);
+    }
+
+    body.light-mode .data-toggle {
+      color: #1976D2;
     }
 
     body.light-mode .data-info {
-      color: #666;
+      color: rgba(0,0,0,0.6);
     }
 
     body.light-mode .data-btn {
-      border-color: #ccc;
-      color: #333;
+      border-color: #E0E0E0;
+      color: rgba(0,0,0,0.87);
     }
 
     body.light-mode .data-btn:hover {
-      background: #ddd;
+      background: #F5F5F5;
+    }
+
+    body.light-mode .data-btn.danger {
+      border-color: #D32F2F;
+      color: #D32F2F;
     }
 
     body.light-mode .quest-bar {
-      background: rgba(0,0,0,0.1);
+      background: #E0E0E0;
+    }
+
+    body.light-mode .quest-fill {
+      background: linear-gradient(90deg, #FFB300, #1976D2);
     }
 
     body.light-mode .theme-toggle {
-      background: rgba(0,0,0,0.05);
-      border-color: rgba(0,0,0,0.1);
-      color: #333;
+      background: #FFFFFF;
+      border-color: #E0E0E0;
+      color: rgba(0,0,0,0.87);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
     body.light-mode .theme-toggle:hover {
-      background: rgba(0,0,0,0.1);
+      background: #F5F5F5;
     }
 
     body.light-mode .unlock-all {
-      color: #C62828;
+      color: #D32F2F;
     }
 
     /* Mobile */
