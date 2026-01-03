@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Skill Trainers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #16213e;
+      color: #fff;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 32px 40px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .title-section h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .level {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .level-badge {
+      background: linear-gradient(135deg, #FFC519, #FF9800);
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .xp {
+      font-size: 13px;
+      color: #8899aa;
+    }
+
+    .streak {
+      text-align: right;
+    }
+
+    .streak-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: #E91E63;
+      line-height: 1;
+    }
+
+    .streak-label {
+      font-size: 11px;
+      color: #8899aa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Quest Strip */
+    .quest-strip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      margin-bottom: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .quest-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFC519;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .quest-text {
+      font-size: 13px;
+      color: #ccc;
+      flex: 1;
+    }
+
+    .quest-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quest-bar {
+      width: 120px;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .quest-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFC519, #00BCD4);
+      transition: width 0.3s ease;
+    }
+
+    .quest-count {
+      font-size: 12px;
+      font-weight: 700;
+      color: #00BCD4;
+    }
+
+    .quest-reward {
+      font-size: 12px;
+      font-weight: 600;
+      color: #FFC519;
+    }
+
+    .quest-complete {
+      color: #4CAF50;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      background: rgba(0,0,0,0.15);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .category.wide {
+      grid-column: span 2;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .category-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .category-icon.vowels {
+      background: linear-gradient(135deg, #E91E63, #C2185B);
+    }
+
+    .category-icon.consonants {
+      background: linear-gradient(135deg, #00BCD4, #0097A7);
+    }
+
+    .category-icon.spelling {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+    }
+
+    .category-icon.prosody {
+      background: linear-gradient(135deg, #FF9800, #F57C00);
+    }
+
+    .category-icon.vocabulary {
+      background: linear-gradient(135deg, #4CAF50, #388E3C);
+    }
+
+    .category-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8899aa;
+    }
+
+    .category-count {
+      margin-left: auto;
+      font-size: 10px;
+      color: #556677;
+    }
+
+    .unlock-all {
+      margin-left: auto;
+      font-size: 10px;
+      color: #F42E2E;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .unlock-all:hover {
+      text-decoration: underline;
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .items.two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .item:hover {
+      background: rgba(0, 188, 212, 0.08);
+      border-left-color: #00BCD4;
+    }
+
+    .item.locked {
+      opacity: 0.4;
+    }
+
+    .item.locked:hover {
+      background: rgba(255,255,255,0.02);
+      border-left-color: transparent;
+    }
+
+    .item.completed {
+      opacity: 0.7;
+    }
+
+    .item.completed .item-percent {
+      color: #4CAF50;
+    }
+
+    .item-name {
+      flex: 1;
+      font-size: 13px;
+    }
+
+    .item-percent {
+      font-size: 11px;
+      font-weight: 600;
+      color: #00BCD4;
+      margin-right: 8px;
+    }
+
+    .item-arrow {
+      color: #556677;
+      font-size: 14px;
+    }
+
+    .item.locked .item-arrow {
+      display: none;
+    }
+
+    .item.locked::after {
+      content: '';
+      font-size: 12px;
+    }
+
+    /* Data Management Section */
+    .data-section {
+      margin-top: 30px;
+      padding: 16px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+
+    .data-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .data-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #7A7A7A;
+    }
+
+    .data-toggle {
+      font-size: 11px;
+      color: #00BCD4;
+    }
+
+    .data-content {
+      display: none;
+    }
+
+    .data-content.open {
+      display: block;
+    }
+
+    .data-info {
+      font-size: 11px;
+      color: #7A7A7A;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .data-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .data-btn {
+      padding: 8px 14px;
+      border: 1px solid #3a4a52;
+      background: transparent;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .data-btn:hover {
+      background: #3a4a52;
+    }
+
+    .data-btn.danger {
+      border-color: #F42E2E;
+      color: #F42E2E;
+    }
+
+    .data-btn.danger:hover {
+      background: #F42E2E;
+      color: #fff;
+    }
+
+    .hidden-input {
+      display: none;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 11px;
+      color: #7A7A7A;
+    }
+
+    .footer a {
+      color: #00BCD4;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .category.wide {
+        grid-column: span 2;
+      }
+
+      .items.two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 20px;
+      }
+
+      .header {
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .title-section h1 {
+        font-size: 18px;
+      }
+
+      .level {
+        gap: 8px;
+      }
+
+      .level-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+      }
+
+      .xp {
+        font-size: 10px;
+      }
+
+      .streak-number {
+        font-size: 24px;
+      }
+
+      .streak-label {
+        font-size: 8px;
+      }
+
+      .quest-strip {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .quest-label {
+        font-size: 9px;
+      }
+
+      .quest-text {
+        font-size: 11px;
+      }
+
+      .quest-bar {
+        width: 60px;
+        height: 3px;
+      }
+
+      .quest-count {
+        font-size: 10px;
+      }
+
+      .quest-reward {
+        font-size: 10px;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category.wide {
+        grid-column: span 1;
+      }
+
+      .items.two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .category-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+      }
+
+      .category-name {
+        font-size: 10px;
+      }
+
+      .item {
+        padding: 10px 12px;
+      }
+
+      .item-name {
+        font-size: 13px;
+      }
+
+      .data-buttons {
+        flex-direction: column;
+      }
+
+      .data-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="title-section">
+        <h1>German Skill Trainers</h1>
+        <div class="level">
+          <span class="level-badge" id="levelBadge">Level 1</span>
+          <span class="xp" id="xpDisplay">0 / 100 XP</span>
+        </div>
+      </div>
+      <div class="streak">
+        <div class="streak-number" id="streakNumber">0</div>
+        <div class="streak-label">Day Streak</div>
+      </div>
+    </div>
+
+    <!-- Quest Strip -->
+    <div class="quest-strip">
+      <span class="quest-label">Daily</span>
+      <span class="quest-text">Complete 3 trainers</span>
+      <div class="quest-progress">
+        <div class="quest-bar">
+          <div class="quest-fill" id="questFill" style="width: 0%"></div>
+        </div>
+        <span class="quest-count" id="questCount">0/3</span>
+      </div>
+      <span class="quest-reward" id="questReward">+50 XP</span>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="categories-grid">
+      <!-- VOWEL SOUNDS -->
+      <div class="category">
+        <div class="category-header">
+          <div class="category-icon vowels">V</div>
+          <span class="category-name">Vowel Sounds</span>
+          <a class="unlock-all" onclick="unlockSection('vowels')">Unlock</a>
+        </div>
+        <div class="items" id="vowels">
+          <a href="ie-ei-trainer.html?noauto=1" class="item" data-id="ie-ei">
+            <span class="item-name">ie / ei</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="ae-a-trainer.html?noauto=1" class="item" data-id="ae-a">
+            <span class="item-name">a / ae</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="ue-u-trainer.html?noauto=1" class="item" data-id="ue-u">
+            <span class="item-name">u / ue</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="oe-o-trainer.html?noauto=1" class="item" data-id="oe-o">
+            <span class="item-name">o / oe</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="long-short-vowel-trainer.html?noauto=1" class="item" data-id="long-short">
+            <span class="item-name">long / short</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="schwa-sound-trainer.html?noauto=1" class="item" data-id="schwa">
+            <span class="item-name">schwa</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- CONSONANTS - spans 2 columns -->
+      <div class="category wide">
+        <div class="category-header">
+          <div class="category-icon consonants">C</div>
+          <span class="category-name">Consonants</span>
+          <a class="unlock-all" onclick="unlockSection('consonants')">Unlock</a>
+        </div>
+        <div class="items two-col" id="consonants">
+          <a href="ch-sounds-trainer.html?noauto=1" class="item" data-id="ch">
+            <span class="item-name">ch sounds</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="r-sounds-trainer.html?noauto=1" class="item" data-id="r">
+            <span class="item-name">r sounds</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="s-z-trainer.html?noauto=1" class="item" data-id="s-z">
+            <span class="item-name">s / z</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="pf-sound-trainer.html?noauto=1" class="item" data-id="pf">
+            <span class="item-name">pf / f</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="ig-ich-trainer.html?noauto=1" class="item" data-id="ig-ich">
+            <span class="item-name">-ig / -ich</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="final-devoicing-trainer.html?noauto=1" class="item" data-id="devoicing">
+            <span class="item-name">final devoicing</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="st-trainer.html?noauto=1" class="item" data-id="st">
+            <span class="item-name">st- sound</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="sp-trainer.html?noauto=1" class="item" data-id="sp">
+            <span class="item-name">sp- sound</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="ng-nk-trainer.html?noauto=1" class="item" data-id="ng-nk">
+            <span class="item-name">ng / nk</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="glottal-stop-trainer.html?noauto=1" class="item" data-id="glottal">
+            <span class="item-name">glottal stop</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="h-aspiration-trainer.html?noauto=1" class="item" data-id="h">
+            <span class="item-name">h aspiration</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="tion-sion-trainer.html?noauto=1" class="item" data-id="tion">
+            <span class="item-name">-tion / -sion</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- SPELLING -->
+      <div class="category">
+        <div class="category-header">
+          <div class="category-icon spelling">S</div>
+          <span class="category-name">Spelling</span>
+          <a class="unlock-all" onclick="unlockSection('spelling')">Unlock</a>
+        </div>
+        <div class="items" id="spelling">
+          <a href="ss-sz-trainer.html?noauto=1" class="item" data-id="ss-sz">
+            <span class="item-name">ss / sharp-s</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="k-ck-trainer.html?noauto=1" class="item" data-id="k-ck">
+            <span class="item-name">k / ck</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="z-tz-trainer.html?noauto=1" class="item" data-id="z-tz">
+            <span class="item-name">z / tz</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="f-v-trainer.html?noauto=1" class="item" data-id="f-v">
+            <span class="item-name">f / v</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="das-dass-trainer.html?noauto=1" class="item" data-id="das-dass">
+            <span class="item-name">das / dass</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="double-consonants-trainer.html?noauto=1" class="item" data-id="double">
+            <span class="item-name">double consonants</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="capitalization-trainer.html?noauto=1" class="item" data-id="caps">
+            <span class="item-name">capitalization</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROSODY -->
+      <div class="category">
+        <div class="category-header">
+          <div class="category-icon prosody">P</div>
+          <span class="category-name">Prosody</span>
+          <a class="unlock-all" onclick="unlockSection('prosody')">Unlock</a>
+        </div>
+        <div class="items" id="prosody">
+          <a href="word-stress-trainer.html?noauto=1" class="item" data-id="stress">
+            <span class="item-name">word stress</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- VOCABULARY -->
+      <div class="category">
+        <div class="category-header">
+          <div class="category-icon vocabulary">W</div>
+          <span class="category-name">Vocabulary</span>
+          <a class="unlock-all" onclick="unlockSection('vocabulary')">Unlock</a>
+        </div>
+        <div class="items" id="vocabulary">
+          <a href="compound-builder.html?noauto=1" class="item" data-id="compound">
+            <span class="item-name">compound words</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+          <a href="anglicisms-trainer.html?noauto=1" class="item" data-id="anglicisms">
+            <span class="item-name">anglicisms</span>
+            <span class="item-percent">0%</span>
+            <span class="item-arrow">&#8250;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA MANAGEMENT -->
+    <div class="data-section">
+      <div class="data-header" onclick="toggleDataSection()">
+        <div class="data-title">Progress Data</div>
+        <div class="data-toggle" id="dataToggle">Show</div>
+      </div>
+      <div class="data-content" id="dataContent">
+        <div class="data-info">
+          Your progress is saved in your browser's localStorage. Export regularly to keep a backup.
+        </div>
+        <div class="data-buttons">
+          <button class="data-btn" onclick="exportProgress()">Export Progress</button>
+          <button class="data-btn" onclick="document.getElementById('importFile').click()">Import Progress</button>
+          <button class="data-btn danger" onclick="resetProgress()">Reset All Progress</button>
+        </div>
+        <input type="file" id="importFile" class="hidden-input" accept=".json" onchange="importProgress(event)">
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://smartergerman.com" target="_blank">SmarterGerman.com</a>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // GAMIFICATION SYSTEM
+    // ========================================
+
+    // Level thresholds (exponential)
+    const LEVEL_THRESHOLDS = [0, 100, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000];
+
+    // XP rewards
+    const XP_SESSION_COMPLETE = 10;
+    const XP_TRAINER_MASTERED = 25;
+    const XP_DAILY_QUEST = 50;
+
+    // Daily quest
+    const DAILY_QUEST_TARGET = 3;
+
+    // Gamification state
+    let gstXP = parseInt(localStorage.getItem('gst_xp') || '0');
+    let gstLevel = parseInt(localStorage.getItem('gst_level') || '1');
+    let gstStreak = parseInt(localStorage.getItem('gst_streak') || '0');
+    let gstLastActiveDate = localStorage.getItem('gst_lastActiveDate') || '';
+    let gstDailyQuestProgress = parseInt(localStorage.getItem('gst_dailyQuestProgress') || '0');
+    let gstDailyQuestDate = localStorage.getItem('gst_dailyQuestDate') || '';
+    let gstDailyQuestCompleted = localStorage.getItem('gst_dailyQuestCompleted') === 'true';
+
+    // Track previous progress to detect changes
+    let previousProgress = {};
+
+    function getTodayDate() {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    function calculateLevel(xp) {
+      for (let i = LEVEL_THRESHOLDS.length - 1; i >= 0; i--) {
+        if (xp >= LEVEL_THRESHOLDS[i]) {
+          return i + 1;
+        }
+      }
+      return 1;
+    }
+
+    function getXPForNextLevel(level) {
+      if (level >= LEVEL_THRESHOLDS.length) {
+        return LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1] * 2;
+      }
+      return LEVEL_THRESHOLDS[level];
+    }
+
+    function getXPForCurrentLevel(level) {
+      if (level <= 1) return 0;
+      return LEVEL_THRESHOLDS[level - 1];
+    }
+
+    function addXP(amount) {
+      gstXP += amount;
+      gstLevel = calculateLevel(gstXP);
+      localStorage.setItem('gst_xp', gstXP.toString());
+      localStorage.setItem('gst_level', gstLevel.toString());
+      updateGamificationUI();
+    }
+
+    function checkStreak() {
+      const today = getTodayDate();
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+      if (gstLastActiveDate === today) {
+        // Already active today, no change
+        return;
+      } else if (gstLastActiveDate === yesterdayStr) {
+        // Was active yesterday, increment streak
+        gstStreak++;
+      } else if (gstLastActiveDate === '') {
+        // First time ever
+        gstStreak = 1;
+      } else {
+        // Missed a day, reset streak
+        gstStreak = 1;
+      }
+
+      gstLastActiveDate = today;
+      localStorage.setItem('gst_streak', gstStreak.toString());
+      localStorage.setItem('gst_lastActiveDate', gstLastActiveDate);
+    }
+
+    function checkDailyQuest() {
+      const today = getTodayDate();
+
+      // Reset quest if it's a new day
+      if (gstDailyQuestDate !== today) {
+        gstDailyQuestProgress = 0;
+        gstDailyQuestCompleted = false;
+        gstDailyQuestDate = today;
+        localStorage.setItem('gst_dailyQuestProgress', '0');
+        localStorage.setItem('gst_dailyQuestDate', today);
+        localStorage.setItem('gst_dailyQuestCompleted', 'false');
+      }
+    }
+
+    function incrementDailyQuest() {
+      if (gstDailyQuestCompleted) return;
+
+      gstDailyQuestProgress++;
+      localStorage.setItem('gst_dailyQuestProgress', gstDailyQuestProgress.toString());
+
+      if (gstDailyQuestProgress >= DAILY_QUEST_TARGET && !gstDailyQuestCompleted) {
+        gstDailyQuestCompleted = true;
+        localStorage.setItem('gst_dailyQuestCompleted', 'true');
+        addXP(XP_DAILY_QUEST);
+      }
+
+      updateGamificationUI();
+    }
+
+    function updateGamificationUI() {
+      // Level badge
+      document.getElementById('levelBadge').textContent = 'Level ' + gstLevel;
+
+      // XP display
+      const currentLevelXP = getXPForCurrentLevel(gstLevel);
+      const nextLevelXP = getXPForNextLevel(gstLevel);
+      const xpInLevel = gstXP - currentLevelXP;
+      const xpNeeded = nextLevelXP - currentLevelXP;
+      document.getElementById('xpDisplay').textContent = xpInLevel + ' / ' + xpNeeded + ' XP';
+
+      // Streak
+      document.getElementById('streakNumber').textContent = gstStreak;
+
+      // Quest
+      const questProgress = Math.min(gstDailyQuestProgress, DAILY_QUEST_TARGET);
+      const questPct = (questProgress / DAILY_QUEST_TARGET) * 100;
+      document.getElementById('questFill').style.width = questPct + '%';
+      document.getElementById('questCount').textContent = questProgress + '/' + DAILY_QUEST_TARGET;
+
+      if (gstDailyQuestCompleted) {
+        document.getElementById('questReward').textContent = 'Complete!';
+        document.getElementById('questReward').classList.add('quest-complete');
+        document.getElementById('questReward').classList.remove('quest-reward');
+      } else {
+        document.getElementById('questReward').textContent = '+50 XP';
+        document.getElementById('questReward').classList.remove('quest-complete');
+        document.getElementById('questReward').classList.add('quest-reward');
+      }
+    }
+
+    // ========================================
+    // TRAINER PROGRESS SYSTEM
+    // ========================================
+
+    const trainerOrder = [
+      'ie-ei', 'ae-a', 'ue-u', 'oe-o', 'long-short', 'schwa',
+      'ch', 'r', 's-z', 'pf', 'ig-ich', 'devoicing', 'st', 'sp', 'ng-nk', 'glottal', 'h', 'tion',
+      'ss-sz', 'k-ck', 'z-tz', 'f-v', 'das-dass', 'double', 'caps',
+      'stress',
+      'compound', 'anglicisms'
+    ];
+
+    const UNLOCK_THRESHOLD = 80;
+
+    const storageKeys = {
+      'ie-ei': 'ieEiTrainerProgress',
+      'ae-a': 'aeATrainerProgress',
+      'ue-u': 'ueUTrainerProgress',
+      'oe-o': 'oeOTrainerProgress',
+      'long-short': 'longShortVowelProgress',
+      'schwa': 'schwaTrainerProgress',
+      'ch': 'chSoundsProgress_v2',
+      'r': 'rSoundsProgress_v2',
+      's-z': 'szTrainerProgress',
+      'pf': 'pfSoundProgress',
+      'ig-ich': 'igIchTrainerProgress',
+      'devoicing': 'devoicingProgress',
+      'st': 'stTrainerProgress',
+      'sp': 'spTrainerProgress',
+      'ng-nk': 'ngNkTrainerProgress',
+      'glottal': 'glottalStopProgress',
+      'h': 'hAspirationProgress',
+      'tion': 'tionSionProgress',
+      'ss-sz': 'ssSzTrainerProgress',
+      'k-ck': 'kCkTrainerProgress',
+      'z-tz': 'zTzTrainerProgress',
+      'f-v': 'fVTrainerProgress',
+      'das-dass': 'das-dass-progress',
+      'double': 'doubleConsonantsProgress',
+      'caps': 'capitalizationProgress',
+      'stress': 'wordStressProgress',
+      'compound': 'compoundBuilderProgress',
+      'anglicisms': 'anglicismsProgress'
+    };
+
+    const totalWords = {
+      'ie-ei': 100, 'ae-a': 100, 'ue-u': 100, 'oe-o': 100, 'long-short': 100, 'schwa': 80,
+      'ch': 80, 'r': 78, 's-z': 100, 'pf': 100, 'ig-ich': 70, 'devoicing': 115,
+      'st': 100, 'sp': 100, 'ng-nk': 100, 'glottal': 80, 'h': 80, 'tion': 80,
+      'ss-sz': 99, 'k-ck': 100, 'z-tz': 100, 'f-v': 100, 'das-dass': 100,
+      'double': 100, 'caps': 100, 'stress': 74, 'compound': 60, 'anglicisms': 100
+    };
+
+    const trainerToSection = {
+      'ie-ei': 'vowels', 'ae-a': 'vowels', 'ue-u': 'vowels', 'oe-o': 'vowels', 'long-short': 'vowels', 'schwa': 'vowels',
+      'ch': 'consonants', 'r': 'consonants', 's-z': 'consonants', 'pf': 'consonants', 'ig-ich': 'consonants', 'devoicing': 'consonants', 'st': 'consonants', 'sp': 'consonants', 'ng-nk': 'consonants', 'glottal': 'consonants', 'h': 'consonants', 'tion': 'consonants',
+      'ss-sz': 'spelling', 'k-ck': 'spelling', 'z-tz': 'spelling', 'f-v': 'spelling', 'das-dass': 'spelling', 'double': 'spelling', 'caps': 'spelling',
+      'stress': 'prosody',
+      'compound': 'vocabulary', 'anglicisms': 'vocabulary'
+    };
+
+    let unlockedSections = JSON.parse(localStorage.getItem('unlockedSections-v4') || '[]');
+
+    function getProgress(trainerId) {
+      const key = storageKeys[trainerId];
+      if (!key) return { mastered: 0, total: totalWords[trainerId] || 100 };
+
+      try {
+        const data = localStorage.getItem(key);
+        if (!data) return { mastered: 0, total: totalWords[trainerId] || 100 };
+
+        const parsed = JSON.parse(data);
+        let mastered = 0;
+
+        if (parsed.mastered) {
+          mastered = Array.isArray(parsed.mastered) ? parsed.mastered.length : 0;
+        } else if (parsed.completed) {
+          mastered = Array.isArray(parsed.completed) ? parsed.completed.length : 0;
+        } else if (typeof parsed === 'object') {
+          mastered = Object.values(parsed).filter(v => v && v.correct >= 2).length;
+        }
+
+        return { mastered, total: totalWords[trainerId] || 100 };
+      } catch (e) {
+        return { mastered: 0, total: totalWords[trainerId] || 100 };
+      }
+    }
+
+    function isTrainerUnlocked(trainerId) {
+      const idx = trainerOrder.indexOf(trainerId);
+      if (idx === 0) return true;
+      if (idx === -1) return true;
+
+      // Check manual unlocks
+      const sectionId = trainerToSection[trainerId];
+      if (sectionId && unlockedSections.includes(sectionId)) return true;
+      if (unlockedSections.includes(trainerId)) return true;
+
+      // Check previous trainer progress
+      const prevId = trainerOrder[idx - 1];
+      const prevProgress = getProgress(prevId);
+      const prevPct = Math.round((prevProgress.mastered / prevProgress.total) * 100);
+      return prevPct >= UNLOCK_THRESHOLD;
+    }
+
+    function updateUI() {
+      const items = document.querySelectorAll('.item');
+      let progressChanged = false;
+
+      items.forEach(item => {
+        const id = item.dataset.id;
+        const progress = getProgress(id);
+        const pct = Math.round((progress.mastered / progress.total) * 100);
+
+        // Check if progress increased (user completed a session)
+        const prevPct = previousProgress[id] || 0;
+        if (pct > prevPct && prevPct > 0) {
+          progressChanged = true;
+          // Award XP for session
+          addXP(XP_SESSION_COMPLETE);
+          // Check for trainer mastery
+          if (pct >= 100 && prevPct < 100) {
+            addXP(XP_TRAINER_MASTERED);
+          }
+          // Increment daily quest
+          incrementDailyQuest();
+          // Update streak
+          checkStreak();
+        }
+        previousProgress[id] = pct;
+
+        const pctEl = item.querySelector('.item-percent');
+        if (pctEl) pctEl.textContent = pct + '%';
+
+        item.classList.remove('completed', 'locked');
+
+        const unlocked = isTrainerUnlocked(id);
+
+        if (!unlocked) {
+          item.classList.add('locked');
+        } else if (pct >= 100) {
+          item.classList.add('completed');
+        }
+      });
+
+      updateGamificationUI();
+    }
+
+    function unlockSection(sectionId) {
+      if (!confirm('Unlock this section? We recommend completing trainers in order.')) return;
+
+      if (!unlockedSections.includes(sectionId)) {
+        unlockedSections.push(sectionId);
+        localStorage.setItem('unlockedSections-v4', JSON.stringify(unlockedSections));
+      }
+
+      updateUI();
+      setupLockedHandlers();
+    }
+
+    function handleLockedClick(event, trainerId, itemEl) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const idx = trainerOrder.indexOf(trainerId);
+      const prevId = idx > 0 ? trainerOrder[idx - 1] : null;
+      const prevName = prevId ? (document.querySelector(`[data-id="${prevId}"] .item-name`)?.textContent || prevId) : '';
+
+      if (confirm('Locked: Finish "' + prevName + '" with 80% first.\n\nSkip ahead anyway?')) {
+        if (!unlockedSections.includes(trainerId)) {
+          unlockedSections.push(trainerId);
+          localStorage.setItem('unlockedSections-v4', JSON.stringify(unlockedSections));
+        }
+        updateUI();
+        window.location.href = itemEl.href;
+      }
+    }
+
+    function setupLockedHandlers() {
+      document.querySelectorAll('.item.locked').forEach(item => {
+        const id = item.dataset.id;
+        item.onclick = (e) => handleLockedClick(e, id, item);
+      });
+    }
+
+    function toggleDataSection() {
+      const content = document.getElementById('dataContent');
+      const toggle = document.getElementById('dataToggle');
+      content.classList.toggle('open');
+      toggle.textContent = content.classList.contains('open') ? 'Hide' : 'Show';
+    }
+
+    function exportProgress() {
+      const exportData = {
+        version: 2,
+        exportDate: new Date().toISOString(),
+        gamification: {
+          xp: gstXP,
+          level: gstLevel,
+          streak: gstStreak,
+          lastActiveDate: gstLastActiveDate
+        },
+        trainers: {}
+      };
+
+      for (const [id, key] of Object.entries(storageKeys)) {
+        const data = localStorage.getItem(key);
+        if (data) {
+          exportData.trainers[key] = JSON.parse(data);
+        }
+      }
+
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'german-trainers-progress-' + new Date().toISOString().split('T')[0] + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function importProgress(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+
+          if (!data.trainers) {
+            alert('Invalid backup file format.');
+            return;
+          }
+
+          let imported = 0;
+          for (const [key, value] of Object.entries(data.trainers)) {
+            localStorage.setItem(key, JSON.stringify(value));
+            imported++;
+          }
+
+          // Import gamification data if present
+          if (data.gamification) {
+            localStorage.setItem('gst_xp', data.gamification.xp?.toString() || '0');
+            localStorage.setItem('gst_level', data.gamification.level?.toString() || '1');
+            localStorage.setItem('gst_streak', data.gamification.streak?.toString() || '0');
+            localStorage.setItem('gst_lastActiveDate', data.gamification.lastActiveDate || '');
+            gstXP = parseInt(data.gamification.xp || 0);
+            gstLevel = parseInt(data.gamification.level || 1);
+            gstStreak = parseInt(data.gamification.streak || 0);
+            gstLastActiveDate = data.gamification.lastActiveDate || '';
+          }
+
+          updateUI();
+          alert('Imported progress for ' + imported + ' trainers.');
+        } catch (err) {
+          alert('Error reading backup file: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function resetProgress() {
+      if (!confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) return;
+      if (!confirm('Really delete everything? Export first if unsure.')) return;
+
+      for (const key of Object.values(storageKeys)) {
+        localStorage.removeItem(key);
+      }
+
+      // Reset gamification
+      localStorage.removeItem('gst_xp');
+      localStorage.removeItem('gst_level');
+      localStorage.removeItem('gst_streak');
+      localStorage.removeItem('gst_lastActiveDate');
+      localStorage.removeItem('gst_dailyQuestProgress');
+      localStorage.removeItem('gst_dailyQuestDate');
+      localStorage.removeItem('gst_dailyQuestCompleted');
+      localStorage.removeItem('unlockedSections-v4');
+
+      gstXP = 0;
+      gstLevel = 1;
+      gstStreak = 0;
+      gstLastActiveDate = '';
+      gstDailyQuestProgress = 0;
+      gstDailyQuestCompleted = false;
+      unlockedSections = [];
+      previousProgress = {};
+
+      updateUI();
+      setupLockedHandlers();
+      alert('All progress has been reset.');
+    }
+
+    // Initialize
+    checkDailyQuest();
+
+    // Store initial progress state
+    document.querySelectorAll('.item').forEach(item => {
+      const id = item.dataset.id;
+      const progress = getProgress(id);
+      previousProgress[id] = Math.round((progress.mastered / progress.total) * 100);
+    });
+
+    updateUI();
+    setupLockedHandlers();
+    window.addEventListener('focus', () => {
+      checkDailyQuest();
+      updateUI();
+      setupLockedHandlers();
+    });
+  </script>
+</body>
+</html>
