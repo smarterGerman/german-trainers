@@ -141,6 +141,27 @@
       font-size: 14px;
     }
 
+    .quest-skip {
+      background: transparent;
+      border: 1px solid #666;
+      color: #888;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .quest-skip:hover {
+      border-color: #F42E2E;
+      color: #F42E2E;
+    }
+
+    .quest-skip.hidden {
+      display: none;
+    }
+
     /* Categories Grid */
     .categories-grid {
       display: grid;
@@ -179,23 +200,28 @@
     }
 
     .category-icon.vowels {
-      background: linear-gradient(135deg, #E91E63, #C2185B);
+      background: #E91E63;
+      color: white;
     }
 
     .category-icon.consonants {
-      background: linear-gradient(135deg, #00BCD4, #0097A7);
+      background: #00BCD4;
+      color: white;
     }
 
     .category-icon.spelling {
-      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      background: #9C27B0;
+      color: white;
     }
 
     .category-icon.prosody {
-      background: linear-gradient(135deg, #FF9800, #F57C00);
+      background: #FF9800;
+      color: white;
     }
 
     .category-icon.vocabulary {
-      background: linear-gradient(135deg, #4CAF50, #388E3C);
+      background: #4CAF50;
+      color: white;
     }
 
     .category-name {
@@ -539,6 +565,16 @@
       background: linear-gradient(90deg, #E6A23C, #2E7D6E);
     }
 
+    body.light-mode .quest-skip {
+      border-color: #C5C0B8;
+      color: #7A7680;
+    }
+
+    body.light-mode .quest-skip:hover {
+      border-color: #C75B7A;
+      color: #C75B7A;
+    }
+
     body.light-mode .theme-toggle {
       background: #FFFDF9;
       border-color: #E2DED6;
@@ -692,7 +728,7 @@
     <!-- Quest Strip -->
     <div class="quest-strip">
       <span class="quest-label">Daily</span>
-      <span class="quest-text">Complete 3 trainers</span>
+      <span class="quest-text" id="questText">Complete 3 trainers</span>
       <div class="quest-progress">
         <div class="quest-bar">
           <div class="quest-fill" id="questFill" style="width: 0%"></div>
@@ -700,6 +736,7 @@
         <span class="quest-count" id="questCount">0/3</span>
       </div>
       <span class="quest-reward" id="questReward">+50 XP</span>
+      <button class="quest-skip" id="questSkip" onclick="skipQuest()">Skip (-25 XP)</button>
     </div>
 
     <!-- Categories Grid -->
@@ -961,9 +998,20 @@
     const XP_SESSION_COMPLETE = 10;
     const XP_TRAINER_MASTERED = 25;
     const XP_DAILY_QUEST = 50;
+    const XP_SKIP_COST = 25;
 
-    // Daily quest
-    const DAILY_QUEST_TARGET = 3;
+    // Daily quests pool
+    const DAILY_QUESTS = [
+      { id: 'trainers3', text: 'Complete 3 trainers', target: 3, type: 'trainers', xp: 50 },
+      { id: 'trainers5', text: 'Complete 5 trainers', target: 5, type: 'trainers', xp: 75 },
+      { id: 'questions50', text: 'Answer 50 questions correctly', target: 50, type: 'questions', xp: 50 },
+      { id: 'perfect', text: 'Get 100% on any trainer', target: 1, type: 'perfect', xp: 75 },
+      { id: 'vowels2', text: 'Complete 2 vowel trainers', target: 2, type: 'category', category: 'vowels', xp: 50 },
+      { id: 'consonants2', text: 'Complete 2 consonant trainers', target: 2, type: 'category', category: 'consonants', xp: 50 },
+      { id: 'spelling2', text: 'Complete 2 spelling trainers', target: 2, type: 'category', category: 'spelling', xp: 50 },
+      { id: 'accuracy80', text: 'Complete 3 trainers with 80%+ accuracy', target: 3, type: 'accuracy', minAccuracy: 80, xp: 75 },
+      { id: 'trainer1', text: 'Complete at least 1 trainer', target: 1, type: 'trainers', xp: 25 },
+    ];
 
     // Gamification state
     let gstXP = parseInt(localStorage.getItem('gst_xp') || '0');
@@ -973,6 +1021,17 @@
     let gstDailyQuestProgress = parseInt(localStorage.getItem('gst_dailyQuestProgress') || '0');
     let gstDailyQuestDate = localStorage.getItem('gst_dailyQuestDate') || '';
     let gstDailyQuestCompleted = localStorage.getItem('gst_dailyQuestCompleted') === 'true';
+    let gstDailyQuestId = localStorage.getItem('gst_dailyQuestId') || '';
+    let gstDailyQuestSkipped = localStorage.getItem('gst_dailyQuestSkipped') === 'true';
+
+    function getCurrentQuest() {
+      return DAILY_QUESTS.find(q => q.id === gstDailyQuestId) || DAILY_QUESTS[0];
+    }
+
+    function getRandomQuest() {
+      const idx = Math.floor(Math.random() * DAILY_QUESTS.length);
+      return DAILY_QUESTS[idx];
+    }
 
     // Track previous progress to detect changes
     let previousProgress = {};
@@ -1042,23 +1101,113 @@
       if (gstDailyQuestDate !== today) {
         gstDailyQuestProgress = 0;
         gstDailyQuestCompleted = false;
+        gstDailyQuestSkipped = false;
         gstDailyQuestDate = today;
+
+        // Pick a random quest for today
+        const quest = getRandomQuest();
+        gstDailyQuestId = quest.id;
+
         localStorage.setItem('gst_dailyQuestProgress', '0');
         localStorage.setItem('gst_dailyQuestDate', today);
         localStorage.setItem('gst_dailyQuestCompleted', 'false');
+        localStorage.setItem('gst_dailyQuestId', gstDailyQuestId);
+        localStorage.setItem('gst_dailyQuestSkipped', 'false');
       }
+    }
+
+    function skipQuest() {
+      if (gstDailyQuestCompleted || gstDailyQuestSkipped) return;
+      if (gstXP < XP_SKIP_COST) {
+        alert('Not enough XP to skip. You need at least ' + XP_SKIP_COST + ' XP.');
+        return;
+      }
+
+      // Deduct XP
+      gstXP -= XP_SKIP_COST;
+      localStorage.setItem('gst_xp', gstXP.toString());
+
+      // Pick a new random quest (different from current)
+      let newQuest;
+      do {
+        newQuest = getRandomQuest();
+      } while (newQuest.id === gstDailyQuestId && DAILY_QUESTS.length > 1);
+
+      gstDailyQuestId = newQuest.id;
+      gstDailyQuestProgress = 0;
+      gstDailyQuestSkipped = true; // Can only skip once per day
+
+      localStorage.setItem('gst_dailyQuestId', gstDailyQuestId);
+      localStorage.setItem('gst_dailyQuestProgress', '0');
+      localStorage.setItem('gst_dailyQuestSkipped', 'true');
+
+      updateGamificationUI();
     }
 
     function incrementDailyQuest() {
       if (gstDailyQuestCompleted) return;
 
-      gstDailyQuestProgress++;
-      localStorage.setItem('gst_dailyQuestProgress', gstDailyQuestProgress.toString());
+      const quest = getCurrentQuest();
 
-      if (gstDailyQuestProgress >= DAILY_QUEST_TARGET && !gstDailyQuestCompleted) {
-        gstDailyQuestCompleted = true;
-        localStorage.setItem('gst_dailyQuestCompleted', 'true');
-        addXP(XP_DAILY_QUEST);
+      // For simple trainer-based quests, just increment
+      if (quest.type === 'trainers') {
+        gstDailyQuestProgress++;
+        localStorage.setItem('gst_dailyQuestProgress', gstDailyQuestProgress.toString());
+
+        if (gstDailyQuestProgress >= quest.target && !gstDailyQuestCompleted) {
+          gstDailyQuestCompleted = true;
+          localStorage.setItem('gst_dailyQuestCompleted', 'true');
+          addXP(quest.xp);
+        }
+      }
+
+      updateGamificationUI();
+    }
+
+    // Called when a trainer session ends with specific data
+    function recordTrainerCompletion(trainerId, correctAnswers, totalQuestions) {
+      if (gstDailyQuestCompleted) return;
+
+      const quest = getCurrentQuest();
+      const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
+      const section = trainerToSection[trainerId];
+
+      let shouldIncrement = false;
+
+      switch (quest.type) {
+        case 'trainers':
+          shouldIncrement = true;
+          break;
+        case 'category':
+          if (section === quest.category) shouldIncrement = true;
+          break;
+        case 'accuracy':
+          if (accuracy >= quest.minAccuracy) shouldIncrement = true;
+          break;
+        case 'perfect':
+          if (accuracy === 100) shouldIncrement = true;
+          break;
+        case 'questions':
+          gstDailyQuestProgress += correctAnswers;
+          localStorage.setItem('gst_dailyQuestProgress', gstDailyQuestProgress.toString());
+          if (gstDailyQuestProgress >= quest.target) {
+            gstDailyQuestCompleted = true;
+            localStorage.setItem('gst_dailyQuestCompleted', 'true');
+            addXP(quest.xp);
+          }
+          updateGamificationUI();
+          return;
+      }
+
+      if (shouldIncrement) {
+        gstDailyQuestProgress++;
+        localStorage.setItem('gst_dailyQuestProgress', gstDailyQuestProgress.toString());
+
+        if (gstDailyQuestProgress >= quest.target) {
+          gstDailyQuestCompleted = true;
+          localStorage.setItem('gst_dailyQuestCompleted', 'true');
+          addXP(quest.xp);
+        }
       }
 
       updateGamificationUI();
@@ -1079,19 +1228,32 @@
       document.getElementById('streakNumber').textContent = gstStreak;
 
       // Quest
-      const questProgress = Math.min(gstDailyQuestProgress, DAILY_QUEST_TARGET);
-      const questPct = (questProgress / DAILY_QUEST_TARGET) * 100;
+      const quest = getCurrentQuest();
+      const questProgress = Math.min(gstDailyQuestProgress, quest.target);
+      const questPct = (questProgress / quest.target) * 100;
+
+      document.getElementById('questText').textContent = quest.text;
       document.getElementById('questFill').style.width = questPct + '%';
-      document.getElementById('questCount').textContent = questProgress + '/' + DAILY_QUEST_TARGET;
+      document.getElementById('questCount').textContent = questProgress + '/' + quest.target;
+
+      const skipBtn = document.getElementById('questSkip');
 
       if (gstDailyQuestCompleted) {
         document.getElementById('questReward').textContent = 'Complete!';
         document.getElementById('questReward').classList.add('quest-complete');
         document.getElementById('questReward').classList.remove('quest-reward');
+        skipBtn.classList.add('hidden');
       } else {
-        document.getElementById('questReward').textContent = '+50 XP';
+        document.getElementById('questReward').textContent = '+' + quest.xp + ' XP';
         document.getElementById('questReward').classList.remove('quest-complete');
         document.getElementById('questReward').classList.add('quest-reward');
+
+        // Show/hide skip button
+        if (gstDailyQuestSkipped) {
+          skipBtn.classList.add('hidden');
+        } else {
+          skipBtn.classList.remove('hidden');
+        }
       }
     }
 
@@ -1376,6 +1538,8 @@
       localStorage.removeItem('gst_dailyQuestProgress');
       localStorage.removeItem('gst_dailyQuestDate');
       localStorage.removeItem('gst_dailyQuestCompleted');
+      localStorage.removeItem('gst_dailyQuestId');
+      localStorage.removeItem('gst_dailyQuestSkipped');
       localStorage.removeItem('unlockedSections-v5');
 
       gstXP = 0;
@@ -1384,6 +1548,8 @@
       gstLastActiveDate = '';
       gstDailyQuestProgress = 0;
       gstDailyQuestCompleted = false;
+      gstDailyQuestId = '';
+      gstDailyQuestSkipped = false;
       unlockedSections = [];
       previousProgress = {};
 
